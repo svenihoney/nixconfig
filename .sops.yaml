@@ -1,7 +1,7 @@
 keys:
   # Users
   - &users:
-    - &misterio 7088C7421873E0DB97FF17C2245CAB70B4C225E9
+    - &sven 7088C7421873E0DB97FF17C2245CAB70B4C225E9
   # Hosts
   - &hosts:
     - &atlas age1hm5lf4qk84r4wh00atn6hpts7mpdx80adq26wht2e5qh9ewvhyaszfv82d
@@ -18,19 +18,19 @@ creation_rules:
     - age:
       - *celaeno
       pgp:
-      - *misterio
+      - *sven
   - path_regex: hosts/alcyone/secrets.ya?ml$
     key_groups:
     - age:
       - *alcyone
       pgp:
-      - *misterio
+      - *sven
   - path_regex: hosts/merope/secrets.ya?ml$
     key_groups:
     - age:
       - *merope
       pgp:
-      - *misterio
+      - *sven
 
   - path_regex: hosts/common/secrets.ya?ml$
     key_groups:
@@ -43,4 +43,4 @@ creation_rules:
       - *celaeno
       - *electra
       pgp:
-      - *misterio
+      - *sven

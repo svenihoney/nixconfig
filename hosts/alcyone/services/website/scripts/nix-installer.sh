@@ -14,7 +14,7 @@ else
 fi
 chmod +x "$dir/nix"
 
-comment="# Added by misterio nix installer"
+comment="# Added by sven nix installer"
 
 if ! grep -sq "$comment" "$HOME/.profile" ; then
     mkdir -p "$HOME/.config/nix"

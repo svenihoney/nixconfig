@@ -26,8 +26,8 @@
       "Marcos_5Ghz" = {
         pskRaw = "@MARCOS_50@";
       };
-      "Misterio" = {
-        pskRaw = "@MISTERIO@";
+      "Sven" = {
+        pskRaw = "@SVEN@";
       };
       "VIVOFIBRA-FC41-5G" = {
         pskRaw = "@MARCOS_SANTOS_5G@";

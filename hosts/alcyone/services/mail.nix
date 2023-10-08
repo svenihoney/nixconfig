@@ -11,7 +11,7 @@
     domains = [
       "m7.rs"
       "fontes.dev.br"
-      "misterio.me"
+      "sven.me"
       "gsfontes.com"
     ];
     useFsLayout = true;

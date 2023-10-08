@@ -21,6 +21,33 @@
       ssh-to-age
       gnupg
       age
+
+      cachix
+      deploy-rs
+      # nil
+      # nix-build-uncached
+      # nix-eval-jobs
+      nixpkgs-fmt
+      nixfmt
+      # statix
+
+      # Lua
+      # stylua
+      # (luajit.withPackages (p: with p; [ luacheck ]))
+      # lua-language-server
+
+      # Shell
+      shellcheck
+      shfmt
+
+      # GitHub Actions
+      # act
+      # actionlint
+      # python3Packages.pyflakes
+
+      # Misc
+      # jq
+      pre-commit
     ];
   };
 }

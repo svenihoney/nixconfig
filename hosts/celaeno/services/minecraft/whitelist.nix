@@ -1,6 +1,6 @@
 # Whitelist for the private SMP servers (e.g. modpack)
 {
-  Misterio7x = "3fc76c64-b1b2-4a95-b3cf-0d7d94db2d75";
+  Sven7x = "3fc76c64-b1b2-4a95-b3cf-0d7d94db2d75";
   Kirao = "10ffa557-322a-4b6c-9b3e-cdc2792163ae";
   CarlosGordo = "dbd3d5eb-1dbd-40eb-a433-40e82deca840";
   _Dimmy_ = "3e0ea896-2c84-40d2-b640-c25f642db468";

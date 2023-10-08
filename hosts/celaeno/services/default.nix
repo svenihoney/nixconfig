@@ -5,7 +5,7 @@
     ../../common/optional/postgres.nix
 
     ./binary-cache.nix
-    ./paste-misterio-me.nix
+    ./paste-sven-me.nix
     ./disconic.nix
 
     ./hydra

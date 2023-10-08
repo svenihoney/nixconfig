@@ -8,7 +8,7 @@
     ./hardware-configuration.nix
 
     ../common/global
-    ../common/users/misterio
+    ../common/users/sven
 
     ../common/optional/wireless.nix
     ../common/optional/greetd.nix

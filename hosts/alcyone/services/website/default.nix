@@ -1,8 +1,8 @@
 { pkgs, ... }:
 let
   website = pkgs.inputs.website.default;
-  pgpKey = ../../../../home/misterio/pgp.asc;
-  sshKey = ../../../../home/misterio/ssh.pub;
+  pgpKey = ../../../../home/sven/pgp.asc;
+  sshKey = ../../../../home/sven/ssh.pub;
   redir = {
     forceSSL = true;
     enableACME = true;
@@ -50,7 +50,7 @@ in
       };
     };
     "gsfontes.com" = redir;
-    "misterio.me" = redir;
+    "sven.me" = redir;
     "fontes.dev.br" = redir;
   };
 }

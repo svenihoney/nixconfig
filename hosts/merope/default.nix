@@ -6,7 +6,7 @@
     ./hardware-configuration.nix
 
     ../common/global
-    ../common/users/misterio
+    ../common/users/sven
   ];
 
   # Static IP address
