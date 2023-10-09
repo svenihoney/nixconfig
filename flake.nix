@@ -102,11 +102,11 @@
 
       homeConfigurations = {
         # Desktops
-        # "sven@maja" = lib.homeManagerConfiguration {
-        #   modules = [ ./home/sven/maja.nix ];
-        #   pkgs = pkgsFor.x86_64-linux;
-        #   extraSpecialArgs = { inherit inputs outputs; };
-        # };
+        "sven@maja" = lib.homeManagerConfiguration {
+          modules = [ ./home/sven/maja.nix ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
         "sven@nixvirt" = lib.homeManagerConfiguration {
           modules = [ ./home/sven/nixvirt.nix ];
           pkgs = pkgsFor.x86_64-linux;
