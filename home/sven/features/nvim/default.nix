@@ -12,6 +12,8 @@
     viAlias = true;
     vimAlias = true;
 
+    defaultEditor = true;
+
     extraLuaConfig = ''
 
         vim.opt.number = true                                  -- show line numbers
