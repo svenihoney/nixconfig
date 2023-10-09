@@ -20,16 +20,23 @@
     # ./xpo.nix
   ];
   home.packages = with pkgs; [
-    # comma # Install and run programs by sticking a , before them
+    comma # Install and run programs by sticking a , before them
+    # manix # Nix documentation search tool, seems to be abandoned
+
     # distrobox # Nice escape hatch, integrates docker images with my environment
 
-    # bc # Calculator
-    bottom # System viewer
+    # System viewer
+    bottom
+    btop
+    htop
+    procs
+
     ncdu # TUI disk usage
     eza # Better ls
     ripgrep # Better grep
     fd # Better find
-    httpie # Better curl
+
+    xh # Better curl
     # diffsitter # Better diff
     jq # JSON pretty printer and manipulator
     # trekscii # Cute startrek cli printer
@@ -42,7 +49,12 @@
     # ltex-ls # Spell checking LSP
 
     # tly # Tally counter
+    viddy
+    just
 
     # inputs.nh.default # nixos-rebuild and home-manager CLI wrapper
   ];
+
+  programs = { zellij.enable = true; };
+
 }

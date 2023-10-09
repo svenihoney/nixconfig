@@ -1,33 +1,66 @@
-{ pkgs, config, ... }:
+{ config, lib, pkgs, ... }:
+
 {
-  programs.emacs = {
-    enable = true;
-    package = pkgs.emacs-gtk;
 
-    overrides = final: _prev: {
-      nix-theme = final.callPackage ./theme.nix { inherit config; };
+  programs = {
+    emacs = {
+      enable = true;
+      package = lib.mkDefault pkgs.emacs29;
     };
-    extraPackages = epkgs: with epkgs; [
-      nix-theme
 
-      nix-mode
-      magit
-      lsp-mode
-      which-key
-      mmm-mode
+    # doom-emacs = rec {
+    #   enable = false;
+    #   emacsPackage = pkgs.emacsNativeComp;
 
-      evil
-      evil-org
-      evil-collection
-      evil-surround
-    ];
+    #   doomPrivateDir = ./doom.d;
+    #   # Only init/packages so we only rebuild when those change.
+    #   doomPackageDir = pkgs.linkFarm "my-doom-packages" [
+    #     # straight needs a (possibly empty) `config.el` file to build
+    #     {
+    #       name = "config.el";
+    #       path = pkgs.emptyFile;
+    #     }
+    #     {
+    #       name = "init.el";
+    #       path = ./doom.d/init.el;
+    #     }
+    #     {
+    #       name = "packages.el";
+    #       path = pkgs.writeText "packages.el" ''
+    #         (package! zeal-at-point)
 
-    extraConfig = builtins.readFile ./init.el;
+    #         ;; The following is from https://tecosaur.github.io/emacs-config/config.html
+    #         ;;(package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el")) :pin "cc02f25337...")
+
+    #         ;; (package! fira-code-mode :recipe (:host github :repo "jming422/fira-code-mode"))
+
+    #         (package! robot-mode :recipe (:host github :repo "jstvz/robot-mode"))
+
+    #         ;; (package! company-tabnine :recipe (:host github :repo "TommyX12/company-tabnine"))
+
+    #         (package! fish-mode)
+
+    #         ;; Live preview of HTML/Markdown files
+    #         (package! impatient-mode)
+
+    #         (package! adoc-mode)
+    #         (package! just-mode)
+    #       '';
+    #     }
+    #     # { name = "modules"; path = ./my-doom-module; }
+    #   ];
+
+    # };
   };
-  services.emacs = {
-    enable = true;
-    client.enable = true;
-    defaultEditor = true;
-    socketActivation.enable = true;
+  # Until the doom emacs override is more or less up-to-date again
+  home.file.".doom.d" = { source = ./doom.d; };
+
+  services = {
+    emacs = {
+      enable = true;
+      client.enable = true;
+      socketActivation.enable = true;
+    };
   };
+
 }
