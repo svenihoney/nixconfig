@@ -1,24 +1,25 @@
 let
   hosts = {
-    beely = {
-      type = "homeManager";
-      hostPlatform = "x86_64-linux";
-      address = "beely";
-      remoteBuild = true;
-      homeDirectory = "/home/sven";
-    };
-    struppi = {
-      type = "homeManager";
-      hostPlatform = "x86_64-linux";
-      address = "struppi.effeffcee.de";
-      remoteBuild = true;
-      homeDirectory = "/home/sven";
-    };
+    # beely = {
+    #   type = "homeManager";
+    #   hostPlatform = "x86_64-linux";
+    #   address = "beely";
+    #   remoteBuild = true;
+    #   homeDirectory = "/home/sven";
+    # };
+    # struppi = {
+    #   type = "homeManager";
+    #   hostPlatform = "x86_64-linux";
+    #   address = "struppi.effeffcee.de";
+    #   remoteBuild = true;
+    #   homeDirectory = "/home/sven";
+    # };
     maja = {
       type = "homeManager";
       hostPlatform = "x86_64-linux";
       address = "maja";
       remoteBuild = true;
+      user = "sven";
       homeDirectory = "/home/sven";
     };
     nixvirt = {
@@ -27,28 +28,10 @@ let
       address = "nixvirt";
       remoteBuild = true;
     };
-    willi = {
-      type = "nixos";
-      hostPlatform = "x86_64-linux";
-      address = "willi";
-      remoteBuild = false;
-    };
-    # laptop = {
+    # willi = {
     #   type = "nixos";
     #   hostPlatform = "x86_64-linux";
-    #   address = "laptop";
-    #   remoteBuild = false;
-    # };
-    # work = {
-    #   type = "nixos";
-    #   hostPlatform = "x86_64-linux";
-    #   address = "sven-work";
-    #   remoteBuild = true;
-    # };
-    # pixel6 = {
-    #   type = "nix-on-droid";
-    #   hostPlatform = "aarch64-linux";
-    #   address = "pixel6";
+    #   address = "willi";
     #   remoteBuild = false;
     # };
   };

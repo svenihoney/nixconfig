@@ -60,12 +60,23 @@
       lib = nixpkgs.lib // home-manager.lib;
       systems = [ "x86_64-linux" "aarch64-linux" ];
       forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs systems (system: import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      });
-    in
-    {
+      pkgsFor = lib.genAttrs systems (system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        });
+      genNixosConfig = hostName: { ... }:
+        lib.nixosSystem {
+          modules = [ ./hosts/${hostName} ];
+          specialArgs = { inherit inputs outputs; };
+        };
+      genHomeConfig = hostName: { user, ... }:
+         lib.homeManagerConfiguration {
+           modules = [ ./home/${user}/${hostName}.nix ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
+    in {
       inherit lib;
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;
@@ -82,41 +93,7 @@
       # wallpapers = import ./home/sven/wallpapers;
       hosts = import ./hosts.nix;
 
-      nixosConfigurations = {
-        # Main desktop
-        # atlas =  lib.nixosSystem {
-        #   modules = [ ./hosts/atlas ];
-        #   specialArgs = { inherit inputs outputs; };
-        # };
-        # Secondary desktop
-        nixvirt = lib.nixosSystem {
-          modules = [ ./hosts/nixvirt ];
-          specialArgs = { inherit inputs outputs; };
-        };
-        # Personal laptop
-        # pleione = lib.nixosSystem {
-        #   modules = [ ./hosts/pleione ];
-        #   specialArgs = { inherit inputs outputs; };
-        # };
-      };
-
-      homeConfigurations = {
-        # Desktops
-        "sven@maja" = lib.homeManagerConfiguration {
-          modules = [ ./home/sven/maja.nix ];
-          pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-        "sven@nixvirt" = lib.homeManagerConfiguration {
-          modules = [ ./home/sven/nixvirt.nix ];
-          pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-        # "sven@willi" = lib.homeManagerConfiguration {
-        #   modules = [ ./home/sven/willi.nix ];
-        #   pkgs = pkgsFor.x86_64-linux;
-        #   extraSpecialArgs = { inherit inputs outputs; };
-        # };
-      };
+      nixosConfigurations = lib.mapAttrs genNixosConfig (self.hosts.nixos or {});
+      homeConfigurations = lib.mapAttrs genHomeConfig (self.hosts.homeManager or {});
     };
 }
