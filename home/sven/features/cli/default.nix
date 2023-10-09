@@ -4,12 +4,13 @@
     ./bat.nix
     ./direnv.nix
     ./fish.nix
+    ./fzf.nix
     # ./gh.nix
     ./git.nix
     ./gpg.nix
     # ./jujutsu.nix
     # ./lyrics.nix
-    # ./nix-index.nix
+    ./nix-index.nix
     # ./pfetch.nix
     # ./ranger.nix
     # ./screen.nix
