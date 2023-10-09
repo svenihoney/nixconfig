@@ -38,9 +38,9 @@ in
 {
   programs.waybar = {
     enable = true;
-    package = pkgs.waybar.overrideAttrs (oa: {
-      mesonFlags = (oa.mesonFlags or  [ ]) ++ [ "-Dexperimental=true" ];
-    });
+    # package = pkgs.waybar.overrideAttrs (oa: {
+    #   mesonFlags = (oa.mesonFlags or  [ ]) ++ [ "-Dexperimental=true" ];
+    # });
     systemd.enable = true;
     settings = {
       primary = {
@@ -304,9 +304,92 @@ in
     # x y -> vertical, horizontal
     # x y z -> top, horizontal, bottom
     # w x y z -> top, right, bottom, left
-    style = let inherit (config.colorscheme) colors; in /* css */ ''
+    # style = let inherit (config.colorscheme) colors; in /* css */ ''
+    #   * {
+    #     font-family: ${config.fontProfiles.regular.family}, ${config.fontProfiles.monospace.family};
+    #     font-size: 12pt;
+    #     padding: 0 8px;
+    #   }
+
+    #   .modules-right {
+    #     margin-right: -15px;
+    #   }
+
+    #   .modules-left {
+    #     margin-left: -15px;
+    #   }
+
+    #   window#waybar.top {
+    #     opacity: 0.95;
+    #     padding: 0;
+    #     background-color: #${colors.base00};
+    #     border: 2px solid #${colors.base0C};
+    #     border-radius: 10px;
+    #   }
+    #   window#waybar.bottom {
+    #     opacity: 0.90;
+    #     background-color: #${colors.base00};
+    #     border: 2px solid #${colors.base0C};
+    #     border-radius: 10px;
+    #   }
+
+    #   window#waybar {
+    #     color: #${colors.base05};
+    #   }
+
+    #   #workspaces button {
+    #     background-color: #${colors.base01};
+    #     color: #${colors.base05};
+    #     padding: 5px 1px;
+    #     margin: 3px 0;
+    #   }
+    #   #workspaces button.hidden {
+    #     background-color: #${colors.base00};
+    #     color: #${colors.base04};
+    #   }
+    #   #workspaces button.focused,
+    #   #workspaces button.active {
+    #     background-color: #${colors.base0A};
+    #     color: #${colors.base00};
+    #   }
+
+    #   #clock {
+    #     background-color: #${colors.base0C};
+    #     color: #${colors.base00};
+    #     padding-left: 15px;
+    #     padding-right: 15px;
+    #     margin-top: 0;
+    #     margin-bottom: 0;
+    #     border-radius: 10px;
+    #   }
+
+    #   #custom-menu {
+    #     background-color: #${colors.base0C};
+    #     color: #${colors.base00};
+    #     padding-left: 15px;
+    #     padding-right: 22px;
+    #     margin: 0;
+    #     border-radius: 10px;
+    #   }
+    #   #custom-hostname {
+    #     background-color: #${colors.base0C};
+    #     color: #${colors.base00};
+    #     padding-left: 15px;
+    #     padding-right: 18px;
+    #     margin-right: 0;
+    #     margin-top: 0;
+    #     margin-bottom: 0;
+    #     border-radius: 10px;
+    #   }
+    #   #custom-currentplayer {
+    #     padding-right: 0;
+    #   }
+    #   #tray {
+    #     color: #${colors.base05};
+    #   }
+    # '';
+    style = ''
       * {
-        font-family: ${config.fontProfiles.regular.family}, ${config.fontProfiles.monospace.family};
         font-size: 12pt;
         padding: 0 8px;
       }
@@ -322,40 +405,24 @@ in
       window#waybar.top {
         opacity: 0.95;
         padding: 0;
-        background-color: #${colors.base00};
-        border: 2px solid #${colors.base0C};
         border-radius: 10px;
       }
       window#waybar.bottom {
         opacity: 0.90;
-        background-color: #${colors.base00};
-        border: 2px solid #${colors.base0C};
         border-radius: 10px;
       }
 
-      window#waybar {
-        color: #${colors.base05};
-      }
-
       #workspaces button {
-        background-color: #${colors.base01};
-        color: #${colors.base05};
         padding: 5px 1px;
         margin: 3px 0;
       }
       #workspaces button.hidden {
-        background-color: #${colors.base00};
-        color: #${colors.base04};
       }
       #workspaces button.focused,
       #workspaces button.active {
-        background-color: #${colors.base0A};
-        color: #${colors.base00};
       }
 
       #clock {
-        background-color: #${colors.base0C};
-        color: #${colors.base00};
         padding-left: 15px;
         padding-right: 15px;
         margin-top: 0;
@@ -364,16 +431,12 @@ in
       }
 
       #custom-menu {
-        background-color: #${colors.base0C};
-        color: #${colors.base00};
         padding-left: 15px;
         padding-right: 22px;
         margin: 0;
         border-radius: 10px;
       }
       #custom-hostname {
-        background-color: #${colors.base0C};
-        color: #${colors.base00};
         padding-left: 15px;
         padding-right: 18px;
         margin-right: 0;
@@ -383,9 +446,6 @@ in
       }
       #custom-currentplayer {
         padding-right: 0;
-      }
-      #tray {
-        color: #${colors.base05};
       }
     '';
   };

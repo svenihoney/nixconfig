@@ -67,42 +67,6 @@
         }
       '';
     }
-
-
-    #     'numToStr/Comment.nvim',
-    #     lazy = false,
-    # },
-    # {
-    #     'nvim-telescope/telescope.nvim', branch = '0.1.x',
-    #     dependencies = { 'nvim-lua/plenary.nvim' }
-    # },
-    # {
-    #     "folke/trouble.nvim",
-    #     dependencies = { "nvim-tree/nvim-web-devicons" },
-    # },
-    # {
-    #     "nvim-treesitter/nvim-treesitter",
-    #     build = ":TSUpdate",
-    # },
-    # {
-    #     "nvim-treesitter/nvim-treesitter-context",
-    # },
-
-
-
-
-
-
-
-
-
-    # {
-    #   plugin = nvim-bqf;
-    #   type = "lua";
-    #   config = /* lua * */ ''
-    #     require('bqf').setup{}
-    #   '';
-    # }
     {
       plugin = alpha-nvim;
       type = "lua";
@@ -134,80 +98,5 @@
         vim.keymap.set("n", "<space>a", ":Alpha<CR>", { desc = "Open alpha dashboard" })
       '';
     }
-    # {
-    #   plugin = bufferline-nvim;
-    #   type = "lua";
-    #   config = /* lua */ ''
-    #     require('bufferline').setup{}
-    #   '';
-    # }
-    # {
-    #   plugin = scope-nvim;
-    #   type = "lua";
-    #   config = /* lua */ ''
-    #     require('scope').setup{}
-    #   '';
-    # }
-    # {
-    #   plugin = which-key-nvim;
-    #   type = "lua";
-    #   config = /* lua */ ''
-    #     require('which-key').setup{}
-    #   '';
-    # }
-    # {
-    #   plugin = range-highlight-nvim;
-    #   type = "lua";
-    #   config = /* lua */ ''
-    #     require('range-highlight').setup{}
-    #   '';
-    # }
-    # {
-    #   plugin = indent-blankline-nvim;
-    #   type = "lua";
-    #   config = /* lua */ ''
-    #     require('indent_blankline').setup{char_highlight_list={'IndentBlankLine'}}
-    #   '';
-    # }
-    # {
-    #   plugin = nvim-web-devicons;
-    #   type = "lua";
-    #   config = /* lua */ ''
-    #     require('nvim-web-devicons').setup{}
-    #   '';
-    # }
-    # {
-    #   plugin = gitsigns-nvim;
-    #   type = "lua";
-    #   config = /* lua */ ''
-    #     require('gitsigns').setup{
-    #       signs = {
-    #         add = { text = '+' },
-    #         change = { text = '~' },
-    #         delete = { text = '_' },
-    #         topdelete = { text = '‾' },
-    #         changedelete = { text = '~' },
-    #       },
-    #     }
-    #   '';
-    # }
-    # {
-    #   plugin = nvim-colorizer-lua;
-    #   type = "lua";
-    #   config = /* lua */ ''
-    #     require('colorizer').setup{}
-    #   '';
-    # }
-    # {
-    #   plugin = fidget-nvim;
-    #   type = "lua";
-    #   config = /* lua */ ''
-    #     require('fidget').setup{
-    #       text = {
-    #         spinner = "dots",
-    #       },
-    #     }
-    #   '';
-    # }
   ];
 }

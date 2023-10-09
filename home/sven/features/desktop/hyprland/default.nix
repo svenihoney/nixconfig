@@ -19,7 +19,7 @@
     # package = pkgs.inputs.hyprland.hyprland;
 
     # xwayland.enable = true;
-    systemdIntegration = true;
+    systemd.enable = true;
     # wrapperFeatures.gtk = true;
 
     settings = {
@@ -106,6 +106,9 @@
       #   "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill"
       # ];
 
+      # bindl = let swaylock = "${config.programs.swaylock.package}/bin/swaylock";
+      # in [ ",switch:Lid Switch, exec, swaylock" ];
+
       bind = let
         swaylock = "${config.programs.swaylock.package}/bin/swaylock";
         playerctl = "${config.services.playerctld.package}/bin/playerctl";
@@ -147,7 +150,6 @@
         "SUPER, D, exec, ulauncher-toggle"
         "SUPER SHIFT, K, exec, keepassxc"
         # "SUPER SHIFT, E, exec, nwg-bar"
-        "SUPER , L, exec, swaylock"
 
         # Brightness control (only works if the system has lightd)
         ",XF86MonBrightnessUp,exec,light -A 10"

@@ -2,6 +2,7 @@
   imports = [
     ./global
     ./features/emacs
+    ./features/nvim/lsp.nix
     # ./features/desktop/hyprland
     # ./features/rgb
     # ./features/productivity
