@@ -1,1 +1,8 @@
-{ imports = [ ./global ./features/emacs ]; }
+{
+  imports = [
+    ./global
+    ./features/emacs
+    ./features/desktop/hyprland
+
+  ];
+}

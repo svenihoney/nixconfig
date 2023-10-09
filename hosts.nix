@@ -28,12 +28,12 @@ let
       address = "nixvirt";
       remoteBuild = true;
     };
-    # willi = {
-    #   type = "nixos";
-    #   hostPlatform = "x86_64-linux";
-    #   address = "willi";
-    #   remoteBuild = false;
-    # };
+    willi = {
+      type = "nixos";
+      hostPlatform = "x86_64-linux";
+      address = "willi";
+      remoteBuild = false;
+    };
   };
 
   inherit (builtins) attrNames concatMap listToAttrs filter;

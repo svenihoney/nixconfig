@@ -9,19 +9,25 @@
     ../common/global
     ../common/users/sven
 
-    ../common/optional/gamemode.nix
-    ../common/optional/wireless.nix
-    ../common/optional/greetd.nix
-    ../common/optional/pipewire.nix
-    ../common/optional/quietboot.nix
-    ../common/optional/lol-acfix.nix
+    # ../common/optional/gamemode.nix
+    # ../common/optional/wireless.nix
+    # ../common/optional/greetd.nix
+    # ../common/optional/pipewire.nix
+    # ../common/optional/quietboot.nix
+    # ../common/optional/lol-acfix.nix
   ];
 
   networking = {
-    hostName = "pleione";
+    hostName = "willi";
+    networkmanager.enable = true;
   };
 
   boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/efi";
+    };
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   };
 
@@ -30,7 +36,7 @@
     light.enable = true;
     adb.enable = true;
     dconf.enable = true;
-    kdeconnect.enable = true;
+    # kdeconnect.enable = true;
   };
 
   # Lid settings
@@ -39,10 +45,10 @@
     lidSwitchExternalPower = "lock";
   };
 
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-  };
+  # xdg.portal = {
+  #   enable = true;
+  #   wlr.enable = true;
+  # };
   hardware = {
     opengl = {
       enable = true;

@@ -44,6 +44,14 @@ in
           type = types.nullOr types.str;
           default = null;
         };
+        transform = mkOption {
+          type = types.nullOr types.str;
+          default = "0";
+        };
+        scale = mkOption {
+          type = types.nullOr types.str;
+          default = "1";
+        };
       };
     });
     default = [ ];

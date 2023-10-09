@@ -46,6 +46,8 @@
     WLR_RENDERER_ALLOW_SOFTWARE = "1";
   };
 
+  security.polkit.enable = true;
+
   # i18n.defaultLocale = "pt_BR.UTF-8";
 
   # environment.etc."sysconfig/lm_sensors".text = ''
