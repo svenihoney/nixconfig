@@ -32,11 +32,6 @@ in
       git = false;
       icons = true;
     };
-    direnv = {
-      enable = true;
-      # enableFishIntegration = true; # see note on other shells below
-      nix-direnv.enable = true;
-    };
 
     fish = {
       enable = true;
@@ -64,7 +59,7 @@ in
         hm = "home-manager --flake .";
         hms = "home-manager --flake . switch";
 
-        ls = mkIf hasExa "eza";
+        # ls = mkIf hasExa "eza";
         exa = mkIf hasExa "eza";
 
         em = mkIf hasEmacs "emacsclient -t";

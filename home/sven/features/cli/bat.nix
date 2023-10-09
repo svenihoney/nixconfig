@@ -1,6 +1,10 @@
 {
   programs.bat = {
     enable = true;
-    config.theme = "base16";
+    config = {
+      style = "plain";
+      theme = "Dracula";
+    };
+    # config.theme = "base16";
   };
 }

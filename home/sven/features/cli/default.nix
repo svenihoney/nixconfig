@@ -1,12 +1,12 @@
 { pkgs, ... }: {
   imports = [
     # ./bash.nix
-    # ./bat.nix
-    # ./direnv.nix
+    ./bat.nix
+    ./direnv.nix
     ./fish.nix
     # ./gh.nix
-    # ./git.nix
-    # ./gpg.nix
+    ./git.nix
+    ./gpg.nix
     # ./jujutsu.nix
     # ./lyrics.nix
     # ./nix-index.nix
@@ -14,7 +14,7 @@
     # ./ranger.nix
     # ./screen.nix
     # ./shellcolor.nix
-    # ./ssh.nix
+    ./ssh.nix
     # ./starship.nix
     # ./xpo.nix
   ];
