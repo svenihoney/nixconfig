@@ -35,6 +35,7 @@
         # flake-compat.follows = "flake-compat";
       };
     };
+    stylix.url = "github:danth/stylix";
     # hyprland = {
     #   url = "github:hyprwm/hyprland";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -65,14 +66,16 @@
           inherit system;
           config.allowUnfree = true;
         });
-      genNixosConfig = hostName: { ... }:
+      genNixosConfig = hostName:
+        { ... }:
         lib.nixosSystem {
           modules = [ ./hosts/${hostName} ];
           specialArgs = { inherit inputs outputs; };
         };
-      genHomeConfig = hostName: { user, ... }:
-         lib.homeManagerConfiguration {
-           modules = [ ./home/${user}/${hostName}.nix ];
+      genHomeConfig = hostName:
+        { user, ... }:
+        lib.homeManagerConfiguration {
+          modules = [ ./home/${user}/${hostName}.nix ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
@@ -93,7 +96,9 @@
       # wallpapers = import ./home/sven/wallpapers;
       hosts = import ./hosts.nix;
 
-      nixosConfigurations = lib.mapAttrs genNixosConfig (self.hosts.nixos or {});
-      homeConfigurations = lib.mapAttrs genHomeConfig (self.hosts.homeManager or {});
+      nixosConfigurations =
+        lib.mapAttrs genNixosConfig (self.hosts.nixos or { });
+      homeConfigurations =
+        lib.mapAttrs genHomeConfig (self.hosts.homeManager or { });
     };
 }

@@ -12,6 +12,7 @@
     grimblast
     # hyprslurp
     hyprpicker
+    hyprpaper
   ];
 
   wayland.windowManager.hyprland = {
@@ -76,8 +77,6 @@
         drop_shadow = true;
         shadow_range = 12;
         shadow_offset = "3 3";
-        "col.shadow" = "0x44000000";
-        "col.shadow_inactive" = "0x66000000";
       };
       animations = {
         enabled = true;
@@ -102,9 +101,9 @@
         ];
       };
 
-      # exec = [
-      #   "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill"
-      # ];
+      exec = [
+        "${pkgs.swaybg}/bin/swaybg -i ${config.stylix.image} --mode fill"
+      ];
 
       # bindl = let swaylock = "${config.programs.swaylock.package}/bin/swaylock";
       # in [ ",switch:Lid Switch, exec, swaylock" ];
@@ -192,7 +191,7 @@
       # ]) ++
       # Notification manager
       (lib.optionals config.services.mako.enable
-        [ "SUPER,w,exec,${makoctl} dismiss" ]) ++
+        [ "SUPER,c,exec,${makoctl} dismiss" ]) ++
 
       # Launcher
       (lib.optionals config.programs.wofi.enable [

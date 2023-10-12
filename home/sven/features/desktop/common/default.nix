@@ -4,7 +4,7 @@
     # ./discord.nix
     # ./dragon.nix
     # ./firefox.nix
-    ./font.nix
+    # ./font.nix
     # ./gtk.nix
     # ./kdeconnect.nix
     ./pavucontrol.nix
@@ -12,5 +12,7 @@
     ./qt.nix
     # ./slack.nix
     # ./sublime-music.nix
+    ./keepassxc.nix
+    ./ulauncher.nix
   ];
 }

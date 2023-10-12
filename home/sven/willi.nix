@@ -1,7 +1,9 @@
-{ inputs, outputs, ... }: {
+{ inputs, outputs, pkgs, ... }: {
   imports = [
     ./global
+    ./standard-desktop.nix
     ./features/desktop/hyprland
+    ./features/desktop/common/networkmanager.nix
     # ./features/desktop/wireless
     # ./features/productivity
     # ./features/pass
@@ -10,6 +12,8 @@
 
   # wallpaper = outputs.wallpapers.aenami-lunar;
   # colorscheme = inputs.nix-colors.colorSchemes.atelier-heath;
+  programs.emacs.package = pkgs.emacs29-pgtk;
+  services.emacs.package = pkgs.emacs29-pgtk;
 
   monitors = [
     {

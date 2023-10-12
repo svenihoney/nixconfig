@@ -149,8 +149,13 @@ in
 
         # ASV
         "asv" = {
-          hostname = "s4.everdc.de";
-          port = 10222;
+          hostname = "sven146.r2dc.de";
+          extraOptions = {
+            ProxyJump = "ssh.r2dc.de";
+          };
+        };
+        "ssh.r2dc.de" = {
+          port = 53022;
         };
 
         # TaxDigits

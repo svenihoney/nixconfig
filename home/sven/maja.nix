@@ -1,8 +1,7 @@
 { inputs, outputs, ... }: {
   imports = [
     ./global
-    ./features/emacs
-    ./features/nvim/lsp.nix
+    ./standard-desktop.nix
     # ./features/desktop/hyprland
     # ./features/rgb
     # ./features/productivity

@@ -23,19 +23,23 @@ let
   wofi = "${pkgs.wofi}/bin/wofi";
 
   # Function to simplify making waybar outputs
-  jsonOutput = name: { pre ? "", text ? "", tooltip ? "", alt ? "", class ? "", percentage ? "" }: "${pkgs.writeShellScriptBin "waybar-${name}" ''
-    set -euo pipefail
-    ${pre}
-    ${jq} -cn \
-      --arg text "${text}" \
-      --arg tooltip "${tooltip}" \
-      --arg alt "${alt}" \
-      --arg class "${class}" \
-      --arg percentage "${percentage}" \
-      '{text:$text,tooltip:$tooltip,alt:$alt,class:$class,percentage:$percentage}'
-  ''}/bin/waybar-${name}";
-in
-{
+  jsonOutput = name:
+    { pre ? "", text ? "", tooltip ? "", alt ? "", class ? "", percentage ? ""
+    }:
+    "${
+      pkgs.writeShellScriptBin "waybar-${name}" ''
+        set -euo pipefail
+        ${pre}
+        ${jq} -cn \
+          --arg text "${text}" \
+          --arg tooltip "${tooltip}" \
+          --arg alt "${alt}" \
+          --arg class "${class}" \
+          --arg percentage "${percentage}" \
+          '{text:$text,tooltip:$tooltip,alt:$alt,class:$class,percentage:$percentage}'
+      ''
+    }/bin/waybar-${name}";
+in {
   programs.waybar = {
     enable = true;
     # package = pkgs.waybar.overrideAttrs (oa: {
@@ -48,19 +52,15 @@ in
         layer = "top";
         height = 40;
         margin = "6";
-        position = "top";
-        modules-left = [
-          "custom/menu"
-        ] ++ (lib.optionals config.wayland.windowManager.sway.enable [
-          "sway/workspaces"
-          "sway/mode"
-        ]) ++ (lib.optionals config.wayland.windowManager.hyprland.enable [
-          "hyprland/workspaces"
-          "hyprland/submap"
-        ]) ++ [
-          "custom/currentplayer"
-          "custom/player"
-        ];
+        position = "bottom";
+        modules-left = [ "custom/menu" ]
+          ++ (lib.optionals config.wayland.windowManager.sway.enable [
+            "sway/workspaces"
+            "sway/mode"
+          ]) ++ (lib.optionals config.wayland.windowManager.hyprland.enable [
+            "hyprland/workspaces"
+            "hyprland/submap"
+          ]) ++ [ "custom/currentplayer" "custom/player" ];
 
         modules-center = [
           "pulseaudio"
@@ -82,7 +82,7 @@ in
 
         clock = {
           interval = 1;
-          format = "{:%d/%m %H:%M:%S}";
+          format = "{:%d.%m. %H:%M}";
           format-alt = "{:%Y-%m-%d %H:%M:%S %z}";
           on-click-left = "mode";
           tooltip-format = ''
@@ -115,9 +115,7 @@ in
           format-charging = "󰂄 {capacity}%";
           onclick = "";
         };
-        "sway/window" = {
-          max-length = 20;
-        };
+        "sway/window" = { max-length = 20; };
         network = {
           interval = 3;
           format-wifi = "   {essid}";
@@ -133,26 +131,25 @@ in
         "custom/tailscale-ping" = {
           interval = 10;
           return-type = "json";
-          exec =
-            let
-              inherit (builtins) concatStringsSep attrNames;
-              hosts = attrNames outputs.nixosConfigurations;
-              homeMachine = "merope";
-              remoteMachine = "alcyone";
-            in
-            jsonOutput "tailscale-ping" {
-              # Build variables for each host
-              pre = ''
-                set -o pipefail
-                ${concatStringsSep "\n" (map (host: ''
-                  ping_${host}="$(${timeout} 2 ${ping} -c 1 -q ${host} 2>/dev/null | ${tail} -1 | ${cut} -d '/' -f5 | ${cut} -d '.' -f1)ms" || ping_${host}="Disconnected"
-                '') hosts)}
-              '';
-              # Access a remote machine's and a home machine's ping
-              text = "  $ping_${remoteMachine} /  $ping_${homeMachine}";
-              # Show pings from all machines
-              tooltip = concatStringsSep "\n" (map (host: "${host}: $ping_${host}") hosts);
-            };
+          exec = let
+            inherit (builtins) concatStringsSep attrNames;
+            hosts = attrNames outputs.nixosConfigurations;
+            homeMachine = "merope";
+            remoteMachine = "alcyone";
+          in jsonOutput "tailscale-ping" {
+            # Build variables for each host
+            pre = ''
+              set -o pipefail
+              ${concatStringsSep "\n" (map (host: ''
+                ping_${host}="$(${timeout} 2 ${ping} -c 1 -q ${host} 2>/dev/null | ${tail} -1 | ${cut} -d '/' -f5 | ${cut} -d '.' -f1)ms" || ping_${host}="Disconnected"
+              '') hosts)}
+            '';
+            # Access a remote machine's and a home machine's ping
+            text = "  $ping_${remoteMachine} /  $ping_${homeMachine}";
+            # Show pings from all machines
+            tooltip = concatStringsSep "\n"
+              (map (host: "${host}: $ping_${host}") hosts);
+          };
           format = "{}";
           on-click = "";
         };
@@ -160,13 +157,12 @@ in
           return-type = "json";
           exec = jsonOutput "menu" {
             text = "";
-            tooltip = ''$(${cat} /etc/os-release | ${grep} PRETTY_NAME | ${cut} -d '"' -f2)'';
+            tooltip = ''
+              $(${cat} /etc/os-release | ${grep} PRETTY_NAME | ${cut} -d '"' -f2)'';
           };
           on-click = "${wofi} -S drun -x 10 -y 10 -W 25% -H 60%";
         };
-        "custom/hostname" = {
-          exec = "echo $USER@$HOSTNAME";
-        };
+        "custom/hostname" = { exec = "echo $USER@$HOSTNAME"; };
         "custom/unread-mail" = {
           interval = 5;
           return-type = "json";
@@ -195,14 +191,14 @@ in
         "custom/gpg-agent" = {
           interval = 2;
           return-type = "json";
-          exec =
-            let gpgCmds = import ../../../cli/gpg-commands.nix { inherit pkgs; };
-            in
-            jsonOutput "gpg-agent" {
-              pre = ''status=$(${gpgCmds.isUnlocked} && echo "unlocked" || echo "locked")'';
-              alt = "$status";
-              tooltip = "GPG is $status";
-            };
+          exec = let
+            gpgCmds = import ../../../cli/gpg-commands.nix { inherit pkgs; };
+          in jsonOutput "gpg-agent" {
+            pre = ''
+              status=$(${gpgCmds.isUnlocked} && echo "unlocked" || echo "locked")'';
+            alt = "$status";
+            tooltip = "GPG is $status";
+          };
           format = "{icon}";
           format-icons = {
             "locked" = "";
@@ -214,9 +210,7 @@ in
           exec-if = "${gamemoded} --status | ${grep} 'is active' -q";
           interval = 2;
           return-type = "json";
-          exec = jsonOutput "gamemode" {
-            tooltip = "Gamemode is active";
-          };
+          exec = jsonOutput "gamemode" { tooltip = "Gamemode is active"; };
           format = " ";
         };
         "custom/gammastep" = {
@@ -247,7 +241,8 @@ in
             "active (Transition (Day)" = " ";
             "active (Transition (Daytime)" = " ";
           };
-          on-click = "${systemctl} --user is-active gammastep && ${systemctl} --user stop gammastep || ${systemctl} --user start gammastep";
+          on-click =
+            "${systemctl} --user is-active gammastep && ${systemctl} --user stop gammastep || ${systemctl} --user start gammastep";
         };
         "custom/currentplayer" = {
           interval = 2;
@@ -284,7 +279,8 @@ in
         };
         "custom/player" = {
           exec-if = "${playerctl} status";
-          exec = ''${playerctl} metadata --format '{"text": "{{title}} - {{artist}}", "alt": "{{status}}", "tooltip": "{{title}} - {{artist}} ({{album}})"}' '';
+          exec = ''
+            ${playerctl} metadata --format '{"text": "{{title}} - {{artist}}", "alt": "{{status}}", "tooltip": "{{title}} - {{artist}} ({{album}})"}' '';
           return-type = "json";
           interval = 2;
           max-length = 30;
@@ -448,5 +444,10 @@ in
         padding-right: 0;
       }
     '';
+  };
+  stylix.targets.waybar = {
+    enableCenterBackColors = true;
+    enableLeftBackColors = true;
+    enableRightBackColors = true;
   };
 }
