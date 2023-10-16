@@ -201,6 +201,9 @@
   ;;   (with-venv (executable-find "python")))
   ;;   )
 
+;; NIX
+(set-formatter! 'alejandra "alejandra --quiet" :modes '(nix-mode))
+
 ;; QML
 (defun my-qml-setup ()
   "Correct QML comments"

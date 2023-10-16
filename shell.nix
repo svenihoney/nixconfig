@@ -27,8 +27,9 @@
       # nil
       # nix-build-uncached
       # nix-eval-jobs
-      nixpkgs-fmt
-      nixfmt
+      # nixpkgs-fmt
+      # nixfmt
+      alejandra
       # statix
 
       # Lua

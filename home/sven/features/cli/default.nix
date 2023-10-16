@@ -43,7 +43,7 @@
     # timer # To help with my ADHD paralysis
 
     nil # Nix LSP
-    nixfmt # Nix formatter
+    alejandra # Nix formatter
     # nix-inspect # See which pkgs are in your PATH
 
     # ltex-ls # Spell checking LSP

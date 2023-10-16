@@ -8,6 +8,9 @@
     # ./features/productivity
     # ./features/pass
     # ./features/games
+    # TODO: For standard
+    ./features/desktop/common/keepassxc.nix
+    ./features/desktop/common/browser.nix
   ];
 
   # wallpaper = outputs.wallpapers.aenami-lunar;
