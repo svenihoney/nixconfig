@@ -1,9 +1,10 @@
 { pkgs, ... }: {
   imports = [
     # ./hyprland-vnc.nix
-    # ./gammastep.nix
+    ./gammastep.nix
+    ./udiskie.nix
     # ./kitty.nix
-    # ./mako.nix
+    ./mako.nix
     # ./qutebrowser.nix
     # ./swayidle.nix
     # ./swaylock.nix
