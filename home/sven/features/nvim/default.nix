@@ -5,14 +5,14 @@
     # ./syntaxes.nix
     ./ui.nix
   ];
-  home.sessionVariables.EDITOR = "nvim";
+  # home.sessionVariables.EDITOR = "nvim";
 
   programs.neovim = {
     enable = true;
     viAlias = true;
     vimAlias = true;
 
-    defaultEditor = true;
+    # defaultEditor = true;
 
     extraLuaConfig = ''
 

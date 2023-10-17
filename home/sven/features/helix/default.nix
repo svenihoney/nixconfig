@@ -1,24 +1,21 @@
 { config, ... }:
-let
-  inherit (config) colorscheme;
-in
 {
   home.sessionVariables.COLORTERM = "truecolor";
   programs.helix = {
     enable = true;
+    defaultEditor = true;
     settings = {
-      theme = colorscheme.slug;
       editor = {
         color-modes = true;
         line-number = "relative";
-        indent-guides.render = true;
-        cursor-shape = {
-          normal = "block";
-          insert = "bar";
-          select = "underline";
+        bufferline = "multiple";
+        lsp.display-messages = true;
+      };
+      keys = {
+        normal = {
+          esc = [ "collapse_selection" "keep_primary_selection" ];
         };
       };
     };
-    themes = import ./theme.nix { inherit colorscheme; };
   };
 }

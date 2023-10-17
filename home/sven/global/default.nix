@@ -10,7 +10,8 @@
     inputs.stylix.homeManagerModules.stylix
 
     ../features/cli
-    ../features/nvim
+    # ../features/nvim
+    ../features/helix
   ] ++ (builtins.attrValues outputs.homeManagerModules);
 
   nixpkgs = {
