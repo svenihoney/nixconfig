@@ -35,6 +35,21 @@
     } # KeepassXC
       ];
   };
+
+  programs.qutebrowser = {
+    enable = true;
+    keyBindings = {
+      normal = {
+        M = "hint links spawn mpv {hint-url}";
+        pw = "spawn --userscript qute-keepassxc --key DDBD617F81BF84F4";
+
+      };
+      insert = {
+        "<Alt-Shift-u>" = "spawn --userscript qute-keepassxc --key DDBD617F81BF84F4";
+      };
+    };
+  };
+
   # home = {
   #   persistence = {
   #     # Not persisting is safer
