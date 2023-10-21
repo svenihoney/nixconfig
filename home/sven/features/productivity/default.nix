@@ -1,14 +1,14 @@
 {
   imports = [
-    ./khal.nix
-    ./khard.nix
-    ./todoman.nix
-    ./vdirsyncer.nix
+    # ./khal.nix
+    # ./khard.nix
+    # ./todoman.nix
+    # ./vdirsyncer.nix
 
     ./mail.nix
-    ./neomutt.nix
+    # ./neomutt.nix
 
     # Pass feature is required
-    ../pass
+    # ../pass
   ];
 }

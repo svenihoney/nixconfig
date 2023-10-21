@@ -5,7 +5,7 @@
     ./features/desktop/hyprland
     ./features/desktop/common/networkmanager.nix
     # ./features/desktop/wireless
-    # ./features/productivity
+    ./features/productivity
     # ./features/pass
     # ./features/games
     # TODO: For standard
