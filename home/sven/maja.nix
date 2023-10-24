@@ -8,6 +8,7 @@
     # ./features/pass
     # ./features/games
     # ./features/music
+    ./features/desktop/common/wayland-wm/qutebrowser.nix
   ];
 
   targets.genericLinux.enable = true;

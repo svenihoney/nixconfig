@@ -22,6 +22,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixgl.url = "github:guibou/nixGL";
+
     nh = {
       url = "github:viperml/nh";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -55,7 +57,7 @@
     # yrmos.url = "github:misterio77/yrmos";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixgl, ... }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
@@ -64,6 +66,7 @@
       pkgsFor = lib.genAttrs systems (system:
         import nixpkgs {
           inherit system;
+          overlays = [ nixgl.overlay ];     
           config.allowUnfree = true;
         });
       genNixosConfig = hostName:

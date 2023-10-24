@@ -4,12 +4,14 @@
     ./standard-desktop.nix
     ./features/desktop/hyprland
     ./features/desktop/common/networkmanager.nix
+    ./features/desktop/common/wayland-wm/wofi.nix
     # ./features/desktop/wireless
     ./features/productivity
     # ./features/pass
     # ./features/games
     # TODO: For standard
     ./features/desktop/common/keepassxc.nix
+    ./features/desktop/common/wayland-wm/qutebrowser.nix
     ./features/desktop/common/browser.nix
   ];
 

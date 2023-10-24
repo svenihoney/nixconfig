@@ -13,6 +13,6 @@
     # ./slack.nix
     # ./sublime-music.nix
     ./keepassxc.nix
-    ./launcher.nix
+    # ./launcher.nix
   ];
 }

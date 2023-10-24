@@ -82,13 +82,15 @@
 
     fonts = {
       sansSerif = {
-        package = pkgs.ibm-plex;
+        # package = pkgs.ibm-plex;
         # name = "IBM Plex Sans";
+        package = pkgs.noto-fonts;
         name = "Noto Sans";
       };
       serif = {
-        package = pkgs.ibm-plex;
+        # package = pkgs.ibm-plex;
         # name = "IBM Plex Serif";
+        package = pkgs.noto-fonts;
         name = "Noto Serif";
       };
       monospace = {

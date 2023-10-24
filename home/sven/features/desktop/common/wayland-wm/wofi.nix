@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }: {
   programs.wofi = {
     enable = true;
-    package = pkgs.wofi.overrideAttrs (oa: {
-      patches = (oa.patches or [ ]) ++ [
-        ./wofi-run-shell.patch # Fix for https://todo.sr.ht/~scoopta/wofi/174
-      ];
-    });
+    # package = pkgs.wofi.overrideAttrs (oa: {
+    #   patches = (oa.patches or [ ]) ++ [
+    #     ./wofi-run-shell.patch # Fix for https://todo.sr.ht/~scoopta/wofi/174
+    #   ];
+    # });
     settings = {
       image_size = 48;
       columns = 3;
@@ -17,9 +17,9 @@
     };
   };
 
-  home.packages =
-    let
-      inherit (config.programs.password-store) package enable;
-    in
-    lib.optional enable (pkgs.pass-wofi.override { pass = package; });
+  # home.packages =
+  #   let
+  #     inherit (config.programs.password-store) package enable;
+  #   in
+  #   lib.optional enable (pkgs.pass-wofi.override { pass = package; });
 }

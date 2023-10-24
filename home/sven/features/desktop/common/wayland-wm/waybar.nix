@@ -50,8 +50,8 @@ in {
       primary = {
         # mode = "dock";
         layer = "top";
-        height = 40;
-        margin = "6";
+        height = 30;
+        margin = "3";
         position = "bottom";
         modules-left = [ "custom/menu" ]
           ++ (lib.optionals config.wayland.windowManager.sway.enable [
@@ -445,9 +445,9 @@ in {
       }
     '';
   };
-  stylix.targets.waybar = {
-    enableCenterBackColors = true;
-    enableLeftBackColors = true;
-    enableRightBackColors = true;
-  };
+  # stylix.targets.waybar = {
+  #   enableCenterBackColors = true;
+  #   enableLeftBackColors = true;
+  #   enableRightBackColors = true;
+  # };
 }
