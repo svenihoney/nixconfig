@@ -55,12 +55,12 @@
   # Until the doom emacs override is more or less up-to-date again
   home.file.".doom.d" = { source = ./doom.d; };
 
-  services = {
-    emacs = {
-      enable = true;
-      client.enable = true;
-      socketActivation.enable = true;
-    };
-  };
+  # services = {
+  #   emacs = {
+  #     enable = true;
+  #     client.enable = true;
+  #     socketActivation.enable = true;
+  #   };
+  # };
 
 }

@@ -202,7 +202,11 @@
   ;;   )
 
 ;; NIX
-(set-formatter! 'alejandra "alejandra --quiet" :modes '(nix-mode))
+(set-formatter! 'alejandra '("alejandra" "--quiet") :modes '(nix-mode))
+
+(after! apheleia
+  (push '(alejandra . ("alejandra" "-")) apheleia-formatters)
+  (setf (alist-get 'nix apheleia-mode-alist) 'alejandra))
 
 ;; QML
 (defun my-qml-setup ()

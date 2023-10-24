@@ -42,8 +42,8 @@
     # trekscii # Cute startrek cli printer
     # timer # To help with my ADHD paralysis
 
-    nil # Nix LSP
-    alejandra # Nix formatter
+    # nil # Nix LSP
+    # alejandra # Nix formatter
     # nix-inspect # See which pkgs are in your PATH
 
     # ltex-ls # Spell checking LSP

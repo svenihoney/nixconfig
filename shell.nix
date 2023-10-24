@@ -24,7 +24,7 @@
 
       cachix
       deploy-rs
-      # nil
+      nil
       # nix-build-uncached
       # nix-eval-jobs
       # nixpkgs-fmt

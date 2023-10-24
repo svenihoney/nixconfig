@@ -94,8 +94,12 @@
         name = "Noto Serif";
       };
       monospace = {
+        # package = pkgs.julia-mono;
+        # name = "Julia Mono";
         package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
         name = "JetBrains Mono Nerd Font";
+        # package = pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" ]; };
+        # name = "BlexMono Nerd Font";
       };
       emoji = {
         package = pkgs.noto-fonts-emoji;
