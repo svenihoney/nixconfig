@@ -149,8 +149,8 @@
             # "SUPER,e,exec,${editor}"
             # "SUPER,v,exec,${editor}"
             # "SUPER,b,exec,${browser}"
-            # "SUPER, F2, exec, vivaldi-stable --enable-features=UseOzonePlatform --ozone-platform=wayland"
-            "SUPER, F3, exec, MOZ_ENABLE_WAYLAND=1 thunderbird"
+            "SUPER, F2, exec, vivaldi"
+            "SUPER, F3, exec, thunderbird"
             "SUPER, F4, exec, teams-for-linux --enable-features=UseOzonePlatform --ozone-platform=wayland"
             "SUPER, C, exec, swaync-client -t"
             "SUPER SHIFT, C, exec, swaync-client -C"
@@ -180,10 +180,10 @@
             # "SUPERSHIFT,z,exec,${notify-send} -t 1000 $(${tly} time)" # Show current time
           ]
           ++ (lib.optionals config.targets.genericLinux.enable [
-            "SUPER, F2, exec, nixGL ${browser}"
+            "SUPERSHIFT, F2, exec, nixGL ${browser}"
           ])
           ++ (lib.optionals (! config.targets.genericLinux.enable) [
-            "SUPER, F2, exec, ${browser}"
+            "SUPERSHIFT, F2, exec, ${browser}"
           ])
           ++ (lib.optionals config.services.playerctld.enable [
             # Media control
@@ -224,7 +224,7 @@
         "float,class:(KeePassXC)"
         "float,class:(pavucontrol)"
 
-        "workspace 2,class:(vivaldi-stable)"
+        "workspace 2,class:(vivaldi.*)"
         "workspace 2,class:(org.qutebrowser.qutebrowser)"
 
         "workspace 3,class:(thunderbird)"

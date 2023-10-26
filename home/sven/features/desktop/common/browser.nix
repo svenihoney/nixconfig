@@ -31,8 +31,8 @@
   programs.vivaldi = {
     enable = true;
     extensions = [{
-      id = "oboonakemofpalcgghocfoadofidjkkk";
-    } # KeepassXC
+      id = "oboonakemofpalcgghocfoadofidjkkk"; # KeepassXC
+    } 
       ];
   };
 
