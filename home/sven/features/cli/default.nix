@@ -35,6 +35,7 @@
     eza # Better ls
     ripgrep # Better grep
     fd # Better find
+    file
 
     xh # Better curl
     # diffsitter # Better diff

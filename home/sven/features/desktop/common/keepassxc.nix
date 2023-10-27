@@ -14,7 +14,7 @@
     };
     Service = {
       Type = "simple";
-      ExecStart = "${pkgs.keepassxc}/bin/keepassxc";
+      ExecStart = "${pkgs.keepassxc}/bin/keepassxc -platform wayland";
       RestartSec = 3;
       Restart = "always";
     };

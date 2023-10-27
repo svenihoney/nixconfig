@@ -1,5 +1,6 @@
 {
   imports = [
+    ./xdg.nix
     # ./deluge.nix
     # ./discord.nix
     # ./dragon.nix

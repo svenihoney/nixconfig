@@ -17,7 +17,7 @@ let
     signature = {
       showSignature = "append";
     };
-    thunderbird.enable = true;
+    # thunderbird.enable = true;
   };
 in
 {
@@ -74,12 +74,16 @@ in
     };
   };
 
-  programs.thunderbird = {
-    enable = true;
-    profiles.sven = {
-      isDefault = true;
-    };
-  };
+  home.packages = [
+    pkgs.thunderbird
+  ];
+  # programs.thunderbird = {
+  #   enable = true;
+  #   # profiles."2ec6vn7f.default" = {
+  #   #   isDefault = true;
+  #   #   name = "default";
+  #   # };
+  # };
   # programs.mbsync.enable = true;
   # programs.msmtp.enable = true;
 

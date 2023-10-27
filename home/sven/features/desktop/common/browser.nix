@@ -1,6 +1,25 @@
-{ pkgs, ... }:
+{pkgs, ...}: let
+  browser = ["vivaldi-stable.desktop"];
 
-{
+  # XDG MIME types
+  associations = {
+    "application/x-extension-htm" = browser;
+    "application/x-extension-html" = browser;
+    "application/x-extension-shtml" = browser;
+    "application/x-extension-xht" = browser;
+    "application/x-extension-xhtml" = browser;
+    "application/xhtml+xml" = browser;
+    "text/html" = browser;
+    "x-scheme-handler/about" = browser;
+    "x-scheme-handler/chrome" = ["chromium-browser.desktop"];
+    "x-scheme-handler/ftp" = browser;
+    "x-scheme-handler/http" = browser;
+    "x-scheme-handler/https" = browser;
+    "x-scheme-handler/unknown" = browser;
+
+    "application/json" = browser;
+  };
+in {
   # programs.browserpass.enable = true;
   # programs.firefox = {
   #   enable = true;
@@ -30,10 +49,11 @@
 
   programs.vivaldi = {
     enable = true;
-    extensions = [{
-      id = "oboonakemofpalcgghocfoadofidjkkk"; # KeepassXC
-    } 
-      ];
+    extensions = [
+      {
+        id = "oboonakemofpalcgghocfoadofidjkkk"; # KeepassXC
+      }
+    ];
   };
 
   # home = {
@@ -43,10 +63,5 @@
   #   };
   # };
 
-  xdg.mimeApps.defaultApplications = {
-    "text/html" = [ "vivaldi.desktop" ];
-    "text/xml" = [ "vivaldi.desktop" ];
-    "x-scheme-handler/http" = [ "vivaldi.desktop" ];
-    "x-scheme-handler/https" = [ "vivaldi.desktop" ];
-  };
+  xdg.mimeApps.defaultApplications = associations;
 }

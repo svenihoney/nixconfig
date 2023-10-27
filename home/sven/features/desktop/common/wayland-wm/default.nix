@@ -14,7 +14,6 @@
     ./wezterm.nix
   ];
 
-  # xdg.mimeApps.enable = true;
   home.packages = with pkgs; [
     grim
     gtk3 # For gtk-launch

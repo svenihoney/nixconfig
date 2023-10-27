@@ -3,7 +3,9 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  pointer = config.home.pointerCursor;
+in {
   imports = [
     ../common
     ../common/wayland-wm
@@ -19,6 +21,14 @@
     hyprpicker
     hyprpaper
   ];
+
+  home.pointerCursor = {
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -48,6 +58,11 @@
         layout = "dwindle";
       };
 
+      # use this instead of hidpi patches
+      xwayland = {
+        force_zero_scaling = true;
+      };
+
       input = {
         kb_layout = "de";
         kb_variant = "neo_qwertz";
@@ -65,7 +80,14 @@
       };
 
       dwindle.split_width_multiplier = 1.35;
-      misc.vfr = true;
+
+      misc = {
+        disable_hyprland_logo = true;
+        vrr = 2;
+
+        enable_swallow = true;
+        swallow_regex = [ "(org.wezfurlong.wezterm)" ];
+      };
 
       decoration = {
         active_opacity = 0.92;
@@ -83,6 +105,7 @@
         shadow_range = 12;
         shadow_offset = "3 3";
       };
+
       animations = {
         enabled = true;
         bezier = [
@@ -108,6 +131,7 @@
 
       exec = [
         "${pkgs.swaybg}/bin/swaybg -i ${config.stylix.image} --mode fill"
+        "${pkgs.hyprland}/bin/hyprctl setcursor ${pointer.name} ${toString pointer.size}"
       ];
 
       # bindl = let swaylock = "${config.programs.swaylock.package}/bin/swaylock";
@@ -223,6 +247,7 @@
       windowrulev2 = [
         "float,class:(KeePassXC)"
         "float,class:(pavucontrol)"
+        "float,class:(Vivaldi-Einstellungen)"
 
         "workspace 2,class:(vivaldi.*)"
         "workspace 2,class:(org.qutebrowser.qutebrowser)"
