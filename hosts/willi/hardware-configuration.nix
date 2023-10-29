@@ -14,23 +14,33 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/0a45afcb-7db4-4890-88ca-7612bb1cf85d";
+    { device = "/dev/disk/by-uuid/885ceb6e-c35a-478c-b193-f7b0db95542d";
       fsType = "btrfs";
       options = [ "subvol=@,compress=zstd" ];
     };
 
-  boot.initrd.luks.devices."nix".device = "/dev/disk/by-uuid/97470c2c-e91f-4cc1-b534-34fbb19d3c73";
+  boot.initrd = {
+    luks.devices."cryptroot" = {
+      device = "/dev/disk/by-uuid/66649339-8ae6-4c2d-8a0b-c5942ea4c07a";
+      crypttabExtraOpts = [ "fido2-device=auto" ];
+    };
+    systemd.enable = true;
+  };
+  # fileSystems."/media/beely" =
+  #   { device = "systemd-1";
+  #     fsType = "autofs";
+  #   };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/0a45afcb-7db4-4890-88ca-7612bb1cf85d";
+    { device = "/dev/disk/by-uuid/885ceb6e-c35a-478c-b193-f7b0db95542d";
       fsType = "btrfs";
       options = [ "subvol=@home,compress=zstd" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/0a45afcb-7db4-4890-88ca-7612bb1cf85d";
+    { device = "/dev/disk/by-uuid/885ceb6e-c35a-478c-b193-f7b0db95542d";
       fsType = "btrfs";
-      options = [ "subvol=@nix,compress=zstd,noatime" ];
+      options = [ "subvol=@nix,compress=zstd" ];
     };
 
   fileSystems."/efi" =
@@ -38,7 +48,9 @@
       fsType = "vfat";
     };
 
-  swapDevices = [ ];
+  # swapDevices =
+  #   [ { device = "/dev/disk/by-uuid/ab5e6ac2-74dd-4c5e-ae4c-aae80cb4e68f"; }
+  #   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -46,8 +58,10 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp3s0f3u1u1u1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.virbr0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp1s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
