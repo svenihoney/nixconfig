@@ -86,7 +86,7 @@ in {
         vrr = 2;
 
         enable_swallow = true;
-        swallow_regex = [ "(org.wezfurlong.wezterm)" ];
+        swallow_regex = ["(org.wezfurlong.wezterm)"];
       };
 
       decoration = {
@@ -130,12 +130,13 @@ in {
       };
 
       exec = [
-        "${pkgs.swaybg}/bin/swaybg -i ${config.stylix.image} --mode fill"
+        "${pkgs.swaybg}/bin/swaybg -i ${config.stylix.image} --mode fit"
         "${pkgs.hyprland}/bin/hyprctl setcursor ${pointer.name} ${toString pointer.size}"
       ];
 
-      # bindl = let swaylock = "${config.programs.swaylock.package}/bin/swaylock";
-      # in [ ",switch:Lid Switch, exec, swaylock" ];
+      bindl = let
+        swaylock = "${config.programs.swaylock.package}/bin/swaylock";
+      in [",switch:Lid Switch, exec, swaylock"];
 
       bind =
         let
@@ -220,11 +221,9 @@ in {
             "ALT,XF86AudioPlay,exec,systemctl --user restart playerctld"
           ])
           # Screen lock
-          # (lib.optionals config.programs.swaylock.enable [
-          #   ",XF86Launch5,exec,${swaylock} -i ${config.wallpaper}"
-          #   ",XF86Launch4,exec,${swaylock} -i ${config.wallpaper}"
-          #   "SUPER,backspace,exec,${swaylock} -i ${config.wallpaper}"
-          # ]) ++
+          ++ (lib.optionals config.programs.swaylock.enable [
+            "SUPER,l,exec,${swaylock}"
+          ])
           # Notification manager
           ++ (lib.optionals config.services.mako.enable
             ["SUPER,c,exec,${makoctl} dismiss"])

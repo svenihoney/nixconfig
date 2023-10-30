@@ -6,7 +6,7 @@
     # ./dragon.nix
     # ./firefox.nix
     # ./font.nix
-    # ./gtk.nix
+    ./gtk.nix
     # ./kdeconnect.nix
     ./pavucontrol.nix
     ./playerctl.nix
