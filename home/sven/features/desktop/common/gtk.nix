@@ -21,6 +21,8 @@
     };
   };
 
+  xfconf.enable = false;
+
   # services.xsettingsd = {
   #   enable = true;
   #   settings = {

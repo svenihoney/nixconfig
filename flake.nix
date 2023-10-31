@@ -51,57 +51,63 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
+    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+
     # disconic.url = "github:misterio77/disconic";
     # website.url = "github:misterio77/website";
     # paste-misterio-me.url = "github:misterio77/paste.misterio.me";
     # yrmos.url = "github:misterio77/yrmos";
   };
 
-  outputs = { self, nixpkgs, home-manager, nixgl, ... }@inputs:
-    let
-      inherit (self) outputs;
-      lib = nixpkgs.lib // home-manager.lib;
-      systems = [ "x86_64-linux" "aarch64-linux" ];
-      forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs systems (system:
-        import nixpkgs {
-          inherit system;
-          overlays = [ nixgl.overlay ];     
-          config.allowUnfree = true;
-        });
-      genNixosConfig = hostName:
-        { ... }:
-        lib.nixosSystem {
-          modules = [ ./hosts/${hostName} ];
-          specialArgs = { inherit inputs outputs; };
-        };
-      genHomeConfig = hostName:
-        { user, ... }:
-        lib.homeManagerConfiguration {
-          modules = [ ./home/${user}/${hostName}.nix ];
-          pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-    in {
-      inherit lib;
-      nixosModules = import ./modules/nixos;
-      homeManagerModules = import ./modules/home-manager;
-      # templates = import ./templates;
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    nixgl,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
+    lib = nixpkgs.lib // home-manager.lib;
+    systems = ["x86_64-linux" "aarch64-linux"];
+    forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
+    pkgsFor = lib.genAttrs systems (system:
+      import nixpkgs {
+        inherit system;
+        overlays = [nixgl.overlay];
+        config.allowUnfree = true;
+      });
+    genNixosConfig = hostName: {...}:
+      lib.nixosSystem {
+        modules = [./hosts/${hostName}];
+        specialArgs = {inherit inputs outputs;};
+      };
+    genHomeConfig = hostName: {user, ...}:
+      lib.homeManagerConfiguration {
+        modules = [./home/${user}/${hostName}.nix];
+        pkgs = pkgsFor.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+      };
+  in {
+    inherit lib;
+    nixosModules = import ./modules/nixos;
+    homeManagerModules = import ./modules/home-manager;
+    # templates = import ./templates;
 
-      # overlays = import ./overlays { inherit inputs outputs; };
-      # hydraJobs = import ./hydra.nix { inherit inputs outputs; };
+    # overlays = import ./overlays { inherit inputs outputs; };
+    # hydraJobs = import ./hydra.nix { inherit inputs outputs; };
 
-      # packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
-      devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
-      formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
+    # packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+    devShells = forEachSystem (pkgs: import ./shell.nix {inherit pkgs;});
+    formatter = forEachSystem (pkgs: pkgs.alejandro);
+    checks = forEachSystem (import ./checks.nix inputs);
 
-      deploy = import ./deploy.nix inputs;
-      # wallpapers = import ./home/sven/wallpapers;
-      hosts = import ./hosts.nix;
+    deploy = import ./deploy.nix inputs;
+    # wallpapers = import ./home/sven/wallpapers;
+    hosts = import ./hosts.nix;
 
-      nixosConfigurations =
-        lib.mapAttrs genNixosConfig (self.hosts.nixos or { });
-      homeConfigurations =
-        lib.mapAttrs genHomeConfig (self.hosts.homeManager or { });
-    };
+    nixosConfigurations =
+      lib.mapAttrs genNixosConfig (self.hosts.nixos or {});
+    homeConfigurations =
+      lib.mapAttrs genHomeConfig (self.hosts.homeManager or {});
+  };
 }

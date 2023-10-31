@@ -2,7 +2,7 @@
   imports = [
     # ./hyprland-vnc.nix
     ./gammastep.nix
-    ./udiskie.nix
+    # ./udiskie.nix
     # ./kitty.nix
     ./mako.nix
     # ./qutebrowser.nix

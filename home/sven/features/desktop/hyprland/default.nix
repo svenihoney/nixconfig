@@ -51,7 +51,7 @@ in {
 
         gaps_in = "1";
         gaps_out = "4";
-        border_size = "1";
+        border_size = "2";
         # "col.active_border" = "rgba(888888ee)";
         # "col.inactive_border" = "rgba(444444aa)";
 
