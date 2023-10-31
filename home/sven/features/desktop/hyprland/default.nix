@@ -86,7 +86,7 @@ in {
         vrr = 2;
 
         enable_swallow = true;
-        swallow_regex = ["(org.wezfurlong.wezterm)"];
+        swallow_regex = ["(org.wezfurlong.wezterm)" "(kitty)"];
       };
 
       decoration = {
@@ -162,8 +162,7 @@ in {
           xdg-mime = "${pkgs.xdg-utils}/bin/xdg-mime";
           defaultApp = type: "${gtk-launch} $(${xdg-mime} query default ${type})";
 
-          # terminal = config.home.sessionVariables.TERMINAL;
-          terminal = "wezterm";
+          terminal = config.home.sessionVariables.TERMINAL;
           # browser = defaultApp "x-scheme-handler/https";
           browser = "${pkgs.qutebrowser}/bin/qutebrowser";
           editor = defaultApp "text/plain";

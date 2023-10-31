@@ -33,6 +33,7 @@ in {
       enableAliases = true;
       git = false;
       icons = true;
+      extraOptions = ["--hyperlink"];
     };
 
     fish = {
@@ -113,36 +114,9 @@ in {
           bind \ee edit_command_buffer
         ''
         +
-        # Use terminal colors
-        #   ''
-        #   set -U fish_color_autosuggestion      brblack
-        #   set -U fish_color_cancel              -r
-        #   set -U fish_color_command             brgreen
-        #   set -U fish_color_comment             brmagenta
-        #   set -U fish_color_cwd                 green
-        #   set -U fish_color_cwd_root            red
-        #   set -U fish_color_end                 brmagenta
-        #   set -U fish_color_error               brred
-        #   set -U fish_color_escape              brcyan
-        #   set -U fish_color_history_current     --bold
-        #   set -U fish_color_host                normal
-        #   set -U fish_color_match               --background=brblue
-        #   set -U fish_color_normal              normal
-        #   set -U fish_color_operator            cyan
-        #   set -U fish_color_param               brblue
-        #   set -U fish_color_quote               yellow
-        #   set -U fish_color_redirection         bryellow
-        #   set -U fish_color_search_match        'bryellow' '--background=brblack'
-        #   set -U fish_color_selection           'white' '--bold' '--background=brblack'
-        #   set -U fish_color_status              red
-        #   set -U fish_color_user                brgreen
-        #   set -U fish_color_valid_path          --underline
-        #   set -U fish_pager_color_completion    normal
-        #   set -U fish_pager_color_description   yellow
-        #   set -U fish_pager_color_prefix        'white' '--bold' '--underline'
-        #   set -U fish_pager_color_progress      'brwhite' '--background=cyan'
-        # '' +
         # Tide prompt setup
+        # tide configure --auto --style=Rainbow --prompt_colors='True color' --show_time=No --rainbow_prompt_separators=Angled --powerline_prompt_heads=Sharp --powerline_prompt_tails=Flat --powerline_prompt_style='One line' --prompt_spacing=Compact --icons='Many icons' --transient=No
+        # set -L| rg "^tide_" | sed 's/^/set -U /'
         ''
           set -U tide_aws_bg_color FF9900
           set -U tide_aws_color 232F3E
@@ -241,7 +215,7 @@ in {
           set -U tide_prompt_icon_connection ' '
           set -U tide_prompt_min_cols 34
           set -U tide_prompt_pad_items true
-          set -U tide_prompt_transient_enabled true
+          set -U tide_prompt_transient_enabled false
           set -U tide_pulumi_bg_color F7BF2A
           set -U tide_pulumi_color 000000
           set -U tide_pulumi_icon 
@@ -252,12 +226,12 @@ in {
           set -U tide_pwd_icon 
           set -U tide_pwd_icon_home 
           set -U tide_pwd_icon_unwritable 
-          set -U tide_pwd_markers '.bzr'  '.citc'  '.git'  '.hg'  '.node-version'  .python-ve…\nset\ -U\ tide_python_bg_color\ 444444\nset\ -U\ tide_python_color\ 00AFAF\nset\ -U\ tide_python_icon\ 󰌠\nset\ -U\ tide_right_prompt_frame_enabled\ false\nset\ -U\ tide_right_prompt_items\ status\ \ cmd_duration\ \ context\ \ jobs\ \ direnv\ \ node…
+          set -U tide_pwd_markers '.bzr'  '.citc'  '.git'  '.hg'  '.node-version'  '.python-version'  '.ruby-version'  '.shorten_folder_marker'  '.svn'  '.terraform'  'Cargo.toml'  'composer.json'  'CVS'  'go.mod'  'package.json'
           set -U tide_python_bg_color 444444
           set -U tide_python_color 00AFAF
           set -U tide_python_icon 󰌠
           set -U tide_right_prompt_frame_enabled false
-          set -U tide_right_prompt_items 'status'  'cmd_duration'  'context'  'jobs'  'direnv'  'node'  'python'  'rustc'  'java'  'php'  'pulumi'  'ruby'  'go'  'gcloud'  'kubectl'  'distrobox'  'toolbox'  'terraform'  'aws'  'nix_shell'  'crystal'  'elixir'
+          set -U tide_right_prompt_items 'status'  'cmd_duration'  'context'  'jobs'  'direnv'  'node'  'python'  'rustc'  'java'  'php'  'pulumi'  'ruby'  'go'  'gcloud'    'distrobox'  'toolbox'  'terraform'  'aws'  'nix_shell'  'crystal'  'elixir'
           set -U tide_right_prompt_prefix 
           set -U tide_right_prompt_separator_diff_color 
           set -U tide_right_prompt_separator_same_color 
@@ -302,7 +276,6 @@ in {
           set -U tide_virtual_env_bg_color 444444
           set -U tide_virtual_env_color 00AFAF
           set -U tide_virtual_env_icon 
-
         '';
     };
   };

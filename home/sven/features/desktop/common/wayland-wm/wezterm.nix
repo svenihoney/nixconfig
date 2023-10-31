@@ -1,4 +1,10 @@
 { config, lib, pkgs, ... }: {
+  home = {
+    sessionVariables = {
+      TERMINAL = "wezterm";
+    };
+  };
+
   programs.wezterm = {
     enable = true;
     extraConfig = ''

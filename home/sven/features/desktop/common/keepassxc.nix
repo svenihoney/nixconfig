@@ -16,7 +16,7 @@
     };
     Service = {
       Type = "simple";
-      ExecStart = "${pkgs.keepassxc}/bin/keepassxc -platform wayland";
+      ExecStart = "${pkgs.keepassxc}/bin/keepassxc -platform wayland /home/sven/cloud/sync/keepass.kdbx";
       RestartSec = 3;
       Restart = "always";
     };

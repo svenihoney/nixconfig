@@ -3,7 +3,6 @@
     # ./hyprland-vnc.nix
     ./gammastep.nix
     # ./udiskie.nix
-    # ./kitty.nix
     ./mako.nix
     # ./qutebrowser.nix
     ./swayidle.nix
@@ -11,7 +10,8 @@
     ./waybar.nix
     # ./wofi.nix
     # ./zathura.nix
-    ./wezterm.nix
+    # ./wezterm.nix
+    ./kitty.nix
   ];
 
   home.packages = with pkgs; [
