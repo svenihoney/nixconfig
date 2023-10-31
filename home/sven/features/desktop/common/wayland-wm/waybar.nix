@@ -60,24 +60,27 @@ in {
           ]) ++ (lib.optionals config.wayland.windowManager.hyprland.enable [
             "hyprland/workspaces"
             "hyprland/submap"
-          ]) ++ [ "custom/currentplayer" "custom/player" ];
+          ]) ++ [];
 
         modules-center = [
-          "pulseaudio"
-          "battery"
-          "clock"
-          "custom/unread-mail"
-          "custom/gpg-agent"
+          "hyprland/window"
+          "custom/currentplayer"
+          "custom/player"
+          # "custom/unread-mail"
+          # "custom/gpg-agent"
         ];
 
         modules-right = [
+          "pulseaudio"
+          "battery"
           "network"
-          "custom/tailscale-ping"
-          "custom/gamemode"
+          # "custom/tailscale-ping"
+          # "custom/gamemode"
           # TODO: currently broken for some reason
           # "custom/gammastep"
           "tray"
-          "custom/hostname"
+          # "custom/hostname"
+          "clock"
         ];
 
         clock = {
@@ -263,7 +266,8 @@ in {
           };
           format = "{icon}{}";
           format-icons = {
-            "No player active" = " ";
+            # "No player active" = "⏸";
+            "No player active" = " ";
             "Celluloid" = "󰎁 ";
             "spotify" = "󰓇 ";
             "ncspot" = "󰓇 ";
@@ -273,6 +277,7 @@ in {
             "sublimemusic" = " ";
             "kdeconnect" = "󰄡 ";
             "chromium" = " ";
+            "vivaldi" = " ";
           };
           on-click = "${playerctld} shift";
           on-click-right = "${playerctld} unshift";
