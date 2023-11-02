@@ -7,6 +7,7 @@
   home.packages = with pkgs; [
     keepassxc
     nextcloud-client
+    libsecret
   ];
 
   systemd.user.services.keepassxc = {

@@ -3,9 +3,7 @@
   config,
   pkgs,
   ...
-}: let
-  pointer = config.home.pointerCursor;
-in {
+}:  {
   imports = [
     ../common
     ../common/wayland-wm
@@ -22,13 +20,13 @@ in {
     hyprpaper
   ];
 
-  home.pointerCursor = {
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Classic";
-    size = 24;
-    gtk.enable = true;
-    x11.enable = true;
-  };
+  # home.pointerCursor = {
+  #   package = pkgs.bibata-cursors;
+  #   name = "Bibata-Modern-Classic";
+  #   size = 24;
+  #   gtk.enable = true;
+  #   x11.enable = true;
+  # };
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -131,7 +129,7 @@ in {
 
       exec = [
         "${pkgs.swaybg}/bin/swaybg -i ${config.stylix.image} --mode fit"
-        "${pkgs.hyprland}/bin/hyprctl setcursor ${pointer.name} ${toString pointer.size}"
+        # "${pkgs.hyprland}/bin/hyprctl setcursor ${pointer.name} ${toString pointer.size}"
       ];
 
       bindl = let
@@ -141,6 +139,7 @@ in {
       bind =
         let
           swaylock = "${config.programs.swaylock.package}/bin/swaylock";
+          wlogout = "${config.programs.wlogout.package}/bin/wlogout";
           playerctl = "${config.services.playerctld.package}/bin/playerctl";
           playerctld = "${config.services.playerctld.package}/bin/playerctld";
           makoctl = "${config.services.mako.package}/bin/makoctl";
@@ -222,6 +221,10 @@ in {
           # Screen lock
           ++ (lib.optionals config.programs.swaylock.enable [
             "SUPER,l,exec,${swaylock}"
+          ])
+          # Logout screen
+          ++ (lib.optionals config.programs.wlogout.enable [
+            "SUPER, BACKSPACE, exec, ${wlogout}"
           ])
           # Notification manager
           ++ (lib.optionals config.services.mako.enable

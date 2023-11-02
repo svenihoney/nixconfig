@@ -18,10 +18,12 @@ in {
     enable = true;
     settings = {
       # shell_integration = "no-rc"; # I prefer to do it manually
+      shell_integration = "no-cursor"; # I prefer to do it manually
       scrollback_lines = 4000;
       scrollback_pager_history_size = 2048;
       window_padding_width = 5;
       cursor_shape = "block";
+      cursor_stop_blinking_after = 3;
 
       tab_bar_style = "powerline";
       tab_separator = " ┇";
