@@ -15,12 +15,12 @@ let
     #   homeDirectory = "/home/sven";
     # };
     maja = {
-      type = "homeManager";
+      type = "nixos";
       hostPlatform = "x86_64-linux";
       address = "maja";
       remoteBuild = true;
-      user = "sven";
-      homeDirectory = "/home/sven";
+#      user = "sven";
+#      homeDirectory = "/home/sven";
     };
     nixvirt = {
       type = "nixos";

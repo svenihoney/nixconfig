@@ -15,5 +15,6 @@
     # ./sublime-music.nix
     ./keepassxc.nix
     # ./launcher.nix
+    ./joplin.nix
   ];
 }

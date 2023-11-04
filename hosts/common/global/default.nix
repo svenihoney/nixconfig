@@ -1,5 +1,5 @@
 # This file (and the global directory) holds config that i use on all hosts
-{ inputs, outputs,  ... }: {
+{ inputs, outputs, pkgs, ... }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
     # ./acme.nix
@@ -9,7 +9,6 @@
     ./nix.nix
     ./openssh.nix
     # ./optin-persistence.nix
-    # ./podman.nix
     # ./sops.nix
     # ./ssh-serve-store.nix
     # ./steam-hardware.nix
@@ -28,12 +27,12 @@
 
   # Fix for qt6 plugins
   # TODO: maybe upstream this?
-  environment.profileRelativeSessionVariables = {
-    QT_PLUGIN_PATH = [ "/lib/qt-6/plugins" ];
-  };
+  # environment.profileRelativeSessionVariables = {
+  #   QT_PLUGIN_PATH = [ "/lib/qt-6/plugins" ];
+  # };
 
-  # hardware.enableRedistributableFirmware = true;
-  # networking.domain = "m7.rs";
+  hardware.enableRedistributableFirmware = true;
+  # networking.domain = "fri";
 
   # Increase open file limit for sudoers
   security.pam.loginLimits = [

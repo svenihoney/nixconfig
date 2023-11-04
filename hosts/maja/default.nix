@@ -1,4 +1,8 @@
-{ pkgs, inputs, ... }: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-amd
@@ -9,62 +13,76 @@
     ../common/global
     ../common/users/sven
 
-    ../common/optional/gamemode.nix
-    ../common/optional/ckb-next.nix
-    ../common/optional/greetd.nix
+    # ../common/optional/gamemode.nix
+    # ../common/optional/ckb-next.nix
+    # ../common/optional/greetd.nix
     ../common/optional/pipewire.nix
-    ../common/optional/quietboot.nix
-    ../common/optional/lol-acfix.nix
-    ../common/optional/starcitizen-fixes.nix
+    ../common/optional/desktop-portal.nix
+    # ../common/optional/quietboot.nix
+    # ../common/optional/lol-acfix.nix
+    # ../common/optional/starcitizen-fixes.nix
+    ../common/optional/podman.nix
   ];
 
   networking = {
-    hostName = "atlas";
+    hostName = "maja";
     useDHCP = true;
-    interfaces.enp8s0 = {
-      useDHCP = true;
-      wakeOnLan.enable = true;
+    # interfaces.enp8s0 = {
+    #   useDHCP = true;
+    #   wakeOnLan.enable = true;
 
-      ipv4 = {
-        addresses = [{
-          address = "192.168.0.12";
-          prefixLength = 24;
-        }];
-      };
-      ipv6 = {
-        addresses = [{
-          address = "2804:14d:8084:a484::2";
-          prefixLength = 64;
-        }];
-      };
-    };
+    #   ipv4 = {
+    #     addresses = [{
+    #       address = "192.168.0.12";
+    #       prefixLength = 24;
+    #     }];
+    #   };
+    #   ipv6 = {
+    #     addresses = [{
+    #       address = "2804:14d:8084:a484::2";
+    #       prefixLength = 64;
+    #     }];
+    #   };
+    # };
   };
 
   boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/efi";
+    };
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-    binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
+    # binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
   };
 
   programs = {
     adb.enable = true;
     dconf.enable = true;
-    kdeconnect.enable = true;
+    # kdeconnect.enable = true;
   };
 
+  # xdg.portal = {
+  #   enable = true;
+  #   wlr.enable = true;
+  # };
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
+    # wlr.enable = true;
+    extraPortals = [pkgs.xdg-desktop-portal-hyprland];
   };
 
-  services.hardware.openrgb.enable = true;
   hardware = {
     opengl = {
       enable = true;
-      extraPackages = with pkgs; [ amdvlk ];
+      extraPackages = with pkgs; [
+        amdvlk
+        rocm-opencl-icd
+      ];
       driSupport = true;
       driSupport32Bit = true;
     };
-    opentabletdriver.enable = true;
+    # opentabletdriver.enable = true;
   };
 
   system.stateVersion = "22.05";

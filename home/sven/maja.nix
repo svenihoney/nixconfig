@@ -2,16 +2,22 @@
   imports = [
     ./global
     ./standard-desktop.nix
-    # ./features/desktop/hyprland
-    # ./features/rgb
-    # ./features/productivity
+
+    ./features/desktop/hyprland
+    ./features/desktop/common/networkmanager.nix
+    ./features/desktop/common/wayland-wm/wofi.nix
+    # ./features/desktop/wireless
+    ./features/productivity
+    ./features/media
     # ./features/pass
     # ./features/games
-    # ./features/music
+    # TODO: For standard
+    ./features/desktop/common/keepassxc.nix
     ./features/desktop/common/wayland-wm/qutebrowser.nix
+    ./features/desktop/common/browser.nix
   ];
 
-  targets.genericLinux.enable = true;
+  #targets.genericLinux.enable = true;
   # colorscheme = inputs.nix-colors.colorschemes.tokyo-night-storm;
   # wallpaper = outputs.wallpapers.watercolor-beach;
 

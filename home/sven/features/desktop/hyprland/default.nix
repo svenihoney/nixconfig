@@ -76,6 +76,9 @@
 
         sensitivity = "0";
       };
+      "device:brian-low-sofle-choc" = {
+        kb_variant = "koy";
+      };
 
       dwindle.split_width_multiplier = 1.35;
 
