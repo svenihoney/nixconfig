@@ -10,10 +10,10 @@
     ./features/productivity
     ./features/media
     # ./features/pass
-    # ./features/games
+    ./features/games
     # TODO: For standard
     ./features/desktop/common/keepassxc.nix
-    ./features/desktop/common/wayland-wm/qutebrowser.nix
+    # ./features/desktop/common/wayland-wm/qutebrowser.nix
     ./features/desktop/common/browser.nix
   ];
 

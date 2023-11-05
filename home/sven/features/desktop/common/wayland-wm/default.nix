@@ -2,17 +2,18 @@
   imports = [
     # ./hyprland-vnc.nix
     ./gammastep.nix
-    # ./udiskie.nix
+    ./udiskie.nix
     ./mako.nix
-    # ./qutebrowser.nix
-    ./swayidle.nix
+    ./qutebrowser.nix
+    # ./swayidle.nix
     # ./swaylock.nix
     ./waybar.nix
     ./wlogout.nix
-    # ./wofi.nix
-    # ./zathura.nix
+    ./wofi.nix
+    ./zathura.nix
     # ./wezterm.nix
     ./kitty.nix
+    ./flameshot.nix
   ];
 
   home.packages = with pkgs; [

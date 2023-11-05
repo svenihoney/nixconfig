@@ -1,8 +1,9 @@
 {pkgs, ...}: let
-  browser = ["vivaldi-stable.desktop"];
+  browser = ["vivaldi.desktop"];
 
   # XDG MIME types
   associations = {
+    "application/json" = browser;
     "application/x-extension-htm" = browser;
     "application/x-extension-html" = browser;
     "application/x-extension-shtml" = browser;
@@ -16,8 +17,6 @@
     "x-scheme-handler/http" = browser;
     "x-scheme-handler/https" = browser;
     "x-scheme-handler/unknown" = browser;
-
-    "application/json" = browser;
   };
 in {
   # programs.browserpass.enable = true;

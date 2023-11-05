@@ -159,6 +159,7 @@
           # tly = "${pkgs.tly}/bin/tly";
           gtk-play = "${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play";
           notify-send = "${pkgs.libnotify}/bin/notify-send";
+          pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
 
           gtk-launch = "${pkgs.gtk3}/bin/gtk-launch";
           xdg-mime = "${pkgs.xdg-utils}/bin/xdg-mime";
@@ -192,7 +193,7 @@
             ",XF86AudioMute,exec,${pactl} set-sink-mute @DEFAULT_SINK@ toggle"
             "SHIFT,XF86AudioMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
             ",XF86AudioMicMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
-            "SUPER SHIFT, V, exec, pavucontrol"
+            "SUPER SHIFT, V, exec, ${pavucontrol}"
             # Screenshotting
             ",Print,exec,${grimblast} --notify --freeze copy output"
             "SHIFT,Print,exec,${grimblast} --notify --freeze copy active"
@@ -252,6 +253,7 @@
         "float,class:(KeePassXC)"
         "float,class:(pavucontrol)"
         "float,class:(Vivaldi-Einstellungen)"
+        "float,class:(@joplin/app-desktop)"
 
         "workspace 2,class:(vivaldi.*)"
         "workspace 2,class:(org.qutebrowser.qutebrowser)"

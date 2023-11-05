@@ -62,16 +62,6 @@
     # kdeconnect.enable = true;
   };
 
-  # xdg.portal = {
-  #   enable = true;
-  #   wlr.enable = true;
-  # };
-  xdg.portal = {
-    enable = true;
-    # wlr.enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-hyprland];
-  };
-
   hardware = {
     opengl = {
       enable = true;
@@ -84,6 +74,11 @@
     };
     # opentabletdriver.enable = true;
   };
+
+  # Usevia access to hidraw device
+  services.udev.extraRules = ''
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="FC32", ATTRS{idProduct}=="0287", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+  '';
 
   system.stateVersion = "22.05";
 }

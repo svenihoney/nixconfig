@@ -38,6 +38,7 @@
     file
 
     xh # Better curl
+    wget
     # diffsitter # Better diff
     jq # JSON pretty printer and manipulator
     # trekscii # Cute startrek cli printer
