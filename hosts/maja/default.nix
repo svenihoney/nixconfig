@@ -22,6 +22,7 @@
     # ../common/optional/lol-acfix.nix
     # ../common/optional/starcitizen-fixes.nix
     ../common/optional/podman.nix
+    ../common/optional/virtualisation.nix
   ];
 
   networking = {

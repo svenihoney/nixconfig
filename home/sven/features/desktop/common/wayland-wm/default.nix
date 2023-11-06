@@ -4,7 +4,7 @@
     ./gammastep.nix
     ./udiskie.nix
     ./mako.nix
-    ./qutebrowser.nix
+    # ./qutebrowser.nix
     # ./swayidle.nix
     # ./swaylock.nix
     ./waybar.nix
@@ -13,7 +13,7 @@
     ./zathura.nix
     # ./wezterm.nix
     ./kitty.nix
-    ./flameshot.nix
+    # ./flameshot.nix # TODO: Does not work with wayland currently
   ];
 
   home.packages = with pkgs; [

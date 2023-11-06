@@ -13,8 +13,10 @@
     ./features/games
     # TODO: For standard
     ./features/desktop/common/keepassxc.nix
+    ./features/desktop/common/kubernetes.nix
     # ./features/desktop/common/wayland-wm/qutebrowser.nix
     ./features/desktop/common/browser.nix
+    ./features/desktop/common/virtualisation.nix
   ];
 
   #targets.genericLinux.enable = true;
