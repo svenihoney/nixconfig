@@ -71,7 +71,13 @@
   stylix = {
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/hardcore.yaml";
-    polarity = "dark";
+    # polarity = "dark";
+
+    cursor = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Classic";
+      size = 24;
+    };
 
     # We need this otherwise the autoimport clashes with our manual import.
     # homeManagerIntegration.autoImport = false;
@@ -89,12 +95,6 @@
     #   sha256 =
     #     "570b8b277326e39f30914b7d082a8c9f2325f09304edb825c31f992e2dc8fa4c";
     # };
-
-    cursor = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Classic";
-      size = 24;
-    };
 
     # eat sleep code repeat
     image = pkgs.fetchurl {

@@ -80,7 +80,7 @@
 (setq-default indent-tabs-mode nil)
 
 ;; Disable smartparens
-(remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
+;; (remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
 
 ;; Widen up rg output to 160 chars
 (setq counsel-grep-base-command "rg -i -M 160 --no-heading --line-number --color never '%s' %s")

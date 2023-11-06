@@ -8,6 +8,7 @@
     ./mail.nix
     ./neomutt.nix
 
+    ./office.nix
     # Pass feature is required
     # ../pass
   ];

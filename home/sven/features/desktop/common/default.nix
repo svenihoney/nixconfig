@@ -8,6 +8,7 @@
     # ./font.nix
     ./gtk.nix
     # ./kdeconnect.nix
+    ./warpinator.nix
     ./pavucontrol.nix
     ./playerctl.nix
     ./qt.nix

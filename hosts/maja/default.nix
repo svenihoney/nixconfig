@@ -23,6 +23,7 @@
     # ../common/optional/starcitizen-fixes.nix
     ../common/optional/podman.nix
     ../common/optional/virtualisation.nix
+    ../common/optional/warpinator.nix
   ];
 
   networking = {

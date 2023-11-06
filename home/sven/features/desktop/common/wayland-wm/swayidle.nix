@@ -11,7 +11,7 @@
   swaymsg = "${config.wayland.windowManager.sway.package}/bin/swaymsg";
 
   isLocked = "${pgrep} -x ${swaylock}";
-  lockTime = 10 * 60; # TODO: configurable desktop (10 min)/laptop (4 min)
+  lockTime = 30 * 60; # TODO: configurable desktop (10 min)/laptop (4 min)
 
   # Makes two timeouts: one for when the screen is not locked (lockTime+timeout) and one for when it is.
   afterLockTimeout = {
@@ -32,6 +32,16 @@ in {
   services.swayidle = {
     enable = true;
     systemdTarget = "graphical-session.target";
+    events = [
+      {
+        event = "lock";
+        command = "${swaylock} --daemonize";
+      }
+      {
+        event = "before-sleep";
+        command = "${swaylock} --daemonize";
+      }
+    ];
     timeouts =
       # Lock screen
       [
