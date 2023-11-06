@@ -12,7 +12,7 @@ in
     flags = [
       "--refresh"
     ];
-    flake = "git://m7.rs/nix-config?ref=release-${hostName}";
+    flake = "git://git.effeffcee.de/nixconfig?ref=release";
   };
 
   # Only run if current config (self) is older than the new one.
