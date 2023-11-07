@@ -4,8 +4,8 @@
     enable = true;
     platformTheme = "gtk";
     style = {
-      name = lib.mkForce "gtk2";
-      package = pkgs.qt6Packages.qt6gtk2;
+      name = lib.mkForce "adwaita-dark";
+      package = pkgs.adwaita-qt6;
     };
   };
 }

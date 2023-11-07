@@ -1,5 +1,9 @@
-{ config, pkgs, inputs, ... }:
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 # let
 #   inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme;
 # in
@@ -12,8 +16,8 @@
     #   size = 12;
     # };
     # theme = {
-    #   name = "${config.colorscheme.slug}";
-    #   package = gtkThemeFromScheme { scheme = config.colorscheme; };
+    #   package = pkgs.adw-gtk3;
+      # name = "adw-gtk3";
     # };
     iconTheme = {
       name = "Papirus";

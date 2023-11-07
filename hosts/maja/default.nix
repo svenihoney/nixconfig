@@ -24,6 +24,7 @@
     ../common/optional/podman.nix
     ../common/optional/virtualisation.nix
     ../common/optional/warpinator.nix
+    ../common/optional/printing.nix
   ];
 
   networking = {
@@ -50,9 +51,13 @@
 
   boot = {
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 3;
+      };
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/efi";
+      timeout = 1;
     };
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     # binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];

@@ -77,7 +77,8 @@
         sensitivity = "0";
       };
       "device:brian-low-sofle-choc" = {
-        kb_variant = "koy";
+        kb_layout = "de,de";
+        kb_variant = "koy,neo_qwertz";
       };
 
       dwindle.split_width_multiplier = 1.35;
@@ -141,6 +142,7 @@
 
       bind =
         let
+          hyprctl = "${pkgs.hyprland}/bin/hyprctl";
           swaylock = "${config.programs.swaylock.package}/bin/swaylock";
           wlogout = "${config.programs.wlogout.package}/bin/wlogout";
           playerctl = "${config.services.playerctld.package}/bin/playerctl";
@@ -205,6 +207,7 @@
             # "SUPERCONTROL,z,exec,${notify-send} -t 1000 $(${tly} time) && ${tly} undo && ${gtk-play} -i dialog-warning" # Undo last entry
             # "SUPERCONTROLSHIFT,z,exec,${tly} reset && ${gtk-play} -i complete" # Reset
             # "SUPERSHIFT,z,exec,${notify-send} -t 1000 $(${tly} time)" # Show current time
+            "SUPERCONTROL,k,exec,${hyprctl} switchxkblayout brian-low-sofle-choc next"
           ]
           ++ (lib.optionals config.targets.genericLinux.enable [
             "SUPERSHIFT, F2, exec, nixGL ${browser}"

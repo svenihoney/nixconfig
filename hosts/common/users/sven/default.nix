@@ -22,6 +22,8 @@ in
       "libvirtd"
       "deluge"
       "networkmanager"
+      "scanner"
+      "lp"
     ];
 
     openssh.authorizedKeys.keys = [ (builtins.readFile ../../../../home/sven/ssh.pub) ];

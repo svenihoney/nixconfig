@@ -7,9 +7,10 @@
     enable = true;
     cacheHome = config.home.homeDirectory + "/.local/cache";
 
-    mimeApps = {
-      enable = true;
-    };
+    mime.enable = true;
+    # mimeApps = {
+    #   enable = true;
+    # };
 
     userDirs = {
       enable = true;
