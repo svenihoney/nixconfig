@@ -6,6 +6,7 @@ let
     text = ''
       filename="index-x86_64-linux"
       mkdir -p ~/.local/cache/nix-index
+      ln -sf ~/.local/cache/nix-index ~/.cache/nix-index
       cd ~/.local/cache/nix-index
       wget -N "https://github.com/Mic92/nix-index-database/releases/latest/download/$filename"
       ln -f "$filename" files

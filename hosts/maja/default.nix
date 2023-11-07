@@ -17,7 +17,7 @@
     # ../common/optional/ckb-next.nix
     # ../common/optional/greetd.nix
     ../common/optional/pipewire.nix
-    ../common/optional/desktop-portal.nix
+    ../common/optional/desktop.nix
     # ../common/optional/quietboot.nix
     # ../common/optional/lol-acfix.nix
     # ../common/optional/starcitizen-fixes.nix

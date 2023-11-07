@@ -4,7 +4,15 @@ let
       type = "homeManager";
       hostPlatform = "x86_64-linux";
       address = "beely";
-      remoteBuild = true;
+      remoteBuild = false;
+      user = "sven";
+      homeDirectory = "/home/sven";
+    };
+    struppi = {
+      type = "homeManager";
+      hostPlatform = "x86_64-linux";
+      address = "struppi.effeffcee.de";
+      remoteBuild = false;
       user = "sven";
       homeDirectory = "/home/sven";
     };

@@ -1,10 +1,11 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   home.sessionVariables.COLORTERM = "truecolor";
   programs.helix = {
     enable = true;
     defaultEditor = true;
     settings = {
+      theme = lib.mkDefault "dracula";
       editor = {
         color-modes = true;
         line-number = "relative";

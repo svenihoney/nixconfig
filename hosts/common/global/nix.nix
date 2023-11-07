@@ -8,7 +8,7 @@
       # trusted-public-keys = [
       #   "cache.m7.rs:kszZ/NSwE/TjhOcPPQ16IuUiuRSisdiIwhKZCxguaWg="
       # ];
-      trusted-users = [ "root" "@wheel" ];
+      trusted-users = [ "root" "@wheel" "@adm" ];
       auto-optimise-store = lib.mkDefault true;
       experimental-features = [ "nix-command" "flakes" "repl-flake" ];
       warn-dirty = false;
