@@ -253,7 +253,7 @@ in {
           exec = jsonOutput "currentplayer" {
             pre = ''
               player="$(${playerctl} status -f "{{playerName}}" 2>/dev/null || echo "No player active" | ${cut} -d '.' -f1)"
-              count="$(${playerctl} -l | ${wc} -l)"
+              count="$(${playerctl} -l 2>/dev/null | ${wc} -l)"
               if ((count > 1)); then
                 more=" +$((count - 1))"
               else
@@ -267,6 +267,7 @@ in {
           format = "{icon}{}";
           format-icons = {
             # "No player active" = "⏸";
+            "No players found" = " ";
             "No player active" = " ";
             "Celluloid" = "󰎁 ";
             "spotify" = "󰓇 ";
@@ -283,9 +284,9 @@ in {
           on-click-right = "${playerctld} unshift";
         };
         "custom/player" = {
-          exec-if = "${playerctl} status";
+          exec-if = "${playerctl} status 2>/dev/null";
           exec = ''
-            ${playerctl} metadata --format '{"text": "{{title}} - {{artist}}", "alt": "{{status}}", "tooltip": "{{title}} - {{artist}} ({{album}})"}' '';
+            ${playerctl} 2>/dev/null metadata --format '{"text": "{{title}} - {{artist}}", "alt": "{{status}}", "tooltip": "{{title}} - {{artist}} ({{album}})"}' '';
           return-type = "json";
           interval = 2;
           max-length = 30;

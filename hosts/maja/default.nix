@@ -25,6 +25,7 @@
     ../common/optional/virtualisation.nix
     ../common/optional/warpinator.nix
     ../common/optional/printing.nix
+    ../common/optional/nfs.nix
   ];
 
   networking = {
