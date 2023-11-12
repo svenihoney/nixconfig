@@ -87,6 +87,9 @@ in {
   home.packages = [
     pkgs.thunderbird
   ];
+  xdg.mimeApps.defaultApplications = {
+    "x-scheme-handler/mailto" = ["thunderbird.desktop"];
+  };
   # programs.thunderbird = {
   #   enable = true;
   #   # profiles."2ec6vn7f.default" = {

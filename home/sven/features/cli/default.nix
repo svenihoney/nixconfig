@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   imports = [
     # ./bash.nix
     ./bat.nix
@@ -36,6 +36,7 @@
     ripgrep # Better grep
     fd # Better find
     file
+    sd # Better sed
 
     xh # Better curl
     wget
@@ -55,8 +56,11 @@
     just
 
     # inputs.nh.default # nixos-rebuild and home-manager CLI wrapper
+    unzip
   ];
 
-  programs = { zellij.enable = true; };
-
+  programs = {
+    zellij.enable = true;
+    # thefuck.enable = true;
+  };
 }

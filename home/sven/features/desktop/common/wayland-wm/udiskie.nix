@@ -1,11 +1,19 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   services = {
     udiskie = {
       enable = true;
-      automount = false;
+      automount = true;
       tray = "auto";
+      settings = {
+        program_options = {
+          menu = "flat";
+        };
+      };
     };
   };
 }

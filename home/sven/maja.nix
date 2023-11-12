@@ -16,6 +16,7 @@
     # ./features/desktop/common/wayland-wm/qutebrowser.nix
     ./features/desktop/common/browser.nix
     ./features/desktop/common/virtualisation.nix
+    ./features/desktop/common/linphone.nix
     ./features/development
   ];
 

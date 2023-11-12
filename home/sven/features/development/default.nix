@@ -10,4 +10,6 @@
     ./nix.nix
     ./xml.nix
   ];
+
+  home.packages = with pkgs; [zeal];
 }

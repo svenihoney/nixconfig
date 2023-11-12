@@ -1,6 +1,10 @@
-{ outputs, config, lib, pkgs, ... }:
-
-let
+{
+  outputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   # Dependencies
   cat = "${pkgs.coreutils}/bin/cat";
   cut = "${pkgs.coreutils}/bin/cut";
@@ -15,6 +19,7 @@ let
 
   jq = "${pkgs.jq}/bin/jq";
   gamemoded = "${pkgs.gamemode}/bin/gamemoded";
+  gammastep = "${pkgs.gammastep}/bin/gammastep";
   systemctl = "${pkgs.systemd}/bin/systemctl";
   journalctl = "${pkgs.systemd}/bin/journalctl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
@@ -23,22 +28,26 @@ let
   wofi = "${pkgs.wofi}/bin/wofi";
 
   # Function to simplify making waybar outputs
-  jsonOutput = name:
-    { pre ? "", text ? "", tooltip ? "", alt ? "", class ? "", percentage ? ""
-    }:
-    "${
-      pkgs.writeShellScriptBin "waybar-${name}" ''
-        set -euo pipefail
-        ${pre}
-        ${jq} -cn \
-          --arg text "${text}" \
-          --arg tooltip "${tooltip}" \
-          --arg alt "${alt}" \
-          --arg class "${class}" \
-          --arg percentage "${percentage}" \
-          '{text:$text,tooltip:$tooltip,alt:$alt,class:$class,percentage:$percentage}'
-      ''
-    }/bin/waybar-${name}";
+  jsonOutput = name: {
+    pre ? "",
+    text ? "",
+    tooltip ? "",
+    alt ? "",
+    class ? "",
+    percentage ? "",
+  }: "${
+    pkgs.writeShellScriptBin "waybar-${name}" ''
+      set -euo pipefail
+      ${pre}
+      ${jq} -cn \
+        --arg text "${text}" \
+        --arg tooltip "${tooltip}" \
+        --arg alt "${alt}" \
+        --arg class "${class}" \
+        --arg percentage "${percentage}" \
+        '{text:$text,tooltip:$tooltip,alt:$alt,class:$class,percentage:$percentage}'
+    ''
+  }/bin/waybar-${name}";
 in {
   programs.waybar = {
     enable = true;
@@ -53,14 +62,18 @@ in {
         height = 30;
         margin = "3";
         position = "bottom";
-        modules-left = [ "custom/menu" ]
+        # modules-left = [ "custom/menu" ]
+        modules-left =
+          []
           ++ (lib.optionals config.wayland.windowManager.sway.enable [
             "sway/workspaces"
             "sway/mode"
-          ]) ++ (lib.optionals config.wayland.windowManager.hyprland.enable [
+          ])
+          ++ (lib.optionals config.wayland.windowManager.hyprland.enable [
             "hyprland/workspaces"
             "hyprland/submap"
-          ]) ++ [];
+          ])
+          ++ [];
 
         modules-center = [
           "hyprland/window"
@@ -77,16 +90,30 @@ in {
           # "custom/tailscale-ping"
           # "custom/gamemode"
           # TODO: currently broken for some reason
-          # "custom/gammastep"
+          "custom/gammastep"
           "tray"
           # "custom/hostname"
           "clock"
         ];
+        "hyprland/workspaces" = {
+          active-only = false;
+          all-outputs = true;
+          # format = "<sub>{icon}</sub>\n{windows}";
+          format = "<sub>{icon}</sub>";
+          sort-by = "number";
+          #   "format-window-separator": "\n",
+          #   "window-rewrite-default": "",
+          #   "window-rewrite": {
+          #     "firefox": "",
+          #     "foot": "",
+          #     "code": "󰨞",
+          #   },
+        };
 
         clock = {
           interval = 1;
-          format = "{:%d.%m. %H:%M}";
-          format-alt = "{:%Y-%m-%d %H:%M:%S %z}";
+          format= "{:<small>%d.%m.</small>  %H:%M }";
+          format-alt = "{:%d.%m.%Y %H:%M:%S %z}";
           on-click-left = "mode";
           tooltip-format = ''
             <big>{:%Y %B}</big>
@@ -99,7 +126,7 @@ in {
             headphone = "󰋋";
             headset = "󰋎";
             portable = "";
-            default = [ "" "" "" ];
+            default = ["" "" ""];
           };
           on-click = pavucontrol;
         };
@@ -113,12 +140,12 @@ in {
         battery = {
           bat = "BAT0";
           interval = 10;
-          format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
+          format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
           format = "{icon} {capacity}%";
           format-charging = "󰂄 {capacity}%";
           onclick = "";
         };
-        "sway/window" = { max-length = 20; };
+        "sway/window" = {max-length = 20;};
         network = {
           interval = 3;
           format-wifi = "   {essid}";
@@ -139,20 +166,23 @@ in {
             hosts = attrNames outputs.nixosConfigurations;
             homeMachine = "merope";
             remoteMachine = "alcyone";
-          in jsonOutput "tailscale-ping" {
-            # Build variables for each host
-            pre = ''
-              set -o pipefail
-              ${concatStringsSep "\n" (map (host: ''
-                ping_${host}="$(${timeout} 2 ${ping} -c 1 -q ${host} 2>/dev/null | ${tail} -1 | ${cut} -d '/' -f5 | ${cut} -d '.' -f1)ms" || ping_${host}="Disconnected"
-              '') hosts)}
-            '';
-            # Access a remote machine's and a home machine's ping
-            text = "  $ping_${remoteMachine} /  $ping_${homeMachine}";
-            # Show pings from all machines
-            tooltip = concatStringsSep "\n"
-              (map (host: "${host}: $ping_${host}") hosts);
-          };
+          in
+            jsonOutput "tailscale-ping" {
+              # Build variables for each host
+              pre = ''
+                set -o pipefail
+                ${concatStringsSep "\n" (map (host: ''
+                    ping_${host}="$(${timeout} 2 ${ping} -c 1 -q ${host} 2>/dev/null | ${tail} -1 | ${cut} -d '/' -f5 | ${cut} -d '.' -f1)ms" || ping_${host}="Disconnected"
+                  '')
+                  hosts)}
+              '';
+              # Access a remote machine's and a home machine's ping
+              text = "  $ping_${remoteMachine} /  $ping_${homeMachine}";
+              # Show pings from all machines
+              tooltip =
+                concatStringsSep "\n"
+                (map (host: "${host}: $ping_${host}") hosts);
+            };
           format = "{}";
           on-click = "";
         };
@@ -165,7 +195,7 @@ in {
           };
           on-click = "${wofi} -S drun -x 10 -y 10 -W 25% -H 60%";
         };
-        "custom/hostname" = { exec = "echo $USER@$HOSTNAME"; };
+        "custom/hostname" = {exec = "echo $USER@$HOSTNAME";};
         "custom/unread-mail" = {
           interval = 5;
           return-type = "json";
@@ -195,13 +225,14 @@ in {
           interval = 2;
           return-type = "json";
           exec = let
-            gpgCmds = import ../../../cli/gpg-commands.nix { inherit pkgs; };
-          in jsonOutput "gpg-agent" {
-            pre = ''
-              status=$(${gpgCmds.isUnlocked} && echo "unlocked" || echo "locked")'';
-            alt = "$status";
-            tooltip = "GPG is $status";
-          };
+            gpgCmds = import ../../../cli/gpg-commands.nix {inherit pkgs;};
+          in
+            jsonOutput "gpg-agent" {
+              pre = ''
+                status=$(${gpgCmds.isUnlocked} && echo "unlocked" || echo "locked")'';
+              alt = "$status";
+              tooltip = "GPG is $status";
+            };
           format = "{icon}";
           format-icons = {
             "locked" = "";
@@ -213,7 +244,7 @@ in {
           exec-if = "${gamemoded} --status | ${grep} 'is active' -q";
           interval = 2;
           return-type = "json";
-          exec = jsonOutput "gamemode" { tooltip = "Gamemode is active"; };
+          exec = jsonOutput "gamemode" {tooltip = "Gamemode is active";};
           format = " ";
         };
         "custom/gammastep" = {
@@ -222,7 +253,7 @@ in {
           exec = jsonOutput "gammastep" {
             pre = ''
               if unit_status="$(${systemctl} --user is-active gammastep)"; then
-                status="$unit_status ($(${journalctl} --user -u gammastep.service -g 'Period: ' | ${tail} -1 | ${cut} -d ':' -f6 | ${xargs}))"
+                status="$unit_status ($(LANG=C ${gammastep} -p 2>&1| ${grep} Period| ${tail} -n 1| ${cut} -d ' ' -f 3))"
               else
                 status="$unit_status"
               fi
@@ -244,8 +275,7 @@ in {
             "active (Transition (Day)" = " ";
             "active (Transition (Daytime)" = " ";
           };
-          on-click =
-            "${systemctl} --user is-active gammastep && ${systemctl} --user stop gammastep || ${systemctl} --user start gammastep";
+          on-click = "${systemctl} --user is-active gammastep && ${systemctl} --user stop gammastep || ${systemctl} --user start gammastep";
         };
         "custom/currentplayer" = {
           interval = 2;
@@ -299,7 +329,6 @@ in {
           on-click = "${playerctl} play-pause";
         };
       };
-
     };
     # Cheatsheet:
     # x -> all sides
@@ -391,64 +420,66 @@ in {
     #   }
     # '';
     style = ''
-      * {
-        font-size: 12pt;
-        padding: 0 8px;
-      }
+            * {
+              font-size: 12pt;
+              padding: 0 8px;
+            }
 
-      .modules-right {
-        margin-right: -15px;
-      }
+            .modules-right {
+              margin-right: -15px;
+            }
 
-      .modules-left {
-        margin-left: -15px;
-      }
+            .modules-left {
+              margin-left: -15px;
+            }
 
-      window#waybar.top {
-        opacity: 0.95;
-        padding: 0;
-        border-radius: 10px;
-      }
-      window#waybar.bottom {
-        opacity: 0.90;
-        border-radius: 10px;
-      }
+            window#waybar.top {
+              opacity: 0.95;
+              padding: 0;
+              border-radius: 10px;
+            }
+            window#waybar.bottom {
+              opacity: 0.90;
+              border-radius: 10px;
+            }
 
-      #workspaces button {
-        padding: 5px 1px;
-        margin: 3px 0;
-      }
-      #workspaces button.hidden {
-      }
-      #workspaces button.focused,
-      #workspaces button.active {
-      }
+            #workspaces button {
+              padding: 5px 1px;
+              margin: 3px 0;
+            }
+            #workspaces button.hidden {
+            }
+            #workspaces button.focused,
+            #workspaces button.active {
+            }
 
-      #clock {
-        padding-left: 15px;
-        padding-right: 15px;
-        margin-top: 0;
-        margin-bottom: 0;
-        border-radius: 10px;
-      }
+            #clock {
+              padding-left: 15px;
+              padding-right: 15px;
+              margin-top: 0;
+              margin-bottom: 0;
+              border-radius: 10px;
+            }
 
-      #custom-menu {
-        padding-left: 15px;
-        padding-right: 22px;
-        margin: 0;
-        border-radius: 10px;
-      }
-      #custom-hostname {
-        padding-left: 15px;
-        padding-right: 18px;
-        margin-right: 0;
-        margin-top: 0;
-        margin-bottom: 0;
-        border-radius: 10px;
-      }
-      #custom-currentplayer {
-        padding-right: 0;
-      }
+            #custom-menu {
+              padding-left: 15px;
+              padding-right: 22px;
+              margin: 0;
+              border-radius: 10px;
+            }
+            #custom-hostname {
+              padding-left: 15px;
+              padding-right: 18px;
+              margin-right: 0;
+              margin-top: 0;
+              margin-bottom: 0;
+              border-radius: 10px;
+            }
+            #custom-currentplayer {
+              padding-right: 0;
+            }
+
+
     '';
   };
   # stylix.targets.waybar = {

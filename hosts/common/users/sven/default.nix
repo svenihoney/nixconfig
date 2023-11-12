@@ -30,6 +30,7 @@ in {
         "networkmanager"
         "scanner"
         "lp"
+        "kvm"
       ];
 
     openssh.authorizedKeys.keys = [(builtins.readFile ../../../../home/sven/ssh.pub)];

@@ -168,9 +168,10 @@
           defaultApp = type: "${gtk-launch} $(${xdg-mime} query default ${type})";
 
           terminal = config.home.sessionVariables.TERMINAL;
-          # browser = defaultApp "x-scheme-handler/https";
-          browser = "${pkgs.qutebrowser}/bin/qutebrowser";
-          editor = defaultApp "text/plain";
+          browser = defaultApp "x-scheme-handler/https";
+          # browser = "${pkgs.qutebrowser}/bin/qutebrowser";
+          # editor = defaultApp "text/plain";
+          editor = "${config.programs.emacs.package}/bin/emacs";
         in
           [
             # Program bindings
@@ -178,15 +179,20 @@
             # "SUPER,e,exec,${editor}"
             # "SUPER,v,exec,${editor}"
             # "SUPER,b,exec,${browser}"
-            "SUPER, F2, exec, vivaldi"
+            "SUPER, F2, exec, ${browser}"
             "SUPER, F3, exec, thunderbird"
-            "SUPER, F4, exec, teams-for-linux --enable-features=UseOzonePlatform --ozone-platform=wayland"
-            "SUPER, C, exec, swaync-client -t"
-            "SUPER SHIFT, C, exec, swaync-client -C"
+            # "SUPER, F4, exec, teams-for-linux --enable-features=UseOzonePlatform --ozone-platform=wayland"
+            "SUPER, F4, exec, ${editor}"
+            "SUPER, F11, exec, ~/bin/switchaudio btoff"
+            "SUPER, F11, exec, ~/bin/switchaudio hdmi"
+            "SUPER SHIFT, F11, exec, ~/bin/switchaudio btheadset"
+
+            # "SUPER, C, exec, swaync-client -t"
+            # "SUPER SHIFT, C, exec, swaync-client -C"
             "SUPER SHIFT, K, exec, keepassxc"
             # "SUPER SHIFT, E, exec, nwg-bar"
 
-            # Brightness control (only works if the system has lightd)
+            # Brightness control ()
             ",XF86MonBrightnessUp,exec,light -A 10"
             ",XF86MonBrightnessDown,exec,light -U 10"
             # Volume
