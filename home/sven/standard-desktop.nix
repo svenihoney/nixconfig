@@ -8,8 +8,9 @@
   imports = [
     inputs.stylix.homeManagerModules.stylix
 
-    ./features/emacs
-    ./features/nvim/lsp.nix
+    ./features/editors/emacs
+    ./features/editors/nvim/lsp.nix
+    ./features/editors/vscode
     # ./features/desktop/common/keepassxc.nix
     ./features/desktop/common/nixgl.nix
   ];

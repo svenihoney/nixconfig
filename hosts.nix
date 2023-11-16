@@ -30,18 +30,24 @@ let
       remoteBuild = true;
       #      user = "sven";
       #      homeDirectory = "/home/sven";
+      user = "sven";
+      homeDirectory = "/home/sven";
     };
     nixvirt = {
       type = "nixos";
       hostPlatform = "x86_64-linux";
       address = "nixvirt";
       remoteBuild = true;
+      user = "sven";
+      homeDirectory = "/home/sven";
     };
     willi = {
       type = "nixos";
       hostPlatform = "x86_64-linux";
       address = "willi";
       remoteBuild = false;
+      user = "sven";
+      homeDirectory = "/home/sven";
     };
   };
 

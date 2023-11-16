@@ -4,9 +4,16 @@
   pkgs,
   ...
 }: {
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      runAsRoot = false;
+      ovmf = {
+        enable = true;
+        packages = [pkgs.OVMFFull.fd];
+      };
+      swtpm.enable = true;
+    };
+  };
   programs.virt-manager.enable = true;
-  # environment = {
-  #   systemPackages = with pkgs; [qemu];
-  # };
 }

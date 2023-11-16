@@ -16,8 +16,8 @@
       # inputs.impermanence.nixosModules.home-manager.impermanence
 
       ../features/cli
-      ../features/nvim
-      ../features/helix
+      ../features/editors/nvim
+      ../features/editors/helix
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
 
