@@ -6,7 +6,6 @@ let
       address = "beely";
       remoteBuild = false;
       user = "sven";
-      homeDirectory = "/home/sven";
     };
     struppi = {
       type = "homeManager";
@@ -14,7 +13,6 @@ let
       address = "struppi.effeffcee.de";
       remoteBuild = false;
       user = "sven";
-      homeDirectory = "/home/sven";
     };
     # struppi = {
     #   type = "homeManager";
@@ -31,7 +29,6 @@ let
       #      user = "sven";
       #      homeDirectory = "/home/sven";
       user = "sven";
-      homeDirectory = "/home/sven";
     };
     nixvirt = {
       type = "nixos";
@@ -39,7 +36,6 @@ let
       address = "nixvirt";
       remoteBuild = true;
       user = "sven";
-      homeDirectory = "/home/sven";
     };
     willi = {
       type = "nixos";
@@ -47,7 +43,6 @@ let
       address = "willi";
       remoteBuild = false;
       user = "sven";
-      homeDirectory = "/home/sven";
     };
   };
 

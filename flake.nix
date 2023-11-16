@@ -76,14 +76,17 @@
         overlays = [nixgl.overlay];
         config.allowUnfree = true;
       });
-    genNixosConfig = hostName: {...}:
+    genNixosConfig = hostName: {user, ...}:
       lib.nixosSystem {
         modules = [./hosts/${hostName}];
         specialArgs = {inherit inputs outputs;};
       };
     genHomeConfig = hostName: {user, ...}:
       lib.homeManagerConfiguration {
-        modules = [./home/${user}/${hostName}.nix];
+        modules = [
+          inputs.stylix.homeManagerModules.stylix
+          ./home/${user}/${hostName}.nix
+        ];
         pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
       };

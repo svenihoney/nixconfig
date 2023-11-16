@@ -1,43 +1,29 @@
-{ pkgs, lib, config, ... }:
-let
-  homeCfgs = config.home-manager.users;
-  homePaths = lib.mapAttrsToList (n: v: "${v.home.path}/share") homeCfgs;
-  extraDataPaths = lib.concatStringsSep ":" homePaths;
-  vars = ''XDG_DATA_DIRS="$XDG_DATA_DIRS:${extraDataPaths}"'';
-
-  sway-kiosk = command: "${pkgs.sway}/bin/sway --config ${pkgs.writeText "kiosk.config" ''
-    output * bg #000000 solid_color
-    exec "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK"
-    xwayland disable
-    input "type:touchpad" {
-      tap enabled
-    }
-    exec '${vars} ${command} -l debug; ${pkgs.sway}/bin/swaymsg exit'
-  ''}";
-
-  svenCfg = homeCfgs.sven;
-in
 {
-  users.extraUsers.greeter.packages = [
-    svenCfg.gtk.theme.package
-    svenCfg.gtk.iconTheme.package
-  ];
-
-  programs.regreet = {
-    enable = true;
-    settings = {
-      GTK = {
-        icon_theme_name = "ePapirus";
-        theme_name = svenCfg.gtk.theme.name;
-      };
-      background = {
-        path = svenCfg.wallpaper;
-        fit = "Cover";
-      };
-    };
-  };
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   services.greetd = {
     enable = true;
-    settings.default_session.command = sway-kiosk (lib.getExe config.programs.regreet.package);
+    settings = rec {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-user --remember-user-session --cmd ${pkgs.hyprland}/bin/Hyprland";
+        # user = "${user}";
+        # user = lib.mkOverride 100 "sven";
+      };
+      # default_session = initial_session;
+    };
+  };
+  programs.regreet = {
+    enable = false;
+    settings = {
+      background = {
+        path = "${config.stylix.image}";
+      };
+      GTK = {
+        application_prefer_dark_theme = true;
+      };
+    };
   };
 }

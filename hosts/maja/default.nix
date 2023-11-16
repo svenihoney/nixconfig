@@ -7,6 +7,7 @@
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
+    inputs.stylix.nixosModules.stylix
 
     ./hardware-configuration.nix
 
@@ -15,7 +16,7 @@
 
     # ../common/optional/gamemode.nix
     # ../common/optional/ckb-next.nix
-    # ../common/optional/greetd.nix
+    ../common/optional/greetd.nix
     ../common/optional/pipewire.nix
     ../common/optional/desktop.nix
     # ../common/optional/quietboot.nix
@@ -26,13 +27,20 @@
     ../common/optional/warpinator.nix
     ../common/optional/printing.nix
     ../common/optional/nfs.nix
+    ../common/optional/stylix.nix
   ];
 
   networking = {
     hostName = "maja";
-    useDHCP = true;
-    # interfaces.enp8s0 = {
-    #   useDHCP = true;
+    useDHCP = false;
+    bridges = {
+      br0 = {
+        interfaces = ["enp6s0"];
+      };
+    };
+    interfaces.br0 = {
+      useDHCP = true;
+    };
     #   wakeOnLan.enable = true;
 
     #   ipv4 = {
