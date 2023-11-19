@@ -6,14 +6,14 @@
 }: {
   qt = {
     enable = true;
-    # platformTheme = "gtk";
+    platformTheme = "gnome";
     style = {
-      name = lib.mkForce "gtk3";
+      name = lib.mkForce "adwaita";
     };
-    # platformTheme = "gtk";
+    # # platformTheme = "gtk";
   };
 
-  home.packages = with pkgs; [libsForQt5.qtstyleplugins qt6Packages.qt6gtk2 adwaita-qt adwaita-qt6];
+  # home.packages = with pkgs; [libsForQt5.qtstyleplugins qt6Packages.qt6gtk2 adwaita-qt adwaita-qt6];
 
   home.sessionVariables = {
     QT_QPA_PLATFORM = "wayland";

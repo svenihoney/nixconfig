@@ -77,6 +77,7 @@
     dconf.enable = true;
     # kdeconnect.enable = true;
   };
+  services.gvfs.enable = true;
 
   hardware = {
     opengl = {
@@ -97,5 +98,5 @@
   '';
   services.udisks2.enable = true;
 
-  system.stateVersion = "22.05";
+  system.stateVersion = "23.11";
 }

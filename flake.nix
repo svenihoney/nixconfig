@@ -87,7 +87,6 @@
           inputs.stylix.homeManagerModules.stylix
           ./home/${user}/${hostName}.nix
         ];
-        pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
       };
   in {
@@ -100,7 +99,21 @@
     # hydraJobs = import ./hydra.nix { inherit inputs outputs; };
 
     # packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
-    devShells = forEachSystem (pkgs: import ./shell.nix {inherit pkgs;});
+    # devShells = forEachSystem (import ./shell.nix inputs);
+    devShells = forEachSystem (pkgs: config: {
+default = pkgs.mkShell {
+          packages = [
+            pkgs.alejandra
+            pkgs.git
+            pkgs.nodePackages.prettier
+            # config.packages.repl
+          ];
+          name = "dots";
+          DIRENV_LOG_FORMAT = "";
+          shellHook = ''
+            ${config.pre-commit.installationScript}
+          '';
+};});
     formatter = forEachSystem (pkgs: pkgs.alejandro);
     checks = forEachSystem (import ./checks.nix inputs);
 
@@ -110,7 +123,7 @@
 
     nixosConfigurations =
       lib.mapAttrs genNixosConfig (self.hosts.nixos or {});
-    homeConfigurations =
-      lib.mapAttrs genHomeConfig (self.hosts.homeManager or {});
+    homeConfigurations = forEachSystem (pkgs:
+      lib.mapAttrs genHomeConfig (self.hosts.homeManager or {}));
   };
 }

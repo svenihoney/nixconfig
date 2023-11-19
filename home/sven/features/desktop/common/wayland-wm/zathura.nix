@@ -29,4 +29,7 @@ in {
       # recolor-darkcolor = "#${colors.base06}";
     };
   };
+  xdg.mimeApps.defaultApplications = {
+    "application/pdf" = "zathura.desktop";
+  };
 }

@@ -87,7 +87,7 @@
         disable_hyprland_logo = true;
         vrr = 2;
 
-        enable_swallow = true;
+        enable_swallow = false;
         swallow_regex = ["(org.wezfurlong.wezterm)" "(kitty)"];
       };
 
@@ -264,10 +264,11 @@
         "float,class:(Vivaldi-Einstellungen)"
         "float,class:(@joplin/app-desktop)"
 
-        "workspace 2,class:(vivaldi.*)"
+        "workspace 2,class:(Vivaldi.*)"
         "workspace 2,class:(org.qutebrowser.qutebrowser)"
 
         "workspace 3,class:(thunderbird)"
+        "float,title:(Kalendererinnerungen)"
       ];
 
       monitor = map (m: let

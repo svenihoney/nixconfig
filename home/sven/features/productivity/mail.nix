@@ -38,7 +38,7 @@
       enable = true;
       extraMailboxes = ["Archive" "Drafts" "Junk" "Sent" "Trash"];
     };
-    msmtp.enable = true;
+    # msmtp.enable = true;
   };
 in {
   # home.persistence = {
@@ -98,7 +98,7 @@ in {
   #   # };
   # };
   programs.mbsync.enable = true;
-  programs.msmtp.enable = true;
+  # programs.msmtp.enable = true;
 
   # systemd.user.services.mbsync = {
   #   Unit = { Description = "mbsync synchronization"; };

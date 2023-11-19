@@ -11,4 +11,6 @@
     gcc
     gdb
   ];
+
+  home.sessionVariables.CMAKE_GENERATOR = "Ninja";
 }

@@ -28,6 +28,11 @@ in {
       tab_bar_style = "powerline";
       tab_separator = " ┇";
       tab_powerline_style = "slanted";
+
+      # nnn
+      allow_remote_control = "yes";
+      listen_on = "unix:/tmp/kitty";
+      enabled_layouts = "splits";
     };
     keybindings = {
       "shift+page_up" = "scroll_page_up";
@@ -39,5 +44,10 @@ in {
       "kitty_mod+n" = "new_os_window_with_cwd";
       "kitty_mod+t" = "launch --cwd=current --type=tab";
     };
+  };
+
+  # Enable ssh kitten in fish
+  programs.fish.shellAbbrs = rec {
+    ssh = "kitten ssh";
   };
 }

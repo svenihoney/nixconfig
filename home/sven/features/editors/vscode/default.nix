@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.vscode = {
     enable = true;
     extensions = with pkgs.vscode-extensions; [
@@ -10,9 +7,24 @@
       ms-vscode.cmake-tools
       ms-python.python
       rust-lang.rust-analyzer
-      vscodevim.vim
+      asvetliakov.vscode-neovim
+      # vscodevim.vim
       yzhang.markdown-all-in-one
     ];
+    userSettings = {
+      #   "vim.handleKeys" = {
+      #     "<C-p>" = false;
+      #   };
+      "extensions.experimental.affinity" = {
+        "asvetliakov.vscode-neovim" = 1;
+      };
+      "keyboard.dispatch" = "keyCode";
+    };
+    # keybindings = [
+    #   {
+    #     command = "-vscode-neovim.send";
+    #     key = "ctrl+p";
+    #   }
+    # ];
   };
-  home.packages = with pkgs; [curl];
 }
