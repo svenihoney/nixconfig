@@ -1,4 +1,4 @@
-{ inputs, outputs, ... }: {
+{ inputs, outputs, pkgs, ... }: {
   imports = [
     ./global
     ./standard-desktop.nix
@@ -23,6 +23,8 @@
   #targets.genericLinux.enable = true;
   # colorscheme = inputs.nix-colors.colorschemes.tokyo-night-storm;
   # wallpaper = outputs.wallpapers.watercolor-beach;
+  programs.emacs.package = pkgs.emacs29-pgtk;
+  services.emacs.package = pkgs.emacs29-pgtk;
 
   #  ------   -----   ------
   # | DP-3 | | DP-1| | DP-2 |

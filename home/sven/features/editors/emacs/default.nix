@@ -1,7 +1,9 @@
-{ config, lib, pkgs, ... }:
-
 {
-
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs = {
     emacs = {
       enable = true;
@@ -53,7 +55,7 @@
     # };
   };
   # Until the doom emacs override is more or less up-to-date again
-  home.file.".doom.d" = { source = ./doom.d; };
+  home.file.".doom.d" = {source = ./doom.d;};
 
   # services = {
   #   emacs = {
@@ -63,4 +65,9 @@
   #   };
   # };
 
+  # Dependencies
+  home.packages = with pkgs; [
+    # Dash docs
+    sqlite
+  ];
 }

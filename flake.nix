@@ -99,21 +99,7 @@
     # hydraJobs = import ./hydra.nix { inherit inputs outputs; };
 
     # packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
-    # devShells = forEachSystem (import ./shell.nix inputs);
-    devShells = forEachSystem (pkgs: config: {
-default = pkgs.mkShell {
-          packages = [
-            pkgs.alejandra
-            pkgs.git
-            pkgs.nodePackages.prettier
-            # config.packages.repl
-          ];
-          name = "dots";
-          DIRENV_LOG_FORMAT = "";
-          shellHook = ''
-            ${config.pre-commit.installationScript}
-          '';
-};});
+    devShells = forEachSystem (import ./shell.nix inputs);
     formatter = forEachSystem (pkgs: pkgs.alejandro);
     checks = forEachSystem (import ./checks.nix inputs);
 
@@ -123,7 +109,8 @@ default = pkgs.mkShell {
 
     nixosConfigurations =
       lib.mapAttrs genNixosConfig (self.hosts.nixos or {});
-    homeConfigurations = forEachSystem (pkgs:
-      lib.mapAttrs genHomeConfig (self.hosts.homeManager or {}));
+    homeConfigurations =
+      forEachSystem (pkgs:
+        lib.mapAttrs genHomeConfig (self.hosts.homeManager or {}));
   };
 }

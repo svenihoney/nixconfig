@@ -29,7 +29,8 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-oceanic-next)
+(setq doom-theme 'doom-dracula)
+;; (setq doom-theme 'base16-stylix)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -290,6 +291,11 @@
     (current-buffer)))
   )
 
+;; Shell recommendation from doom doctor
+(setq shell-file-name (executable-find "bash"))
+
+(setq-default vterm-shell (executable-find "fish"))
+(setq-default explicit-shell-file-name (executable-find "fish"))
 
 ;; (if (string= "wayland" (getenv "XDG_SESSION_TYPE"))
 ;;     (progn

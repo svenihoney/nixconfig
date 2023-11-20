@@ -72,5 +72,7 @@
         terminal = 10;
       };
     };
+
+    targets.gnome.enable = true;
   };
 }

@@ -158,6 +158,7 @@
           # grimblast = "${pkgs.inputs.hyprwm-contrib.grimblast}/bin/grimblast";
           grimblast = "grimblast";
           pactl = "${pkgs.pulseaudio}/bin/pactl";
+          pamixer = "${pkgs.pamixer}/bin/pamixer";
           # tly = "${pkgs.tly}/bin/tly";
           gtk-play = "${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play";
           notify-send = "${pkgs.libnotify}/bin/notify-send";
@@ -196,9 +197,9 @@
             ",XF86MonBrightnessUp,exec,light -A 10"
             ",XF86MonBrightnessDown,exec,light -U 10"
             # Volume
-            ",XF86AudioRaiseVolume,exec,${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
-            ",XF86AudioLowerVolume,exec,${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
-            ",XF86AudioMute,exec,${pactl} set-sink-mute @DEFAULT_SINK@ toggle"
+            ",XF86AudioRaiseVolume,exec,${pamixer} -i 5"
+            ",XF86AudioLowerVolume,exec,${pamixer} -d 5"
+            ",XF86AudioMute,exec,${pamixer} -t"
             "SHIFT,XF86AudioMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
             ",XF86AudioMicMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
             "SUPER SHIFT, V, exec, ${pavucontrol}"
@@ -263,6 +264,7 @@
         "float,class:(pavucontrol)"
         "float,class:(Vivaldi-Einstellungen)"
         "float,class:(@joplin/app-desktop)"
+        "float,class:(org.speedcrunch.)"
 
         "workspace 2,class:(Vivaldi.*)"
         "workspace 2,class:(org.qutebrowser.qutebrowser)"

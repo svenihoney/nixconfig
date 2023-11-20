@@ -97,6 +97,7 @@
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="FC32", ATTRS{idProduct}=="0287", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
   '';
   services.udisks2.enable = true;
+  services.fwupd.enable = true;
 
   system.stateVersion = "23.11";
 }

@@ -16,8 +16,8 @@
     #   size = 12;
     # };
     # theme = {
-    #   package = pkgs.adw-gtk3;
-      # name = "adw-gtk3";
+    #   package = lib.mkForce pkgs.gnome.gnome-themes-extra;
+    #   name = lib.mkForce "Adwaita-dark";
     # };
     iconTheme = {
       name = "Papirus";
