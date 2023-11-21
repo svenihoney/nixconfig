@@ -1,8 +1,13 @@
-{ pkgs, inputs, ... }: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
+    inputs.stylix.nixosModules.stylix
 
     ./hardware-configuration.nix
 
@@ -11,12 +16,18 @@
 
     # ../common/optional/gamemode.nix
     # ../common/optional/wireless.nix
-    # ../common/optional/greetd.nix
+    # ../common/optional/ckb-next.nix
+    ../common/optional/greetd.nix
     ../common/optional/pipewire.nix
     ../common/optional/desktop.nix
     # ../common/optional/quietboot.nix
     # ../common/optional/lol-acfix.nix
     ../common/optional/podman.nix
+    ../common/optional/virtualisation.nix
+    ../common/optional/warpinator.nix
+    ../common/optional/printing.nix
+    #../common/optional/nfs.nix
+    ../common/optional/stylix.nix
   ];
 
   networking = {
@@ -26,9 +37,13 @@
 
   boot = {
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 3;
+      };
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/efi";
+      timeout = 1;
     };
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   };
@@ -40,6 +55,7 @@
     dconf.enable = true;
     # kdeconnect.enable = true;
   };
+  services.gvfs.enable = true;
 
   # Lid settings
   services.logind = {
@@ -47,20 +63,24 @@
     lidSwitchExternalPower = "lock";
   };
 
-  services.udisks2.enable = true;
-
-  # xdg.portal = {
-  #   enable = true;
-  #   wlr.enable = true;
-  # };
   hardware = {
     opengl = {
       enable = true;
-      extraPackages = with pkgs; [ amdvlk ];
+      extraPackages = with pkgs; [
+        amdvlk
+        # rocm-opencl-icd
+      ];
       driSupport = true;
       driSupport32Bit = true;
     };
   };
+
+  # Usevia access to hidraw device
+  services.udev.extraRules = ''
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="FC32", ATTRS{idProduct}=="0287", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+  '';
+  services.udisks2.enable = true;
+  services.fwupd.enable = true;
 
   system.stateVersion = "23.11";
 }

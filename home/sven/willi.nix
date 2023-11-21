@@ -5,6 +5,7 @@
 
     ./features/desktop/hyprland
     ./features/desktop/common/networkmanager.nix
+    ./features/desktop/common/wayland-wm/wofi.nix
     # ./features/desktop/wireless
     ./features/productivity
     ./features/media
@@ -12,8 +13,12 @@
     # ./features/games
     # TODO: For standard
     ./features/desktop/common/keepassxc.nix
-    ./features/desktop/common/wayland-wm/qutebrowser.nix
+    ./features/desktop/common/kubernetes.nix
+    # ./features/desktop/common/wayland-wm/qutebrowser.nix
     ./features/desktop/common/browser.nix
+    ./features/desktop/common/virtualisation.nix
+    ./features/desktop/common/linphone.nix
+    ./features/development
   ];
 
   # wallpaper = outputs.wallpapers.aenami-lunar;

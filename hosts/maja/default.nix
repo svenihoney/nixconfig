@@ -84,7 +84,7 @@
       enable = true;
       extraPackages = with pkgs; [
         amdvlk
-        rocm-opencl-icd
+        # rocm-opencl-icd
       ];
       driSupport = true;
       driSupport32Bit = true;
