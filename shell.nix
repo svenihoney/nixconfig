@@ -1,26 +1,43 @@
-# Shell for bootstrapping flake-enabled nix and other tooling
-{ pkgs ? # If pkgs is not defined, instanciate nixpkgs from locked commit
-  let
-    lock = (builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.nixpkgs.locked;
-    nixpkgs = fetchTarball {
-      url = "https://github.com/nixos/nixpkgs/archive/${lock.rev}.tar.gz";
-      sha256 = lock.narHash;
-    };
-  in
-  import nixpkgs { overlays = [ ]; }
-, ...
-}: {
-  default = pkgs.mkShell {
-    NIX_CONFIG = "extra-experimental-features = nix-command flakes repl-flake";
-    nativeBuildInputs = with pkgs; [
-      nix
-      home-manager
-      git
+{ self, ... }: system:
+with self.pkgs.${system}; {
+  default = mkShell {
+    name = "nix-config";
 
-      sops
-      ssh-to-age
-      gnupg
-      age
+    nativeBuildInputs = [
+      # Nix
+      # agenix
+      # cachix
+      deploy-rs
+      nil
+      # nix-build-uncached
+      # nix-eval-jobs
+      # nixpkgs-fmt
+      # statix
+
+      # Lua
+      # stylua
+      # (luajit.withPackages (p: with p; [ luacheck ]))
+      # lua-language-server
+
+      # Shell
+      shellcheck
+      shfmt
+
+      # GitHub Actions
+      # act
+      # actionlint
+      # python3Packages.pyflakes
+      # shellcheck
+
+      # Misc
+      # jq
+      pre-commit
+      # rage
+      # sops
     ];
+
+    # shellHook = ''
+    #   ${self.checks.${system}.pre-commit-check.shellHook}
+    # '';
   };
 }

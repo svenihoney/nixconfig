@@ -1,12 +1,13 @@
-{
-  pkgs,
-  inputs,
-  ...
+{ pkgs
+, inputs
+, ...
 }: {
   imports = [
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-amd
-    inputs.hardware.nixosModules.common-pc-ssd
+    inputs.hardware.nixosModules.common-pc-laptop
+    inputs.hardware.nixosModules.common-pc-laptop-ssd
+
     inputs.stylix.nixosModules.stylix
 
     ./hardware-configuration.nix
@@ -66,13 +67,9 @@
   hardware = {
     opengl = {
       enable = true;
-      extraPackages = with pkgs; [
-        amdvlk
-        # rocm-opencl-icd
-      ];
-      driSupport = true;
-      driSupport32Bit = true;
     };
+    amdgpu.amdvlk = true;
+    amdgpu.opencl = false;
   };
 
   # Usevia access to hidraw device

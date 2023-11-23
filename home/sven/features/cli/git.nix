@@ -1,8 +1,8 @@
-{ pkgs, lib, config, ... }:
-let
-  ssh = "${pkgs.openssh}/bin/ssh";
-in
-{
+{ pkgs
+, lib
+, config
+, ...
+}: {
   programs.git = {
     enable = true;
     package = pkgs.gitAndTools.gitFull;
@@ -19,6 +19,13 @@ in
       # gpg.program = "${config.programs.gpg.package}/bin/gpg2";
     };
     lfs.enable = true;
+    delta = {
+      enable = true;
+      options = {
+        side-by-side = true;
+        syntax-theme = "base16-stylix";
+      };
+    };
     ignores = [ ".direnv" "result" ];
   };
 }

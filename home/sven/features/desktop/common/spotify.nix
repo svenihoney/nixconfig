@@ -1,11 +1,10 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }: {
   services.spotifyd = {
-    enable = true;
+    enable = false;
     settings = {
       global = {
         username = "svenihoney";

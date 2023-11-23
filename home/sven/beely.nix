@@ -1,6 +1,7 @@
 { inputs, outputs, ... }: {
   imports = [
     ./global
+    # ../../hosts/common/optional/stylix.nix
     # ./standard-desktop.nix
 
     # ./features/desktop/hyprland

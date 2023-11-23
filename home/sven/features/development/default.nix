@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }: {
   imports = [
     ./c.nix
@@ -11,5 +10,5 @@
     ./xml.nix
   ];
 
-  home.packages = with pkgs; [zeal];
+  home.packages = with pkgs; [ zeal meld kdiff3 ];
 }

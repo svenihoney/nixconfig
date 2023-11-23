@@ -53,64 +53,83 @@
 
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
 
+    # flake-utils.url = "github:numtide/flake-utils";
+
     # disconic.url = "github:misterio77/disconic";
     # website.url = "github:misterio77/website";
     # paste-misterio-me.url = "github:misterio77/paste.misterio.me";
     # yrmos.url = "github:misterio77/yrmos";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    nixgl,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    lib = nixpkgs.lib // home-manager.lib;
-    systems = ["x86_64-linux" "aarch64-linux"];
-    forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-    pkgsFor = lib.genAttrs systems (system:
-      import nixpkgs {
-        inherit system;
-        overlays = [nixgl.overlay];
-        config.allowUnfree = true;
-      });
-    genNixosConfig = hostName: {user, ...}:
-      lib.nixosSystem {
-        modules = [./hosts/${hostName}];
-        specialArgs = {inherit inputs outputs;};
-      };
-    genHomeConfig = hostName: {user, ...}:
-      lib.homeManagerConfiguration {
-        modules = [
-          inputs.stylix.homeManagerModules.stylix
-          ./home/${user}/${hostName}.nix
-        ];
-        extraSpecialArgs = {inherit inputs outputs;};
-      };
-  in {
-    inherit lib;
-    nixosModules = import ./modules/nixos;
-    homeManagerModules = import ./modules/home-manager;
-    # templates = import ./templates;
+  outputs =
+    { self
+    , nixpkgs
+    , home-manager
+    , # flake-utils,
+      deploy-rs
+    , pre-commit-hooks
+    , nixgl
+    , ...
+    } @ inputs:
+    let
+      inherit (self) outputs;
+      lib = nixpkgs.lib // home-manager.lib;
+      # systems = ["x86_64-linux" "aarch64-linux"];
+      systems = [ "x86_64-linux" ];
+      forEachSystem = lib.genAttrs systems;
+      forEachSystemHome = f: lib.genAttrs systems (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs systems (system:
+        import nixpkgs {
+          inherit system;
+          overlays = [ nixgl.overlay ];
+          config.allowUnfree = true;
+        });
+      genNixosConfig = hostName: { user, ... }:
+        lib.nixosSystem {
+          modules = [ ./hosts/${hostName} ];
+          specialArgs = { inherit inputs outputs; };
+        };
+      genHomeConfig = hostName: { user, hostPlatform, ... }:
+        lib.homeManagerConfiguration {
+          modules = [
+            # inputs.stylix.homeManagerModules.stylix
+            ./home/${user}/${hostName}.nix
+          ];
+          pkgs = self.pkgs.${hostPlatform};
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
+    in
+    {
+      inherit lib;
+      pkgs = forEachSystem (system:
+        import nixpkgs {
+          inherit system;
+          overlays = [ nixgl.overlay ];
+          config.allowUnfree = true;
+          config.allowAliases = true;
+        });
 
-    # overlays = import ./overlays { inherit inputs outputs; };
-    # hydraJobs = import ./hydra.nix { inherit inputs outputs; };
+      nixosModules = import ./modules/nixos;
+      homeManagerModules = import ./modules/home-manager;
+      # templates = import ./templates;
 
-    # packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
-    devShells = forEachSystem (import ./shell.nix inputs);
-    formatter = forEachSystem (pkgs: pkgs.alejandro);
-    checks = forEachSystem (import ./checks.nix inputs);
+      # overlays = import ./overlays { inherit inputs outputs; };
+      # hydraJobs = import ./hydra.nix { inherit inputs outputs; };
 
-    deploy = import ./deploy.nix inputs;
-    # wallpapers = import ./home/sven/wallpapers;
-    hosts = import ./hosts.nix;
+      # packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+      devShells = forEachSystem (import ./shell.nix inputs);
 
-    nixosConfigurations =
-      lib.mapAttrs genNixosConfig (self.hosts.nixos or {});
-    homeConfigurations =
-      forEachSystem (pkgs:
-        lib.mapAttrs genHomeConfig (self.hosts.homeManager or {}));
-  };
+      formatter = forEachSystem (pkgs: pkgs.alejandro);
+      # checks = forEachSystem (import ./checks.nix inputs);
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+
+      deploy = import ./deploy.nix inputs;
+      # wallpapers = import ./home/sven/wallpapers;
+      hosts = import ./hosts.nix;
+
+      nixosConfigurations =
+        lib.mapAttrs genNixosConfig (self.hosts.nixos or { });
+      homeConfigurations =
+        lib.mapAttrs genHomeConfig (self.hosts.homeManager or { });
+    };
 }

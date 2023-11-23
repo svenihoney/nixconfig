@@ -1,7 +1,6 @@
-{
-  pkgs,
-  inputs,
-  ...
+{ pkgs
+, inputs
+, ...
 }: {
   imports = [
     inputs.hardware.nixosModules.common-cpu-amd
@@ -35,7 +34,7 @@
     useDHCP = false;
     bridges = {
       br0 = {
-        interfaces = ["enp6s0"];
+        interfaces = [ "enp6s0" ];
       };
     };
     interfaces.br0 = {
@@ -82,14 +81,8 @@
   hardware = {
     opengl = {
       enable = true;
-      extraPackages = with pkgs; [
-        amdvlk
-        # rocm-opencl-icd
-      ];
-      driSupport = true;
-      driSupport32Bit = true;
     };
-    # opentabletdriver.enable = true;
+    amdgpu.amdvlk = true;
   };
 
   # Usevia access to hidraw device
