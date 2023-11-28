@@ -58,4 +58,9 @@
     };
   };
 
+  environment.etc."tmpfiles.d/tmp.conf".text = ''
+    q /tmp 1777 root root 3d
+    q /var/tmp 1777 root root 3d
+  '';
+
 }

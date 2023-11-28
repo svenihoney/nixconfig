@@ -1,16 +1,15 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
+{ pkgs
+, config
+, lib
+, ...
 }: {
   qt = {
     enable = true;
     platformTheme = "gtk3";
-    # style = {
-    #   name = lib.mkForce "adwaita-dark";
-    #   # name = "adwaita-dark";
-    # };
+    style = {
+      name = lib.mkForce "adwaita-dark";
+      # name = "adwaita-dark";
+    };
     # platformTheme = "gtk";
     # style = {
     #   name = lib.mkForce "gtk2";

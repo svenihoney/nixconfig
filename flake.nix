@@ -14,7 +14,7 @@
     # nix-colors.url = "github:misterio77/nix-colors";
 
     sops-nix = {
-      url = "github:mic92/sops-nix";
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
@@ -69,6 +69,7 @@
       deploy-rs
     , pre-commit-hooks
     , nixgl
+    , sops-nix
     , ...
     } @ inputs:
     let
@@ -77,13 +78,6 @@
       # systems = ["x86_64-linux" "aarch64-linux"];
       systems = [ "x86_64-linux" ];
       forEachSystem = lib.genAttrs systems;
-      forEachSystemHome = f: lib.genAttrs systems (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs systems (system:
-        import nixpkgs {
-          inherit system;
-          overlays = [ nixgl.overlay ];
-          config.allowUnfree = true;
-        });
       genNixosConfig = hostName: { user, ... }:
         lib.nixosSystem {
           modules = [ ./hosts/${hostName} ];
@@ -92,7 +86,6 @@
       genHomeConfig = hostName: { user, hostPlatform, ... }:
         lib.homeManagerConfiguration {
           modules = [
-            # inputs.stylix.homeManagerModules.stylix
             ./home/${user}/${hostName}.nix
           ];
           pkgs = self.pkgs.${hostPlatform};

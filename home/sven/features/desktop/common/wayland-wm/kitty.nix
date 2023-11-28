@@ -1,14 +1,15 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{ config
+, pkgs
+, ...
+}:
+let
   kitty-xterm = pkgs.writeShellScriptBin "xterm" ''
     ${config.programs.kitty.package}/bin/kitty -1 "$@"
   '';
-in {
+in
+{
   home = {
-    packages = [kitty-xterm];
+    packages = [ kitty-xterm ];
     sessionVariables = {
       TERMINAL = "kitty -1";
     };
@@ -33,6 +34,8 @@ in {
       allow_remote_control = "yes";
       listen_on = "unix:/tmp/kitty";
       enabled_layouts = "splits";
+
+      paste_actions = "quote-urls-at-prompt";
     };
     keybindings = {
       "shift+page_up" = "scroll_page_up";
@@ -48,6 +51,6 @@ in {
 
   # Enable ssh kitten in fish
   programs.fish.shellAbbrs = rec {
-    ssh = "kitten ssh";
+    s = "kitten ssh";
   };
 }

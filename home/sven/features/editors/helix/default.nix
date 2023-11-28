@@ -5,7 +5,7 @@
     enable = true;
     defaultEditor = true;
     settings = {
-      theme = lib.mkDefault "dracula";
+      # theme = lib.mkDefault "dracula";
       editor = {
         color-modes = true;
         line-number = "relative";

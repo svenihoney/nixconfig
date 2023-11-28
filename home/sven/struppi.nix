@@ -1,6 +1,11 @@
-{ inputs, outputs, ... }: {
+{ inputs
+, outputs
+, ...
+}: {
   imports = [
+    inputs.stylix.homeManagerModules.stylix
     ./global
+    ../../hosts/common/optional/stylix-cli.nix
     # ./standard-desktop.nix
 
     # ./features/desktop/hyprland
@@ -19,6 +24,9 @@
     # ./features/desktop/common/virtualisation.nix
     # ./features/development
   ];
+
+  # workaround for error in home manager module if used standalone
+  stylix.targets.kde.enable = false;
 
   #targets.genericLinux.enable = true;
   # colorscheme = inputs.nix-colors.colorschemes.tokyo-night-storm;
