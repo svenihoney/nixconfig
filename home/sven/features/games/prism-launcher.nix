@@ -2,6 +2,6 @@
   home.packages = [ pkgs.prismlauncher-qt5 ];
 
   home.persistence = {
-    "/persist/home/sven".directories = [ ".local/share/PrismLauncher" ];
+    "/persist/home/${user}".directories = [ ".local/share/PrismLauncher" ];
   };
 }

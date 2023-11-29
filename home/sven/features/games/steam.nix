@@ -34,7 +34,7 @@ in
     protontricks
   ];
   home.persistence = {
-    "/persist/home/sven" = {
+    "/persist/home/${user}" = {
       allowOther = true;
       directories = [
         ".factorio"

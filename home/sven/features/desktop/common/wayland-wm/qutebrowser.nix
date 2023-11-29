@@ -4,7 +4,7 @@
   ...
 }: {
   # home.persistence = {
-  #   "/persist/home/sven".directories = [
+  #   "/persist/home/${user}".directories = [
   #     ".config/qutebrowser/bookmarks"
   #     ".config/qutebrowser/greasemonkey"
   #     ".local/share/qutebrowser"

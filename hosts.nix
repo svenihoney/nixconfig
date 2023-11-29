@@ -1,5 +1,13 @@
 let
   hosts = {
+    dodo = {
+      type = "homeManager";
+      hostPlatform = "x86_64-linux";
+      address = "dodo";
+      remoteBuild = false;
+      user = "fischer";
+      homeDirectory = "/home/fischer";
+    };
     beely = {
       type = "homeManager";
       hostPlatform = "x86_64-linux";

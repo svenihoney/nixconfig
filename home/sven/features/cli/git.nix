@@ -11,7 +11,7 @@
       si = "submodule update --init --recursive";
     };
     userName = "Sven Fischer";
-    userEmail = "sven@leiderfischer.de";
+    userEmail = lib.mkDefault "sven@leiderfischer.de";
     extraConfig = {
       init.defaultBranch = "main";
       # user.signing.key = "CE707A2C17FAAC97907FF8EF2E54EA7BFE630916";

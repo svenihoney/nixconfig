@@ -43,7 +43,7 @@ let
 in
 {
   # home.persistence = {
-  #   "/persist/home/sven".directories = [ "Mail" ];
+  #   "/persist/home/${user}".directories = [ "Mail" ];
   # };
 
   accounts.email = {

@@ -22,7 +22,7 @@ in {
   # programs.browserpass.enable = true;
   # programs.firefox = {
   #   enable = true;
-  #   profiles.sven = {
+  #   profiles.${user} = {
   #     bookmarks = { };
   #     # extensions = with pkgs.inputs.firefox-addons; [
   #     #   ublock-origin
@@ -58,7 +58,7 @@ in {
   # home = {
   #   persistence = {
   #     # Not persisting is safer
-  #     # "/persist/home/sven".directories = [ ".mozilla/firefox" ];
+  #     # "/persist/home/${user}".directories = [ ".mozilla/firefox" ];
   #   };
   # };
 

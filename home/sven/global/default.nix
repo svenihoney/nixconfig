@@ -34,7 +34,7 @@
     settings = {
       experimental-features = ["nix-command" "flakes"];
       warn-dirty = false;
-      trusted-users = ["sven"];
+      trusted-users = ["${config.home.username}"];
     };
   };
 
@@ -55,7 +55,7 @@
     # };
 
     # persistence = {
-    #   "/persist/home/sven" = {
+    #   "/persist/home/${user}" = {
     #     directories = [
     #       "Documents"
     #       "Downloads"

@@ -12,6 +12,6 @@
   };
 
   home.persistence = {
-    "/persist/home/sven".directories = [ ".password-store" ];
+    "/persist/home/${user}".directories = [ ".password-store" ];
   };
 }

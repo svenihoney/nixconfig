@@ -5,7 +5,7 @@ in {
   home.packages = with pkgs; [ discord discocss ];
 
   home.persistence = {
-    "/persist/home/sven".directories = [ ".config/discord" ];
+    "/persist/home/${user}".directories = [ ".config/discord" ];
   };
 
   xdg.configFile."discocss/custom.css".text = ''

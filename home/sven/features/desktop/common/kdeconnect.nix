@@ -41,6 +41,6 @@ in
   };
 
   home.persistence = {
-    "/persist/home/sven".directories = [ ".config/kdeconnect" ];
+    "/persist/home/${user}".directories = [ ".config/kdeconnect" ];
   };
 }

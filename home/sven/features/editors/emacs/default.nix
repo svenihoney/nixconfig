@@ -7,7 +7,7 @@
   programs = {
     emacs = {
       enable = true;
-      package = lib.mkDefault pkgs.emacs29;
+      package = lib.mkDefault pkgs.emacs29-pgtk;
     };
 
     # doom-emacs = rec {

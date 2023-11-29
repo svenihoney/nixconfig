@@ -24,7 +24,7 @@
   # home.packages = with pkgs; [ lutris wineWowPackages.stable winetricks ];
 
   # home.persistence = {
-  #   "/persist/home/sven" = {
+  #   "/persist/home/${user}" = {
   #     allowOther = true;
   #     directories = [
   #       {
