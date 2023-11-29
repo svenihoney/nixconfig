@@ -1,5 +1,8 @@
 { inputs, outputs, lib, ... }: {
   imports = [
+    inputs.stylix.homeManagerModules.stylix
+    ../../hosts/common/optional/stylix-cli.nix
+    
     ../sven/global
     ./ssh-config.nix
 
@@ -20,7 +23,11 @@
     # ./features/desktop/common/browser.nix
     # ./features/desktop/common/virtualisation.nix
     # ./features/development
+    ../sven/features/editors/emacs
   ];
+
+  stylix.targets.kde.enable = false;
+  stylix.targets.gnome.enable = false;
 
   home = {
     username = "fischer";
