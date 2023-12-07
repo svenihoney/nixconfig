@@ -139,7 +139,7 @@
         let
           swaylock = "${config.programs.swaylock.package}/bin/swaylock";
         in
-        [ ",switch:Lid Switch, exec, swaylock" ];
+          [ ",switch:Lid Switch, exec, ${swaylock}" ];
 
       bind =
         let
