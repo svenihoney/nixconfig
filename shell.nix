@@ -33,11 +33,11 @@ with self.pkgs.${system}; {
       # jq
       pre-commit
       # rage
-      # sops
+      sops
     ];
 
-    # shellHook = ''
-    #   ${self.checks.${system}.pre-commit-check.shellHook}
-    # '';
+    shellHook = ''
+      ${self.checks.${system}.pre-commit-check.shellHook}
+    '';
   };
 }

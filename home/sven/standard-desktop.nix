@@ -1,9 +1,8 @@
-{
-  inputs,
-  config,
-  lib,
-  pkgs,
-  ...
+{ inputs
+, config
+, lib
+, pkgs
+, ...
 }: {
   imports = [
     ./features/editors/emacs
@@ -25,4 +24,5 @@
       difftool.prompt = false;
     };
   };
+  home.packages = with pkgs; [ pcmanfm ];
 }

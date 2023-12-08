@@ -3,8 +3,7 @@
 , pre-commit-hooks
 , ...
 }: system:
-with self.pkgs.${system};
-{
+with self.pkgs.${system}; {
   pre-commit-check =
     pre-commit-hooks.lib.${system}.run
       {
@@ -28,6 +27,7 @@ with self.pkgs.${system};
         #   "users/bbigras/core/p10k-config/p10k.zsh"
         # ];
       };
+  # deployChecks = deploy-rs.lib.deployChecks;
 }
-  # // (deploy-rs.lib.deployChecks self.deploy)
-  // builtins.mapAttrs (deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib
+# // (deploy-rs.lib.deployChecks self.deploy)
+# // builtins.mapAttrs (deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib

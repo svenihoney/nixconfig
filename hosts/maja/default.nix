@@ -87,10 +87,35 @@
 
   # Usevia access to hidraw device
   services.udev.extraRules = ''
-    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="FC32", ATTRS{idProduct}=="0287", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="fc32", ATTRS{idProduct}=="0287", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
   '';
   services.udisks2.enable = true;
   services.fwupd.enable = true;
+
+  services.btrbk = {
+    extraPackages = [ pkgs.lz4 ];
+    instances.local = {
+      onCalendar = "hourly";
+      settings = {
+        # ssh_identity = "/etc/btrbk_key"; # NOTE: must be readable by user/group btrbk
+        # ssh_user = "btrbk";
+        stream_compress = "lz4";
+
+        timestamp_format = "long";
+        snapshot_preserve_min = "8h";
+        snapshot_preserve = "48h";
+
+        volume."/" = {
+          # target = "ssh://myhost/mnt/mybackups";
+          subvolume = {
+            home = { };
+            "home/sven/virtualmachines" = { };
+          };
+          snapshot_dir = "/.snapshots";
+        };
+      };
+    };
+  };
 
   system.stateVersion = "23.11";
 }

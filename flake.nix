@@ -113,8 +113,8 @@
       devShells = forEachSystem (import ./shell.nix inputs);
 
       formatter = forEachSystem (pkgs: pkgs.alejandro);
-      # checks = forEachSystem (import ./checks.nix inputs);
-      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+      checks = forEachSystem (import ./checks.nix inputs);
+      # checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 
       deploy = import ./deploy.nix inputs;
       # wallpapers = import ./home/sven/wallpapers;

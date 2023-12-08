@@ -44,6 +44,14 @@ let
       remoteBuild = false;
       user = "sven";
     };
+    bilbo = {
+      type = "homeManager";
+      hostPlatform = "x86_64-linux";
+      address = "bilbo";
+      remoteBuild = false;
+      user = "fischer";
+    };
+
   };
 
   inherit (builtins) attrNames concatMap listToAttrs filter;

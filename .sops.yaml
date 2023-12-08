@@ -1,46 +1,27 @@
 keys:
   # Users
   - &users:
-    - &sven 7088C7421873E0DB97FF17C2245CAB70B4C225E9
+    - &sven 58D48D664468351D3FDD46B4DDBD617F81BF84F4
   # Hosts
   - &hosts:
-    - &atlas age1hm5lf4qk84r4wh00atn6hpts7mpdx80adq26wht2e5qh9ewvhyaszfv82d
-    - &merope age1709qfrwglm75v5x8lpuhryt83k6p6c90npplzzec6a5w8ct93ejscpqpc3
-    - &pleione age1j9ld6ey62hqd33xkyd2fg9362k6xhm5gavsrpsfalwpcs8smxfdqpk84a2
-    - &maia age1dn7pkareh83k8el2yt4dmdfdzn7f45fuc785cnnxgzf3h4r5gqhqd4l93h
-    - &alcyone age1uxvuygmvwpfjrd9d3ulg6ln8dgvaw4l2c90mw0tr72qg3n8vd9ns3dm000
-    - &celaeno age1gxhy9eq38xfplay0kvkeyvsg96g0c4p6rkhajkrj8nc9dswdzqhssgvns0
-    - &electra age1n06f4dcslh8xq686z2fa9ddr3yg5yzj87p727896xsm8xvusdv6qan0grl
+    - &beely age1ejxeh53gdz2chj6h0emyueqgajwh6sfrplqlhwuydp2tjz9wwshswk8jfk
+    - &maja age1yg0rkr4e7g3lc4e8nx03je686gwttl32vszpe5whden4pln86d7sljp4yz
+    - &willi age1d0rhdfel2a9s56wycpw5zxkkum2hntgekgpfsg8d9vlqawnp3sgqt50urx
+    # - &bilbo
 
 creation_rules:
-  - path_regex: hosts/celaeno/secrets.ya?ml$
+ s - path_regex: home/common/secrets-home.ya?ml$
     key_groups:
     - age:
-      - *celaeno
-      pgp:
-      - *sven
-  - path_regex: hosts/alcyone/secrets.ya?ml$
-    key_groups:
-    - age:
-      - *alcyone
-      pgp:
-      - *sven
-  - path_regex: hosts/merope/secrets.ya?ml$
-    key_groups:
-    - age:
-      - *merope
+      - *maja
+      - *willi
       pgp:
       - *sven
 
-  - path_regex: hosts/common/secrets.ya?ml$
-    key_groups:
-    - age:
-      - *atlas
-      - *merope
-      - *pleione
-      - *maia
-      - *alcyone
-      - *celaeno
-      - *electra
-      pgp:
-      - *sven
+  # - path_regex: hosts/common/secrets-rps.ya?ml$
+  #   key_groups:
+  #   - age:
+  #     - *bilbo
+  #     - *dodo
+  #     pgp:
+  #     - *sven

@@ -1,13 +1,12 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }: {
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    # extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   services.geoclue2.enable = true;
@@ -17,5 +16,5 @@
       xwayland.enable = true;
     };
   };
-  security.pam.services = {swaylock = {};};
+  security.pam.services = { swaylock = { }; };
 }

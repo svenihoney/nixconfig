@@ -2,7 +2,41 @@
 , config
 , pkgs
 , ...
-}: {
+}:
+let
+  swaylock = "${config.programs.swaylock.package}/bin/swaylock";
+  hyprctl = "${pkgs.hyprland}/bin/hyprctl";
+  wlogout = "${config.programs.wlogout.package}/bin/wlogout";
+  playerctl = "${config.services.playerctld.package}/bin/playerctl";
+  playerctld = "${config.services.playerctld.package}/bin/playerctld";
+  makoctl = "${config.services.mako.package}/bin/makoctl";
+  wofi = "${config.programs.wofi.package}/bin/wofi";
+  # pass-wofi = "${
+  #     pkgs.pass-wofi.override {
+  #       pass = config.programs.password-store.package;
+  #     }
+  #   }/bin/pass-wofi";
+
+  # grimblast = "${pkgs.inputs.hyprwm-contrib.grimblast}/bin/grimblast";
+  # grimblast = "grimblast";
+  pactl = "${pkgs.pulseaudio}/bin/pactl";
+  pamixer = "${pkgs.pamixer}/bin/pamixer";
+  # tly = "${pkgs.tly}/bin/tly";
+  gtk-play = "${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play";
+  notify-send = "${pkgs.libnotify}/bin/notify-send";
+  pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
+
+  gtk-launch = "${pkgs.gtk3}/bin/gtk-launch";
+  xdg-mime = "${pkgs.xdg-utils}/bin/xdg-mime";
+  defaultApp = type: "${gtk-launch} $(${xdg-mime} query default ${type})";
+
+  terminal = config.home.sessionVariables.TERMINAL;
+  browser = defaultApp "x-scheme-handler/https";
+  # browser = "${pkgs.qutebrowser}/bin/qutebrowser";
+  # editor = defaultApp "text/plain";
+  editor = "${config.programs.emacs.package}/bin/emacs";
+in
+{
   imports = [
     ../common
     ../common/wayland-wm
@@ -135,45 +169,11 @@
         # "${pkgs.hyprland}/bin/hyprctl setcursor ${pointer.name} ${toString pointer.size}"
       ];
 
-      bindl =
-        let
-          swaylock = "${config.programs.swaylock.package}/bin/swaylock";
-        in
-          [ ",switch:Lid Switch, exec, ${swaylock}" ];
+      bindl = [ ",switch:Lid Switch, exec, ${swaylock}" ];
 
       bind =
         let
-          hyprctl = "${pkgs.hyprland}/bin/hyprctl";
-          swaylock = "${config.programs.swaylock.package}/bin/swaylock";
-          wlogout = "${config.programs.wlogout.package}/bin/wlogout";
-          playerctl = "${config.services.playerctld.package}/bin/playerctl";
-          playerctld = "${config.services.playerctld.package}/bin/playerctld";
-          makoctl = "${config.services.mako.package}/bin/makoctl";
-          wofi = "${config.programs.wofi.package}/bin/wofi";
-          # pass-wofi = "${
-          #     pkgs.pass-wofi.override {
-          #       pass = config.programs.password-store.package;
-          #     }
-          #   }/bin/pass-wofi";
-
-          # grimblast = "${pkgs.inputs.hyprwm-contrib.grimblast}/bin/grimblast";
-          grimblast = "grimblast";
-          pactl = "${pkgs.pulseaudio}/bin/pactl";
-          pamixer = "${pkgs.pamixer}/bin/pamixer";
-          # tly = "${pkgs.tly}/bin/tly";
-          gtk-play = "${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play";
-          notify-send = "${pkgs.libnotify}/bin/notify-send";
-          pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
-
-          gtk-launch = "${pkgs.gtk3}/bin/gtk-launch";
-          xdg-mime = "${pkgs.xdg-utils}/bin/xdg-mime";
-          defaultApp = type: "${gtk-launch} $(${xdg-mime} query default ${type})";
-
-          terminal = config.home.sessionVariables.TERMINAL;
-          browser = defaultApp "x-scheme-handler/https";
-          # browser = "${pkgs.qutebrowser}/bin/qutebrowser";
-          # editor = defaultApp "text/plain";
-          editor = "${config.programs.emacs.package}/bin/emacs";
+          grimblast = "${pkgs.grimblast}/bin/grimblast";
         in
         [
           # Program bindings
@@ -274,20 +274,21 @@
         "float,title:(Kalendererinnerungen)"
       ];
 
-      monitor = map
-        (m:
-          let
-            resolution = "${toString m.width}x${toString m.height}@${
-          toString m.refreshRate
-        }";
-            position = "${toString m.x}x${toString m.y}";
-          in
-          "${m.name},${
-        if m.enabled
-        then "${resolution},${position},${m.scale},transform,${m.transform}"
-        else "disable"
-      }")
-        (config.monitors);
+      monitor =
+        map
+          (m:
+            let
+              resolution = "${toString m.width}x${toString m.height}@${
+            toString m.refreshRate
+          }";
+              position = "${toString m.x}x${toString m.y}";
+            in
+            "${m.name},${
+          if m.enabled
+          then "${resolution},${position},${m.scale},transform,${m.transform}"
+          else "disable"
+        }")
+          (config.monitors);
 
       workspace =
         map (m: "${m.name},${m.workspace}")
