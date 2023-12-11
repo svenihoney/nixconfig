@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
     # ./hyprland-vnc.nix
     ./gammastep.nix
@@ -11,6 +11,7 @@
     ./wlogout.nix
     ./wofi.nix
     ./zathura.nix
+    ./vimiv.nix
     # ./wezterm.nix
     ./kitty.nix
     # ./flameshot.nix # TODO: Does not work with wayland currently
@@ -19,7 +20,6 @@
   home.packages = with pkgs; [
     grim
     gtk3 # For gtk-launch
-    imv
     mimeo
     # primary-xwayland
     pulseaudio

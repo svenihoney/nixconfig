@@ -13,3 +13,8 @@ deploy host=`hostname`:
 
 clean:
     nix-collect-garbage -d --delete-older-than 1d
+
+update:
+    nix flake update
+
+upgrade: update deploy

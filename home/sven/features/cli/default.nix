@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
     # ./bash.nix
     ./bat.nix
@@ -56,6 +56,7 @@
     just
 
     # inputs.nh.default # nixos-rebuild and home-manager CLI wrapper
+    zip
     unzip
   ];
 
