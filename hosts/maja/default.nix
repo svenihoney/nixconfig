@@ -93,7 +93,6 @@
   services.fwupd.enable = true;
 
   services.btrbk = {
-    extraPackages = [ pkgs.lz4 ];
     instances.local = {
       onCalendar = "hourly";
       settings = {
