@@ -29,6 +29,7 @@
     ../common/optional/printing.nix
     #../common/optional/nfs.nix
     ../common/optional/stylix.nix
+    ../common/optional/bluetooth.nix
   ];
 
   networking = {
@@ -46,7 +47,7 @@
       efi.efiSysMountPoint = "/efi";
       timeout = 1;
     };
-    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod;
+    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
   };
 
   powerManagement.powertop.enable = true;

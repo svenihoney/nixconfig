@@ -10,7 +10,7 @@
     ./features/productivity
     ./features/media
     # ./features/pass
-    # ./features/games
+    ./features/games
     # TODO: For standard
     ./features/desktop/common/keepassxc.nix
     ./features/desktop/common/kubernetes.nix

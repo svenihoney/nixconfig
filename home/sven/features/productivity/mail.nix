@@ -1,9 +1,9 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: let
+{ pkgs
+, lib
+, config
+, ...
+}:
+let
   mbsync = "${config.programs.mbsync.package}/bin/mbsync";
   secret-tool = "${pkgs.libsecret}/bin/secret-tool";
 
@@ -36,11 +36,12 @@
     # };
     neomutt = {
       enable = true;
-      extraMailboxes = ["Archive" "Drafts" "Junk" "Sent" "Trash"];
+      extraMailboxes = [ "Archive" "Drafts" "Junk" "Sent" "Trash" ];
     };
     # msmtp.enable = true;
   };
-in {
+in
+{
   # home.persistence = {
   #   "/persist/home/sven".directories = [ "Mail" ];
   # };
@@ -48,7 +49,7 @@ in {
   accounts.email = {
     maildirBasePath = "Mail";
     accounts = {
-      leiderfischer =
+      leiderfischer = lib.mkMerge [
         rec {
           primary = true;
           address = "sven@leiderfischer.de";
@@ -62,11 +63,20 @@ in {
 
           userName = address;
 
-          neomutt.extraMailboxes = ["Ablage"];
+          neomutt.extraMailboxes = [
+            "Ablage/DMS"
+            "Ablage/EBay"
+            "Ablage/nebenan.de"
+            "Ablage/Geschäftliches"
+            "Ablage/OSS"
+            "Ablage/Registrierungen"
+            "Ablage/Schule"
+          ];
         }
-        // common;
+        common
+      ];
 
-      effeffcee =
+      effeffcee = lib.mkMerge [
         rec {
           address = "sven.fischer@effeffcee.de";
           passwordCommand = "${secret-tool} lookup ${mailhost-effeffcee} ${address}";
@@ -79,8 +89,10 @@ in {
 
           # msmtp.enable = true;
           userName = address;
+          neomutt.extraMailboxes = [ "Rheinmetall" "Taxdigits" "Taxdigits/YouTrack" ];
         }
-        // common;
+        common
+      ];
     };
   };
 
@@ -88,7 +100,7 @@ in {
     pkgs.thunderbird
   ];
   xdg.mimeApps.defaultApplications = {
-    "x-scheme-handler/mailto" = ["thunderbird.desktop"];
+    "x-scheme-handler/mailto" = [ "thunderbird.desktop" ];
   };
   # programs.thunderbird = {
   #   enable = true;
