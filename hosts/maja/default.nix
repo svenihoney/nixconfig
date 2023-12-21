@@ -67,7 +67,7 @@
       efi.efiSysMountPoint = "/efi";
       timeout = 1;
     };
-    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod;
+    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
     # binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
   };
 
