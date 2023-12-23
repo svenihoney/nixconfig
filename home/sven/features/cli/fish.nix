@@ -114,10 +114,13 @@ in
         ''
           bind \ee edit_command_buffer
         ''
-        +
         # Tide prompt setup
-        # tide configure --auto --style=Rainbow --prompt_colors='True color' --show_time=No --rainbow_prompt_separators=Angled --powerline_prompt_heads=Sharp --powerline_prompt_tails=Flat --powerline_prompt_style='One line' --prompt_spacing=Compact --icons='Many icons' --transient=No
-        # set -L| rg "^tide_" | sed 's/^/set -U /'
+        # +
+        # ''
+        #   tide configure --auto --style=Rainbow --prompt_colors='True color' --show_time=No --rainbow_prompt_separators=Angled --powerline_prompt_heads=Sharp --powerline_prompt_tails=Flat --powerline_prompt_style='One line' --prompt_spacing=Compact --icons='Many icons' --transient=No
+        # ''
+
+        +
         ''
           set -U tide_aws_bg_color FF9900
           set -U tide_aws_color 232F3E
