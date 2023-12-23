@@ -8,6 +8,7 @@
     ./rust.nix
     ./nix.nix
     ./xml.nix
+    ./python.nix
   ];
 
   home.packages = with pkgs; [ zeal meld kdiff3 ];
