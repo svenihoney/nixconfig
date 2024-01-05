@@ -19,12 +19,14 @@
     ./features/desktop/common/virtualisation.nix
     ./features/desktop/common/linphone.nix
     ./features/development
+    ./features/development/syncthing.nix
   ];
 
   # wallpaper = outputs.wallpapers.aenami-lunar;
   # colorscheme = inputs.nix-colors.colorSchemes.atelier-heath;
   programs.emacs.package = pkgs.emacs29-pgtk;
   services.emacs.package = pkgs.emacs29-pgtk;
+  services.blueman-applet.enable = true;
 
   monitors = [
     {

@@ -1,9 +1,9 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: let
+{ pkgs
+, lib
+, config
+, ...
+}:
+let
   inherit (lib) mkIf;
   hasPackage = pname: lib.any (p: p ? pname && p.pname == pname) config.home.packages;
   hasRipgrep = hasPackage "ripgrep";
@@ -14,7 +14,8 @@
   # hasShellColor = config.programs.shellcolor.enable;
   # hasKitty = config.programs.kitty.enable;
   # shellcolor = "${pkgs.shellcolord}/bin/shellcolor";
-in {
+in
+{
   home = {
     # Fish plugin prerequisites
     packages = with pkgs; [
@@ -33,7 +34,7 @@ in {
       enableAliases = true;
       git = false;
       icons = true;
-      extraOptions = ["--hyperlink"];
+      extraOptions = [ "--hyperlink" ];
     };
 
     fish = {
@@ -200,9 +201,6 @@ in {
           set -U tide_node_bg_color 44883E
           set -U tide_node_color 000000
           set -U tide_node_icon 
-          set -U tide_os_bg_color 35BF5C
-          set -U tide_os_color FFFFFF
-          set -U tide_os_icon 
           set -U tide_php_bg_color 617CBE
           set -U tide_php_color 000000
           set -U tide_php_icon 
@@ -276,6 +274,10 @@ in {
           set -U tide_virtual_env_bg_color 444444
           set -U tide_virtual_env_color 00AFAF
           set -U tide_virtual_env_icon 
+          _tide_detect_os | read -g --line os_icon os_color os_bg_color
+          set -U tide_os_icon      $os_icon
+          set -U tide_os_color     $os_color
+          set -U tide_os_bg_color  $os_bg_color
         '';
     };
   };

@@ -18,6 +18,7 @@
     ./features/desktop/common/virtualisation.nix
     ./features/desktop/common/linphone.nix
     ./features/development
+    ./features/development/syncthing.nix
   ];
 
   #targets.genericLinux.enable = true;
