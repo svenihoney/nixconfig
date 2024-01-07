@@ -17,6 +17,7 @@
     ./features/desktop/common/browser.nix
     ./features/desktop/common/virtualisation.nix
     ./features/desktop/common/linphone.nix
+    ./features/desktop/common/jameica.nix
     ./features/development
     ./features/development/syncthing.nix
   ];

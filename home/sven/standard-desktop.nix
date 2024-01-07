@@ -24,5 +24,5 @@
       difftool.prompt = false;
     };
   };
-  home.packages = with pkgs; [ pcmanfm ];
+  home.packages = with pkgs; [ pcmanfm udiskie ];
 }
