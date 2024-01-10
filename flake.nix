@@ -8,6 +8,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
 
     hardware.url = "github:nixos/nixos-hardware";
     # impermanence.url = "github:nix-community/impermanence";
@@ -16,11 +17,15 @@
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    home-manager-stable = {
+      url = "github:nix-community/home-manager/release-23.11";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
     nixgl.url = "github:guibou/nixGL";
 
@@ -64,7 +69,9 @@
   outputs =
     { self
     , nixpkgs
+    , nixpkgs-stable
     , home-manager
+    , home-manager-stable
     , # flake-utils,
       deploy-rs
     , pre-commit-hooks
@@ -75,26 +82,53 @@
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
+      # lib = nixpkgs-stable.lib // home-manager-stable.lib;
       # systems = ["x86_64-linux" "aarch64-linux"];
       systems = [ "x86_64-linux" ];
       forEachSystem = lib.genAttrs systems;
-      genNixosConfig = hostName: { user, ... }:
-        lib.nixosSystem {
-          modules = [ ./hosts/${hostName} ];
-          specialArgs = { inherit inputs outputs; };
-        };
-      genHomeConfig = hostName: { user, hostPlatform, ... }:
-        lib.homeManagerConfiguration {
-          modules = [
-            ./home/${user}/${hostName}.nix
-          ];
-          pkgs = self.pkgs.${hostPlatform};
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
+      genNixosConfig = hostName: { user, hostPlatform, stable, ... }:
+        if stable then
+          nixpkgs-stable.lib.nixosSystem
+            {
+              pkgs = self.stable-pkgs.${hostPlatform};
+              modules = [ ./hosts/${hostName} ];
+              specialArgs = { inherit inputs outputs; };
+            } else
+          nixpkgs.lib.nixosSystem {
+            pkgs = self.unstable-pkgs.${hostPlatform};
+            modules = [ ./hosts/${hostName} ];
+            specialArgs = { inherit inputs outputs; };
+          }
+      ;
+      genHomeConfig = hostName: { user, hostPlatform, stable, ... }:
+        if stable then
+          home-manager-stable.lib.homeManagerConfiguration
+            {
+              modules = [
+                ./home/${user}/${hostName}.nix
+              ];
+              pkgs = self.stable-pkgs.${hostPlatform};
+              extraSpecialArgs = { inherit inputs outputs; };
+            } else
+          home-manager.lib.homeManagerConfiguration {
+            modules = [
+              ./home/${user}/${hostName}.nix
+            ];
+            pkgs = self.unstable-pkgs.${hostPlatform};
+            extraSpecialArgs = { inherit inputs outputs; };
+          }
+      ;
     in
     {
       inherit lib;
-      pkgs = forEachSystem (system:
+      stable-pkgs = forEachSystem (system:
+        import nixpkgs-stable {
+          inherit system;
+          overlays = [ nixgl.overlay ];
+          config.allowUnfree = true;
+          config.allowAliases = true;
+        });
+      unstable-pkgs = forEachSystem (system:
         import nixpkgs {
           inherit system;
           overlays = [ nixgl.overlay ];

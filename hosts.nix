@@ -1,3 +1,4 @@
+# { inputs, outputs, pkgs, self, ... }:
 let
   hosts = {
     dodo = {
@@ -7,6 +8,7 @@ let
       remoteBuild = false;
       user = "fischer";
       homeDirectory = "/home/fischer";
+      stable = false;
     };
     beely = {
       type = "homeManager";
@@ -14,6 +16,7 @@ let
       address = "beely";
       remoteBuild = false;
       user = "sven";
+      stable = true;
     };
     struppi = {
       type = "homeManager";
@@ -21,6 +24,7 @@ let
       address = "struppi.effeffcee.de";
       remoteBuild = false;
       user = "sven";
+      stable = true;
     };
     # struppi = {
     #   type = "homeManager";
@@ -58,6 +62,7 @@ let
       address = "bilbo";
       remoteBuild = false;
       user = "fischer";
+      stable = true;
     };
 
   };
