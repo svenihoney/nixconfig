@@ -5,10 +5,12 @@
 }: {
   imports = [
     inputs.stylix.homeManagerModules.stylix
-    inputs.sops-nix.homeManagerModules.sops-nix
-
-    ./global
+    #inputs.sops-nix.homeManagerModules.sops-nix
     ../../hosts/common/optional/stylix-cli.nix
+
+    ../sven/global
+    ./bilbo-ssh-config.nix
+
     # ./standard-desktop.nix
 
     # ./features/desktop/hyprland
@@ -26,11 +28,19 @@
     # ./features/desktop/common/browser.nix
     # ./features/desktop/common/virtualisation.nix
     # ./features/development
+    ../sven/features/editors/emacs
   ];
 
   # workaround for error in home manager module if used standalone
   stylix.targets.kde.enable = false;
+  stylix.targets.gnome.enable = false;
 
+  home = {
+    username = "fischer";
+  };
+  programs.git = {
+    userEmail = "fischer@software.ads";
+  };
   #targets.genericLinux.enable = true;
   # colorscheme = inputs.nix-colors.colorschemes.tokyo-night-storm;
   # wallpaper = outputs.wallpapers.watercolor-beach;

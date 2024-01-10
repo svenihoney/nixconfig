@@ -2,9 +2,9 @@
   imports = [
     inputs.stylix.homeManagerModules.stylix
     ../../hosts/common/optional/stylix-cli.nix
-    
+
     ../sven/global
-    ./ssh-config.nix
+    ./dodo-ssh-config.nix
 
     # ./standard-desktop.nix
 
