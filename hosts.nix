@@ -8,7 +8,7 @@ let
       remoteBuild = false;
       user = "fischer";
       homeDirectory = "/home/fischer";
-      stable = false;
+      stable = true;
     };
     beely = {
       type = "homeManager";
@@ -41,6 +41,7 @@ let
       #      user = "sven";
       #      homeDirectory = "/home/sven";
       user = "sven";
+      stable = false;
     };
     # nixvirt = {
     #   type = "nixos";
@@ -55,6 +56,7 @@ let
       address = "willi";
       remoteBuild = false;
       user = "sven";
+      stable = false;
     };
     bilbo = {
       type = "homeManager";

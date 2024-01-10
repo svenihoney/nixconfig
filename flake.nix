@@ -90,12 +90,12 @@
         if stable then
           nixpkgs-stable.lib.nixosSystem
             {
-              pkgs = self.stable-pkgs.${hostPlatform};
+              # pkgs = self.stable-pkgs.${hostPlatform};
               modules = [ ./hosts/${hostName} ];
               specialArgs = { inherit inputs outputs; };
             } else
           nixpkgs.lib.nixosSystem {
-            pkgs = self.unstable-pkgs.${hostPlatform};
+            # pkgs = self.unstable-pkgs.${hostPlatform};
             modules = [ ./hosts/${hostName} ];
             specialArgs = { inherit inputs outputs; };
           }

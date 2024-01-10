@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }: {
   home.packages = with pkgs; [
     keepassxc
@@ -13,17 +12,18 @@
   systemd.user.services.keepassxc = {
     Unit = {
       Description = "keepassxc";
-      Documentation = ["man:keepassxc(1)"];
-      PartOf = ["hyprland-session.target"];
+      Documentation = [ "man:keepassxc(1)" ];
+      PartOf = [ "hyprland-session.target" ];
     };
     Service = {
       Type = "simple";
-      ExecStart = "${pkgs.keepassxc}/bin/keepassxc -platform wayland /home/${user}/cloud/sync/keepass.kdbx";
+      # ExecStart = "${pkgs.keepassxc}/bin/keepassxc -platform wayland ${config.users.username.home}/cloud/sync/keepass.kdbx";
+      ExecStart = "${pkgs.keepassxc}/bin/keepassxc -platform wayland ${config.home.homeDirectory}/cloud/sync/keepass.kdbx";
       RestartSec = 3;
       Restart = "always";
     };
     Install = {
-      WantedBy = ["hyprland-session.target"];
+      WantedBy = [ "hyprland-session.target" ];
     };
   };
 
@@ -76,8 +76,8 @@
   systemd.user.services.nextcloud = {
     Unit = {
       Description = "nextcloud";
-      Documentation = ["man:nextcloud(1)"];
-      PartOf = ["hyprland-session.target"];
+      Documentation = [ "man:nextcloud(1)" ];
+      PartOf = [ "hyprland-session.target" ];
     };
     Service = {
       Type = "simple";
@@ -86,7 +86,7 @@
       Restart = "always";
     };
     Install = {
-      WantedBy = ["hyprland-session.target"];
+      WantedBy = [ "hyprland-session.target" ];
     };
   };
 }
