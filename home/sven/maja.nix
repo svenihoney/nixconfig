@@ -20,6 +20,7 @@
     ./features/desktop/common/jameica.nix
     ./features/development
     ./features/development/syncthing.nix
+    ./features/development/networking.nix
   ];
 
   #targets.genericLinux.enable = true;

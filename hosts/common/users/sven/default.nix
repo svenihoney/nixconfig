@@ -1,11 +1,12 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}: let
+{ pkgs
+, config
+, lib
+, ...
+}:
+let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
-in {
+in
+{
   # users.mutableUsers = false;
   users.users.sven = {
     isNormalUser = true;
@@ -31,11 +32,12 @@ in {
         "scanner"
         "lp"
         "kvm"
+        "wireshark"
       ];
 
-    openssh.authorizedKeys.keys = [(builtins.readFile ../../../../home/sven/ssh.pub)];
+    openssh.authorizedKeys.keys = [ (builtins.readFile ../../../../home/sven/ssh.pub) ];
     # passwordFile = config.sops.secrets.sven-password.path;
-    packages = [pkgs.home-manager];
+    packages = [ pkgs.home-manager ];
   };
 
   # sops.secrets.sven-password = {
