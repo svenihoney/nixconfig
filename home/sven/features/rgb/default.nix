@@ -1,5 +1,5 @@
-{ config, ... }:
-let inherit (config.colorscheme) colors;
+{config, ...}: let
+  inherit (config.colorscheme) colors;
 in {
   services.rgbdaemon = {
     enable = true;
@@ -17,12 +17,12 @@ in {
     };
     keyboard = {
       device = "/dev/input/ckb1/cmd";
-      highlighted = [ "h" "j" "k" "l" "w" "a" "s" "d" "m3" "g11" "profswitch" "lwin" "rwin" ];
+      highlighted = ["h" "j" "k" "l" "w" "a" "s" "d" "m3" "g11" "profswitch" "lwin" "rwin"];
     };
     mouse = {
       device = "/dev/input/ckb2/cmd";
       dpi = 750;
-      highlighted = [ "wheel" "thumb" ];
+      highlighted = ["wheel" "thumb"];
     };
   };
 }

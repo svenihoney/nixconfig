@@ -1,9 +1,10 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }: {
   services = {
-    syncthing = { enable = true; };
+    syncthing = {enable = true;};
   };
 }

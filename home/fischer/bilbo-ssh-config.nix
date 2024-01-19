@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-let
-
+{pkgs, ...}: let
   oldSshHost = {
     extraOptions = {
       StrictHostKeyChecking = "no";
@@ -10,17 +8,14 @@ let
       # Ciphers = "aes128-cbc";
     };
   };
-  qnxSshHost = rec { user = "root"; } // oldSshHost;
-
-in
-{
+  qnxSshHost = rec {user = "root";} // oldSshHost;
+in {
   programs = {
     ssh = {
       matchBlocks = {
-
         # ekf = {hostname = "ekf-fischer";} // qnxSshHost;
-        ekf = { hostname = "ekf-fischer"; } // qnxSshHost;
-        halle = { hostname = "192.168.0.2"; } // qnxSshHost;
+        ekf = {hostname = "ekf-fischer";} // qnxSshHost;
+        halle = {hostname = "192.168.0.2";} // qnxSshHost;
         # ekf = qnxSshHost;
 
         # Host ekf
@@ -48,14 +43,14 @@ in
         #   HostKeyAlgorithms +ssh-rsa
         #   PubkeyAcceptedAlgorithms +ssh-rsa
 
-        docker = { user = "rancher"; };
-        mirror = { user = "root"; };
+        docker = {user = "rancher";};
+        mirror = {user = "root";};
         proxmox = {
           hostname = "proxmox1";
           user = "root";
         };
-        chuck = { user = "root"; };
-        nas1 = { user = "root"; };
+        chuck = {user = "root";};
+        nas1 = {user = "root";};
         "gerrit.software.ads" = oldSshHost;
 
         willi = {

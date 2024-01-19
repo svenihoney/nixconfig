@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-let
-
+{pkgs, ...}: let
   oldSshHost = {
     user = "root";
     extraOptions = {
@@ -10,9 +8,7 @@ let
       Ciphers = "aes128-cbc";
     };
   };
-
-in
-{
+in {
   programs = {
     ssh = {
       enable = true;

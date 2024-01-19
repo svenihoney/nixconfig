@@ -1,4 +1,8 @@
-{ config, lib, ... }: {
+{
+  config,
+  lib,
+  ...
+}: {
   # Wireless secrets stored through sops
   sops.secrets.wireless = {
     sopsFile = ../secrets.yaml;
@@ -60,7 +64,7 @@
   };
 
   # Ensure group exists
-  users.groups.network = { };
+  users.groups.network = {};
 
   systemd.services.wpa_supplicant.preStart = "touch /etc/wpa_supplicant.conf";
 }

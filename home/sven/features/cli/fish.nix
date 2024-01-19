@@ -1,9 +1,9 @@
-{ pkgs
-, lib
-, config
-, ...
-}:
-let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   hasPackage = pname: lib.any (p: p ? pname && p.pname == pname) config.home.packages;
   hasRipgrep = hasPackage "ripgrep";
@@ -14,8 +14,7 @@ let
   # hasShellColor = config.programs.shellcolor.enable;
   # hasKitty = config.programs.kitty.enable;
   # shellcolor = "${pkgs.shellcolord}/bin/shellcolor";
-in
-{
+in {
   home = {
     # Fish plugin prerequisites
     packages = with pkgs; [
@@ -34,7 +33,7 @@ in
       enableAliases = true;
       git = false;
       icons = true;
-      extraOptions = [ "--hyperlink" ];
+      extraOptions = ["--hyperlink"];
     };
 
     fish = {
@@ -119,9 +118,7 @@ in
         # ''
         #   tide configure --auto --style=Rainbow --prompt_colors='True color' --show_time=No --rainbow_prompt_separators=Angled --powerline_prompt_heads=Sharp --powerline_prompt_tails=Flat --powerline_prompt_style='One line' --prompt_spacing=Compact --icons='Many icons' --transient=No
         # ''
-
-        +
-        ''
+        + ''
           set -U tide_aws_bg_color FF9900
           set -U tide_aws_color 232F3E
           set -U tide_aws_icon 

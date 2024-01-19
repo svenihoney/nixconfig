@@ -1,7 +1,11 @@
-{ lib, pkgs, config, ... }:
-with lib;
-
-let cfg = config.services.rgbdaemon;
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.services.rgbdaemon;
 in {
   options.services.rgbdaemon = {
     enable = mkOption {
@@ -45,17 +49,16 @@ in {
         '';
       };
     };
-    colors =
-      let
-        mkColorOption = name: {
-          inherit name;
-          value = mkOption {
-            type = types.strMatching "[a-fA-F0-9]{6}";
-            description = "${name} color.";
-            default = "ffffff";
-          };
+    colors = let
+      mkColorOption = name: {
+        inherit name;
+        value = mkOption {
+          type = types.strMatching "[a-fA-F0-9]{6}";
+          description = "${name} color.";
+          default = "ffffff";
         };
-      in
+      };
+    in
       listToAttrs (map mkColorOption [
         "background"
         "foreground"
@@ -77,7 +80,7 @@ in {
       highlighted = mkOption {
         type = types.listOf types.str;
         description = "Always highlighted mouse keys";
-        default = [ ];
+        default = [];
       };
     };
     keyboard = {
@@ -89,7 +92,7 @@ in {
       highlighted = mkOption {
         type = types.listOf types.str;
         description = "Always highlighted keyboard keys";
-        default = [ ];
+        default = [];
       };
     };
   };
@@ -118,13 +121,13 @@ in {
       '';
     };
     systemd.user.services.rgbdaemon = {
-      Unit = { Description = "Misterio RGB Daemon"; };
+      Unit = {Description = "Misterio RGB Daemon";};
       Service = {
         ExecStart = "${cfg.package}/bin/rgbdaemon";
         ExecReload = "${pkgs.coreutils}/bin/kill -HUP $MAINPID";
         Restart = "always";
       };
-      Install = { WantedBy = [ "graphical-session.target" ]; };
+      Install = {WantedBy = ["graphical-session.target"];};
     };
   };
 }

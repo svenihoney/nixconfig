@@ -1,10 +1,11 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.neovim.plugins = with pkgs.vimPlugins; [
     # LSP
     {
       plugin = lsp-zero-nvim;
       type = "lua";
-      config = # vim
+      config =
+        # vim
         ''
           local lsp_zero = require('lsp-zero')
 
@@ -27,7 +28,8 @@
     {
       plugin = mason-nvim;
       type = "lua";
-      config = # lua *
+      config =
+        # lua *
         ''
           require('mason').setup({})
         '';
@@ -35,7 +37,8 @@
     {
       plugin = mason-lspconfig-nvim;
       type = "lua";
-      config = # lua *
+      config =
+        # lua *
         ''
           require('mason-lspconfig').setup({
             handlers = {
@@ -55,7 +58,8 @@
     {
       plugin = nvim-cmp;
       type = "lua";
-      config = # lua *
+      config =
+        # lua *
         ''
           local cmp = require('cmp')
           local cmp_select = {behavior = cmp.SelectBehavior.Select}
@@ -80,6 +84,5 @@
       plugin = luasnip;
       type = "lua";
     }
-
   ];
 }

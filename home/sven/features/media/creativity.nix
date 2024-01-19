@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [ musescore ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [musescore];
 
   services.fluidsynth = {
     enable = true;

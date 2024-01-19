@@ -1,6 +1,7 @@
-{ pkgs
-, inputs
-, ...
+{
+  pkgs,
+  inputs,
+  ...
 }: {
   imports = [
     inputs.hardware.nixosModules.common-cpu-amd
@@ -35,7 +36,7 @@
     useDHCP = false;
     bridges = {
       br0 = {
-        interfaces = [ "enp6s0" ];
+        interfaces = ["enp6s0"];
       };
     };
     interfaces.br0 = {
@@ -108,8 +109,8 @@
         volume."/" = {
           # target = "ssh://myhost/mnt/mybackups";
           subvolume = {
-            home = { };
-            "home/sven/virtualmachines" = { };
+            home = {};
+            "home/sven/virtualmachines" = {};
           };
           snapshot_dir = "/.snapshots";
         };

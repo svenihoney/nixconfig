@@ -1,5 +1,8 @@
-{ config, lib, ... }:
 {
+  config,
+  lib,
+  ...
+}: {
   home.sessionVariables.COLORTERM = "truecolor";
   programs.helix = {
     enable = true;
@@ -16,7 +19,7 @@
       };
       keys = {
         normal = {
-          esc = [ "collapse_selection" "keep_primary_selection" ];
+          esc = ["collapse_selection" "keep_primary_selection"];
         };
       };
     };

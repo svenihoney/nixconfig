@@ -1,7 +1,10 @@
-{ lib, config, ... }: let
-  inherit (config.networking) hostName;
-in
 {
+  lib,
+  config,
+  ...
+}: let
+  inherit (config.networking) hostName;
+in {
   services = {
     nginx = {
       enable = true;
@@ -24,23 +27,25 @@ in
     prometheus.exporters.nginxlog = {
       enable = true;
       group = "nginx";
-      settings.namespaces = [{
-        name = "filelogger";
-        source.files = [ "/var/log/nginx/access.log" ];
-        format = "$remote_addr - $remote_user [$time_local] \"$request\" $status $body_bytes_sent \"$http_referer\" \"$http_user_agent\"";
-      }];
+      settings.namespaces = [
+        {
+          name = "filelogger";
+          source.files = ["/var/log/nginx/access.log"];
+          format = "$remote_addr - $remote_user [$time_local] \"$request\" $status $body_bytes_sent \"$http_referer\" \"$http_user_agent\"";
+        }
+      ];
     };
 
     uwsgi = {
       enable = true;
       user = "nginx";
       group = "nginx";
-      plugins = [ "cgi" ];
+      plugins = ["cgi"];
       instance = {
         type = "emperor";
-        vassals = lib.mkBefore { };
+        vassals = lib.mkBefore {};
       };
     };
   };
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [80 443];
 }

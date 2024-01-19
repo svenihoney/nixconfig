@@ -1,5 +1,8 @@
-{ config, pkgs, ... }: {
-
+{
+  config,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
     ulauncher
   ];
@@ -7,8 +10,8 @@
   systemd.user.services.ulauncher = {
     Unit = {
       Description = "ulauncher";
-      Documentation = [ "man:ulauncher(1)" ];
-      PartOf = [ "hyprland-session.target" ];
+      Documentation = ["man:ulauncher(1)"];
+      PartOf = ["hyprland-session.target"];
     };
     Service = {
       Type = "simple";
@@ -17,7 +20,7 @@
       Restart = "always";
     };
     Install = {
-      WantedBy = [ "hyprland-session.target" ];
+      WantedBy = ["hyprland-session.target"];
     };
   };
 }

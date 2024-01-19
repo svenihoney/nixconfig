@@ -1,4 +1,9 @@
-{ inputs, outputs, lib, ... }: {
+{
+  inputs,
+  outputs,
+  lib,
+  ...
+}: {
   imports = [
     inputs.stylix.homeManagerModules.stylix
     ../../hosts/common/optional/stylix-cli.nix

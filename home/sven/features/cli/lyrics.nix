@@ -1,6 +1,5 @@
-{ pkgs, ... }:
-{
-  home.packages = [ pkgs.lyrics ];
+{pkgs, ...}: {
+  home.packages = [pkgs.lyrics];
   xdg.configFile."lyrics-in-terminal/lyrics.cfg".text = ''
     [OPTIONS]
     alignment=left

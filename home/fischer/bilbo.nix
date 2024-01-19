@@ -1,7 +1,8 @@
-{ inputs
-, outputs
-, pkgs
-, ...
+{
+  inputs,
+  outputs,
+  pkgs,
+  ...
 }: {
   imports = [
     inputs.stylix.homeManagerModules.stylix

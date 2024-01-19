@@ -1,4 +1,9 @@
-{ inputs, outputs, pkgs, ... }: {
+{
+  inputs,
+  outputs,
+  pkgs,
+  ...
+}: {
   imports = [
     ./global
     ./standard-desktop.nix
@@ -39,8 +44,7 @@
       primary = true;
     }
     {
-      name =
-        "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
+      name = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
       width = 2560;
       height = 1440;
       x = 1920;

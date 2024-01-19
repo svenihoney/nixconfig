@@ -1,6 +1,9 @@
-{ pkgs, inputs, ... }: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
-
     ./hardware-configuration.nix
 
     ../common/global
@@ -12,7 +15,7 @@
 
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-    binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
+    binfmt.emulatedSystems = ["aarch64-linux" "i686-linux"];
   };
 
   boot.loader.grub.enable = true;

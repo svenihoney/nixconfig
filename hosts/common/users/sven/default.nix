@@ -1,12 +1,11 @@
-{ pkgs
-, config
-, lib
-, ...
-}:
-let
-  ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
+  ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+in {
   # users.mutableUsers = false;
   users.users.sven = {
     isNormalUser = true;
@@ -35,9 +34,9 @@ in
         "wireshark"
       ];
 
-    openssh.authorizedKeys.keys = [ (builtins.readFile ../../../../home/sven/ssh/ssh.pub) ];
+    openssh.authorizedKeys.keys = [(builtins.readFile ../../../../home/sven/ssh/ssh.pub)];
     # passwordFile = config.sops.secrets.sven-password.path;
-    packages = [ pkgs.home-manager ];
+    packages = [pkgs.home-manager];
   };
 
   # sops.secrets.sven-password = {
@@ -46,5 +45,4 @@ in
   # };
 
   home-manager.users.sven = import ../../../../home/sven/${config.networking.hostName}.nix;
-
 }

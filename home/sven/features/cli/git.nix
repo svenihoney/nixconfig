@@ -1,7 +1,8 @@
-{ pkgs
-, lib
-, config
-, ...
+{
+  pkgs,
+  lib,
+  config,
+  ...
 }: {
   programs.git = {
     enable = true;
@@ -26,6 +27,6 @@
         syntax-theme = "base16-stylix";
       };
     };
-    ignores = [ ".direnv" "result" ];
+    ignores = [".direnv" "result"];
   };
 }

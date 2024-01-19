@@ -112,7 +112,7 @@ in {
 
         clock = {
           interval = 1;
-          format= "{:<small>%d.%m.</small>  %H:%M }";
+          format = "{:<small>%d.%m.</small>  %H:%M }";
           format-alt = "{:%d.%m.%Y %H:%M:%S %z}";
           on-click-left = "mode";
           tooltip-format = ''
@@ -420,64 +420,64 @@ in {
     #   }
     # '';
     style = ''
-            * {
-              font-size: 12pt;
-              padding: 0 8px;
-            }
+      * {
+        font-size: 12pt;
+        padding: 0 8px;
+      }
 
-            .modules-right {
-              margin-right: -15px;
-            }
+      .modules-right {
+        margin-right: -15px;
+      }
 
-            .modules-left {
-              margin-left: -15px;
-            }
+      .modules-left {
+        margin-left: -15px;
+      }
 
-            window#waybar.top {
-              opacity: 0.95;
-              padding: 0;
-              border-radius: 10px;
-            }
-            window#waybar.bottom {
-              opacity: 0.90;
-              border-radius: 10px;
-            }
+      window#waybar.top {
+        opacity: 0.95;
+        padding: 0;
+        border-radius: 10px;
+      }
+      window#waybar.bottom {
+        opacity: 0.90;
+        border-radius: 10px;
+      }
 
-            #workspaces button {
-              padding: 5px 1px;
-              margin: 3px 0;
-            }
-            #workspaces button.hidden {
-            }
-            #workspaces button.focused,
-            #workspaces button.active {
-            }
+      #workspaces button {
+        padding: 5px 1px;
+        margin: 3px 0;
+      }
+      #workspaces button.hidden {
+      }
+      #workspaces button.focused,
+      #workspaces button.active {
+      }
 
-            #clock {
-              padding-left: 15px;
-              padding-right: 15px;
-              margin-top: 0;
-              margin-bottom: 0;
-              border-radius: 10px;
-            }
+      #clock {
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-top: 0;
+        margin-bottom: 0;
+        border-radius: 10px;
+      }
 
-            #custom-menu {
-              padding-left: 15px;
-              padding-right: 22px;
-              margin: 0;
-              border-radius: 10px;
-            }
-            #custom-hostname {
-              padding-left: 15px;
-              padding-right: 18px;
-              margin-right: 0;
-              margin-top: 0;
-              margin-bottom: 0;
-              border-radius: 10px;
-            }
-            #custom-currentplayer {
-              padding-right: 0;
-            }
+      #custom-menu {
+        padding-left: 15px;
+        padding-right: 22px;
+        margin: 0;
+        border-radius: 10px;
+      }
+      #custom-hostname {
+        padding-left: 15px;
+        padding-right: 18px;
+        margin-right: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        border-radius: 10px;
+      }
+      #custom-currentplayer {
+        padding-right: 0;
+      }
 
 
     '';

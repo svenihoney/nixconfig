@@ -1,8 +1,6 @@
-{ config, ... }:
-let
+{config, ...}: let
   inherit (config.colorscheme) colors;
-in
-{
+in {
   programs.zathura = {
     enable = true;
     options = {
@@ -32,6 +30,6 @@ in
     };
   };
   xdg.mimeApps.defaultApplications = {
-    "application/pdf" = [ "org.pwmt.zathura-pdf-mupdf.desktop" ];
+    "application/pdf" = ["org.pwmt.zathura-pdf-mupdf.desktop"];
   };
 }

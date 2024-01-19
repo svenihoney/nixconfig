@@ -1,9 +1,9 @@
-{ lib
-, config
-, pkgs
-, ...
-}:
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   swaylock = "${config.programs.swaylock.package}/bin/swaylock";
   hyprctl = "${pkgs.hyprland}/bin/hyprctl";
   wlogout = "${config.programs.wlogout.package}/bin/wlogout";
@@ -35,8 +35,7 @@ let
   # browser = "${pkgs.qutebrowser}/bin/qutebrowser";
   # editor = defaultApp "text/plain";
   editor = "${config.programs.emacs.package}/bin/emacs";
-in
-{
+in {
   imports = [
     ../common
     ../common/wayland-wm
@@ -121,7 +120,7 @@ in
         vrr = 2;
 
         enable_swallow = false;
-        swallow_regex = [ "(org.wezfurlong.wezterm)" "(kitty)" ];
+        swallow_regex = ["(org.wezfurlong.wezterm)" "(kitty)"];
       };
 
       decoration = {
@@ -169,96 +168,96 @@ in
         # "${pkgs.hyprland}/bin/hyprctl setcursor ${pointer.name} ${toString pointer.size}"
       ];
 
-      bindl = [ ",switch:Lid Switch, exec, ${swaylock}" ];
+      bindl = [",switch:Lid Switch, exec, ${swaylock}"];
 
       bind =
         let
           grimblast = "${pkgs.grimblast}/bin/grimblast";
         in
-        [
-          # Program bindings
-          "SUPER,Return,exec,${terminal}"
-          # "SUPER,e,exec,${editor}"
-          # "SUPER,v,exec,${editor}"
-          # "SUPER,b,exec,${browser}"
-          "SUPER, F2, exec, ${browser}"
-          "SUPER, F3, exec, thunderbird"
-          # "SUPER, F4, exec, teams-for-linux --enable-features=UseOzonePlatform --ozone-platform=wayland"
-          "SUPER, F4, exec, fish -c ${editor}"
-          "SUPER, F11, exec, ~/bin/switchaudio btoff"
-          "SUPER, F11, exec, ~/bin/switchaudio hdmi"
-          "SUPER SHIFT, F11, exec, ~/bin/switchaudio btheadset"
+          [
+            # Program bindings
+            "SUPER,Return,exec,${terminal}"
+            # "SUPER,e,exec,${editor}"
+            # "SUPER,v,exec,${editor}"
+            # "SUPER,b,exec,${browser}"
+            "SUPER, F2, exec, ${browser}"
+            "SUPER, F3, exec, thunderbird"
+            # "SUPER, F4, exec, teams-for-linux --enable-features=UseOzonePlatform --ozone-platform=wayland"
+            "SUPER, F4, exec, fish -c ${editor}"
+            "SUPER, F11, exec, ~/bin/switchaudio btoff"
+            "SUPER, F11, exec, ~/bin/switchaudio hdmi"
+            "SUPER SHIFT, F11, exec, ~/bin/switchaudio btheadset"
 
-          # "SUPER, C, exec, swaync-client -t"
-          # "SUPER SHIFT, C, exec, swaync-client -C"
-          "SUPER SHIFT, K, exec, keepassxc"
-          # "SUPER SHIFT, E, exec, nwg-bar"
+            # "SUPER, C, exec, swaync-client -t"
+            # "SUPER SHIFT, C, exec, swaync-client -C"
+            "SUPER SHIFT, K, exec, keepassxc"
+            # "SUPER SHIFT, E, exec, nwg-bar"
 
-          # Brightness control ()
-          ",XF86MonBrightnessUp,exec,light -A 10"
-          ",XF86MonBrightnessDown,exec,light -U 10"
-          # Volume
-          ",XF86AudioRaiseVolume,exec,${pamixer} -i 5"
-          ",XF86AudioLowerVolume,exec,${pamixer} -d 5"
-          ",XF86AudioMute,exec,${pamixer} -t"
-          "SHIFT,XF86AudioMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
-          ",XF86AudioMicMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
-          "SUPER SHIFT, V, exec, ${pavucontrol}"
-          # Screenshotting
-          ",Print,exec,${grimblast} --notify --freeze copy output"
-          "SHIFT,Print,exec,${grimblast} --notify --freeze copy active"
-          "CONTROL,Print,exec,${grimblast} --notify --freeze copy screen"
-          "SUPER,Print,exec,${grimblast} --notify --freeze copy area"
-          "ALT,Print,exec,${grimblast} --notify --freeze copy area"
-          # Tally counter
-          # "SUPER,z,exec,${notify-send} -t 1000 $(${tly} time) && ${tly} add && ${gtk-play} -i dialog-information" # Add new entry
-          # "SUPERCONTROL,z,exec,${notify-send} -t 1000 $(${tly} time) && ${tly} undo && ${gtk-play} -i dialog-warning" # Undo last entry
-          # "SUPERCONTROLSHIFT,z,exec,${tly} reset && ${gtk-play} -i complete" # Reset
-          # "SUPERSHIFT,z,exec,${notify-send} -t 1000 $(${tly} time)" # Show current time
-          "SUPERCONTROL,k,exec,${hyprctl} switchxkblayout brian-low-sofle-choc next"
-        ]
-        ++ (lib.optionals config.targets.genericLinux.enable [
-          "SUPERSHIFT, F2, exec, nixGL ${browser}"
-        ])
-        ++ (lib.optionals (! config.targets.genericLinux.enable) [
-          "SUPERSHIFT, F2, exec, ${browser}"
-        ])
-        ++ (lib.optionals config.services.playerctld.enable [
-          # Media control
-          ",XF86AudioNext,exec,${playerctl} next"
-          ",XF86AudioPrev,exec,${playerctl} previous"
-          ",XF86AudioPlay,exec,${playerctl} play-pause"
-          ",XF86AudioStop,exec,${playerctl} stop"
-          "ALT,XF86AudioNext,exec,${playerctld} shift"
-          "ALT,XF86AudioPrev,exec,${playerctld} unshift"
-          "ALT,XF86AudioPlay,exec,systemctl --user restart playerctld"
-        ])
-        # Screen lock
-        ++ (lib.optionals config.programs.swaylock.enable [
-          "SUPER,l,exec,${swaylock}"
-        ])
-        # Logout screen
-        ++ (lib.optionals config.programs.wlogout.enable [
-          "SUPER, BACKSPACE, exec, ${wlogout}"
-        ])
-        # Notification manager
-        ++ (lib.optionals config.services.mako.enable
-          [ "SUPER,c,exec,${makoctl} dismiss" ])
-        # Launcher
-        ++ (
-          lib.optionals config.programs.wofi.enable [
-            # "SUPER,x,exec,${wofi} -S drun -x 10 -y 10 -W 25% -H 60%"
-            "SUPER,d,exec,${wofi} -S drun"
+            # Brightness control ()
+            ",XF86MonBrightnessUp,exec,light -A 10"
+            ",XF86MonBrightnessDown,exec,light -U 10"
+            # Volume
+            ",XF86AudioRaiseVolume,exec,${pamixer} -i 5"
+            ",XF86AudioLowerVolume,exec,${pamixer} -d 5"
+            ",XF86AudioMute,exec,${pamixer} -t"
+            "SHIFT,XF86AudioMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
+            ",XF86AudioMicMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
+            "SUPER SHIFT, V, exec, ${pavucontrol}"
+            # Screenshotting
+            ",Print,exec,${grimblast} --notify --freeze copy output"
+            "SHIFT,Print,exec,${grimblast} --notify --freeze copy active"
+            "CONTROL,Print,exec,${grimblast} --notify --freeze copy screen"
+            "SUPER,Print,exec,${grimblast} --notify --freeze copy area"
+            "ALT,Print,exec,${grimblast} --notify --freeze copy area"
+            # Tally counter
+            # "SUPER,z,exec,${notify-send} -t 1000 $(${tly} time) && ${tly} add && ${gtk-play} -i dialog-information" # Add new entry
+            # "SUPERCONTROL,z,exec,${notify-send} -t 1000 $(${tly} time) && ${tly} undo && ${gtk-play} -i dialog-warning" # Undo last entry
+            # "SUPERCONTROLSHIFT,z,exec,${tly} reset && ${gtk-play} -i complete" # Reset
+            # "SUPERSHIFT,z,exec,${notify-send} -t 1000 $(${tly} time)" # Show current time
+            "SUPERCONTROL,k,exec,${hyprctl} switchxkblayout brian-low-sofle-choc next"
           ]
-          # ++ (lib.optionals config.programs.password-store.enable [
-          #   ",Scroll_Lock,exec,${pass-wofi}" # fn+k
-          #   ",XF86Calculator,exec,${pass-wofi}" # fn+f12
-          #   "SUPER,semicolon,exec,pass-wofi"
-          # ])
-        )
+          ++ (lib.optionals config.targets.genericLinux.enable [
+            "SUPERSHIFT, F2, exec, nixGL ${browser}"
+          ])
+          ++ (lib.optionals (! config.targets.genericLinux.enable) [
+            "SUPERSHIFT, F2, exec, ${browser}"
+          ])
+          ++ (lib.optionals config.services.playerctld.enable [
+            # Media control
+            ",XF86AudioNext,exec,${playerctl} next"
+            ",XF86AudioPrev,exec,${playerctl} previous"
+            ",XF86AudioPlay,exec,${playerctl} play-pause"
+            ",XF86AudioStop,exec,${playerctl} stop"
+            "ALT,XF86AudioNext,exec,${playerctld} shift"
+            "ALT,XF86AudioPrev,exec,${playerctld} unshift"
+            "ALT,XF86AudioPlay,exec,systemctl --user restart playerctld"
+          ])
+          # Screen lock
+          ++ (lib.optionals config.programs.swaylock.enable [
+            "SUPER,l,exec,${swaylock}"
+          ])
+          # Logout screen
+          ++ (lib.optionals config.programs.wlogout.enable [
+            "SUPER, BACKSPACE, exec, ${wlogout}"
+          ])
+          # Notification manager
+          ++ (lib.optionals config.services.mako.enable
+            ["SUPER,c,exec,${makoctl} dismiss"])
+          # Launcher
+          ++ (
+            lib.optionals config.programs.wofi.enable [
+              # "SUPER,x,exec,${wofi} -S drun -x 10 -y 10 -W 25% -H 60%"
+              "SUPER,d,exec,${wofi} -S drun"
+            ]
+            # ++ (lib.optionals config.programs.password-store.enable [
+            #   ",Scroll_Lock,exec,${pass-wofi}" # fn+k
+            #   ",XF86Calculator,exec,${pass-wofi}" # fn+f12
+            #   "SUPER,semicolon,exec,pass-wofi"
+            # ])
+          )
         # ++ (lib.optionals config.services.ulauncher.enable
         #  [ "SUPER, D, exec, ulauncher-toggle" ])
-      ;
+        ;
 
       windowrulev2 = [
         "float,class:(KeePassXC)"
@@ -276,23 +275,21 @@ in
 
       monitor =
         map
-          (m:
-            let
-              resolution = "${toString m.width}x${toString m.height}@${
+        (m: let
+          resolution = "${toString m.width}x${toString m.height}@${
             toString m.refreshRate
           }";
-              position = "${toString m.x}x${toString m.y}";
-            in
-            "${m.name},${
+          position = "${toString m.x}x${toString m.y}";
+        in "${m.name},${
           if m.enabled
           then "${resolution},${position},${m.scale},transform,${m.transform}"
           else "disable"
         }")
-          (config.monitors);
+        (config.monitors);
 
       workspace =
         map (m: "${m.name},${m.workspace}")
-          (lib.filter (m: m.enabled && m.workspace != null) config.monitors);
+        (lib.filter (m: m.enabled && m.workspace != null) config.monitors);
     };
     # This is order sensitive, so it has to come here.
     extraConfig = ''

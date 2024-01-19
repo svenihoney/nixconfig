@@ -1,8 +1,9 @@
-{ pkgs
-, lib
-, ...
+{
+  pkgs,
+  lib,
+  ...
 }: {
-  home.packages = with pkgs; [ lutris wineWowPackages.waylandFull winetricks ];
+  home.packages = with pkgs; [lutris wineWowPackages.waylandFull winetricks];
 
   xdg.mimeApps.associations.removed = {
     "application/x-mswinurl" = "wine-extension-url.desktop";
@@ -10,7 +11,7 @@
     "application/rtf" = "wine-extension-rtf.desktop";
     "image/png" = "wine-extension-png.desktop";
     "application/pdf" = "wine-extension-pdf.desktop";
-    "image/jpeg" = [ "wine-extension-jpe.desktop" "wine-extension-jfif.desktop" ];
+    "image/jpeg" = ["wine-extension-jpe.desktop" "wine-extension-jfif.desktop"];
     "application/x-wine-extension-ini" = "wine-extension-ini.desktop";
     "application/winhlp" = "wine-extension-hlp.desktop";
     "text/html" = "wine-extension-htm.desktop";

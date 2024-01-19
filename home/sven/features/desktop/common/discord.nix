@@ -1,11 +1,15 @@
-{ config, pkgs, lib, ... }:
-
-let inherit (config.colorscheme) colors;
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  inherit (config.colorscheme) colors;
 in {
-  home.packages = with pkgs; [ discord discocss ];
+  home.packages = with pkgs; [discord discocss];
 
   home.persistence = {
-    "/persist/home/${user}".directories = [ ".config/discord" ];
+    "/persist/home/${user}".directories = [".config/discord"];
   };
 
   xdg.configFile."discocss/custom.css".text = ''

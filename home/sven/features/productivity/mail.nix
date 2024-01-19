@@ -1,9 +1,9 @@
-{ pkgs
-, lib
-, config
-, ...
-}:
-let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   mbsync = "${config.programs.mbsync.package}/bin/mbsync";
   secret-tool = "${pkgs.libsecret}/bin/secret-tool";
 
@@ -36,12 +36,11 @@ let
     # };
     neomutt = {
       enable = true;
-      extraMailboxes = [ "Archive" "Drafts" "Junk" "Sent" "Trash" ];
+      extraMailboxes = ["Archive" "Drafts" "Junk" "Sent" "Trash"];
     };
     # msmtp.enable = true;
   };
-in
-{
+in {
   # home.persistence = {
   #   "/persist/home/${user}".directories = [ "Mail" ];
   # };
@@ -89,7 +88,7 @@ in
 
           # msmtp.enable = true;
           userName = address;
-          neomutt.extraMailboxes = [ "Rheinmetall" "Taxdigits" "Taxdigits/YouTrack" ];
+          neomutt.extraMailboxes = ["Rheinmetall" "Taxdigits" "Taxdigits/YouTrack"];
         }
         common
       ];
@@ -100,7 +99,7 @@ in
     pkgs.thunderbird
   ];
   xdg.mimeApps.defaultApplications = {
-    "x-scheme-handler/mailto" = [ "thunderbird.desktop" ];
+    "x-scheme-handler/mailto" = ["thunderbird.desktop"];
   };
   # programs.thunderbird = {
   #   enable = true;

@@ -1,11 +1,12 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }: {
   services.printing = {
     enable = true;
-    drivers = [ pkgs.hplipWithPlugin ];
+    drivers = [pkgs.hplipWithPlugin];
   };
 
   services.avahi = {
@@ -16,5 +17,5 @@
   };
 
   hardware.sane.enable = true;
-  hardware.sane.extraBackends = [ pkgs.hplipWithPlugin ];
+  hardware.sane.extraBackends = [pkgs.hplipWithPlugin];
 }

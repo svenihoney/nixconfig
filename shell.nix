@@ -1,4 +1,4 @@
-{ self, ... }: system:
+{self, ...}: system:
 with self.unstable-pkgs.${system}; {
   default = mkShell {
     name = "nix-config";

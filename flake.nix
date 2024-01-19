@@ -66,97 +66,107 @@
     # yrmos.url = "github:misterio77/yrmos";
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , nixpkgs-stable
-    , home-manager
-    , home-manager-stable
-    , # flake-utils,
-      deploy-rs
-    , pre-commit-hooks
-    , nixgl
-    , sops-nix
-    , ...
-    } @ inputs:
-    let
-      inherit (self) outputs;
-      lib = nixpkgs.lib // home-manager.lib;
-      # lib = nixpkgs-stable.lib // home-manager-stable.lib;
-      # systems = ["x86_64-linux" "aarch64-linux"];
-      systems = [ "x86_64-linux" ];
-      forEachSystem = lib.genAttrs systems;
-      genNixosConfig = hostName: { user, hostPlatform, stable, ... }:
-        if stable then
-          nixpkgs-stable.lib.nixosSystem
-            {
-              # pkgs = self.stable-pkgs.${hostPlatform};
-              modules = [ ./hosts/${hostName} ];
-              specialArgs = { inherit inputs outputs; };
-            } else
-          nixpkgs.lib.nixosSystem {
-            # pkgs = self.unstable-pkgs.${hostPlatform};
-            modules = [ ./hosts/${hostName} ];
-            specialArgs = { inherit inputs outputs; };
-          }
-      ;
-      genHomeConfig = hostName: { user, hostPlatform, stable, ... }:
-        if stable then
-          home-manager-stable.lib.homeManagerConfiguration
-            {
-              modules = [
-                ./home/${user}/${hostName}.nix
-              ];
-              pkgs = self.stable-pkgs.${hostPlatform};
-              extraSpecialArgs = { inherit inputs outputs; };
-            } else
-          home-manager.lib.homeManagerConfiguration {
-            modules = [
-              ./home/${user}/${hostName}.nix
-            ];
-            pkgs = self.unstable-pkgs.${hostPlatform};
-            extraSpecialArgs = { inherit inputs outputs; };
-          }
-      ;
-    in
-    {
-      inherit lib;
-      stable-pkgs = forEachSystem (system:
-        import nixpkgs-stable {
-          inherit system;
-          overlays = [ nixgl.overlay ];
-          config.allowUnfree = true;
-          config.allowAliases = true;
-        });
-      unstable-pkgs = forEachSystem (system:
-        import nixpkgs {
-          inherit system;
-          overlays = [ nixgl.overlay ];
-          config.allowUnfree = true;
-          config.allowAliases = true;
-        });
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-stable,
+    home-manager,
+    home-manager-stable,
+    # flake-utils,
+    deploy-rs,
+    pre-commit-hooks,
+    nixgl,
+    sops-nix,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
+    lib = nixpkgs.lib // home-manager.lib;
+    # lib = nixpkgs-stable.lib // home-manager-stable.lib;
+    # systems = ["x86_64-linux" "aarch64-linux"];
+    systems = ["x86_64-linux"];
+    forEachSystem = lib.genAttrs systems;
+    genNixosConfig = hostName: {
+      user,
+      hostPlatform,
+      stable,
+      ...
+    }:
+      if stable
+      then
+        nixpkgs-stable.lib.nixosSystem
+        {
+          # pkgs = self.stable-pkgs.${hostPlatform};
+          modules = [./hosts/${hostName}];
+          specialArgs = {inherit inputs outputs;};
+        }
+      else
+        nixpkgs.lib.nixosSystem {
+          # pkgs = self.unstable-pkgs.${hostPlatform};
+          modules = [./hosts/${hostName}];
+          specialArgs = {inherit inputs outputs;};
+        };
+    genHomeConfig = hostName: {
+      user,
+      hostPlatform,
+      stable,
+      ...
+    }:
+      if stable
+      then
+        home-manager-stable.lib.homeManagerConfiguration
+        {
+          modules = [
+            ./home/${user}/${hostName}.nix
+          ];
+          pkgs = self.stable-pkgs.${hostPlatform};
+          extraSpecialArgs = {inherit inputs outputs;};
+        }
+      else
+        home-manager.lib.homeManagerConfiguration {
+          modules = [
+            ./home/${user}/${hostName}.nix
+          ];
+          pkgs = self.unstable-pkgs.${hostPlatform};
+          extraSpecialArgs = {inherit inputs outputs;};
+        };
+  in {
+    inherit lib;
+    stable-pkgs = forEachSystem (system:
+      import nixpkgs-stable {
+        inherit system;
+        overlays = [nixgl.overlay];
+        config.allowUnfree = true;
+        config.allowAliases = true;
+      });
+    unstable-pkgs = forEachSystem (system:
+      import nixpkgs {
+        inherit system;
+        overlays = [nixgl.overlay];
+        config.allowUnfree = true;
+        config.allowAliases = true;
+      });
 
-      nixosModules = import ./modules/nixos;
-      homeManagerModules = import ./modules/home-manager;
-      # templates = import ./templates;
+    nixosModules = import ./modules/nixos;
+    homeManagerModules = import ./modules/home-manager;
+    # templates = import ./templates;
 
-      # overlays = import ./overlays { inherit inputs outputs; };
-      # hydraJobs = import ./hydra.nix { inherit inputs outputs; };
+    # overlays = import ./overlays { inherit inputs outputs; };
+    # hydraJobs = import ./hydra.nix { inherit inputs outputs; };
 
-      # packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
-      devShells = forEachSystem (import ./shell.nix inputs);
+    # packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+    devShells = forEachSystem (import ./shell.nix inputs);
 
-      formatter = forEachSystem (pkgs: pkgs.alejandro);
-      checks = forEachSystem (import ./checks.nix inputs);
-      # checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+    formatter = forEachSystem (pkgs: pkgs.alejandro);
+    checks = forEachSystem (import ./checks.nix inputs);
+    # checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 
-      deploy = import ./deploy.nix inputs;
-      # wallpapers = import ./home/sven/wallpapers;
-      hosts = import ./hosts.nix;
+    deploy = import ./deploy.nix inputs;
+    # wallpapers = import ./home/sven/wallpapers;
+    hosts = import ./hosts.nix;
 
-      nixosConfigurations =
-        lib.mapAttrs genNixosConfig (self.hosts.nixos or { });
-      homeConfigurations =
-        lib.mapAttrs genHomeConfig (self.hosts.homeManager or { });
-    };
+    nixosConfigurations =
+      lib.mapAttrs genNixosConfig (self.hosts.nixos or {});
+    homeConfigurations =
+      lib.mapAttrs genHomeConfig (self.hosts.homeManager or {});
+  };
 }

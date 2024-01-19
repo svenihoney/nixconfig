@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }: {
   xdg.portal = {
     enable = true;
@@ -16,5 +17,5 @@
       xwayland.enable = true;
     };
   };
-  security.pam.services = { swaylock = { }; };
+  security.pam.services = {swaylock = {};};
 }

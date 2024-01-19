@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }: {
-  home.packages = with pkgs; [ dig ];
+  home.packages = with pkgs; [dig];
 }
