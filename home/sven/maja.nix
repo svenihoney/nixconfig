@@ -21,6 +21,9 @@
     ./features/development
     ./features/development/syncthing.nix
     ./features/development/networking.nix
+    ./features/media/creativity.nix
+
+    ./ssh/ssh-config.nix
   ];
 
   #targets.genericLinux.enable = true;

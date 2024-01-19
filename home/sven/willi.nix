@@ -20,6 +20,8 @@
     ./features/desktop/common/linphone.nix
     ./features/development
     ./features/development/syncthing.nix
+
+    ./ssh/ssh-config.nix
   ];
 
   # wallpaper = outputs.wallpapers.aenami-lunar;

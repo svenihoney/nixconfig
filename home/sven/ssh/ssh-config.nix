@@ -37,7 +37,10 @@ in
         };
         "s2" = {
           hostname = "2a03:4000:48:5aa:4844:36ff:feeb:c58a";
-
+        };
+        "nas" = {
+          user = "root";
+          hostname = "nas.fritz.box";
         };
         "bluecake" = {
           hostname = "hosting155974.a2ee8.netcup.net";
@@ -67,74 +70,6 @@ in
           extraOptions = {
             PreferredAuthentications = "publickey";
           };
-        };
-
-        # DEUTA
-        "gitlab.deutaeit.intranet" = {
-          port = 8222;
-        };
-        ave = oldSshHost;
-        avetest = oldSshHost;
-        qnx63 = oldSshHost;
-
-        # Variable DEUTA hosts
-        "left right leftp rightp redbox" = {
-          extraOptions = {
-            PubkeyAcceptedKeyTypes = "+ssh-rsa";
-            StrictHostKeyChecking = "no";
-            UserKnownHostsFile = "/dev/null";
-          };
-          user = "root";
-          # identityFile = "~/.ssh/deuta-root-dat.key";
-          identityFile = "~/.ssh/id_rsa";
-        };
-        "leftp " = {
-          hostname = "bg34";
-          port = 22003;
-
-        };
-        "rightp " = {
-          hostname = "bg34";
-          port = 22004;
-
-        };
-        "bg34" = {
-          extraOptions = {
-            StrictHostKeyChecking = "no";
-            UserKnownHostsFile = "/dev/null";
-          };
-          user = "pi";
-        };
-        "redbox" = {
-          extraOptions = {
-            UserKnownHostsFile = "/dev/null";
-            StrictHostKeyChecking = "no";
-            HostKeyAlgorithms = "ssh-dss";
-            KexAlgorithms = "diffie-hellman-group1-sha1";
-          };
-        };
-        "deutahost" = {
-          user = "rancher";
-          hostname = "192.168.2.60";
-          extraOptions = {
-            PreferredAuthentications = "publickey";
-          };
-          identityFile = "~/.ssh/deuta-rancher-rsa";
-        };
-        "qnx" = {
-          user = "root";
-          hostname = "192.168.11.75";
-          extraOptions = {
-            HostKeyAlgorithms = "ssh-rsa";
-            KexAlgorithms = "diffie-hellman-group1-sha1";
-            Ciphers = "aes256-cbc";
-          };
-        };
-        "evl" = {
-          user = "root";
-        };
-        "evr" = {
-          user = "root";
         };
 
         # gecon

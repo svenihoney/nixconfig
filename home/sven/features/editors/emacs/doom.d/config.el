@@ -114,7 +114,7 @@
 
 (after! evil
   (evil-escape-mode nil)
-  (defalias #'forward-evil-word #'forward-evil-symbol)
+  ;; (defalias #'forward-evil-word #'forward-evil-symbol)
   (setq-default evil-symbol-word-search t)
   )
 

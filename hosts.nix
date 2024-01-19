@@ -10,14 +10,14 @@ let
       homeDirectory = "/home/fischer";
       stable = true;
     };
-    beely = {
-      type = "homeManager";
-      hostPlatform = "x86_64-linux";
-      address = "beely";
-      remoteBuild = false;
-      user = "sven";
-      stable = true;
-    };
+    # beely = {
+    #   type = "homeManager";
+    #   hostPlatform = "x86_64-linux";
+    #   address = "beely";
+    #   remoteBuild = false;
+    #   user = "sven";
+    #   stable = true;
+    # };
     struppi = {
       type = "homeManager";
       hostPlatform = "x86_64-linux";

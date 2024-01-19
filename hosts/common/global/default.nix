@@ -58,6 +58,7 @@
     };
   };
 
+  services.dbus.implementation = "broker";
   # environment.etc."tmpfiles.d/tmp.conf".text = ''
   #   d /tmp 1777 root root 3d
   #   d /var/tmp 1777 root root 3d

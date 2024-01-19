@@ -1,10 +1,9 @@
-{
-  inputs,
-  lib,
-  pkgs,
-  config,
-  outputs,
-  ...
+{ inputs
+, lib
+, pkgs
+, config
+, outputs
+, ...
 }:
 # let
 #   inherit (inputs.nix-colors) colorSchemes;
@@ -17,7 +16,7 @@
 
       ../features/cli
       ../features/editors/nvim
-      ../features/editors/helix
+      # ../features/editors/helix
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
 
@@ -32,9 +31,9 @@
   nix = {
     package = lib.mkDefault pkgs.nix;
     settings = {
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [ "nix-command" "flakes" ];
       warn-dirty = false;
-      trusted-users = ["${config.home.username}"];
+      trusted-users = [ "${config.home.username}" ];
     };
   };
 
@@ -43,13 +42,15 @@
   programs = {
     home-manager.enable = true;
     git.enable = true;
+
+    neovim.defaultEditor = true;
   };
 
   home = {
     username = lib.mkDefault "sven";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
     stateVersion = lib.mkDefault "23.11";
-    sessionPath = ["$HOME/.local/bin"];
+    sessionPath = [ "$HOME/.local/bin" ];
     # sessionVariables = {
     #   FLAKE = "$HOME/Documents/NixConfig";
     # };
