@@ -80,11 +80,11 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
-    lib = nixpkgs.lib // home-manager.lib;
+    # lib = nixpkgs.lib // home-manager.lib;
     # lib = nixpkgs-stable.lib // home-manager-stable.lib;
     # systems = ["x86_64-linux" "aarch64-linux"];
     systems = ["x86_64-linux"];
-    forEachSystem = lib.genAttrs systems;
+    forEachSystem = nixpkgs.lib.genAttrs systems;
     genNixosConfig = hostName: {
       user,
       hostPlatform,
@@ -130,7 +130,7 @@
           extraSpecialArgs = {inherit inputs outputs;};
         };
   in {
-    inherit lib;
+    # inherit lib;
     stable-pkgs = forEachSystem (system:
       import nixpkgs-stable {
         inherit system;
@@ -165,8 +165,8 @@
     hosts = import ./hosts.nix;
 
     nixosConfigurations =
-      lib.mapAttrs genNixosConfig (self.hosts.nixos or {});
+      nixpkgs.lib.mapAttrs genNixosConfig (self.hosts.nixos or {});
     homeConfigurations =
-      lib.mapAttrs genHomeConfig (self.hosts.homeManager or {});
+      nixpkgs.lib.mapAttrs genHomeConfig (self.hosts.homeManager or {});
   };
 }

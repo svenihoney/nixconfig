@@ -7,7 +7,7 @@
 }: {
   imports =
     [
-      inputs.home-manager.nixosModules.home-manager
+      # inputs.home-manager-stable.nixosModules.home-manager
       # ./acme.nix
       ./auto-upgrade.nix
       ./fish.nix

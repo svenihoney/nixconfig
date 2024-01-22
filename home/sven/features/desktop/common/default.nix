@@ -8,14 +8,14 @@
     # ./font.nix
     ./gtk.nix
     # ./kdeconnect.nix
-    ./warpinator.nix
     ./pavucontrol.nix
     ./playerctl.nix
     ./qt.nix
     # ./slack.nix
     # ./sublime-music.nix
-    ./keepassxc.nix
     # ./launcher.nix
-    ./joplin.nix
+    # ./keepassxc.nix
+    # ./joplin.nix
+    # ./warpinator.nix
   ];
 }

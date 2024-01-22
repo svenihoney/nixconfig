@@ -59,7 +59,8 @@ let
       stable = false;
     };
     bilbo = {
-      type = "homeManager";
+      # type = "homeManager";
+      type = "nixos";
       hostPlatform = "x86_64-linux";
       address = "bilbo";
       remoteBuild = false;
