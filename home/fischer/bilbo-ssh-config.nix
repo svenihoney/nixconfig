@@ -12,6 +12,12 @@
 in {
   programs = {
     ssh = {
+      hashKnownHosts = true;
+
+      extraOptionOverrides = {
+        AddKeysToAgent = "confirm";
+        VerifyHostKeyDNS = "ask";
+      };
       matchBlocks = {
         # ekf = {hostname = "ekf-fischer";} // qnxSshHost;
         ekf = {hostname = "ekf-fischer";} // qnxSshHost;

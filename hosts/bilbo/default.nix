@@ -40,7 +40,12 @@
   networking = {
     hostName = "bilbo";
     networkmanager.enable = true;
+    # proxy = {
+    #   default = "http://proxy.software.ads:8888";
+    #   noProxy = "127.0.0.1,localhost,.software.ads";
+    # };
   };
+  # security.pki.certificateFiles = [ ./ucs-root-ca.crt ];
 
   boot = {
     loader = {

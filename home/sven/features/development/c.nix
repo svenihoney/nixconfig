@@ -10,6 +10,7 @@
     ninja
     gcc
     gdb
+    libclang
   ];
 
   home.sessionVariables.CMAKE_GENERATOR = "Ninja";

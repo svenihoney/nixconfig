@@ -2,6 +2,7 @@
   inputs,
   outputs,
   pkgs,
+  config,
   ...
 }: {
   imports = [
@@ -19,11 +20,18 @@
 
     ../sven/features/desktop/common/browser.nix
     ../sven/features/desktop/common/virtualisation.nix
+    ../sven/features/desktop/common/keepassxc.nix
+    # ./keepassxc.nix
     ../sven/features/development
     ../sven/features/editors/emacs
 
     ./bilbo-ssh-config.nix
+    ./bilbo-mail.nix
+    ../sven/features/productivity/neomutt.nix
+    # ../sven/features/productivity/office.nix
   ];
+
+  # config.keepassFile = "${config.home.homeDirectory}/Passwörter.kdbx";
 
   # workaround for error in home manager module if used standalone
   # stylix.targets.kde.enable = false;
@@ -41,12 +49,30 @@
 
   monitors = [
     {
-      name = "desc:Lenovo Group Limited LEN T27p-10 0x4E395246";
+      name = "desc:AU Optronics 0x42EB";
       width = 3840;
       height = 2160;
+      x = 0;
       workspace = "1";
       primary = true;
+      scale = "2";
     }
+    {
+      name = "desc:Lenovo Group Limited LEN LT2423wC VN-A015TT";
+      width = 1920;
+      height = 1080;
+      x = 1920;
+      workspace = "2";
+    }
+    {
+      name = "desc:Lenovo Group Limited LEN T2454pA 0x01010101";
+      width = 1920;
+      height = 1080;
+      x = 3840;
+      workspace = "4";
+      transform = "1";
+    }
+    # PH34
     {
       name = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
       width = 2560;
@@ -55,9 +81,5 @@
       workspace = "3";
       transform = "1";
     }
-  ];
-
-  home.packages = with pkgs; [
-    boost
   ];
 }
