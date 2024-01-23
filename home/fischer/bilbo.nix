@@ -28,7 +28,7 @@
     ./bilbo-ssh-config.nix
     ./bilbo-mail.nix
     ../sven/features/productivity/neomutt.nix
-    # ../sven/features/productivity/office.nix
+    ../sven/features/productivity/office.nix
   ];
 
   # config.keepassFile = "${config.home.homeDirectory}/Passwörter.kdbx";
@@ -77,7 +77,7 @@
       name = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
       width = 2560;
       height = 1440;
-      x = 3840;
+      x = 1920;
       workspace = "3";
       transform = "1";
     }

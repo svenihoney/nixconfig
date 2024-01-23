@@ -1,4 +1,8 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   dockerEnabled = config.virtualisation.docker.enable;
 in {
   virtualisation.podman = {
@@ -8,6 +12,10 @@ in {
     defaultNetwork.settings.dns_enabled = true;
   };
 
+  environment.systemPackages = with pkgs; [
+    skopeo
+    buildah
+  ];
   # environment.persistence = {
   #   "/persist".directories = [
   #     "/var/lib/containers"

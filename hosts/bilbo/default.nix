@@ -4,10 +4,9 @@
   ...
 }: {
   imports = [
-    inputs.hardware.nixosModules.common-cpu-intel
+    inputs.hardware.nixosModules.lenovo-thinkpad-x1-extreme-gen2
     inputs.hardware.nixosModules.common-gpu-intel
     inputs.hardware.nixosModules.common-pc-laptop
-    inputs.hardware.nixosModules.common-pc-laptop-ssd
 
     inputs.stylix.nixosModules.stylix
     # inputs.home-manager.nixosModules.home-manager
@@ -40,12 +39,13 @@
   networking = {
     hostName = "bilbo";
     networkmanager.enable = true;
-    # proxy = {
-    #   default = "http://proxy.software.ads:8888";
-    #   noProxy = "127.0.0.1,localhost,.software.ads";
-    # };
+    proxy = {
+      #   default = "http://proxy.software.ads:8888";
+      noProxy = "127.0.0.1,localhost,.software.ads";
+    };
   };
-  # security.pki.certificateFiles = [ ./ucs-root-ca.crt ];
+  systemd.services.NetworkManager-wait-online.enable = false;
+  security.pki.certificateFiles = [./ucs-root-ca.crt];
 
   boot = {
     loader = {
@@ -69,12 +69,6 @@
   };
   services.gvfs.enable = true;
 
-  # Lid settings
-  services.logind = {
-    lidSwitch = "suspend";
-    lidSwitchExternalPower = "lock";
-  };
-
   hardware = {
     opengl = {
       enable = true;
@@ -82,12 +76,21 @@
     # amdgpu.amdvlk = true;
   };
 
-  # Usevia access to hidraw device
-  services.udev.extraRules = ''
-    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="FC32", ATTRS{idProduct}=="0287", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
-  '';
-  services.udisks2.enable = true;
-  services.fwupd.enable = true;
+  services = {
+    # Lid settings
+    logind = {
+      lidSwitch = "suspend";
+      lidSwitchExternalPower = "lock";
+    };
+    fprintd.enable = true;
+
+    # Usevia access to hidraw device
+    udev.extraRules = ''
+      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="FC32", ATTRS{idProduct}=="0287", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+    '';
+    udisks2.enable = true;
+    fwupd.enable = true;
+  };
 
   # services.btrbk = {
   #   instances.local = {
