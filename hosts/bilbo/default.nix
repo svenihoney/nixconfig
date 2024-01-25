@@ -40,7 +40,7 @@
     hostName = "bilbo";
     networkmanager.enable = true;
     proxy = {
-      #   default = "http://proxy.software.ads:8888";
+      # default = "http://proxy:8888";
       noProxy = "127.0.0.1,localhost,.software.ads";
     };
   };

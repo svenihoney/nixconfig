@@ -20,6 +20,7 @@
 
     ../sven/features/desktop/common/browser.nix
     ../sven/features/desktop/common/virtualisation.nix
+    ../sven/features/desktop/common/kubernetes.nix
     ../sven/features/desktop/common/keepassxc.nix
     # ./keepassxc.nix
     ../sven/features/development
