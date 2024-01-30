@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  import = [
+  imports = [
     ../desktop/common/wine.nix
   ];
   home.packages = with pkgs; [lutris];
