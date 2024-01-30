@@ -22,6 +22,7 @@
     ../sven/features/desktop/common/virtualisation.nix
     ../sven/features/desktop/common/kubernetes.nix
     ../sven/features/desktop/common/keepassxc.nix
+    ../sven/features/desktop/common/wine.nix
     # ./keepassxc.nix
     ../sven/features/development
     ../sven/features/editors/emacs
