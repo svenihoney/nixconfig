@@ -29,5 +29,8 @@
       url = "https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/routine.jpg";
       sha256 = "sha256-mTWlrcD3JSoOW1rvyqroM5w9qjJY4pukbJeLTaJGEtQ=";
     };
+
+    # MilkyWay from KDE
+    # image = lib.mkDefault "${pkgs.plasma-workspace-wallpapers}/share/wallpapers/MilkyWay/contents/images/5120x2880.png";
   };
 }

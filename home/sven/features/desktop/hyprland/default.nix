@@ -5,6 +5,7 @@
   ...
 }: let
   swaylock = "${config.programs.swaylock.package}/bin/swaylock";
+  pkill = "${pkgs.procps}/bin/pkill";
   hyprctl = "${pkgs.hyprland}/bin/hyprctl";
   wlogout = "${config.programs.wlogout.package}/bin/wlogout";
   playerctl = "${config.services.playerctld.package}/bin/playerctl";
@@ -233,8 +234,9 @@ in {
             "ALT,XF86AudioPlay,exec,systemctl --user restart playerctld"
           ])
           # Screen lock
-          ++ (lib.optionals config.programs.swaylock.enable [
-            "SUPER,l,exec,${swaylock}"
+          ++ (lib.optionals config.services.swayidle.enable [
+            "SUPER,l,exec,${pkill} -SIGUSR1 swayidle"
+            "SUPER SHIFT,l,exec,${swaylock} --daemonize && ${pkill} -SIGUSR1 swayidle"
           ])
           # Logout screen
           ++ (lib.optionals config.programs.wlogout.enable [

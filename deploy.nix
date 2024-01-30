@@ -7,12 +7,13 @@
   inherit (nixpkgs) lib;
 
   genNode = hostName: nixosCfg: let
-    inherit (self.hosts.${hostName}) address hostPlatform remoteBuild;
+    inherit (self.hosts.${hostName}) address hostPlatform remoteBuild user;
     inherit (deploy-rs.lib.${hostPlatform}) activate;
   in {
     inherit remoteBuild;
     hostname = address;
     profiles.system.path = activate.nixos nixosCfg;
+    sshUser = "${user}";
   };
 
   genHome = hostName: nixosCfg: let
@@ -22,7 +23,7 @@
     inherit remoteBuild;
     hostname = address;
     profiles.system.path = activate.home-manager nixosCfg;
-    ssh-user = "${user}";
+    sshUser = "${user}";
     user = "${user}";
   };
   # genNixOnDroid = hostName: nixosCfg:

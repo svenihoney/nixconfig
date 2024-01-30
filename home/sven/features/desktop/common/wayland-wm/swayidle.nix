@@ -11,6 +11,7 @@
   swaymsg = "${config.wayland.windowManager.sway.package}/bin/swaymsg";
 
   isLocked = "${pgrep} -x ${swaylock}";
+  offTime = 3 * 60; # TODO: configurable desktop (10 min)/laptop (4 min)
   lockTime = 30 * 60; # TODO: configurable desktop (10 min)/laptop (4 min)
 
   # Makes two timeouts: one for when the screen is not locked (lockTime+timeout) and one for when it is.
@@ -43,13 +44,18 @@ in {
       }
     ];
     timeouts =
-      # Lock screen
       [
+        # Lock screen
         # {
         #   timeout = lockTime;
         #   command = "${swaylock} --daemonize";
         # }
       ]
+      # ++ (lib.optionals config.wayland.windowManager.hyprland.enable [{
+      #   timeout = offTime;
+      #   command = "${hyprctl} dispatch dpms off";
+      #   resumeCommand = "${hyprctl} dispatch dpms on";
+      # }])
       # Mute mic
       # ++ (afterLockTimeout {
       #   timeout = 10;

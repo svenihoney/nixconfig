@@ -7,10 +7,10 @@
     right = "r";
     up = "u";
     down = "d";
-    h = left;
-    l = right;
-    k = up;
-    j = down;
+    # h = left;
+    # l = right;
+    # k = up;
+    # j = down;
   };
 in {
   wayland.windowManager.hyprland.settings = {
