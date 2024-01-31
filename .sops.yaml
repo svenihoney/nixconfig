@@ -7,10 +7,11 @@ keys:
     - &beely age1ejxeh53gdz2chj6h0emyueqgajwh6sfrplqlhwuydp2tjz9wwshswk8jfk
     - &maja age1yg0rkr4e7g3lc4e8nx03je686gwttl32vszpe5whden4pln86d7sljp4yz
     - &willi age1d0rhdfel2a9s56wycpw5zxkkum2hntgekgpfsg8d9vlqawnp3sgqt50urx
-    # - &bilbo
+    - &dodo age18za56mlqmrpl8mm87v4y9hwsz9e9tjk55ss4l3lhxz3preu3za9svheymk
+    - &bilbo age1n2a0xrmrp00kedqa79hss4fn8j36s6zjr97e2k9hsqpc3sxcrqjs737m74
 
 creation_rules:
- s - path_regex: home/common/secrets-home.ya?ml$
+  - path_regex: home/common/secrets-home.yaml$
     key_groups:
     - age:
       - *maja
