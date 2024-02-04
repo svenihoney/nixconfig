@@ -32,6 +32,7 @@ in {
         "lp"
         "kvm"
         "wireshark"
+        "dialout"
       ];
 
     openssh.authorizedKeys.keys = [(builtins.readFile ../../../../home/sven/ssh/ssh.pub)];

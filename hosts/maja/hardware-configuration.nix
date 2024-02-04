@@ -14,51 +14,27 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/7fdf8d72-a698-46fb-ab08-cea26363d615";
+    { device = "/dev/disk/by-uuid/129be632-a75e-487b-9f85-3c3ca9c800ea";
       fsType = "btrfs";
-      options = [ "subvol=@,compress=zstd" ];
+      options = [ "subvol=@" "compress=zstd" ];
     };
 
-  # fileSystems."/media/beely" =
-  #   { device = "systemd-1";
-  #     fsType = "autofs";
-  #   };
-
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/7fdf8d72-a698-46fb-ab08-cea26363d615";
+    { device = "/dev/disk/by-uuid/129be632-a75e-487b-9f85-3c3ca9c800ea";
       fsType = "btrfs";
-      options = [ "subvol=@home,compress=zstd" ];
+      options = [ "subvol=@home" "compress=zstd" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/7fdf8d72-a698-46fb-ab08-cea26363d615";
+    { device = "/dev/disk/by-uuid/129be632-a75e-487b-9f85-3c3ca9c800ea";
       fsType = "btrfs";
-      options = [ "subvol=@nix,compress=zstd" ];
+      options = [ "subvol=@nix" "compress=zstd" "noatime" ];
     };
-
-  # fileSystems."/swap" =
-  #   { device = "/dev/disk/by-uuid/7fdf8d72-a698-46fb-ab08-cea26363d615";
-  #     fsType = "btrfs";
-  #     options = [ "subvol=@swap" ];
-  #   };
-
-  # fileSystems."/var/cache" =
-  #   { device = "/dev/disk/by-uuid/7fdf8d72-a698-46fb-ab08-cea26363d615";
-  #     fsType = "btrfs";
-  #     options = [ "subvol=@cache" ];
-  #   };
-
-  # fileSystems."/var/log" =
-  #   { device = "/dev/disk/by-uuid/7fdf8d72-a698-46fb-ab08-cea26363d615";
-  #     fsType = "btrfs";
-  #     options = [ "subvol=@log" ];
-  #   };
 
   fileSystems."/efi" =
     { device = "/dev/disk/by-uuid/B47D-A777";
       fsType = "vfat";
     };
-
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

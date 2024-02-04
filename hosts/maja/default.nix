@@ -71,7 +71,8 @@
       efi.efiSysMountPoint = "/efi";
       timeout = 1;
     };
-    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
+    kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
     # binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
   };
 
@@ -90,9 +91,12 @@
   };
 
   # Usevia access to hidraw device
-  services.udev.extraRules = ''
-    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="fc32", ATTRS{idProduct}=="0287", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
-  '';
+  services.udev = {
+    extraRules = ''
+      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="fc32", ATTRS{idProduct}=="0287", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+    '';
+    packages = [pkgs.qmk-udev-rules];
+  };
   services.udisks2.enable = true;
   services.fwupd.enable = true;
 
