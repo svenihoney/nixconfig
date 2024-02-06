@@ -8,8 +8,8 @@
     # ./slack.nix
     # ./sublime-music.nix
     # ./launcher.nix
-    ./keepassxc.nix
-    ./joplin.nix
-    ./warpinator.nix
+    ./common/keepassxc.nix
+    ./common/joplin.nix
+    ./common/warpinator.nix
   ];
 }

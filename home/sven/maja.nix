@@ -30,6 +30,8 @@
     ./features/media/creativity.nix
 
     ./ssh/ssh-config.nix
+
+    ./features/work
   ];
 
   #targets.genericLinux.enable = true;

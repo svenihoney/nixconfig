@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  home.packages = [pkgs.linphone];
+  # home.packages = [pkgs.linphone];
 
   wayland.windowManager.hyprland = {
     settings = {
