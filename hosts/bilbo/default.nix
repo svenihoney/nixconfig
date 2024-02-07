@@ -8,9 +8,9 @@
     inputs.hardware.nixosModules.common-gpu-intel
     inputs.hardware.nixosModules.common-pc-laptop
 
-    inputs.stylix.nixosModules.stylix
+    # inputs.stylix-stable.nixosModules.stylix
     # inputs.home-manager.nixosModules.home-manager
-    inputs.home-manager-stable.nixosModules.home-manager
+    # inputs.home-manager-stable.nixosModules.home-manager
 
     ./hardware-configuration.nix
 
