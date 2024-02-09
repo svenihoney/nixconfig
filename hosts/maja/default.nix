@@ -34,6 +34,7 @@
   ];
 
   networking = {
+    networkmanager.enable = true;
     hostName = "maja";
     useDHCP = false;
     bridges = {
@@ -41,9 +42,9 @@
         interfaces = ["enp6s0"];
       };
     };
-    interfaces.br0 = {
-      useDHCP = true;
-    };
+    # interfaces.br0 = {
+    #   useDHCP = true;
+    # };
     #   wakeOnLan.enable = true;
 
     #   ipv4 = {

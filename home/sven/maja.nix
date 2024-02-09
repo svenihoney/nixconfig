@@ -9,6 +9,7 @@
     ./standard-desktop.nix
 
     ./features/desktop/hyprland
+    ./features/desktop/common/networkmanager.nix
     ./features/desktop/common/wayland-wm/wofi.nix
     # ./features/desktop/wireless
     ./features/productivity
