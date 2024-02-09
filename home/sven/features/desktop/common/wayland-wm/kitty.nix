@@ -45,6 +45,9 @@ in {
 
       "kitty_mod+n" = "new_os_window_with_cwd";
       "kitty_mod+t" = "launch --cwd=current --type=tab";
+
+      "kitty_mod+," = "change_font_size all -2.0";
+      "kitty_mod+." = "change_font_size all +2.0";
     };
   };
 
