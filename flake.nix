@@ -42,7 +42,8 @@
         # flake-compat.follows = "flake-compat";
       };
     };
-    stylix.url = "github:danth/stylix";
+    stylix.url = "github:danth/stylix/release-23.11";
+    stylix-stable.url = "github:danth/stylix/release-23.11";
     # hyprland = {
     #   url = "github:hyprwm/hyprland";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -96,13 +97,21 @@
         nixpkgs-stable.lib.nixosSystem
         {
           # pkgs = self.stable-pkgs.${hostPlatform};
-          modules = [./hosts/${hostName}];
+          modules = [
+            inputs.stylix-stable.nixosModules.stylix
+            inputs.home-manager-stable.nixosModules.home-manager
+            ./hosts/${hostName}
+          ];
           specialArgs = {inherit inputs outputs;};
         }
       else
         nixpkgs.lib.nixosSystem {
           # pkgs = self.unstable-pkgs.${hostPlatform};
-          modules = [./hosts/${hostName}];
+          modules = [
+            inputs.stylix.nixosModules.stylix
+            inputs.home-manager.nixosModules.home-manager
+            ./hosts/${hostName}
+          ];
           specialArgs = {inherit inputs outputs;};
         };
     genHomeConfig = hostName: {
@@ -116,6 +125,7 @@
         home-manager-stable.lib.homeManagerConfiguration
         {
           modules = [
+            inputs.stylix-stable.homeManagerModules.stylix
             ./home/${user}/${hostName}.nix
           ];
           pkgs = self.stable-pkgs.${hostPlatform};
@@ -124,6 +134,7 @@
       else
         home-manager.lib.homeManagerConfiguration {
           modules = [
+            inputs.stylix.homeManagerModules.stylix
             ./home/${user}/${hostName}.nix
           ];
           pkgs = self.unstable-pkgs.${hostPlatform};

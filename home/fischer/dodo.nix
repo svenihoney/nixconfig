@@ -5,7 +5,6 @@
   ...
 }: {
   imports = [
-    inputs.stylix.homeManagerModules.stylix
     ../../hosts/common/optional/stylix-cli.nix
 
     ../sven/global
