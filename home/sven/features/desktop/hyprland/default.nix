@@ -267,6 +267,7 @@ in {
         "float,class:(Vivaldi-Einstellungen)"
         "float,class:(@joplin/app-desktop)"
         "float,class:(org.speedcrunch.)"
+        "float,title:(twinkle)"
 
         "workspace 2,class:(Vivaldi.*)"
         "workspace 2,class:(org.qutebrowser.qutebrowser)"

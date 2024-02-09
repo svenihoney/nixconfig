@@ -15,6 +15,7 @@ in {
   environment.systemPackages = with pkgs; [
     skopeo
     buildah
+    docker-compose
   ];
   # environment.persistence = {
   #   "/persist".directories = [

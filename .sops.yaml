@@ -19,10 +19,10 @@ creation_rules:
       pgp:
       - *sven
 
-  # - path_regex: hosts/common/secrets-rps.ya?ml$
-  #   key_groups:
-  #   - age:
-  #     - *bilbo
-  #     - *dodo
-  #     pgp:
-  #     - *sven
+  - path_regex: hosts/maja/secrets.yaml$
+    key_groups:
+    - age:
+      - *maja
+      # - *willi
+      pgp:
+      - *sven

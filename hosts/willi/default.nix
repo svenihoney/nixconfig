@@ -10,7 +10,6 @@
     inputs.hardware.nixosModules.common-pc-laptop-ssd
 
     inputs.home-manager.nixosModules.home-manager
-    inputs.stylix.nixosModules.stylix
 
     ./hardware-configuration.nix
 
