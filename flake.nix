@@ -42,7 +42,7 @@
         # flake-compat.follows = "flake-compat";
       };
     };
-    stylix.url = "github:danth/stylix/release-23.11";
+    stylix.url = "github:danth/stylix";
     stylix-stable.url = "github:danth/stylix/release-23.11";
     # hyprland = {
     #   url = "github:hyprwm/hyprland";

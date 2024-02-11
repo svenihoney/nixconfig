@@ -35,7 +35,7 @@ in {
         "dialout"
       ];
 
-    openssh.authorizedKeys.keys = [(builtins.readFile ../../../../home/sven/ssh/ssh.pub)];
+    openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN0TbNZWAW4jZmjdrL4RMtuV11k2/0Ya1Mow44CAv0+z sven@leiderfischer.de"];
     # passwordFile = config.sops.secrets.sven-password.path;
     packages = [pkgs.home-manager];
   };
