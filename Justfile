@@ -9,7 +9,6 @@ willi: (deploy "willi")
 home: (deploy "willi") (deploy "maja")
 
 deploy host=`hostname`:
-    # nix run nixpkgs#deploy-rs -- -s .#{{host}} -- --impure
     deploy -s .#{{host}} -- --impure
 
 clean:

@@ -37,11 +37,11 @@
     networkmanager.enable = true;
     hostName = "maja";
     useDHCP = false;
-    bridges = {
-      br0 = {
-        interfaces = ["enp6s0"];
-      };
-    };
+    # bridges = {
+    #   br0 = {
+    #     interfaces = ["enp6s0"];
+    #   };
+    # };
     # interfaces.br0 = {
     #   useDHCP = true;
     # };
