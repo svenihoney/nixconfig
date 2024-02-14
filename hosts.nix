@@ -2,7 +2,7 @@
 let
   hosts = {
     dodo = {
-      type = "homeManager";
+      type = "nixos";
       hostPlatform = "x86_64-linux";
       address = "dodo";
       remoteBuild = false;

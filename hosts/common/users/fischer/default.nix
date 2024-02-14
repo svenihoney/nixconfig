@@ -34,7 +34,7 @@ in {
         "wireshark"
       ];
 
-    #openssh.authorizedKeys.keys = [(builtins.readFile ../../../../home/sven/ssh/ssh.pub)];
+    openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMe/Zxuwysu4HI10NPuDKFxTBqpwVB6HY8i8T1+ynOqh fischer@software.ads"];
     # passwordFile = config.sops.secrets.sven-password.path;
     packages = [pkgs.home-manager];
   };

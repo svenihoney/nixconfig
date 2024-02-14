@@ -2,12 +2,13 @@ keys:
   # Users
   - &users:
     - &sven 58D48D664468351D3FDD46B4DDBD617F81BF84F4
+    - &fischer age16clfkenarlwkl7k8acsnuqykts5e63ufw2tfs58v894lnv7l7gqsg7hyjs
   # Hosts
   - &hosts:
     - &beely age1ejxeh53gdz2chj6h0emyueqgajwh6sfrplqlhwuydp2tjz9wwshswk8jfk
     - &maja age1yg0rkr4e7g3lc4e8nx03je686gwttl32vszpe5whden4pln86d7sljp4yz
     - &willi age1d0rhdfel2a9s56wycpw5zxkkum2hntgekgpfsg8d9vlqawnp3sgqt50urx
-    - &dodo age18za56mlqmrpl8mm87v4y9hwsz9e9tjk55ss4l3lhxz3preu3za9svheymk
+    - &dodo age1w247kmgeekr7hef84ctvh4avfxxck76t6yn2f7nkezzw2n37scpq9qnyq7
     - &bilbo age1n2a0xrmrp00kedqa79hss4fn8j36s6zjr97e2k9hsqpc3sxcrqjs737m74
 
 creation_rules:
@@ -26,3 +27,9 @@ creation_rules:
       # - *willi
       pgp:
       - *sven
+
+  - path_regex: hosts/dodo/secrets.yaml$
+    key_groups:
+    - age:
+      - *dodo
+      - *fischer
