@@ -14,7 +14,7 @@
   programs.git.includes = [
     {
       condition = "gitdir:/home/sven/kunden/vorwerk/";
-      contents = {user = {email = "Sven.Fischer@external.vorwerk.com";};};
+      contents = {user = {email = "sven.fischer@external.vorwerk.com";};};
     }
   ];
 }

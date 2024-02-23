@@ -61,4 +61,6 @@
       transform = "1";
     }
   ];
+
+  programs.waybar.settings.primary.output = ["DP-2"];
 }

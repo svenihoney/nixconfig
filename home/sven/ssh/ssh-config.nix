@@ -98,6 +98,11 @@ in {
             ForwardAgent = "yes";
           };
         };
+
+        # Kunden
+        "cosy" = {
+          user = "root";
+        };
       };
     };
   };

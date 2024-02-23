@@ -69,6 +69,7 @@
 
 (package! adoc-mode)
 (package! just-mode)
+(package! bitbake-modes :recipe (:host bitbucket :repo "olanilsson/bitbake-modes"))
 
 ;; (package! with-venv)
 
