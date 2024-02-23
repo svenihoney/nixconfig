@@ -17,6 +17,7 @@ in {
   programs.kitty = {
     enable = true;
     shellIntegration.mode = "no-cursor";
+    shellIntegration.enableFishIntegration = true;
     settings = {
       scrollback_lines = 4000;
       scrollback_pager_history_size = 2048;
@@ -54,5 +55,4 @@ in {
   programs.fish.shellAbbrs = rec {
     s = "kitten ssh";
   };
-  kitty.shellIntegration.enableFishIntegration = true;
 }
