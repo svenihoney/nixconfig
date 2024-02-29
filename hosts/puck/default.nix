@@ -48,7 +48,8 @@
       efi.efiSysMountPoint = "/efi";
       timeout = 1;
     };
-    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
+    # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   };
 
   powerManagement.powertop.enable = true;

@@ -38,11 +38,12 @@
 
   monitors = [
     {
-      name = "desc:BOE 0x08E2";
-      width = 1920;
-      height = 1080;
+      name = "desc:California Institute of Technology 0x1615";
+      width = 2560;
+      height = 1600;
       workspace = "1";
       primary = true;
+      scale = "1.333333";
     }
     {
       name = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
@@ -53,4 +54,9 @@
       transform = "1";
     }
   ];
+
+  # Qt does not read the fractional scalea correctly...
+  home.sessionVariables = {
+    QT_SCREEN_SCALE_FACTORS = "1.33;1";
+  };
 }
