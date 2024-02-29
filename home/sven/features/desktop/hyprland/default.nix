@@ -12,6 +12,7 @@
   playerctld = "${config.services.playerctld.package}/bin/playerctld";
   makoctl = "${config.services.mako.package}/bin/makoctl";
   wofi = "${config.programs.wofi.package}/bin/wofi";
+  copyq = "${config.services.copyq.package}/bin/copyq";
   # pass-wofi = "${
   #     pkgs.pass-wofi.override {
   #       pass = config.programs.password-store.package;
@@ -189,8 +190,6 @@ in {
             "SUPER, F11, exec, ~/bin/switchaudio hdmi"
             "SUPER SHIFT, F11, exec, ~/bin/switchaudio btheadset"
 
-            # "SUPER, C, exec, swaync-client -t"
-            # "SUPER SHIFT, C, exec, swaync-client -C"
             "SUPER SHIFT, K, exec, keepassxc"
             # "SUPER SHIFT, E, exec, nwg-bar"
 
@@ -244,19 +243,22 @@ in {
           ])
           # Notification manager
           ++ (lib.optionals config.services.mako.enable
-            ["SUPER,c,exec,${makoctl} dismiss"])
+            ["SUPER SHIFT,c,exec,${makoctl} dismiss"])
           # Launcher
           ++ (
             lib.optionals config.programs.wofi.enable [
               # "SUPER,x,exec,${wofi} -S drun -x 10 -y 10 -W 25% -H 60%"
               "SUPER,d,exec,${wofi} -S drun"
             ]
-            # ++ (lib.optionals config.programs.password-store.enable [
-            #   ",Scroll_Lock,exec,${pass-wofi}" # fn+k
-            #   ",XF86Calculator,exec,${pass-wofi}" # fn+f12
-            #   "SUPER,semicolon,exec,pass-wofi"
-            # ])
           )
+          # ++ (lib.optionals config.programs.password-store.enable [
+          #   ",Scroll_Lock,exec,${pass-wofi}" # fn+k
+          #   ",XF86Calculator,exec,${pass-wofi}" # fn+f12
+          #   "SUPER,semicolon,exec,pass-wofi"
+          # ])
+          ++ (lib.optionals config.services.copyq.enable [
+            "SUPER, C, exec, ${copyq} toggle"
+          ])
         # ++ (lib.optionals config.services.ulauncher.enable
         #  [ "SUPER, D, exec, ulauncher-toggle" ])
         ;
@@ -267,6 +269,7 @@ in {
         "float,class:(Vivaldi-Einstellungen)"
         "float,class:(@joplin/app-desktop)"
         "float,class:(org.speedcrunch.)"
+        "float,class:(copyq)"
         "float,title:(twinkle)"
 
         "workspace 2,class:(Vivaldi.*)"

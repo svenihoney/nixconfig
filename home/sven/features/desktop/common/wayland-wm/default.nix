@@ -14,6 +14,7 @@
     ./vimiv.nix
     # ./wezterm.nix
     ./kitty.nix
+    ./copyq.nix
     # ./flameshot.nix # TODO: Does not work with wayland currently
   ];
 
