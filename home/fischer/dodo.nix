@@ -10,28 +10,28 @@
     ../sven/global
     ./dodo-ssh-config.nix
 
-    # ./standard-desktop.nix
+    ../sven/standard-desktop.nix
 
-    # ./features/desktop/hyprland
-    # ./features/desktop/common/networkmanager.nix
-    # ./features/desktop/common/wayland-wm/wofi.nix
-    # # ./features/desktop/wireless
-    # ./features/productivity
-    # ./features/media
-    # # ./features/pass
-    # ./features/games
-    # # TODO: For standard
-    # ./features/desktop/common/keepassxc.nix
-    # ./features/desktop/common/kubernetes.nix
-    # # ./features/desktop/common/wayland-wm/qutebrowser.nix
-    # ./features/desktop/common/browser.nix
-    # ./features/desktop/common/virtualisation.nix
-    # ./features/development
+    ../sven/features/desktop/hyprland
+    # ../sven/features/desktop/common/networkmanager.nix
+    ../sven/features/desktop/common/wayland-wm/wofi.nix
+
+    ../sven/features/desktop/common/browser.nix
+    ../sven/features/desktop/common/virtualisation.nix
+    # ../sven/features/desktop/common/kubernetes.nix
+    ../sven/features/desktop/common/keepassxc.nix
+    # ../sven/features/desktop/common/wine.nix
+    # ./keepassxc.nix
+    ../sven/features/development
     ../sven/features/editors/emacs
+
+    ./dodo-ssh-config.nix
+    # ../sven/features/productivity/neomutt.nix
+    # ../sven/features/productivity/office.nix
   ];
 
-  stylix.targets.kde.enable = false;
-  stylix.targets.gnome.enable = false;
+  # stylix.targets.kde.enable = false;
+  # stylix.targets.gnome.enable = false;
 
   home = {
     username = "fischer";
