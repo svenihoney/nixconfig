@@ -271,6 +271,7 @@ in {
         "float,class:(org.speedcrunch.)"
         "float,class:(copyq)"
         "float,title:(twinkle)"
+        "float,title:(blueman-manager)"
 
         "workspace 2,class:(Vivaldi.*)"
         "workspace 2,class:(org.qutebrowser.qutebrowser)"

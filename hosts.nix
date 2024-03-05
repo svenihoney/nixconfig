@@ -62,7 +62,7 @@ let
       type = "nixos";
       hostPlatform = "x86_64-linux";
       address = "puck";
-      remoteBuild = true;
+      remoteBuild = false;
       user = "sven";
       stable = false;
     };

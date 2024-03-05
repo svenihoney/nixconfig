@@ -19,7 +19,8 @@
       # commit.gpgSign = true;
       # gpg.program = "${config.programs.gpg.package}/bin/gpg2";
       # credential.helper = "store";
-      credential.helper = "libsecret";
+      # credential.helper = "libsecret";
+      credential.helper = "${config.programs.git.package}/share/git/contrib/credential/libsecret/git-credential-libsecret";
       color.ui = "auto";
     };
     lfs.enable = true;
