@@ -186,6 +186,7 @@ in {
           set -U tide_jobs_bg_color 444444
           set -U tide_jobs_color 4E9A06
           set -U tide_jobs_icon 
+          set -U tide_jobs_number_threshold 1000
           set -U tide_kubectl_bg_color 326CE5
           set -U tide_kubectl_color 000000
           set -U tide_kubectl_icon 󱃾
@@ -224,12 +225,12 @@ in {
           set -U tide_pwd_icon 
           set -U tide_pwd_icon_home 
           set -U tide_pwd_icon_unwritable 
-          set -U tide_pwd_markers '.bzr'  '.citc'  '.git'  '.hg'  '.node-version'  '.python-version'  '.ruby-version'  '.shorten_folder_marker'  '.svn'  '.terraform'  'Cargo.toml'  'composer.json'  'CVS'  'go.mod'  'package.json'
+          set -U tide_pwd_markers '.bzr'  '.citc'  '.git'  '.hg'  '.node-version'  '.python-version'  '.ruby-version'  '.shorten_folder_marker'  '.svn'  '.terraform'  'Cargo.toml'  'composer.json'  'CVS'  'go.mod'  'package.json'  'build.zig'
           set -U tide_python_bg_color 444444
           set -U tide_python_color 00AFAF
           set -U tide_python_icon 󰌠
           set -U tide_right_prompt_frame_enabled false
-          set -U tide_right_prompt_items 'status'  'cmd_duration'  'context'  'jobs'  'direnv'  'node'  'python'  'rustc'  'java'  'php'  'pulumi'  'ruby'  'go'  'gcloud'    'distrobox'  'toolbox'  'terraform'  'aws'  'nix_shell'  'crystal'  'elixir'
+          set -U tide_right_prompt_items 'status'  'cmd_duration'  'context'  'jobs'  'direnv'  'node'  'python'  'rustc'  'java'  'php'  'pulumi'  'ruby'  'go'  'gcloud'  'kubectl'  'distrobox'  'toolbox'  'terraform'  'aws'  'nix_shell'  'crystal'  'elixir'  'zig'
           set -U tide_right_prompt_prefix 
           set -U tide_right_prompt_separator_diff_color 
           set -U tide_right_prompt_separator_same_color 
@@ -252,7 +253,7 @@ in {
           set -U tide_status_icon_failure ✘
           set -U tide_terraform_bg_color 800080
           set -U tide_terraform_color 000000
-          set -U tide_terraform_icon
+          set -U tide_terraform_icon 󱁢
           set -U tide_time_bg_color D3D7CF
           set -U tide_time_color 000000
           set -U tide_time_format
@@ -274,6 +275,9 @@ in {
           set -U tide_virtual_env_bg_color 444444
           set -U tide_virtual_env_color 00AFAF
           set -U tide_virtual_env_icon 
+          set -U tide_zig_bg_color F7A41D
+          set -U tide_zig_color 000000
+          set -U tide_zig_icon 
           _tide_detect_os | read -g --line os_icon os_color os_bg_color
           set -U tide_os_icon      $os_icon
           set -U tide_os_color     $os_color
