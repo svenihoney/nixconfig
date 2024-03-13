@@ -58,6 +58,14 @@ let
       user = "sven";
       stable = false;
     };
+    puck = {
+      type = "nixos";
+      hostPlatform = "x86_64-linux";
+      address = "puck";
+      remoteBuild = false;
+      user = "sven";
+      stable = false;
+    };
     bilbo = {
       # type = "homeManager";
       type = "nixos";

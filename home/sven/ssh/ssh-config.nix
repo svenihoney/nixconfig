@@ -98,6 +98,12 @@ in {
             ForwardAgent = "yes";
           };
         };
+
+        # Kunden
+        "cosy" = {
+          user = "root";
+          hostname = "192.168.0.4";
+        };
       };
     };
   };
