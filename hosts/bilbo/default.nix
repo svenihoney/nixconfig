@@ -126,8 +126,8 @@
     statdPort = 4000;
   };
   networking.firewall = {
-    allowedTCPPorts = [111 2039 4000 4001 4002 20048];
-    allowedUDPPorts = [111 2039 4000 4001 4002 20048];
+    allowedTCPPorts = [111 1018 1019 1020 2039 4000 4001 4002 20048];
+    allowedUDPPorts = [111 1018 1019 1020 2039 4000 4001 4002 20048];
   };
   system.stateVersion = "23.11";
 }
