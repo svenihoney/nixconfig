@@ -116,18 +116,5 @@
   #   };
   # };
 
-  services.nfs.server = {
-    enable = true;
-    exports = ''
-      /srv/qnxexch *(rw,sync,no_subtree_check)
-    '';
-    lockdPort = 4001;
-    mountdPort = 4002;
-    statdPort = 4000;
-  };
-  networking.firewall = {
-    allowedTCPPorts = [111 1018 1019 1020 2039 4000 4001 4002 20048];
-    allowedUDPPorts = [111 1018 1019 1020 2039 4000 4001 4002 20048];
-  };
   system.stateVersion = "23.11";
 }

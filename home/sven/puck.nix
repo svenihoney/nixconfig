@@ -17,50 +17,46 @@
     # ./features/pass
     ./features/games
     # TODO: For standard
-    ./features/desktop/extended.nix
+    ./features/desktop/common/keepassxc.nix
     ./features/desktop/common/nextcloud-client.nix
     ./features/desktop/common/kubernetes.nix
     # ./features/desktop/common/wayland-wm/qutebrowser.nix
     ./features/desktop/common/browser.nix
     ./features/desktop/common/virtualisation.nix
     ./features/desktop/common/linphone.nix
-    ./features/desktop/common/jameica.nix
     ./features/development
     ./features/development/syncthing.nix
-    ./features/development/networking.nix
-    ./features/media/creativity.nix
 
     ./ssh/ssh-config.nix
-
-    ./features/work
   ];
 
-  #targets.genericLinux.enable = true;
-  # colorscheme = inputs.nix-colors.colorschemes.tokyo-night-storm;
-  # wallpaper = outputs.wallpapers.watercolor-beach;
+  # wallpaper = outputs.wallpapers.aenami-lunar;
+  # colorscheme = inputs.nix-colors.colorSchemes.atelier-heath;
   programs.emacs.package = pkgs.emacs29-pgtk;
   services.emacs.package = pkgs.emacs29-pgtk;
+  services.blueman-applet.enable = true;
 
-  #  ------   -----   ------
-  # | DP-3 | | DP-1| | DP-2 |
-  #  ------   -----   ------
   monitors = [
     {
-      name = "desc:Lenovo Group Limited LEN T27p-10 0x4E395246";
-      width = 3840;
-      height = 2160;
+      name = "desc:California Institute of Technology 0x1615";
+      width = 2560;
+      height = 1600;
       workspace = "1";
       primary = true;
+      scale = "1.333333";
     }
     {
       name = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
       width = 2560;
       height = 1440;
-      x = 3840;
+      x = 1920;
       workspace = "3";
       transform = "1";
     }
   ];
 
-  programs.waybar.settings.primary.output = ["DP-2"];
+  # Qt does not read the fractional scalea correctly...
+  home.sessionVariables = {
+    QT_SCREEN_SCALE_FACTORS = "1.33;1";
+  };
 }

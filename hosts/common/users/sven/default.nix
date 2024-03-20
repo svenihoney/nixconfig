@@ -33,6 +33,7 @@ in {
         "kvm"
         "wireshark"
         "dialout"
+        "adbusers"
       ];
 
     openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN0TbNZWAW4jZmjdrL4RMtuV11k2/0Ya1Mow44CAv0+z sven@leiderfischer.de"];
