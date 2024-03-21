@@ -78,6 +78,7 @@
   # Usevia access to hidraw device
   services.udev.extraRules = ''
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="FC32", ATTRS{idProduct}=="0287", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="2717", ATTRS{idProduct}=="d001", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
   '';
   services.udisks2.enable = true;
   services.fwupd.enable = true;

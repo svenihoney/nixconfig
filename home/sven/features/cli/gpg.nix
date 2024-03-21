@@ -5,17 +5,14 @@
   ...
 }: let
   pinentry =
-    if config.gtk.enable
-    then {
-      packages = [pkgs.pinentry-gnome pkgs.gcr];
-      name = "gnome3";
-    }
-    else {
-      packages = [pkgs.pinentry-curses];
-      name = "curses";
-    };
+    if config.gtk.enable && builtins.hasAttr "pinentry-gnome3" pkgs
+    then pkgs.pinentry-gnome3
+    else pkgs.pinentry-curses
+    #   name = "curses";
+    # };
+    ;
 in {
-  home.packages = pinentry.packages;
+  # home.packages = pinentry.packages;
 
   services.gpg-agent = lib.mkIf pkgs.stdenv.isLinux {
     enable = true;
@@ -27,7 +24,7 @@ in {
     #extraConfig = ''
     #  extra-socket /run/user/${toString config.home.uid}/gnupg/S.gpg-agent.extra
     #'';
-    pinentryFlavor = pinentry.name;
+    pinentryPackage = pinentry;
     # sshKeys = [ "149F16412997785363112F3DBD713BC91D51B831" ];
   };
 
