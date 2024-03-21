@@ -35,6 +35,8 @@
   terminal = config.home.sessionVariables.TERMINAL;
   browser = defaultApp "x-scheme-handler/https";
   # browser = "${pkgs.qutebrowser}/bin/qutebrowser";
+  firefox = "${pkgs.firefox}/bin/firefox";
+  slack = "${pkgs.slack}/bin/slack";
   # editor = defaultApp "text/plain";
   editor = "${config.programs.emacs.package}/bin/emacs";
 in {
@@ -110,10 +112,6 @@ in {
 
         sensitivity = "0";
       };
-      "device:brian-low-sofle-choc" = {
-        kb_layout = "de,de";
-        kb_variant = "koy,neo_qwertz";
-      };
 
       dwindle.split_width_multiplier = 1.35;
 
@@ -183,11 +181,14 @@ in {
             # "SUPER,v,exec,${editor}"
             # "SUPER,b,exec,${browser}"
             "SUPER, F2, exec, ${browser}"
+            "SUPER SHIFT, F2, exec, ${firefox}"
             "SUPER, F3, exec, thunderbird"
             # "SUPER, F4, exec, teams-for-linux --enable-features=UseOzonePlatform --ozone-platform=wayland"
             "SUPER, F4, exec, fish -c ${editor}"
+            "SUPER, F10, exec, ${slack}"
             "SUPER, F11, exec, ~/bin/switchaudio btoff"
             "SUPER, F11, exec, ~/bin/switchaudio hdmi"
+            "SUPER, F12, exec, hyprctl switchxkblayout brian-low-sofle-choc next"
             "SUPER SHIFT, F11, exec, ~/bin/switchaudio btheadset"
 
             "SUPER SHIFT, K, exec, keepassxc"
@@ -275,9 +276,12 @@ in {
 
         "workspace 2,class:(Vivaldi.*)"
         "workspace 2,class:(org.qutebrowser.qutebrowser)"
+        "workspace 2,class:(firefox)"
 
         "workspace 3,class:(thunderbird)"
         "float,title:(Kalendererinnerungen)"
+
+        "workspace 0,class:(Slack)"
       ];
 
       monitor =
@@ -305,6 +309,13 @@ in {
       submap=passthrough
       bind=SUPER,P,submap,reset
       submap=reset
+
+      # Name has to be first option, does not work with settings section
+      device {
+        name=brian-low-sofle-choc
+        kb_layout=de,de
+        kb_variant=koy,neo_qwertz
+      }
     '';
   };
 }

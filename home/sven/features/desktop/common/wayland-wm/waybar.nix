@@ -59,7 +59,7 @@ in {
       primary = {
         # mode = "dock";
         layer = "top";
-        height = 30;
+        height = 25;
         margin = "3";
         position = "bottom";
         # modules-left = [ "custom/menu" ]
@@ -444,8 +444,8 @@ in {
       }
 
       #workspaces button {
-        padding: 5px 1px;
-        margin: 3px 0;
+        padding: 0px 1px;
+        margin: 0px 0;
       }
       #workspaces button.hidden {
       }

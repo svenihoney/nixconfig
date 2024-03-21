@@ -19,6 +19,5 @@
 
   home.packages = [
     pkgs.spotify
-    pkgs.spotify-tui
   ];
 }
