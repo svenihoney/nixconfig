@@ -52,10 +52,10 @@
     #   url = "github:hyprwm/contrib";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-    # firefox-addons = {
-    #   url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
 
@@ -152,16 +152,17 @@
     unstable-pkgs = forEachSystem (system:
       import nixpkgs {
         inherit system;
+        # overlays = [nixgl.overlay self.overlays];
         overlays = [nixgl.overlay];
         config.allowUnfree = true;
         config.allowAliases = true;
       });
 
-    nixosModules = import ./modules/nixos;
-    homeManagerModules = import ./modules/home-manager;
+    nixosModules = import ./nix/modules/nixos;
+    homeManagerModules = import ./nix/modules/home-manager;
     # templates = import ./templates;
 
-    # overlays = import ./overlays { inherit inputs outputs; };
+    overlays = import ./nix/overlays {inherit inputs outputs;};
     # hydraJobs = import ./hydra.nix { inherit inputs outputs; };
 
     # packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
