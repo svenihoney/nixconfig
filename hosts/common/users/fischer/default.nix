@@ -9,7 +9,7 @@ in {
   # users.mutableUsers = false;
   users.users.fischer = {
     isNormalUser = true;
-    shell = pkgs.fish;
+    # shell = pkgs.fish;
     extraGroups =
       [
         "wheel"
