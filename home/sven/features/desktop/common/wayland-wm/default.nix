@@ -40,6 +40,7 @@
 
     SDL_VIDEODRIVER = "wayland";
     NIXOS_OZONE_WL = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
 
     MOZ_DBUS_REMOTE = "1";
     MOZ_USE_XINPUT2 = "1";

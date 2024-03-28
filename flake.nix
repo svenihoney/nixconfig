@@ -9,6 +9,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-trunk.url = "github:nixos/nixpkgs";
 
     hardware.url = "github:nixos/nixos-hardware";
     # impermanence.url = "github:nix-community/impermanence";
@@ -71,6 +72,7 @@
     self,
     nixpkgs,
     nixpkgs-stable,
+    nixpkgs-trunk,
     home-manager,
     home-manager-stable,
     # flake-utils,
@@ -85,6 +87,7 @@
     # lib = nixpkgs-stable.lib // home-manager-stable.lib;
     # systems = ["x86_64-linux" "aarch64-linux"];
     systems = ["x86_64-linux"];
+    trunkOverlay = final: prev: {trunk = nixpkgs-trunk.legacyPackages.${prev.system};};
     forEachSystem = nixpkgs.lib.genAttrs systems;
     genNixosConfig = hostName: {
       user,
@@ -98,6 +101,7 @@
         {
           # pkgs = self.stable-pkgs.${hostPlatform};
           modules = [
+            # trunkOverlay
             inputs.stylix-stable.nixosModules.stylix
             inputs.home-manager-stable.nixosModules.home-manager
             ./hosts/${hostName}
@@ -145,6 +149,7 @@
     stable-pkgs = forEachSystem (system:
       import nixpkgs-stable {
         inherit system;
+        # overlays = [nixgl.overlay (final: prev: {trunk = trunkOverlay; })];
         overlays = [nixgl.overlay];
         config.allowUnfree = true;
         config.allowAliases = true;

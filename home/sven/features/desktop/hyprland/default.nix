@@ -274,7 +274,7 @@ in {
         "float,title:(twinkle)"
         "float,title:(blueman-manager)"
 
-        "workspace 2,class:(Vivaldi.*)"
+        "workspace 2,class:(vivaldi.*)"
         "workspace 2,class:(org.qutebrowser.qutebrowser)"
         "workspace 2,class:(firefox)"
 
@@ -303,19 +303,33 @@ in {
         (lib.filter (m: m.enabled && m.workspace != null) config.monitors);
     };
     # This is order sensitive, so it has to come here.
-    extraConfig = ''
+    extraConfig = let
+      sofleOld = ''
+        device:brian-low-sofle-choc {
+          kb_layout=de,de
+          kb_variant=koy,neo_qwertz
+        }
+      '';
+      sofleNew = ''
+        # Name has to be first option, does not work with settings section
+        device {
+          name=brian-low-sofle-choc
+          kb_layout=de,de
+          kb_variant=koy,neo_qwertz
+        }
+      '';
+      sofle =
+        if builtins.compareVersions pkgs.hyprland.version "0.36" < 0
+        then sofleOld
+        else sofleNew;
+    in ''
       # Passthrough mode (e.g. for VNC)
       bind=SUPER,P,submap,passthrough
       submap=passthrough
       bind=SUPER,P,submap,reset
       submap=reset
 
-      # Name has to be first option, does not work with settings section
-      device {
-        name=brian-low-sofle-choc
-        kb_layout=de,de
-        kb_variant=koy,neo_qwertz
-      }
+      ${sofle}
     '';
   };
 }
