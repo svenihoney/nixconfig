@@ -2,31 +2,40 @@
   pkgs,
   config,
   lib,
+  services,
   ...
 }: let
-  pinentry =
+  pinentryPkg =
     if config.gtk.enable && builtins.hasAttr "pinentry-gnome3" pkgs
     then pkgs.pinentry-gnome3
-    else pkgs.pinentry-curses
-    #   name = "curses";
-    # };
-    ;
+    else pkgs.pinentry-curses;
+  pinentryConfig =
+    if builtins.compareVersions lib.version "24.05" < 0
+    then {
+      pinentryFlavor = "qt";
+    }
+    else {
+      pinentryPackage = pinentryPkg;
+    };
 in {
   # home.packages = pinentry.packages;
 
-  services.gpg-agent = lib.mkIf pkgs.stdenv.isLinux {
-    enable = true;
-    enableExtraSocket = true;
-    # enableScDaemon = true;
-    enableSshSupport = true;
-    defaultCacheTtl = 34560000;
-    maxCacheTtl = 34560000;
-    #extraConfig = ''
-    #  extra-socket /run/user/${toString config.home.uid}/gnupg/S.gpg-agent.extra
-    #'';
-    pinentryPackage = pinentry;
-    # sshKeys = [ "149F16412997785363112F3DBD713BC91D51B831" ];
-  };
+  services.gpg-agent =
+    {
+      enable = true;
+      enableExtraSocket = true;
+      # enableScDaemon = true;
+      enableSshSupport = true;
+      defaultCacheTtl = 34560000;
+      maxCacheTtl = 34560000;
+      #extraConfig = ''
+      #  extra-socket /run/user/${toString config.home.uid}/gnupg/S.gpg-agent.extra
+      #'';
+      # if builtins.hasAttr "pinentryPackage" self then
+      # pinentryPackage = pinentryPkg;
+      # sshKeys = [ "149F16412997785363112F3DBD713BC91D51B831" ];
+    }
+    // pinentryConfig;
 
   programs = let
     fixGpg = ''

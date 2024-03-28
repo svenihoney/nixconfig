@@ -288,4 +288,8 @@ in {
         '';
     };
   };
+
+  services.gpg-agent = {
+    enableFishIntegration = true;
+  };
 }
