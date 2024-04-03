@@ -8,8 +8,9 @@
       ms-python.python
       rust-lang.rust-analyzer
       asvetliakov.vscode-neovim
-      # vscodevim.vim
+      vscodevim.vim
       yzhang.markdown-all-in-one
+      mkhl.direnv
     ];
     userSettings = {
       #   "vim.handleKeys" = {
