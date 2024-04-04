@@ -112,7 +112,7 @@ in {
 
         clock = {
           interval = 1;
-          format = "{:<small>%d.%m.</small>  %H:%M }";
+          format = "<small>{:%d.%m.</small> <big>%H:%M}</big> ";
           format-alt = "{:%d.%m.%Y %H:%M:%S %z}";
           on-click-left = "mode";
           tooltip-format = ''
