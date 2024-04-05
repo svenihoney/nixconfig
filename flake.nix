@@ -28,7 +28,7 @@
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
-    nixgl.url = "github:guibou/nixGL";
+    # nixgl.url = "github:guibou/nixGL";
 
     nh = {
       url = "github:viperml/nh";
@@ -53,10 +53,11 @@
     #   url = "github:hyprwm/contrib";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # firefox-addons = {
+    #   url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    nur.url = "github:nix-community/nur";
 
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
 
@@ -78,7 +79,7 @@
     # flake-utils,
     deploy-rs,
     pre-commit-hooks,
-    nixgl,
+    # nixgl,
     sops-nix,
     ...
   } @ inputs: let
@@ -150,7 +151,7 @@
       import nixpkgs-stable {
         inherit system;
         # overlays = [nixgl.overlay (final: prev: {trunk = trunkOverlay; })];
-        overlays = [nixgl.overlay];
+        # overlays = [nixgl.overlay];
         config.allowUnfree = true;
         config.allowAliases = true;
       });
@@ -158,7 +159,12 @@
       import nixpkgs {
         inherit system;
         # overlays = [nixgl.overlay self.overlays];
-        overlays = [nixgl.overlay];
+        # overlays = [inputs.firefox-addons.overlay];
+        # overlays = [inputs.nur.overlay];
+        #     pkgs = prev;
+        # config.allowUnfree = true;
+        #   }; })];
+        # overlays = [nixgl.overlay];
         config.allowUnfree = true;
         config.allowAliases = true;
       });
