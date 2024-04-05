@@ -27,12 +27,12 @@ in {
 
   nur = inputs.nur.overlay;
   # Adds my custom packages
-  # additions = final: prev:
-  #   import ../pkgs {pkgs = final;}
-  #   // {
-  #     formats = prev.formats // import ../pkgs/formats {pkgs = final;};
-  #     vimPlugins = prev.vimPlugins // final.callPackage ../pkgs/vim-plugins {};
-  #   };
+  additions = final: prev:
+    import ../pkgs {pkgs = final;};
+  # // {
+  #   formats = prev.formats // import ../pkgs/formats {pkgs = final;};
+  #   vimPlugins = prev.vimPlugins // final.callPackage ../pkgs/vim-plugins {};
+  # };
 
   # # Modifies existing packages
   # modifications = final: prev: {
