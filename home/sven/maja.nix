@@ -25,6 +25,7 @@
     ./features/desktop/common/virtualisation.nix
     ./features/desktop/common/linphone.nix
     ./features/desktop/common/jameica.nix
+    ./features/desktop/common/switchaudio.nix
     ./features/development
     ./features/development/syncthing.nix
     ./features/development/networking.nix

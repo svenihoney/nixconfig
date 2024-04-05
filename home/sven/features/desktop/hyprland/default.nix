@@ -186,10 +186,10 @@ in {
             # "SUPER, F4, exec, teams-for-linux --enable-features=UseOzonePlatform --ozone-platform=wayland"
             "SUPER, F4, exec, fish -c ${editor}"
             "SUPER, F10, exec, ${slack}"
-            "SUPER, F11, exec, ~/bin/switchaudio btoff"
-            "SUPER, F11, exec, ~/bin/switchaudio hdmi"
             "SUPER, F12, exec, hyprctl switchxkblayout brian-low-sofle-choc next"
-            "SUPER SHIFT, F11, exec, ~/bin/switchaudio btheadset"
+            # "SUPER, F11, exec, ~/bin/switchaudio btoff"
+            # "SUPER, F11, exec, ~/bin/switchaudio hdmi"
+            # "SUPER SHIFT, F11, exec, ~/bin/switchaudio btheadset"
 
             "SUPER SHIFT, K, exec, keepassxc"
             # "SUPER SHIFT, E, exec, nwg-bar"

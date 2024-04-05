@@ -1,0 +1,77 @@
+#!/bin/sh
+
+set -x
+
+# VAVA MOOV 28
+# HEADSET=E3_28_E9_21_EF_CB
+# HF_PROFILE=headset_head_unit
+# AUDIO_PROFILE=a2dp_sink
+
+# Freebuds Pro
+HEADSET=00_66_19_30_9A_3C # Freebuds Pro
+
+# Poly Focus 2
+HEADSET=F4_B6_88_8C_27_9F
+
+#HDMI
+# alsa_output.pci-0000_09_00.1.hdmi-stereo-extra2
+HDMI_NUMBER=0000_09_00.1
+HDMI_CARD=alsa_card.pci-$HDMI_NUMBER
+HDMI_OUTPUT=hdmi-stereo-extra2
+HDMI_SINK=alsa_output.pci-$HDMI_NUMBER.$HDMI_OUTPUT
+
+#Pulseaudio
+# HF_PROFILE=handsfree_head_unit
+AUDIO_PROFILE=a2dp_sink
+BLUEZ_OUTPUT=bluez_sink
+# BLUEZ_INPUT=bluez_source
+
+#Pipewire
+# HF_PROFILE=headset-head-unit
+AUDIO_PROFILE=a2dp-sink
+BLUEZ_OUTPUT=bluez_output
+# BLUEZ_INPUT=bluez_input
+
+case $1 in
+hdmi)
+	#pactl set-card-profile 0 output:hdmi-stereo-extra1+input:analog-stereo
+	pactl set-card-profile $HDMI_CARD output:$HDMI_OUTPUT
+	pactl set-default-sink $HDMI_SINK
+	MOVE_TO_SINK=$HDMI_SINK
+	;;
+headphone)
+	echo Umschalten auf Analog Stereo
+	pactl set-card-profile 0 output:analog-stereo+input:analog-stereo
+	echo Ausgabe auf Kopfhörer
+	pactl set-sink-port alsa_output.pci-0000_00_1f.3.analog-stereo analog-output-headphones
+	echo Eingabe vom Kopfhörer
+	pactl set-source-port alsa_input.pci-0000_00_1f.3.analog-stereo analog-input-headset-mic
+	;;
+btheadset)
+	#pactl set-card-profile bluez_card.$HEADSET $HF_PROFILE
+	#MOVE_TO_SINK=$BLUEZ_OUTPUT.$HEADSET.$HF_PROFILE
+	#MOVE_TO_SOURCE=$BLUEZ_INPUT.$HEADSET.$HF_PROFILE
+	# alsa_output.usb-Plantronics_Poly_BT700_E9BBC26CFB904059BC206B89E04CD52E-00.analog-stereo
+	pactl set-card-profile alsa_card.usb-Plantronics_Poly_BT700_E9BBC26CFB904059BC206B89E04CD52E-00 output:analog-stereo+input:mono-fallback
+	MOVE_TO_SINK=alsa_output.usb-Plantronics_Poly_BT700_E9BBC26CFB904059BC206B89E04CD52E-00.analog-stereo
+	MOVE_TO_SOURCE=alsa_input.usb-Plantronics_Poly_BT700_E9BBC26CFB904059BC206B89E04CD52E-00.mono-fallback
+	;;
+btheadphone)
+	pactl set-card-profile bluez_card.$HEADSET $AUDIO_PROFILE
+	MOVE_TO_SINK=$BLUEZ_OUTPUT.$HEADSET.$AUDIO_PROFILE
+	;;
+btoff)
+	pactl set-card-profile bluez_card.$HEADSET off
+	;;
+esac
+
+if [ ! "$MOVE_TO_SINK" = "" ]; then
+	for i in $(pactl list sink-inputs short | awk '{print $1}'); do
+		pactl move-sink-input "$i" "$MOVE_TO_SINK"
+	done
+fi
+if [ ! "$MOVE_TO_SOURCE" = "" ]; then
+	for i in $(pactl list source-outputs short | awk '{print $1}'); do
+		pactl move-source-output "$i" "$MOVE_TO_SOURCE"
+	done
+fi
