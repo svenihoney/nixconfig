@@ -125,7 +125,7 @@ in {
 
       decoration = {
         active_opacity = 1.0;
-        inactive_opacity = 0.75;
+        inactive_opacity = 0.95;
         fullscreen_opacity = 1.0;
         rounding = 5;
         blur = {
@@ -164,7 +164,7 @@ in {
       };
 
       exec = [
-        "${pkgs.swaybg}/bin/swaybg -i ${config.stylix.image} --mode fit"
+        "${pkgs.swaybg}/bin/swaybg -i ${config.stylix.image} --mode center"
         # "${pkgs.hyprland}/bin/hyprctl setcursor ${pointer.name} ${toString pointer.size}"
       ];
 

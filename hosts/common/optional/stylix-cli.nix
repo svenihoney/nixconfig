@@ -25,12 +25,18 @@
     # };
 
     # eat sleep code repeat
-    image = pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/routine.jpg";
-      sha256 = "sha256-mTWlrcD3JSoOW1rvyqroM5w9qjJY4pukbJeLTaJGEtQ=";
-    };
+    # image = pkgs.fetchurl {
+    #   url = "https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/routine.jpg";
+    #   sha256 = "sha256-mTWlrcD3JSoOW1rvyqroM5w9qjJY4pukbJeLTaJGEtQ=";
+    # };
 
     # MilkyWay from KDE
-    # image = lib.mkDefault "${pkgs.plasma-workspace-wallpapers}/share/wallpapers/MilkyWay/contents/images/5120x2880.png";
+    image = lib.mkDefault "${pkgs.plasma-workspace-wallpapers}/share/wallpapers/MilkyWay/contents/images/5120x2880.png";
+
+    # Chalk board
+    # image = pkgs.fetchurl {
+    #   url = "https://c1.wallpaperflare.com/path/942/218/505/black-board-chalk-traces-school-057e0867f80cd327b7d2ed2b255819ec.jpg";
+    #   sha256 = "sha256-fywmonoQpC1K17NGESBpfJm5vOD1Frdp3JXd5Z+f2/4=";
+    # };
   };
 }

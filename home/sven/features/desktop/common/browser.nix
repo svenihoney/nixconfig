@@ -41,6 +41,7 @@ in {
         gesturefy
         vimium
         wikiwand-wikipedia-modernized
+        user-agent-string-switcher
         deutsch-de-language-pack
       ];
       search = {
