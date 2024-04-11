@@ -36,8 +36,23 @@
   home = {
     username = "fischer";
   };
-  programs.git = {
-    userEmail = "fischer@software.ads";
+  programs = {
+    git = {
+      userEmail = "fischer@software.ads";
+    };
+
+    firefox = {
+      profiles.sven = {
+        search = {
+          default = "StartPage";
+          engines = {
+            "StartPage" = {
+              urls = [{template = "https://www.startpage.com/search?query={searchTerms}";}];
+            };
+          };
+        };
+      };
+    };
   };
   #targets.genericLinux.enable = true;
   # colorscheme = inputs.nix-colors.colorschemes.tokyo-night-storm;

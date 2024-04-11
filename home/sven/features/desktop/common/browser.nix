@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }: let
   # browser = ["vivaldi-stable.desktop"];
@@ -45,7 +46,7 @@ in {
         deutsch-de-language-pack
       ];
       search = {
-        default = "DuckDuckGo";
+        default = lib.mkDefault "DuckDuckGo";
         force = true;
       };
       settings = {
