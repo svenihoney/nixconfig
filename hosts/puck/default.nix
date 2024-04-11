@@ -75,6 +75,10 @@
     amdgpu.opencl = false;
   };
 
+  services.tlp.settings = {
+    STOP_CHARGE_THRESH_BAT0 = 1;
+  };
+
   # Usevia access to hidraw device
   services.udev.extraRules = ''
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="FC32", ATTRS{idProduct}=="0287", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"

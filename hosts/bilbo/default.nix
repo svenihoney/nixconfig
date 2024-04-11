@@ -116,5 +116,10 @@
   #   };
   # };
 
+  services.tlp.settings = {
+    START_CHARGE_THRESH_BAT0 = 40;
+    STOP_CHARGE_THRESH_BAT0 = 80;
+  };
+
   system.stateVersion = "23.11";
 }
