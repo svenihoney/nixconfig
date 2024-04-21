@@ -4,8 +4,8 @@
   lib,
   ...
 }: let
-  # browser = ["vivaldi-stable.desktop"];
-  browser = ["firefox.desktop"];
+  browser = ["vivaldi-stable.desktop"];
+  # browser = ["firefox.desktop"];
 
   # XDG MIME types
   associations = {
@@ -74,9 +74,11 @@ in {
   programs.vivaldi = {
     enable = true;
     extensions = [
-      {
-        id = "oboonakemofpalcgghocfoadofidjkkk"; # KeepassXC
-      }
+      {id = "oboonakemofpalcgghocfoadofidjkkk";} # KeepassXC}
+      {id = "edibdbjcniadpccecjdfdjjppcpchdlm";} # I still don't care about cookies
+      {id = "hfjbmagddngcpeloejdejnfgbamkjaeg";} # Vimium C
+      {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # ublock origin
+      {id = "emffkefkbkpkgpdeeooapgaicgmcbolj";} # Wikiwand
     ];
   };
 

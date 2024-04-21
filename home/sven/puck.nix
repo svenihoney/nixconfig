@@ -55,7 +55,7 @@
     }
   ];
 
-  home.packages = [pkgs.lenopow];
+  # home.packages = [pkgs.lenopow];
   # Qt does not read the fractional scalea correctly...
   home.sessionVariables = {
     QT_SCREEN_SCALE_FACTORS = "1.33;1";

@@ -5,12 +5,11 @@
       dracula-theme.theme-dracula
       ms-vscode.cpptools
       ms-vscode.cmake-tools
-      ms-python.python
       rust-lang.rust-analyzer
       asvetliakov.vscode-neovim
-      vscodevim.vim
       yzhang.markdown-all-in-one
       mkhl.direnv
+      ms-python.python
     ];
     userSettings = {
       #   "vim.handleKeys" = {

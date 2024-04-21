@@ -9,7 +9,7 @@ willi: (deploy "willi")
 home: (deploy "willi") (deploy "maja")
 
 deploy host=`hostname`:
-    deploy -s .#{{host}} -- --impure
+    deploy -s .#{{host}} -- --impure --verbose
 
 clean:
     nix-collect-garbage -d --delete-older-than 1d

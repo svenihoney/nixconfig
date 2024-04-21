@@ -55,7 +55,7 @@
       vim.opt.hlsearch = true                             -- highlight search results
 
       if vim.g.neovide then
-         vim.o.guifont = "JetBrains Mono:h9"
+         vim.o.guifont = "JetBrainsMono_Nerd_Font:h9"
          vim.g.neovide_cursor_animation_length = 0.01
          vim.g.neovide_cursor_trail_size = 0.4
       end

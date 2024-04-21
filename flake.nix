@@ -150,7 +150,20 @@
     stable-pkgs = forEachSystem (system:
       import nixpkgs-stable {
         inherit system;
-        # overlays = [nixgl.overlay (final: prev: {trunk = trunkOverlay; })];
+
+        overlays = [
+          (final: prev: {
+            python3 = prev.python3.override {
+              packageOverrides = pfinal: pprev: {
+                debugpy = pprev.debugpy.overrideAttrs (oldAttrs: {
+                  pytestCheckPhase = "true";
+                });
+              };
+            };
+            python3Packages = final.python3.pkgs;
+          })
+        ];
+
         # overlays = [nixgl.overlay];
         config.allowUnfree = true;
         config.allowAliases = true;

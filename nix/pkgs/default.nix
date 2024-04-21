@@ -1,6 +1,5 @@
 {pkgs ? import <nixpkgs> {}}: rec {
   # Packages with an actual source
-  lenopow = pkgs.callPackage ./lenopow {};
   switchaudio = pkgs.callPackage ./switchaudio {};
   # shellcolord = pkgs.callPackage ./shellcolord { };
   # trekscii = pkgs.callPackage ./trekscii { };
