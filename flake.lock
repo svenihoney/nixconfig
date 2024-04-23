@@ -638,15 +638,13 @@
       "locked": {
         "lastModified": 1713518146,
         "narHash": "sha256-rvw5Fcm1xxT/7OFwCNOQHqIhc3uEgwQWaPjBe6iZRmk=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
+        "path": "/nix/store/74x4p41wvvdxlpl4z07hxrgib9n221nn-source",
         "rev": "65cd13090f2316d49547a1cc1f6991d2da85395b",
-        "type": "github"
+        "type": "path"
       },
       "original": {
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "type": "github"
+        "id": "nixpkgs-trunk",
+        "type": "indirect"
       }
     },
     "nixpkgs_2": {

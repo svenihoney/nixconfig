@@ -9,7 +9,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
-    nixpkgs-trunk.url = "github:nixos/nixpkgs";
+    # nixpkgs-trunk.url = "github:nixos/nixpkgs";
 
     hardware.url = "github:nixos/nixos-hardware";
     # impermanence.url = "github:nix-community/impermanence";
@@ -61,6 +61,14 @@
 
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
 
+    # nixvim = {
+    #   url = "github:nix-community/nixvim";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # nixvim-stable = {
+    #   url = "github:nix-community/nixvim/nixos-23.11";
+    #   inputs.nixpkgs.follows = "nixpkgs-stable";
+    # };
     # flake-utils.url = "github:numtide/flake-utils";
 
     # disconic.url = "github:misterio77/disconic";
