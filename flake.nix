@@ -173,8 +173,6 @@
         ];
 
         # overlays = [nixgl.overlay];
-        config.allowUnfree = true;
-        config.allowAliases = true;
       });
     unstable-pkgs = forEachSystem (system:
       import nixpkgs {
@@ -186,8 +184,6 @@
         # config.allowUnfree = true;
         #   }; })];
         # overlays = [nixgl.overlay];
-        config.allowUnfree = true;
-        config.allowAliases = true;
       });
 
     nixosModules = import ./nix/modules/nixos;

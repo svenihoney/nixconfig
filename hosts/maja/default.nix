@@ -36,6 +36,7 @@
   networking = {
     networkmanager.enable = true;
     hostName = "maja";
+    hostId = "44526795"; # head -c4 /dev/urandom | od -A none -t x4
     useDHCP = false;
     # bridges = {
     #   br0 = {
@@ -76,6 +77,7 @@
     # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     # binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
+    supportedFilesystems = ["zfs"];
   };
 
   programs = {
@@ -83,7 +85,6 @@
     dconf.enable = true;
     # kdeconnect.enable = true;
   };
-  services.gvfs.enable = true;
 
   hardware = {
     opengl = {
@@ -93,35 +94,38 @@
   };
 
   # Usevia access to hidraw device
-  services.udev = {
-    extraRules = ''
-      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="fc32", ATTRS{idProduct}=="0287", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
-      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="2717", ATTRS{idProduct}=="d001", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
-    '';
-    packages = [pkgs.qmk-udev-rules];
-  };
-  services.udisks2.enable = true;
-  services.fwupd.enable = true;
+  services = {
+    gvfs.enable = true;
+    udev = {
+      extraRules = ''
+        KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="fc32", ATTRS{idProduct}=="0287", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+        KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="2717", ATTRS{idProduct}=="d001", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+      '';
+      packages = [pkgs.qmk-udev-rules];
+    };
+    udisks2.enable = true;
+    fwupd.enable = true;
 
-  services.btrbk = {
-    instances.local = {
-      onCalendar = "hourly";
-      settings = {
-        # ssh_identity = "/etc/btrbk_key"; # NOTE: must be readable by user/group btrbk
-        # ssh_user = "btrbk";
-        stream_compress = "lz4";
+    btrbk = {
+      instances.local = {
+        onCalendar = "hourly";
+        settings = {
+          # ssh_identity = "/etc/btrbk_key"; # NOTE: must be readable by user/group btrbk
+          # ssh_user = "btrbk";
+          stream_compress = "lz4";
 
-        timestamp_format = "long";
-        snapshot_preserve_min = "8h";
-        snapshot_preserve = "48h";
+          timestamp_format = "long";
+          snapshot_preserve_min = "8h";
+          snapshot_preserve = "48h";
 
-        volume."/" = {
-          # target = "ssh://myhost/mnt/mybackups";
-          subvolume = {
-            home = {};
-            "home/sven/virtualmachines" = {};
+          volume."/" = {
+            # target = "ssh://myhost/mnt/mybackups";
+            subvolume = {
+              home = {};
+              "home/sven/virtualmachines" = {};
+            };
+            snapshot_dir = "/.snapshots";
           };
-          snapshot_dir = "/.snapshots";
         };
       };
     };
