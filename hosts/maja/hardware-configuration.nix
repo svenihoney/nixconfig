@@ -40,7 +40,7 @@
     fsType = "vfat";
   };
 
-  fileSystems."/home/sven/kunden/vorwerk/image/build" = {
+  fileSystems."/home/sven/kunden/vorwerk/image" = {
     device = "/dev/disk/by-uuid/a66ca43f-d777-4f0f-afbe-c6398bcb620a";
     fsType = "ext4";
   };

@@ -1,14 +1,18 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }: {
+  home.packages = [
+    pkgs.neovide
+  ];
+
   programs.neovim = {
     enable = true;
     # package = pkgs.neovim-nightly;
+    viAlias = true;
     vimAlias = true;
-    vimdiffAlias = true;
+    # vimdiffAlias = true;
     # withNodeJs = true;
 
     plugins = with pkgs.vimPlugins; [
@@ -41,16 +45,23 @@
       nvim-navic
       dressing-nvim
       aerial-nvim
+      neogit
+      diffview-nvim
 
       # project management
       project-nvim
       neoconf-nvim
       persistence-nvim
+      direnv-vim
+
+      # compilation
+      overseer-nvim
 
       # smart typing
       indent-blankline-nvim
       guess-indent-nvim
       vim-illuminate
+      sleuth
 
       # LSP
       nvim-lspconfig
@@ -61,10 +72,6 @@
       # nvim-code-action-menu # code action menu
       neodev-nvim
       # SchemaStore-nvim # load known formats for json and yaml
-      clangd_extensions-nvim
-
-      # development
-      cmake-tools-nvim
 
       # cmp plugins
       nvim-cmp # completion plugin
@@ -108,6 +115,14 @@
       neotest
       neotest-rust
 
+      # Lang: C++
+      cmake-tools-nvim
+      clangd_extensions-nvim
+      # Lang: Python
+      nvim-dap-python
+      neotest-python
+      # venv-selector-nvim
+
       lazy-nvim
       vim-startuptime
     ];
@@ -121,6 +136,8 @@
       # LazyVim defaults
       stylua
       shfmt
+      statix
+      lua-language-server
 
       # Markdown extra
       # nodePackages.markdownlint-cli
@@ -152,6 +169,7 @@
           { import = "lazyvim.plugins.extras.editor.leap" },
           { import = "lazyvim.plugins.extras.editor.navic" },
           { import = "lazyvim.plugins.extras.lang.clangd" },
+          { import = "lazyvim.plugins.extras.lang.python" },
           -- { import = "lazyvim.plugins.extras.lang.docker" },
           -- { import = "lazyvim.plugins.extras.lang.json" },
           -- { import = "lazyvim.plugins.extras.lang.markdown" },
@@ -159,6 +177,7 @@
           -- { import = "lazyvim.plugins.extras.lang.yaml" },
           { import = "lazyvim.plugins.extras.test.core" },
           -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
+          { import = "lazyvim.plugins.extras.util.project" },
           -- import/override with your plugins
           { import = "plugins" },
         },
@@ -191,7 +210,7 @@
           },
         dev = {
           path = "${pkgs.vimUtils.packDir config.programs.neovim.finalPackage.passthru.packpathDirs}/pack/myNeovimPackages/start",
-          patterns = {"folke", "nvim-telescope", "hrsh7th", "akinsho", "stevearc", "LazyVim", "catppuccin", "saadparwaiz1", "nvimdev", "rafamadriz", "lewis6991", "lukas-reineke", "nvim-lualine", "L3MON4D3", "williamboman", "echasnovski", "nvim-neo-tree", "MunifTanjim", "mfussenegger", "rcarriga", "neovim", "nvim-pack", "nvim-treesitter", "windwp", "JoosepAlviste", "nvim-tree", "nvim-lua", "RRethy", "dstein64", "Saecki", "ggandor", "iamcco", "nvim-neotest", "rouge8", "theHamsta", "SmiteshP", "jbyuki", "simrat39", "b0o", "tpope", "kosayoda" },
+          patterns = {"folke", "nvim-telescope", "hrsh7th", "akinsho", "stevearc", "LazyVim", "catppuccin", "saadparwaiz1", "nvimdev", "rafamadriz", "lewis6991", "lukas-reineke", "nvim-lualine", "L3MON4D3", "williamboman", "echasnovski", "nvim-neo-tree", "MunifTanjim", "mfussenegger", "rcarriga", "neovim", "nvim-pack", "nvim-treesitter", "windwp", "JoosepAlviste", "nvim-tree", "nvim-lua", "RRethy", "dstein64", "Saecki", "ggandor", "iamcco", "nvim-neotest", "rouge8", "theHamsta", "SmiteshP", "jbyuki", "simrat39", "b0o", "tpope", "kosayoda", "NeogitOrg", "p00f", "sindrets", "ahmedkhalf", "stevearc", "direnv" },
         },
         install = {
           missing = false,

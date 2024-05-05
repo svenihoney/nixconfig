@@ -2,6 +2,7 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 local opt = vim.opt
+local global = vim.global
 
 opt.completeopt = "menu,menuone,noselect,noinsert"
 opt.conceallevel = 0 -- So that `` is visible in markdown
@@ -9,14 +10,14 @@ opt.wrap = true      -- Enable line wrap
 
 --      vim.opt.number = true                                  -- show line numbers
 --      vim.opt.ruler = true
-opt.ttyfast = true                                 -- terminal acceleration
+opt.ttyfast = true -- terminal acceleration
 
 --
---      vim.opt.tabstop = 4                               -- 4 whitespaces for tabs visual presentation
---      vim.opt.shiftwidth = 4                            -- shift lines by 4 spaces
---      vim.opt.smarttab = true                                -- set tabs for a shifttabs logic
---      vim.opt.expandtab = true                               -- expand tabs into spaces
---      vim.opt.autoindent = true                              -- indent when moving to the next line while writing code
+opt.tabstop = 4       -- 4 whitespaces for tabs visual presentation
+opt.shiftwidth = 4    -- shift lines by 4 spaces
+opt.smarttab = true   -- set tabs for a shifttabs logic
+opt.expandtab = true  -- expand tabs into spaces
+opt.autoindent = true -- indent when moving to the next line while writing code
 --
 --      -- set cursorline                              -- shows line under the cursor's line
 --      vim.opt.showmatch = true                               -- shows matching part of bracket pairs (), [], {}
@@ -29,7 +30,7 @@ opt.ttyfast = true                                 -- terminal acceleration
 --
 --      vim.opt.backspace = indent,eol,start              -- backspace removes all (indents, EOLs, start) What is start?
 --
-opt.scrolloff = 10                            -- let 10 lines before/after cursor during scroll
+opt.scrolloff = 10 -- let 10 lines before/after cursor during scroll
 --
 --      vim.opt.clipboard = unnamed                       -- use system clipboard
 --
@@ -43,11 +44,11 @@ opt.scrolloff = 10                            -- let 10 lines before/after curso
 --      vim.opt.incsearch = true                                -- incremental search
 --      vim.opt.hlsearch = true                             -- highlight search results
 --
---      if vim.g.neovide then
---         vim.o.guifont = "JetBrainsMono_Nerd_Font:h9"
---         vim.g.neovide_cursor_animation_length = 0.01
---         vim.g.neovide_cursor_trail_size = 0.4
---      end
+if vim.g.neovide then
+    opt.guifont = "JetBrainsMono Nerd Font Mono:h9"
+    vim.g.neovide_cursor_animation_length = 0.01
+    vim.g.neovide_cursor_trail_size = 0.4
+end
 --
 --      vim.g.mapleader = " "
 --
@@ -56,4 +57,3 @@ opt.scrolloff = 10                            -- let 10 lines before/after curso
 --      -- This is going to get me cancelled
 --      vim.keymap.set("i", "jk", "<Esc>")
 --      vim.keymap.set("i", "pw", "<Esc>")
-

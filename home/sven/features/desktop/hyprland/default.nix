@@ -185,6 +185,7 @@ in {
             "SUPER, F3, exec, thunderbird"
             # "SUPER, F4, exec, teams-for-linux --enable-features=UseOzonePlatform --ozone-platform=wayland"
             "SUPER, F4, exec, fish -c ${editor}"
+            "SUPER SHIFT, F4, exec, neovide"
             "SUPER, F10, exec, ${slack}"
             "SUPER, F12, exec, hyprctl switchxkblayout brian-low-sofle-choc next"
             # "SUPER, F11, exec, ~/bin/switchaudio btoff"
