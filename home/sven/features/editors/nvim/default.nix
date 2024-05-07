@@ -116,7 +116,7 @@
       neotest-rust
 
       # Lang: C++
-      cmake-tools-nvim
+      # cmake-tools-nvim
       clangd_extensions-nvim
       # Lang: Python
       nvim-dap-python
@@ -138,6 +138,9 @@
       shfmt
       statix
       lua-language-server
+
+      # Nix
+      nil
 
       # Markdown extra
       # nodePackages.markdownlint-cli

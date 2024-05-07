@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkIf;
   hasPackage = pname: lib.any (p: p ? pname && p.pname == pname) config.home.packages;
-  hasRipgrep = hasPackage "ripgrep";
+  # hasRipgrep = hasPackage "ripgrep";
   hasExa = hasPackage "eza";
   hasNeovim = config.programs.neovim.enable;
   hasEmacs = config.programs.emacs.enable;
