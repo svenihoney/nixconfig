@@ -275,7 +275,7 @@ in {
         "float,title:(twinkle)"
         "float,title:(blueman-manager)"
 
-        "workspace 2,class:(vivaldi.*)"
+        "workspace 2,class:([Vv]ivaldi.*)"
         "workspace 2,class:(org.qutebrowser.qutebrowser)"
         "workspace 2,class:(firefox)"
 

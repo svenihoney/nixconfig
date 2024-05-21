@@ -5,7 +5,7 @@
 }: {
   imports = [
     inputs.hardware.nixosModules.lenovo-thinkpad-x1-extreme-gen2
-    inputs.hardware.nixosModules.common-gpu-intel
+    # inputs.hardware.nixosModules.common-gpu-intel
     inputs.hardware.nixosModules.common-pc-laptop
 
     # inputs.stylix-stable.nixosModules.stylix

@@ -216,15 +216,6 @@
   (setq comment-end "")
   )
 (add-hook 'qml-mode-hook 'my-qml-setup)
-(after! lsp-mode
-  (add-to-list 'lsp-language-id-configuration
-    '(qml-mode . "qml"))
-
-  (lsp-register-client
-    (make-lsp-client :new-connection (lsp-stdio-connection "/home/sven/DEUTA/Qt/6.3.1/gcc_64/bin/qmlls")
-                     :activation-fn (lsp-activate-on "qml")
-                     :server-id 'qmlls))
-  )
 
 ;; #################### PROGRAMMING / Rust
 
@@ -239,12 +230,6 @@
 
 ;; #################### XML
 
-(after! lsp-mode
-(setq lsp-xml-catalogs [
-                        "/home/sven/DEUTA/msgdb/deutamessagedatabase/catalog.xml"
-                        "/home/sven/DEUTA/qhitachi/modules/qdmi/messagedb/msgdb2cpp-customize.xsd"
-                        ])
-)
 (after! nxml-mode
   (setq nxml-child-indent 4)
 )
