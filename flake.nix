@@ -66,7 +66,7 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
     # nixvim-stable = {
-    #   url = "github:nix-community/nixvim/nixos-23.11";
+    #   url = "github:nix-community/nixvim/nixos-24.05";
     #   inputs.nixpkgs.follows = "nixpkgs-stable";
     # };
     # flake-utils.url = "github:numtide/flake-utils";

@@ -10,6 +10,7 @@
       yzhang.markdown-all-in-one
       mkhl.direnv
       ms-python.python
+      vadimcn.vscode-lldb
     ];
     userSettings = {
       #   "vim.handleKeys" = {

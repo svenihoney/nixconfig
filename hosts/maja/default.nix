@@ -67,7 +67,7 @@
     loader = {
       systemd-boot = {
         enable = true;
-        configurationLimit = 3;
+        configurationLimit = 10;
       };
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/efi";
@@ -87,10 +87,9 @@
   };
 
   hardware = {
-    opengl = {
-      enable = true;
-    };
-    amdgpu.amdvlk = true;
+    opengl.enable = true;
+    amdgpu.amdvlk.enable = true;
+    # amdgpu.opencl.enable = false;
   };
 
   # Usevia access to hidraw device

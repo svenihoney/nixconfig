@@ -123,6 +123,10 @@ in {
         swallow_regex = ["(org.wezfurlong.wezterm)" "(kitty)"];
       };
 
+      debug = {
+        disable_logs = true;
+      };
+
       decoration = {
         active_opacity = 1.0;
         inactive_opacity = 0.95;

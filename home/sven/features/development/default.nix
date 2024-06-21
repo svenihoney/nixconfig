@@ -13,12 +13,15 @@ with lib.hm.gvariant; {
     ./python.nix
   ];
 
-  home.packages = with pkgs; [
-    zeal
-    meld
-    kdiff3
-    # devenv
-  ];
+  home.packages = with pkgs;
+    [
+      zeal
+      meld
+      kdiff3
+      # devenv
+    ]
+    ++ lib.optionals
+    (builtins.hasAttr "devenv" pkgs) [devenv];
 
   dconf.settings = {
     "org/gnome/meld" = {

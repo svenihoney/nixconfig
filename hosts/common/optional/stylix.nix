@@ -10,6 +10,8 @@
   ];
 
   stylix = {
+    enable = true;
+
     cursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Classic";

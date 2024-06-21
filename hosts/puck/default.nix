@@ -68,11 +68,9 @@
   };
 
   hardware = {
-    opengl = {
-      enable = true;
-    };
-    amdgpu.amdvlk = true;
-    amdgpu.opencl = false;
+    opengl.enable = true;
+    amdgpu.amdvlk.enable = true;
+    # amdgpu.opencl.enable = false;
   };
 
   services.tlp.settings = {
