@@ -68,7 +68,7 @@
   };
 
   hardware = {
-    opengl.enable = true;
+    graphics.enable = true;
     amdgpu.amdvlk.enable = true;
     # amdgpu.opencl.enable = false;
   };

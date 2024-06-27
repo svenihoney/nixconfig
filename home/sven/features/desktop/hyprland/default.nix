@@ -107,7 +107,7 @@ in {
 
         touchpad = {
           natural_scroll = "no";
-          disable_while_typing = false;
+          disable_while_typing = true;
         };
 
         sensitivity = "0";

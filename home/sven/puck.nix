@@ -28,6 +28,8 @@
     ./features/development/syncthing.nix
 
     ./ssh/ssh-config.nix
+
+    ./features/work
   ];
 
   # wallpaper = outputs.wallpapers.aenami-lunar;

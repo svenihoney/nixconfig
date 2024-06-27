@@ -67,7 +67,7 @@
     loader = {
       systemd-boot = {
         enable = true;
-        configurationLimit = 10;
+        configurationLimit = 3;
       };
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/efi";
@@ -87,7 +87,7 @@
   };
 
   hardware = {
-    opengl.enable = true;
+    graphics.enable = true;
     amdgpu.amdvlk.enable = true;
     # amdgpu.opencl.enable = false;
   };
