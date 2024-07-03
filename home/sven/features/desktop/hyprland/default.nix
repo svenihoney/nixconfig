@@ -168,8 +168,9 @@ in {
       };
 
       exec = [
-        "${pkgs.swaybg}/bin/swaybg -i ${config.stylix.image} --mode center"
+        # "${pkgs.swaybg}/bin/swaybg -i ${config.stylix.image} --mode center"
         # "${pkgs.hyprland}/bin/hyprctl setcursor ${pointer.name} ${toString pointer.size}"
+        "${pkgs.hyprpaper}/bin/hyprpaper"
       ];
 
       bindl = [",switch:Lid Switch, exec, ${swaylock}"];
@@ -298,7 +299,7 @@ in {
           position = "${toString m.x}x${toString m.y}";
         in "${m.name},${
           if m.enabled
-          then "${resolution},${position},${m.scale},transform,${m.transform}"
+          then "${resolution},${position},${m.scale},transform,${m.transform},bitdepth,10"
           else "disable"
         }")
         (config.monitors);
@@ -306,18 +307,18 @@ in {
       # workspace =
       #   map (m: "${m.name},${m.workspace}")
       #   (lib.filter (m: m.enabled && m.workspace != null) config.monitors);
-      workspace = [
-        "1, defaultName:1, monitor:desc:Lenovo Group Limited LEN T27p-10 0x4E395246"
-        "2, defaultName:2, monitor:desc:Lenovo Group Limited LEN T27p-10 0x4E395246"
-        "3, defaultName:3, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
-        "4, defaultName:4, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
-        "5, defaultName:5"
-        "6, defaultName:6"
-        "7, defaultName:7, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
-        "8, defaultName:8"
-        "9, defaultName:9, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
-        "0, defaultName:0, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
-      ];
+      # workspace = [
+      #   "1, defaultName:1, monitor:desc:Lenovo Group Limited LEN T27p-10 0x4E395246"
+      #   "2, defaultName:2, monitor:desc:Lenovo Group Limited LEN T27p-10 0x4E395246"
+      #   "3, defaultName:3, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
+      #   "4, defaultName:4, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
+      #   "5, defaultName:5"
+      #   "6, defaultName:6"
+      #   "7, defaultName:7, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
+      #   "8, defaultName:8"
+      #   "9, defaultName:9, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
+      #   "0, defaultName:0, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
+      # ];
     };
     # This is order sensitive, so it has to come here.
     extraConfig = let

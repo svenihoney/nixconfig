@@ -15,12 +15,6 @@
       changeDirWidgetOptions = ["--preview 'tree -C {} | head -200'"];
       fileWidgetCommand = "fd --type f";
       fileWidgetOptions = ["--preview 'head {}'"];
-      colors = {
-        bg = "#1e1e1e";
-        "bg+" = "#1e1e1e";
-        fg = "#d4d4d4";
-        "fg+" = "#d4d4d4";
-      };
     };
   };
 }

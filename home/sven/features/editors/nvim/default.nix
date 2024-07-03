@@ -99,6 +99,7 @@
 
       # comments
       nvim-ts-context-commentstring
+      # ts-comments-nvim
       todo-comments-nvim
 
       # leap

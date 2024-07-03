@@ -63,5 +63,18 @@
     }
   ];
 
+  wayland.windowManager.hyprland.settings.workspace = [
+    "1, defaultName:1, monitor:desc:Lenovo Group Limited LEN T27p-10 0x4E395246"
+    "2, defaultName:2, monitor:desc:Lenovo Group Limited LEN T27p-10 0x4E395246"
+    "3, defaultName:3, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
+    "4, defaultName:4, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
+    "5, defaultName:5"
+    "6, defaultName:6"
+    "7, defaultName:7, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
+    "8, defaultName:8"
+    "9, defaultName:9, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
+    "0, defaultName:0, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
+  ];
+
   programs.waybar.settings.primary.output = ["DP-2"];
 }

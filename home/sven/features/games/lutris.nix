@@ -6,7 +6,10 @@
   imports = [
     ../desktop/common/wine.nix
   ];
-  home.packages = with pkgs; [lutris];
+  home.packages = with pkgs; [
+    lutris
+    teamspeak5_client
+  ];
 
   # home.persistence = {
   #   "/persist/home/${user}" = {
