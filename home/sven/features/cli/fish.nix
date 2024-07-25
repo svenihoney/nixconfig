@@ -54,6 +54,10 @@ in {
           name = "bass";
           src = pkgs.fishPlugins.bass.src;
         }
+        # {
+        #   name = "fifc";
+        #   src = pkgs.fishPlugins.fifc.src;
+        # }
       ];
 
       shellAbbrs = rec {

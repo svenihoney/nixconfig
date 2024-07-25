@@ -52,6 +52,10 @@
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   };
 
+  environment.etc.crypttab.text = ''
+    data UUID=c2bb0cf5-0d1a-4be1-a037-8643732fab89 /root/datakeyfile.key
+  '';
+
   powerManagement.powertop.enable = true;
   programs = {
     light.enable = true;
@@ -84,6 +88,12 @@
   '';
   services.udisks2.enable = true;
   services.fwupd.enable = true;
+
+  # Firewall for syncthing
+  networking.firewall = {
+    allowedTCPPorts = [22000];
+    allowedUDPPorts = [22000 21027];
+  };
 
   system.stateVersion = "23.11";
 }

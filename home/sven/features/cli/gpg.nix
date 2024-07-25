@@ -9,14 +9,9 @@
     if config.gtk.enable && builtins.hasAttr "pinentry-gnome3" pkgs
     then pkgs.pinentry-gnome3
     else pkgs.pinentry-curses;
-  pinentryConfig =
-    if builtins.compareVersions lib.version "24.05" < 0
-    then {
-      pinentryFlavor = "qt";
-    }
-    else {
-      pinentryPackage = pinentryPkg;
-    };
+  pinentryConfig = {
+    pinentryPackage = pinentryPkg;
+  };
 in {
   # home.packages = pinentry.packages;
 

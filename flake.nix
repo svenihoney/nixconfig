@@ -82,7 +82,7 @@
     self,
     nixpkgs,
     nixpkgs-stable,
-    nixpkgs-trunk,
+    # nixpkgs-trunk,
     home-manager,
     home-manager-stable,
     # flake-utils,
@@ -97,7 +97,7 @@
     # lib = nixpkgs-stable.lib // home-manager-stable.lib;
     # systems = ["x86_64-linux" "aarch64-linux"];
     systems = ["x86_64-linux"];
-    trunkOverlay = final: prev: {trunk = nixpkgs-trunk.legacyPackages.${prev.system};};
+    # trunkOverlay = final: prev: {trunk = nixpkgs-trunk.legacyPackages.${prev.system};};
     forEachSystem = nixpkgs.lib.genAttrs systems;
     genNixosConfig = hostName: {
       user,

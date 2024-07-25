@@ -11,7 +11,7 @@
     ./wlogout.nix
     ./wofi.nix
     ./zathura.nix
-    ./vimiv.nix
+    # ./vimiv.nix
     # ./wezterm.nix
     ./kitty.nix
     ./copyq.nix

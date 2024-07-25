@@ -34,8 +34,14 @@
       monospace = {
         # package = pkgs.julia-mono;
         # name = "Julia Mono";
+
         package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
         name = "JetBrains Mono Nerd Font";
+        # package = pkgs.nerdfonts.override {fonts = ["Cousine"];};
+        # name = "Cousine Nerd Font";
+        # package = pkgs.nerdfonts.override {fonts = ["Lilex"];};
+        # name = "Lilex Nerd Font";
+
         # package = pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" ]; };
         # name = "BlexMono Nerd Font";
       };
