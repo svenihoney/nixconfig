@@ -5,6 +5,7 @@
   ...
 }: {
   home.packages = with pkgs; [
-    cinnamon.warpinator
+    # cinnamon.warpinator
+    warpinator
   ];
 }

@@ -7,6 +7,7 @@
 }: {
   imports = [
     ./features/editors/emacs
+    ./features/editors/zed
     # ./features/editors/nvim/lsp.nix
     ./features/editors/vscode
     # ./features/desktop/common/keepassxc.nix

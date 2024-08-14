@@ -36,7 +36,6 @@
   browser = defaultApp "x-scheme-handler/https";
   # browser = "${pkgs.qutebrowser}/bin/qutebrowser";
   firefox = "${pkgs.firefox}/bin/firefox";
-  slack = "${pkgs.slack}/bin/slack";
   # editor = defaultApp "text/plain";
   editor = "${config.programs.emacs.package}/bin/emacs";
 in {
@@ -191,7 +190,6 @@ in {
             # "SUPER, F4, exec, teams-for-linux --enable-features=UseOzonePlatform --ozone-platform=wayland"
             "SUPER, F4, exec, fish -c ${editor}"
             "SUPER SHIFT, F4, exec, neovide"
-            "SUPER, F10, exec, ${slack}"
             "SUPER, F12, exec, hyprctl switchxkblayout brian-low-sofle-choc next"
             # "SUPER, F11, exec, ~/bin/switchaudio btoff"
             # "SUPER, F11, exec, ~/bin/switchaudio hdmi"
@@ -253,10 +251,8 @@ in {
             ["SUPER SHIFT,c,exec,${makoctl} dismiss"])
           # Launcher
           ++ (
-            lib.optionals config.programs.wofi.enable [
-              # "SUPER,x,exec,${wofi} -S drun -x 10 -y 10 -W 25% -H 60%"
-              "SUPER,d,exec,${wofi} -S drun"
-            ]
+            lib.optionals config.programs.wofi.enable
+            ["SUPER,d,exec,${wofi} -S drun"]
           )
           # ++ (lib.optionals config.programs.password-store.enable [
           #   ",Scroll_Lock,exec,${pass-wofi}" # fn+k

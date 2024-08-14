@@ -113,15 +113,15 @@
       nvim-dap-virtual-text
 
       # neotest
-      neotest
-      neotest-rust
+      #neotest
+      #neotest-rust
 
       # Lang: C++
       # cmake-tools-nvim
       clangd_extensions-nvim
       # Lang: Python
       nvim-dap-python
-      neotest-python
+      #neotest-python
       # venv-selector-nvim
 
       lazy-nvim
