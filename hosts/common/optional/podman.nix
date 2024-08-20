@@ -16,6 +16,7 @@ in {
     skopeo
     buildah
     docker-compose
+    passt
   ];
   # environment.persistence = {
   #   "/persist".directories = [
