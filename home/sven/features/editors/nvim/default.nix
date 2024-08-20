@@ -70,7 +70,7 @@
       null-ls-nvim
       nvim-lightbulb # lightbulb for quick actions
       # nvim-code-action-menu # code action menu
-      neodev-nvim
+      lazydev-nvim
       # SchemaStore-nvim # load known formats for json and yaml
 
       # cmp plugins
@@ -99,7 +99,7 @@
 
       # comments
       nvim-ts-context-commentstring
-      # ts-comments-nvim
+      ts-comments-nvim
       todo-comments-nvim
 
       # leap
