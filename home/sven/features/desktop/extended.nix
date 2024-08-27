@@ -9,7 +9,8 @@
     # ./sublime-music.nix
     # ./launcher.nix
     ./common/keepassxc.nix
-    ./common/joplin.nix
+    # ./common/joplin.nix
     ./common/warpinator.nix
+    ./common/obsidian.nix
   ];
 }
