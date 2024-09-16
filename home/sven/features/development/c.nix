@@ -15,6 +15,8 @@
     ninja
     gcc
     gdb
+
+    qtcreator
   ];
 
   home.sessionVariables.CMAKE_GENERATOR = "Ninja";

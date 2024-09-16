@@ -30,10 +30,10 @@
     };
     # nixgl.url = "github:guibou/nixGL";
 
-    nh = {
-      url = "github:viperml/nh";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nh = {
+    #   url = "github:viperml/nh";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     deploy-rs = {
       url = "github:serokell/deploy-rs";
@@ -75,6 +75,15 @@
     # website.url = "github:misterio77/website";
     # paste-misterio-me.url = "github:misterio77/paste.misterio.me";
     # yrmos.url = "github:misterio77/yrmos";
+
+    # nixos-cosmic = {
+    #   url = "github:lilyinstarlight/nixos-cosmic";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

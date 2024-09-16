@@ -5,7 +5,7 @@
   ...
 }: {
   home.packages = [
-    pkgs.gnome.gnome-boxes
+    pkgs.gnome-boxes
   ];
 
   dconf.settings = {

@@ -34,6 +34,8 @@ with self.unstable-pkgs.${system}; {
       pre-commit
       # rage
       sops
+
+      nh
     ];
 
     shellHook = ''

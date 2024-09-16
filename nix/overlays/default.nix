@@ -35,6 +35,8 @@ in {
   #   vimPlugins = prev.vimPlugins // final.callPackage ../pkgs/vim-plugins {};
   # };
 
+  # hyprpaper = inputs.hyprpaper.overlays.hyprpaper;
+
   # Modifies existing packages
   modifications = final: prev: {
     python311 = prev.python311.override {

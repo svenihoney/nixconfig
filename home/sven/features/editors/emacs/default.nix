@@ -69,5 +69,8 @@
   home.packages = with pkgs; [
     # Dash docs
     sqlite
+    # Emacs vterm
+    # libtool
+    # libvterm
   ];
 }

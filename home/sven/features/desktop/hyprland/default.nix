@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
 }: let
   swaylock = "${config.programs.swaylock.package}/bin/swaylock";
@@ -33,8 +34,9 @@
   defaultApp = type: "${gtk-launch} $(${xdg-mime} query default ${type})";
 
   terminal = config.home.sessionVariables.TERMINAL;
-  browser = defaultApp "x-scheme-handler/https";
+  # browser = defaultApp "x-scheme-handler/https";
   # browser = "${pkgs.qutebrowser}/bin/qutebrowser";
+  browser = "${pkgs.vivaldi}/bin/vivaldi";
   firefox = "${pkgs.firefox}/bin/firefox";
   # editor = defaultApp "text/plain";
   editor = "${config.programs.emacs.package}/bin/emacs";
@@ -52,7 +54,6 @@ in {
     grimblast
     # hyprslurp
     hyprpicker
-    hyprpaper
   ];
 
   # home.pointerCursor = {
@@ -62,6 +63,9 @@ in {
   #   gtk.enable = true;
   #   x11.enable = true;
   # };
+
+  # services.hyprpaper.enable = lib.mkForce false;
+  # services.hyprpaper.package = inputs.hyprpaper.overlays.hyprpaper.hyprpaper;
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -166,11 +170,11 @@ in {
         ];
       };
 
-      exec = [
-        # "${pkgs.swaybg}/bin/swaybg -i ${config.stylix.image} --mode center"
-        # "${pkgs.hyprland}/bin/hyprctl setcursor ${pointer.name} ${toString pointer.size}"
-        "${pkgs.hyprpaper}/bin/hyprpaper"
-      ];
+      # exec = [
+      #   # "${pkgs.swaybg}/bin/swaybg -i ${config.stylix.image} --mode center"
+      #   # "${pkgs.hyprland}/bin/hyprctl setcursor ${pointer.name} ${toString pointer.size}"
+      #   "${pkgs.hyprpaper}/bin/hyprpaper"
+      # ];
 
       bindl = [",switch:Lid Switch, exec, ${swaylock}"];
 
@@ -221,12 +225,12 @@ in {
             # "SUPERSHIFT,z,exec,${notify-send} -t 1000 $(${tly} time)" # Show current time
             "SUPERCONTROL,k,exec,${hyprctl} switchxkblayout brian-low-sofle-choc next"
           ]
-          ++ (lib.optionals config.targets.genericLinux.enable [
-            "SUPERSHIFT, F2, exec, nixGL ${browser}"
-          ])
-          ++ (lib.optionals (! config.targets.genericLinux.enable) [
-            "SUPERSHIFT, F2, exec, ${browser}"
-          ])
+          # ++ (lib.optionals config.targets.genericLinux.enable [
+          #   "SUPERSHIFT, F2, exec, nixGL ${browser}"
+          # ])
+          # ++ (lib.optionals (! config.targets.genericLinux.enable) [
+          #   "SUPERSHIFT, F2, exec, ${browser}"
+          # ])
           ++ (lib.optionals config.services.playerctld.enable [
             # Media control
             ",XF86AudioNext,exec,${playerctl} next"

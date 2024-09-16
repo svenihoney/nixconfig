@@ -54,6 +54,7 @@
         applications = 9;
         desktop = 9;
         terminal = 10;
+        popups = 10;
       };
     };
 

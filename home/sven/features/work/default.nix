@@ -4,16 +4,11 @@
   pkgs,
   ...
 }: {
-  home.packages = with pkgs; [slack tio];
+  imports = [
+    ../desktop/common/slack.nix
+  ];
+  home.packages = with pkgs; [tio];
   # home.packages = with pkgs; [qtcreator qt6.full slack tio];
-  wayland.windowManager.hyprland.settings.bind = let
-    slack = "${pkgs.slack}/bin/slack";
-  in ["SUPER, F10, exec, ${slack}"];
-
-  xdg.mimeApps.defaultApplications = {
-    # "x-scheme-handler/msteams" = "teams-for-linux.desktop";
-    "x-scheme-handler/slack" = "slack.desktop";
-  };
 
   programs.git.includes = [
     {

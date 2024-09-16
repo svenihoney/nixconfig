@@ -11,6 +11,8 @@
     inputs.home-manager.nixosModules.home-manager
     # inputs.stylix.nixosModules.stylix
 
+    # inputs.nixos-cosmic.nixosModules.default
+
     ./hardware-configuration.nix
 
     ../common/global
@@ -32,6 +34,8 @@
     ../common/optional/nfs.nix
     ../common/optional/stylix.nix
   ];
+
+  # services.desktopManager.cosmic.enable = true;
 
   networking = {
     networkmanager.enable = true;
@@ -79,6 +83,7 @@
     # binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
     # supportedFilesystems = ["zfs"];
   };
+  zramSwap.enable = true;
 
   programs = {
     adb.enable = true;
