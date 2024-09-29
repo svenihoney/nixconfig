@@ -6,8 +6,8 @@
 }: {
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    # wlr.enable = true;
+    # extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
   services.geoclue2.enable = true;
@@ -15,7 +15,7 @@
     hyprland = {
       enable = true;
       xwayland.enable = true;
-      portalPackage = pkgs.xdg-desktop-portal-gtk;
+      # portalPackage = pkgs.xdg-desktop-portal-gtk;
     };
   };
   security.pam.services = {swaylock = {};};

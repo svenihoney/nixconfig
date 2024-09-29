@@ -120,7 +120,7 @@
 
           timestamp_format = "long";
           snapshot_preserve_min = "8h";
-          snapshot_preserve = "48h";
+          snapshot_preserve = "24h 7d";
 
           volume."/" = {
             # target = "ssh://myhost/mnt/mybackups";

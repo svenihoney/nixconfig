@@ -1,14 +1,21 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   home.packages = [
     pkgs.neovide
   ];
 
-  programs.neovim = {
+  programs.nixvim = {
     enable = true;
+    defaultEditor = true;
+    imports = [./config];
+  };
+
+  programs.neovim = {
+    enable = false;
     # package = pkgs.neovim-nightly;
     viAlias = true;
     vimAlias = true;

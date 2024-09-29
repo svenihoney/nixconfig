@@ -33,4 +33,15 @@
     };
     ignores = [".direnv" "result"];
   };
+
+  programs = {
+    lazygit = {
+      enable = true;
+    };
+    fish = {
+      shellAliases = {
+        lg = "lazygit";
+      };
+    };
+  };
 }

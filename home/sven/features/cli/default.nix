@@ -58,6 +58,7 @@
     # inputs.nh.default # nixos-rebuild and home-manager CLI wrapper
     zip
     unzip
+    ouch
   ];
 
   programs = {

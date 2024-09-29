@@ -14,6 +14,7 @@
   imports =
     [
       # inputs.impermanence.nixosModules.home-manager.impermanence
+      inputs.nixvim.homeManagerModules.nixvim
 
       ../features/cli
       ../features/editors/nvim
@@ -43,8 +44,6 @@
   programs = {
     home-manager.enable = true;
     git.enable = true;
-
-    neovim.defaultEditor = true;
   };
 
   home = {

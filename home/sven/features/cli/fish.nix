@@ -93,7 +93,7 @@ in {
         # Clear screen and scrollback
         clear = "printf '\\033[2J\\033[3J\\033[1;1H'";
 
-        cat = "${pkgs.bat}/bin/bat";
+        cat = "${pkgs.bat}/bin/bat --paging=never";
         # ".j" = "${pkgs.just}/bin/just --justfile ~/.user.justfile";
         less = ''${pkgs.bat}/bin/bat --paging=always --pager "${pkgs.less}/bin/less -RF"'';
         man = "${pkgs.bat-extras.batman}/bin/batman";

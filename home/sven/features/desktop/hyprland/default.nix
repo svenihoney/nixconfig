@@ -175,6 +175,11 @@ in {
       #   # "${pkgs.hyprland}/bin/hyprctl setcursor ${pointer.name} ${toString pointer.size}"
       #   "${pkgs.hyprpaper}/bin/hyprpaper"
       # ];
+      exec-once = [
+        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+        "dbus-update-activation-environment --systemd --all"
+        "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+      ];
 
       bindl = [",switch:Lid Switch, exec, ${swaylock}"];
 
@@ -299,7 +304,8 @@ in {
           position = "${toString m.x}x${toString m.y}";
         in "${m.name},${
           if m.enabled
-          then "${resolution},${position},${m.scale},transform,${m.transform},bitdepth,10"
+          # then "${resolution},${position},${m.scale},transform,${m.transform},bitdepth,10"
+          then "${resolution},${position},${m.scale},transform,${m.transform}"
           else "disable"
         }")
         (config.monitors);
