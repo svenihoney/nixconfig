@@ -71,6 +71,8 @@
     # };
     # flake-utils.url = "github:numtide/flake-utils";
 
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
     # disconic.url = "github:misterio77/disconic";
     # website.url = "github:misterio77/website";
     # paste-misterio-me.url = "github:misterio77/paste.misterio.me";
@@ -89,10 +91,10 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    svenivim = {
-      url = "git+https://git.effeffcee.de/sven/nixvim.git";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # svenivim = {
+    #   url = "git+https://git.effeffcee.de/sven/nixvim.git";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = {
@@ -103,9 +105,11 @@
     home-manager,
     home-manager-stable,
     # flake-utils,
+    flake-parts,
     deploy-rs,
     pre-commit-hooks,
     # nixgl,
+    nixvim,
     sops-nix,
     ...
   } @ inputs: let
@@ -171,6 +175,13 @@
           pkgs = self.unstable-pkgs.${hostPlatform};
           extraSpecialArgs = {inherit inputs outputs;};
         };
+    nvim-flake = import ./home/sven/features/editors/nvim/flake.nix;
+    nvim-outputs = nvim-flake.outputs {
+      inherit self;
+      inherit nixpkgs;
+      inherit nixvim;
+      inherit flake-parts;
+    };
   in {
     # inherit lib;
     stable-pkgs = forEachSystem (system:
@@ -226,5 +237,7 @@
       nixpkgs.lib.mapAttrs genNixosConfig (self.hosts.nixos or {});
     homeConfigurations =
       nixpkgs.lib.mapAttrs genHomeConfig (self.hosts.homeManager or {});
+
+    # packages = forEachSystem (?inherit nvim-outputs.packages.default);
   };
 }
