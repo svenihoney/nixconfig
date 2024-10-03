@@ -73,7 +73,7 @@ let
       address = "bilbo";
       remoteBuild = false;
       user = "fischer";
-      stable = true;
+      stable = false;
     };
   };
 

@@ -274,6 +274,24 @@
       };
     }
     {
+      key = "öd";
+      mode = ["n"];
+      action = "<Cmd>lua vim.diagnostic.goto_prev()<CR>";
+      options = {
+        silent = true;
+        desc = "Previous Diagnostic";
+      };
+    }
+    {
+      key = "äd";
+      mode = ["n"];
+      action = "<Cmd>lua vim.diagnostic.goto_next()<CR>";
+      options = {
+        silent = true;
+        desc = "Next Diagnostic";
+      };
+    }
+    {
       key = "<leader>cf";
       mode = ["n" "v"];
       # action = "<Cmd>lua vim.lsp.buf.format({ async = true, range = { [\"start\"] = vim.api.nvim_buf_get_mark(0, \"<\"), [\"end\"] = vim.api.nvim_buf_get_mark(0, \">\"), } })<CR>";
@@ -281,6 +299,14 @@
       options = {
         silent = true;
         desc = "Format with LSP";
+      };
+    }
+    {
+      key = "<leader>tl";
+      mode = ["n"];
+      action.__raw = ''require("lsp_lines").toggle'';
+      options = {
+        desc = "Toggle LSP inline diagnostic";
       };
     }
   ];
