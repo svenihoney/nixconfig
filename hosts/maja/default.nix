@@ -130,6 +130,13 @@
             };
             snapshot_dir = "/.snapshots";
           };
+          volume."/home/sven/kunden/vorwerk/image" = {
+            # target = "ssh://myhost/mnt/mybackups";
+            subvolume = {
+              "." = {};
+            };
+            snapshot_dir = "/home/sven/kunden/vorwerk/image/.snapshots";
+          };
         };
       };
     };

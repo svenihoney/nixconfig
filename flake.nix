@@ -91,6 +91,11 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Emacs
+    nix-doom-emacs-unstraightened = {
+      url = "github:marienz/nix-doom-emacs-unstraightened";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # svenivim = {
     #   url = "git+https://git.effeffcee.de/sven/nixvim.git";
     #   inputs.nixpkgs.follows = "nixpkgs";

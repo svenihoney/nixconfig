@@ -34,8 +34,8 @@
   #targets.genericLinux.enable = true;
   # colorscheme = inputs.nix-colors.colorschemes.tokyo-night-storm;
   # wallpaper = outputs.wallpapers.watercolor-beach;
-  programs.emacs.package = pkgs.emacs29-pgtk;
-  services.emacs.package = pkgs.emacs29-pgtk;
+  programs.emacs.package = pkgs.emacs30-pgtk;
+  # services.emacs.package = pkgs.emacs30-pgtk;
 
   #  ------   -----   ------
   # | DP-3 | | DP-1| | DP-2 |

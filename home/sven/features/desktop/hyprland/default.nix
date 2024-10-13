@@ -39,7 +39,8 @@
   browser = "${pkgs.vivaldi}/bin/vivaldi";
   firefox = "${pkgs.firefox}/bin/firefox";
   # editor = defaultApp "text/plain";
-  editor = "${config.programs.emacs.package}/bin/emacs";
+  # editor = "${config.programs.emacs.package}/bin/emacs";
+  editor = "${config.programs.doom-emacs.finalEmacsPackage}/bin/emacs";
 in {
   imports = [
     ../common
@@ -177,9 +178,10 @@ in {
       # ];
       exec-once = [
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-        "dbus-update-activation-environment --systemd --all"
+        # "dbus-update-activation-environment --systemd --all"
         "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
       ];
+      env = "XDG_SESSION_DESKTOP,Hyprland";
 
       bindl = [",switch:Lid Switch, exec, ${swaylock}"];
 

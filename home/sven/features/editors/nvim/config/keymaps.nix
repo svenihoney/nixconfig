@@ -49,16 +49,27 @@
       mode = ["n"];
       key = "<leader>o-";
       action = "<cmd>Oil<cr>";
+      # action = "<cmd>:lua MiniFiles.open()<cr>";
       options = {
-        desc = "Open Oil file manager";
+        desc = "Open file manager";
       };
     }
+    # Git
     {
       mode = ["n"];
       key = "<leader>gg";
       action = "<cmd>Neogit<cr>";
       options = {
         desc = "Open Neogit";
+      };
+    }
+    # Maximize window
+    {
+      mode = ["n"];
+      key = "<leader>wm";
+      action = "<C-w>T";
+      options = {
+        desc = "Maximize window";
       };
     }
   ];

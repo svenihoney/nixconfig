@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   plugins = {
-    lsp-format.enable = true;
+    # lsp-format.enable = true;
     lsp = {
       enable = true;
       servers = {
@@ -15,7 +15,7 @@
         #   enable = true;
         # };
         # Nix
-        nil-ls = {
+        nil_ls = {
           enable = true;
           settings.formatting.command = ["${pkgs.alejandra}/bin/alejandra"];
         };
@@ -29,7 +29,7 @@
         #   # };
         # };
         # ruff-lsp.enable = true;
-        # pyright.enable = true;
+        basedpyright.enable = true;
         # # CSS
         # cssls = {
         #     enable = true;

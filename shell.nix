@@ -9,6 +9,7 @@ with self.unstable-pkgs.${system}; {
       # cachix
       deploy-rs
       nil
+      nixd
       # nix-build-uncached
       # nix-eval-jobs
       # nixpkgs-fmt

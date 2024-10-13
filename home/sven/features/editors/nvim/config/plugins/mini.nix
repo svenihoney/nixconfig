@@ -35,8 +35,31 @@
           #   # '';
           # };
         };
+        bufremove = {};
+        files = {};
       };
       mockDevIcons = true;
     };
   };
+  keymaps = [
+    # mini.bufremove
+    {
+      key = "<leader>bd";
+      mode = ["n"];
+      action = ":lua MiniBufremove.delete(0, false)<CR>";
+      options = {
+        silent = true;
+        desc = "Delete buffer";
+      };
+    }
+    {
+      key = "<leader>bD";
+      mode = ["n"];
+      action = ":lua MiniBufremove.delete(0, true)<CR>";
+      options = {
+        silent = true;
+        desc = "Delete buffer (force)";
+      };
+    }
+  ];
 }

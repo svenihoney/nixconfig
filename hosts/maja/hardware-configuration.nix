@@ -41,8 +41,9 @@
   };
 
   fileSystems."/home/sven/kunden/vorwerk/image" = {
-    device = "/dev/disk/by-uuid/a66ca43f-d777-4f0f-afbe-c6398bcb620a";
-    fsType = "ext4";
+    device = "/dev/disk/by-uuid/730ca35b-b956-4342-a1bf-645799a821f6";
+    fsType = "btrfs";
+    options = ["compress=zstd"];
   };
 
   swapDevices = [
