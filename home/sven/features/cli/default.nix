@@ -32,7 +32,6 @@
     procs
 
     ncdu # TUI disk usage
-    eza # Better ls
     ripgrep # Better grep
     fd # Better find
     file
@@ -58,11 +57,17 @@
     # inputs.nh.default # nixos-rebuild and home-manager CLI wrapper
     zip
     unzip
-    ouch
   ];
 
   programs = {
     zellij.enable = true;
     # thefuck.enable = true;
+    eza = {
+      # Better ls
+      enable = true;
+      git = false;
+      icons = "auto";
+      extraOptions = ["--hyperlink"];
+    };
   };
 }

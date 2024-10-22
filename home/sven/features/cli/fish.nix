@@ -1,12 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: let
-  inherit (lib) mkIf;
-  hasPackage = pname: lib.any (p: p ? pname && p.pname == pname) config.home.packages;
-in {
+{pkgs, ...}: {
   home = {
     # Fish plugin prerequisites
     packages = with pkgs; [
@@ -19,12 +11,6 @@ in {
     zoxide = {
       enable = true;
       enableFishIntegration = true;
-    };
-    eza = {
-      enable = true;
-      git = false;
-      icons = true;
-      extraOptions = ["--hyperlink"];
     };
 
     fish = {
@@ -52,7 +38,7 @@ in {
         # }
       ];
 
-      shellAbbrs = rec {
+      shellAbbrs = {
         jqless = "jq -C | less -r";
 
         n = "nix";
