@@ -176,8 +176,7 @@
 
 ;; #################### LSP
 ;; ccls / clangd
-(setq lsp-clients-clangd-args '("-j=3"
-                                "--background-index"
+(setq lsp-clients-clangd-args '("--background-index"
                                 "--clang-tidy"
                                 "--completion-style=detailed"
                                 "--cross-file-rename"

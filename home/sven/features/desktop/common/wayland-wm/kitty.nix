@@ -27,7 +27,8 @@ in {
 
       tab_bar_style = "powerline";
       tab_separator = " ┇";
-      tab_powerline_style = "slanted";
+      # tab_powerline_style = "slanted";
+      tab_powerline_style = "round";
 
       # nnn
       allow_remote_control = "yes";

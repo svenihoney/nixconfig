@@ -24,12 +24,15 @@
       color.ui = "auto";
     };
     lfs.enable = true;
-    delta = {
+    # delta = {
+    #   enable = true;
+    #   options = {
+    #     side-by-side = true;
+    #     syntax-theme = "base16-stylix";
+    #   };
+    # };
+    difftastic = {
       enable = true;
-      options = {
-        side-by-side = true;
-        syntax-theme = "base16-stylix";
-      };
     };
     ignores = [".direnv" "result"];
   };

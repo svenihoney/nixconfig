@@ -41,6 +41,10 @@
         # C / C++
         clangd = {
           enable = true;
+          # extraOptions = "--log=verbose";
+          # cmd = ["/opt/veld/2.0.0/sysroots/x86_64-pokysdk-linux/usr/bin/clangd" "--log=verbose"];
+          cmd = ["/opt/veld/2.0.0/sysroots/x86_64-pokysdk-linux/usr/bin/clangd"];
+          # extraOptions = { log = "verbose"; };
         };
       };
       #  keymaps.lspBuf = {
@@ -62,6 +66,9 @@
       enable = true;
     };
 
+    clangd-extensions = {
+      enable = true;
+    };
     # none-ls = {
     #   enable = true;
     #   enableLspFormat = true;
@@ -307,6 +314,14 @@
       action.__raw = ''require("lsp_lines").toggle'';
       options = {
         desc = "Toggle LSP inline diagnostic";
+      };
+    }
+    {
+      key = "<leader>po";
+      mode = ["n"];
+      action = "<Cmd>ClangdSwitchSourceHeader<CR>";
+      options = {
+        desc = "Switch between source and header";
       };
     }
   ];

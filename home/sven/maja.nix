@@ -34,7 +34,7 @@
   #targets.genericLinux.enable = true;
   # colorscheme = inputs.nix-colors.colorschemes.tokyo-night-storm;
   # wallpaper = outputs.wallpapers.watercolor-beach;
-  programs.emacs.package = pkgs.emacs30-pgtk;
+  # programs.emacs.package = pkgs.emacs30-pgtk;
   # services.emacs.package = pkgs.emacs30-pgtk;
 
   #  ------   -----   ------

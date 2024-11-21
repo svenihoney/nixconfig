@@ -74,6 +74,7 @@ in {
 
     # xwayland.enable = true;
     systemd.enable = true;
+    systemd.variables = ["--all"];
     # wrapperFeatures.gtk = true;
 
     settings = {
@@ -143,9 +144,11 @@ in {
           new_optimizations = true;
           ignore_opacity = true;
         };
-        drop_shadow = true;
-        shadow_range = 12;
-        shadow_offset = "3 3";
+        shadow = {
+          enabled = true;
+          range = 12;
+          offset = "3 3";
+        };
       };
 
       animations = {
@@ -176,12 +179,16 @@ in {
       #   # "${pkgs.hyprland}/bin/hyprctl setcursor ${pointer.name} ${toString pointer.size}"
       #   "${pkgs.hyprpaper}/bin/hyprpaper"
       # ];
-      exec-once = [
-        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-        # "dbus-update-activation-environment --systemd --all"
-        "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+      # exec-once = [
+      # "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+      # "dbus-update-activation-environment --systemd --all"
+      # "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+      # ];
+      env = [
+        "XDG_SESSION_DESKTOP,Hyprland"
+        "NIXOS_OZONE_WL,1"
+        "ELECTRON_OZONE_PLATFORM_HINT,wayland"
       ];
-      env = "XDG_SESSION_DESKTOP,Hyprland";
 
       bindl = [",switch:Lid Switch, exec, ${swaylock}"];
 

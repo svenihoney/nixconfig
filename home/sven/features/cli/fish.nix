@@ -32,6 +32,19 @@
           name = "bass";
           src = pkgs.fishPlugins.bass.src;
         }
+        {
+          name = "autopairs";
+          src = pkgs.fishPlugins.autopair.src;
+        }
+        {
+          name = "puffer-fish";
+          src = pkgs.fetchFromGitHub {
+            owner = "nickeb96";
+            repo = "puffer-fish";
+            rev = "12d062e";
+            sha256 = "sha256-2niYj0NLfmVIQguuGTA7RrPIcorJEPkxhH6Dhcy+6Bk=";
+          };
+        }
         # {
         #   name = "fifc";
         #   src = pkgs.fishPlugins.fifc.src;

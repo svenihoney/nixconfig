@@ -72,5 +72,22 @@
         desc = "Maximize window";
       };
     }
+    # Reselect on indentation
+    {
+      mode = ["v"];
+      key = ">";
+      action = ">gv";
+      options = {
+        desc = "Indent lines";
+      };
+    }
+    {
+      mode = ["v"];
+      key = "<";
+      action = "<gv";
+      options = {
+        desc = "Unindent lines";
+      };
+    }
   ];
 }

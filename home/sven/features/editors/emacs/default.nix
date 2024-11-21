@@ -73,7 +73,7 @@
 
   programs.doom-emacs = {
     enable = true;
-    emacs = pkgs.emacs30-pgtk;
+    emacs = pkgs.emacs29-pgtk;
     doomDir = ./doom.d;
     experimentalFetchTree = true; # Disable if there are fetcher issues
     extraPackages = epkgs:
