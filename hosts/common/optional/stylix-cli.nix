@@ -33,7 +33,7 @@
     # };
 
     # MilkyWay from KDE
-    image = lib.mkDefault "${pkgs.plasma-workspace-wallpapers}/share/wallpapers/MilkyWay/contents/images/5120x2880.png";
+    image = lib.mkDefault ./black.png;
 
     # Chalk board
     # image = pkgs.fetchurl {

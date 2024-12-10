@@ -5,6 +5,7 @@ in {
     enable = true;
     options = {
       selection-clipboard = "clipboard";
+      database = "sqlite";
       # font = "${config.fontProfiles.regular.family} 12";
       # recolor = true;
       # default-bg = "#${colors.base00}";

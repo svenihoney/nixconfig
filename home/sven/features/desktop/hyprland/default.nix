@@ -12,7 +12,7 @@
   playerctl = "${config.services.playerctld.package}/bin/playerctl";
   playerctld = "${config.services.playerctld.package}/bin/playerctld";
   makoctl = "${config.services.mako.package}/bin/makoctl";
-  wofi = "${config.programs.wofi.package}/bin/wofi";
+  # wofi = "${config.programs.wofi.package}/bin/wofi";
   copyq = "${config.services.copyq.package}/bin/copyq";
   # pass-wofi = "${
   #     pkgs.pass-wofi.override {
@@ -270,7 +270,11 @@ in {
           # Launcher
           ++ (
             lib.optionals config.programs.wofi.enable
-            ["SUPER,d,exec,${wofi} -S drun"]
+            ["SUPER,d,exec,${config.programs.wofi.package}/bin/wofi -S drun"]
+          )
+          ++ (
+            lib.optionals config.programs.fuzzel.enable
+            ["SUPER,d,exec,${pkgs.fuzzel}/bin/fuzzel"]
           )
           # ++ (lib.optionals config.programs.password-store.enable [
           #   ",Scroll_Lock,exec,${pass-wofi}" # fn+k

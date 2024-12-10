@@ -43,7 +43,7 @@
   fileSystems."/home/sven/kunden/vorwerk/image" = {
     device = "/dev/disk/by-uuid/730ca35b-b956-4342-a1bf-645799a821f6";
     fsType = "btrfs";
-    options = ["compress=zstd"];
+    options = ["subvol=@" "compress=zstd"];
   };
 
   swapDevices = [

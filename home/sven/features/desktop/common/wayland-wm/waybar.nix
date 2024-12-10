@@ -25,7 +25,7 @@
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   playerctld = "${pkgs.playerctl}/bin/playerctld";
   pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
-  wofi = "${pkgs.wofi}/bin/wofi";
+  # wofi = "${pkgs.wofi}/bin/wofi";
 
   # Function to simplify making waybar outputs
   jsonOutput = name: {
@@ -186,15 +186,15 @@ in {
           format = "{}";
           on-click = "";
         };
-        "custom/menu" = {
-          return-type = "json";
-          exec = jsonOutput "menu" {
-            text = "";
-            tooltip = ''
-              $(${cat} /etc/os-release | ${grep} PRETTY_NAME | ${cut} -d '"' -f2)'';
-          };
-          on-click = "${wofi} -S drun -x 10 -y 10 -W 25% -H 60%";
-        };
+        # "custom/menu" = {
+        #   return-type = "json";
+        #   exec = jsonOutput "menu" {
+        #     text = "";
+        #     tooltip = ''
+        #       $(${cat} /etc/os-release | ${grep} PRETTY_NAME | ${cut} -d '"' -f2)'';
+        #   };
+        #   on-click = "${wofi} -S drun -x 10 -y 10 -W 25% -H 60%";
+        # };
         "custom/hostname" = {exec = "echo $USER@$HOSTNAME";};
         "custom/unread-mail" = {
           interval = 5;

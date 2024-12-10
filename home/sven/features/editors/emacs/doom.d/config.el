@@ -21,7 +21,7 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-(setq doom-font (font-spec :family "JetBrainsMonoNerdFont" :size 10))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 10))
 ;; (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 10))
 ;; (setq doom-big-font (font-spec :family "FuraCode Nerd Font Mono" :size 20))
 ;;(setq doom-variable-pitch-font (font-spec :family "Overpass" :size 10))
@@ -176,6 +176,7 @@
 
 ;; #################### LSP
 ;; ccls / clangd
+(setq lsp-clangd-binary-path "/home/sven/.nix-profile/bin/clangd")
 (setq lsp-clients-clangd-args '("--background-index"
                                 "--clang-tidy"
                                 "--completion-style=detailed"
@@ -299,4 +300,3 @@
 ;;       (setq interprogram-cut-function #'wl-copy)
 ;;       (setq interprogram-paste-function #'wl-paste))
 ;;   )
-

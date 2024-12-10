@@ -25,7 +25,7 @@ in {
       inputs;
   };
 
-  nur = inputs.nur.overlay;
+  nur = inputs.nur.overlays.default;
   # Adds my custom packages
   additions = final: prev:
     import ../pkgs {pkgs = final;};

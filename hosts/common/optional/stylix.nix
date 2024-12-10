@@ -17,6 +17,7 @@
       name = "Bibata-Modern-Classic";
       size = 24;
     };
+    image = "${pkgs.plasma-workspace-wallpapers}/share/wallpapers/MilkyWay/contents/images/5120x2880.png";
 
     fonts = {
       sansSerif = {
@@ -35,8 +36,13 @@
         # package = pkgs.julia-mono;
         # name = "Julia Mono";
 
-        package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
-        name = "JetBrains Mono Nerd Font";
+        # package = pkgs.jetbrains-mono;
+        # name = "JetBrainsMono";
+
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        # name = "JetBrainsMono Nerd Font";
+        name = "JetBrainsMono";
+
         # package = pkgs.nerdfonts.override {fonts = ["Cousine"];};
         # name = "Cousine Nerd Font";
         # package = pkgs.nerdfonts.override {fonts = ["Lilex"];};

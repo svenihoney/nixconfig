@@ -9,7 +9,8 @@
     ./swaylock.nix
     ./waybar.nix
     ./wlogout.nix
-    ./wofi.nix
+    # ./wofi.nix
+    ./fuzzel.nix
     ./zathura.nix
     ./vimiv.nix
     # ./wezterm.nix

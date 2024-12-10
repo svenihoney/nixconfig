@@ -18,6 +18,7 @@
     ./ssh.nix
     # ./starship.nix
     # ./xpo.nix
+    ./yazi.nix
   ];
   home.packages = with pkgs; [
     comma # Install and run programs by sticking a , before them
@@ -47,6 +48,7 @@
     # nil # Nix LSP
     # alejandra # Nix formatter
     # nix-inspect # See which pkgs are in your PATH
+    nh # Nix helper
 
     # ltex-ls # Spell checking LSP
 

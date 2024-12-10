@@ -11,6 +11,7 @@
       config.enable = true;
       functions.enable = true;
     };
+    useBabelfish = true;
   };
   # If bash is system shell, use fish for interactive shells
   programs.bash = {

@@ -5,7 +5,8 @@
 
     ./features/desktop/hyprland
     ./features/desktop/common/networkmanager.nix
-    ./features/desktop/common/wayland-wm/wofi.nix
+    # ./features/desktop/common/wayland-wm/wofi.nix
+    # ./features/desktop/common/wayland-wm/fuzzel.nix
     # ./features/desktop/wireless
     ./features/productivity
     ./features/media
@@ -36,6 +37,7 @@
   # wallpaper = outputs.wallpapers.watercolor-beach;
   # programs.emacs.package = pkgs.emacs30-pgtk;
   # services.emacs.package = pkgs.emacs30-pgtk;
+  # stylix.targets.kde.enable = false;
 
   #  ------   -----   ------
   # | DP-3 | | DP-1| | DP-2 |

@@ -35,6 +35,9 @@
     ../common/optional/stylix.nix
   ];
 
+  fonts.packages = with pkgs; [
+    jetbrains-mono
+  ];
   # services.desktopManager.cosmic.enable = true;
 
   networking = {
@@ -81,7 +84,7 @@
     # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     # binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
-    supportedFilesystems = ["zfs"];
+    # supportedFilesystems = ["zfs"];
   };
   zramSwap.enable = true;
 

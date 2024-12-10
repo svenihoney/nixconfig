@@ -34,6 +34,10 @@ in {
         "s2" = {
           hostname = "2a03:4000:48:5aa:4844:36ff:feeb:c58a";
         };
+        "dgm" = {
+          user = "hosting211916";
+          hostname = "2a03:4000:61:a732::21:1916";
+        };
         "nas" = {
           user = "root";
           hostname = "nas.fritz.box";
