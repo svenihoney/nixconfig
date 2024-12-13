@@ -25,10 +25,6 @@
           src = pkgs.fishPlugins.tide.src;
         }
         {
-          name = "fzf";
-          src = pkgs.fishPlugins.fzf-fish.src;
-        }
-        {
           name = "bass";
           src = pkgs.fishPlugins.bass.src;
         }

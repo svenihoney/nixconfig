@@ -6,24 +6,23 @@
 }: {
   services.greetd = {
     enable = true;
-    settings = rec {
+    settings = {
+      terminal.vt = 1;
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd ${pkgs.hyprland}/bin/Hyprland";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd \'${lib.getExe config.programs.uwsm.package} start hyprland-uwsm.desktop\'";
         # user = "${user}";
         # user = lib.mkOverride 100 "sven";
       };
       # default_session = initial_session;
     };
   };
-  programs.regreet = {
-    enable = false;
-    settings = {
-      background = {
-        path = "${config.stylix.image}";
-      };
-      GTK = {
-        application_prefer_dark_theme = true;
-      };
+
+  programs.uwsm = {
+    enable = true;
+    waylandCompositors.hyprland = {
+      binPath = "${lib.getExe config.programs.hyprland.package}";
+      prettyName = "Hyprland";
+      comment = "Hyprland managed by UWSM";
     };
   };
 }

@@ -16,5 +16,13 @@
       fileWidgetCommand = "fd --type f";
       fileWidgetOptions = ["--preview 'head {}'"];
     };
+    fish = {
+      plugins = [
+        {
+          name = "fzf";
+          src = pkgs.fishPlugins.fzf-fish.src;
+        }
+      ];
+    };
   };
 }

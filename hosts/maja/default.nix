@@ -35,9 +35,9 @@
     ../common/optional/stylix.nix
   ];
 
-  fonts.packages = with pkgs; [
-    jetbrains-mono
-  ];
+  # fonts.packages = with pkgs; [
+  #   jetbrains-mono
+  # ];
   # services.desktopManager.cosmic.enable = true;
 
   networking = {

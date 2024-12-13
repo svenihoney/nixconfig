@@ -67,6 +67,13 @@ in {
 
   # services.hyprpaper.enable = lib.mkForce false;
   # services.hyprpaper.package = inputs.hyprpaper.overlays.hyprpaper.hyprpaper;
+  wayland.windowManager.sway = {
+    enable = true;
+    systemd.enable = true;
+    config = {
+      terminal = "kitty";
+    };
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
