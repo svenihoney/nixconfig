@@ -15,7 +15,6 @@
       };
       flags = [
         "--disable-up-arrow"
-        "--disable-ctrl-r"
       ];
     };
   };

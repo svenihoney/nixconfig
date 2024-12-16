@@ -40,8 +40,9 @@
         # name = "JetBrainsMono";
 
         package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font";
         # name = "JetBrainsMono Nerd Font";
-        name = "JetBrainsMono";
+        # name = "JetBrainsMono";
 
         # package = pkgs.nerdfonts.override {fonts = ["Cousine"];};
         # name = "Cousine Nerd Font";

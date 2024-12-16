@@ -5,7 +5,8 @@
   inputs,
   ...
 }: let
-  swaylock = "${config.programs.swaylock.package}/bin/swaylock";
+  # swaylock = "${config.programs.swaylock.package}/bin/swaylock";
+  hyprlock = "${lib.getExe config.programs.hyprlock.package}";
   pkill = "${pkgs.procps}/bin/pkill";
   hyprctl = "${pkgs.hyprland}/bin/hyprctl";
   wlogout = "${config.programs.wlogout.package}/bin/wlogout";
@@ -67,14 +68,6 @@ in {
 
   # services.hyprpaper.enable = lib.mkForce false;
   # services.hyprpaper.package = inputs.hyprpaper.overlays.hyprpaper.hyprpaper;
-  wayland.windowManager.sway = {
-    enable = true;
-    systemd.enable = true;
-    config = {
-      terminal = "kitty";
-    };
-  };
-
   wayland.windowManager.hyprland = {
     enable = true;
     # package = pkgs.inputs.hyprland.hyprland;
@@ -191,13 +184,21 @@ in {
       # "dbus-update-activation-environment --systemd --all"
       # "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
       # ];
+      exec-once = [
+        # finalize startup
+        "uwsm finalize"
+        # set cursor for HL itself
+        # "hyprctl setcursor ${cursorName} ${toString pointer.size}"
+        # "hyprlock"
+      ];
+
       env = [
         "XDG_SESSION_DESKTOP,Hyprland"
         "NIXOS_OZONE_WL,1"
         "ELECTRON_OZONE_PLATFORM_HINT,wayland"
       ];
 
-      bindl = [",switch:Lid Switch, exec, ${swaylock}"];
+      bindl = [",switch:Lid Switch, exec, ${hyprlock}"];
 
       bind =
         let
@@ -227,9 +228,12 @@ in {
             ",XF86MonBrightnessUp,exec,light -A 10"
             ",XF86MonBrightnessDown,exec,light -U 10"
             # Volume
-            ",XF86AudioRaiseVolume,exec,${pamixer} -i 5"
-            ",XF86AudioLowerVolume,exec,${pamixer} -d 5"
-            ",XF86AudioMute,exec,${pamixer} -t"
+            ",XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+            ",XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+            ",XF86AudioMute,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+            # ",XF86AudioRaiseVolume,exec,${pamixer} -i 5"
+            # ",XF86AudioLowerVolume,exec,${pamixer} -d 5"
+            # ",XF86AudioMute,exec,${pamixer} -t"
             "SHIFT,XF86AudioMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
             ",XF86AudioMicMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
             "SUPER SHIFT, V, exec, ${pavucontrol}"
@@ -265,7 +269,7 @@ in {
           # Screen lock
           ++ (lib.optionals config.services.swayidle.enable [
             "SUPER,l,exec,${pkill} -SIGUSR1 swayidle"
-            "SUPER SHIFT,l,exec,${swaylock} --daemonize && ${pkill} -SIGUSR1 swayidle"
+            "SUPER SHIFT,l,exec,${hyprlock} --daemonize && ${pkill} -SIGUSR1 swayidle"
           ])
           # Logout screen
           ++ (lib.optionals config.programs.wlogout.enable [
