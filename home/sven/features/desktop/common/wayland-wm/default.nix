@@ -5,8 +5,10 @@
     ./udiskie.nix
     ./mako.nix
     # ./qutebrowser.nix
-    ./swayidle.nix
-    ./swaylock.nix
+    # ./swayidle.nix
+    # ./swaylock.nix
+    ./hyprlock.nix
+    ./hypridle.nix
     ./waybar.nix
     ./wlogout.nix
     # ./wofi.nix

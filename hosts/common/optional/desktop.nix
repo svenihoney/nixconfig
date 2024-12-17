@@ -23,5 +23,8 @@
       portalPackage = pkgs.xdg-desktop-portal-wlr;
     };
   };
-  security.pam.services = {swaylock = {};};
+  security.pam.services = {
+    swaylock = {};
+    hyprlock = {};
+  };
 }
