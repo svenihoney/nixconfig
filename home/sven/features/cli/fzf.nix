@@ -17,13 +17,13 @@
       fileWidgetOptions = ["--preview 'head {}'"];
     };
     tmux.enable = true;
-    # fish = {
-    #   plugins = [
-    #     {
-    #       name = "fzf";
-    #       src = pkgs.fishPlugins.fzf-fish.src;
-    #     }
-    #   ];
-    # };
+    fish = {
+      plugins = [
+        {
+          name = "fzf";
+          src = pkgs.fishPlugins.fzf-fish.src;
+        }
+      ];
+    };
   };
 }

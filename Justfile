@@ -1,8 +1,8 @@
 # alias willi := (deploy willi)
 #default: deploy
 default:
-    # sudo nixos-rebuild switch --flake .
-    nh os switch .
+    # nh os switch .
+    sudo nixos-rebuild switch --flake .
 
 # maja: && (deploy "maja")
 #     rm -f /home/sven/.gtkrc-2.0
