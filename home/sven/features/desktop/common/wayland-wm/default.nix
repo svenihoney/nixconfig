@@ -12,12 +12,14 @@
     ./waybar.nix
     ./wlogout.nix
     # ./wofi.nix
-    ./fuzzel.nix
+    # ./fuzzel.nix
+    ./anyrun
     ./zathura.nix
     ./vimiv.nix
     # ./wezterm.nix
     ./kitty.nix
     ./copyq.nix
+    # ./quickshell
     # ./flameshot.nix # TODO: Does not work with wayland currently
   ];
 

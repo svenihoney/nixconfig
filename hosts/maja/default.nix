@@ -80,8 +80,8 @@
       efi.efiSysMountPoint = "/efi";
       timeout = 1;
     };
-    # kernelPackages = pkgs.linuxPackages_latest;
-    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
+    kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
     # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     # binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
     supportedFilesystems = ["zfs"];

@@ -1,8 +1,8 @@
+switchcmd := if env_var("TERM") == "dumb" { "sudo nixos-rebuild switch --flake ." } else { "nh os switch ." }
 # alias willi := (deploy willi)
 #default: deploy
 default:
-    # nh os switch .
-    sudo nixos-rebuild switch --flake .
+    {{switchcmd}}
 
 # maja: && (deploy "maja")
 #     rm -f /home/sven/.gtkrc-2.0

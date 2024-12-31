@@ -15,6 +15,8 @@
   makoctl = "${config.services.mako.package}/bin/makoctl";
   # wofi = "${config.programs.wofi.package}/bin/wofi";
   copyq = "${config.services.copyq.package}/bin/copyq";
+  grimblast = "${lib.getExe pkgs.grimblast}";
+  satty = "${lib.getExe pkgs.satty}";
   # pass-wofi = "${
   #     pkgs.pass-wofi.override {
   #       pass = config.programs.password-store.package;
@@ -52,11 +54,11 @@ in {
     # ./systemd-fixes.nix
   ];
 
-  home.packages = with pkgs; [
-    grimblast
-    # hyprslurp
-    hyprpicker
-  ];
+  # home.packages = with pkgs; [
+  #   grim
+  #   # hyprslurp
+  #   hyprpicker
+  # ];
 
   # home.pointerCursor = {
   #   package = pkgs.bibata-cursors;
@@ -201,119 +203,115 @@ in {
       bindl = [",switch:Lid Switch, exec, ${hyprlock}"];
 
       bind =
-        let
-          grimblast = "${pkgs.grimblast}/bin/grimblast";
-        in
-          [
-            # Program bindings
-            "SUPER,Return,exec,${terminal}"
-            # "SUPER,e,exec,${editor}"
-            # "SUPER,v,exec,${editor}"
-            # "SUPER,b,exec,${browser}"
-            "SUPER, F2, exec, ${browser}"
-            "SUPER SHIFT, F2, exec, ${firefox}"
-            "SUPER, F3, exec, thunderbird"
-            # "SUPER, F4, exec, teams-for-linux --enable-features=UseOzonePlatform --ozone-platform=wayland"
-            "SUPER, F4, exec, fish -c ${editor}"
-            "SUPER SHIFT, F4, exec, neovide"
-            "SUPER, F12, exec, hyprctl switchxkblayout brian-low-sofle-choc next"
-            # "SUPER, F11, exec, ~/bin/switchaudio btoff"
-            # "SUPER, F11, exec, ~/bin/switchaudio hdmi"
-            # "SUPER SHIFT, F11, exec, ~/bin/switchaudio btheadset"
+        [
+          # Program bindings
+          "SUPER,Return,exec,${terminal}"
+          # "SUPER,e,exec,${editor}"
+          # "SUPER,v,exec,${editor}"
+          # "SUPER,b,exec,${browser}"
+          "SUPER, F2, exec, ${browser}"
+          "SUPER SHIFT, F2, exec, ${firefox}"
+          "SUPER, F3, exec, thunderbird"
+          # "SUPER, F4, exec, teams-for-linux --enable-features=UseOzonePlatform --ozone-platform=wayland"
+          "SUPER, F4, exec, fish -c ${editor}"
+          "SUPER SHIFT, F4, exec, neovide"
+          "SUPER, F12, exec, hyprctl switchxkblayout brian-low-sofle-choc next"
+          # "SUPER, F11, exec, ~/bin/switchaudio btoff"
+          # "SUPER, F11, exec, ~/bin/switchaudio hdmi"
+          # "SUPER SHIFT, F11, exec, ~/bin/switchaudio btheadset"
 
-            "SUPER SHIFT, K, exec, keepassxc"
-            # "SUPER SHIFT, E, exec, nwg-bar"
+          "SUPER SHIFT, K, exec, keepassxc"
+          # "SUPER SHIFT, E, exec, nwg-bar"
 
-            # Brightness control ()
-            ",XF86MonBrightnessUp,exec,light -A 10"
-            ",XF86MonBrightnessDown,exec,light -U 10"
-            # Volume
-            ",XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-            ",XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-            ",XF86AudioMute,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-            # ",XF86AudioRaiseVolume,exec,${pamixer} -i 5"
-            # ",XF86AudioLowerVolume,exec,${pamixer} -d 5"
-            # ",XF86AudioMute,exec,${pamixer} -t"
-            "SHIFT,XF86AudioMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
-            ",XF86AudioMicMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
-            "SUPER SHIFT, V, exec, ${pavucontrol}"
-            # Screenshotting
-            ",Print,exec,${grimblast} --notify --freeze copy output"
-            "SHIFT,Print,exec,${grimblast} --notify --freeze copy active"
-            "CONTROL,Print,exec,${grimblast} --notify --freeze copy screen"
-            "SUPER,Print,exec,${grimblast} --notify --freeze copy area"
-            "ALT,Print,exec,${grimblast} --notify --freeze copy area"
-            # Tally counter
-            # "SUPER,z,exec,${notify-send} -t 1000 $(${tly} time) && ${tly} add && ${gtk-play} -i dialog-information" # Add new entry
-            # "SUPERCONTROL,z,exec,${notify-send} -t 1000 $(${tly} time) && ${tly} undo && ${gtk-play} -i dialog-warning" # Undo last entry
-            # "SUPERCONTROLSHIFT,z,exec,${tly} reset && ${gtk-play} -i complete" # Reset
-            # "SUPERSHIFT,z,exec,${notify-send} -t 1000 $(${tly} time)" # Show current time
-            "SUPERCONTROL,k,exec,${hyprctl} switchxkblayout brian-low-sofle-choc next"
-          ]
-          # ++ (lib.optionals config.targets.genericLinux.enable [
-          #   "SUPERSHIFT, F2, exec, nixGL ${browser}"
-          # ])
-          # ++ (lib.optionals (! config.targets.genericLinux.enable) [
-          #   "SUPERSHIFT, F2, exec, ${browser}"
-          # ])
-          ++ (lib.optionals config.services.playerctld.enable [
-            # Media control
-            ",XF86AudioNext,exec,${playerctl} next"
-            ",XF86AudioPrev,exec,${playerctl} previous"
-            ",XF86AudioPlay,exec,${playerctl} play-pause"
-            ",XF86AudioStop,exec,${playerctl} stop"
-            "ALT,XF86AudioNext,exec,${playerctld} shift"
-            "ALT,XF86AudioPrev,exec,${playerctld} unshift"
-            "ALT,XF86AudioPlay,exec,systemctl --user restart playerctld"
-          ])
-          # Screen lock
-          ++ (lib.optionals config.services.swayidle.enable [
-            "SUPER,l,exec,${pkill} -SIGUSR1 swayidle"
-            "SUPER SHIFT,l,exec,${hyprlock} --daemonize && ${pkill} -SIGUSR1 swayidle"
-          ])
-          # Logout screen
-          ++ (lib.optionals config.programs.wlogout.enable [
-            "SUPER, BACKSPACE, exec, ${wlogout}"
-          ])
-          # Notification manager
-          ++ (lib.optionals config.services.mako.enable
-            ["SUPER SHIFT,c,exec,${makoctl} dismiss"])
-          # Launcher
-          ++ (
-            lib.optionals config.programs.wofi.enable
-            ["SUPER,d,exec,${config.programs.wofi.package}/bin/wofi -S drun"]
-          )
-          ++ (
-            lib.optionals config.programs.fuzzel.enable
-            ["SUPER,d,exec,${pkgs.fuzzel}/bin/fuzzel"]
-          )
-          # ++ (lib.optionals config.programs.password-store.enable [
-          #   ",Scroll_Lock,exec,${pass-wofi}" # fn+k
-          #   ",XF86Calculator,exec,${pass-wofi}" # fn+f12
-          #   "SUPER,semicolon,exec,pass-wofi"
-          # ])
-          ++ (lib.optionals config.services.copyq.enable [
-            "SUPER, C, exec, ${copyq} toggle"
-          ])
+          # Volume
+          ",XF86AudioMute,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          "SUPER SHIFT, V, exec, ${pavucontrol}"
+          # Screenshotting
+          "SUPER ,Print,exec,${grimblast} --notify --freeze save area - | ${satty} --filename - --fullscreen --output-filename /tmp/satty-area-$(date '+%Y%m%d-%H:%M:%S').png"
+          "SUPER SHIFT,Print,exec,${grimblast} --notify --freeze save window - | ${satty} --filename - --fullscreen --output-filename /tmp/satty-window-$(date '+%Y%m%d-%H:%M:%S').png"
+          "SUPER CONTROL,Print,exec,${grimblast} --notify --freeze save output - | ${satty} --filename - --fullscreen --output-filename /tmp/satty-screen-$(date '+%Y%m%d-%H:%M:%S').png"
+          # Tally counter
+          # "SUPER,z,exec,${notify-send} -t 1000 $(${tly} time) && ${tly} add && ${gtk-play} -i dialog-information" # Add new entry
+          # "SUPERCONTROL,z,exec,${notify-send} -t 1000 $(${tly} time) && ${tly} undo && ${gtk-play} -i dialog-warning" # Undo last entry
+          # "SUPERCONTROLSHIFT,z,exec,${tly} reset && ${gtk-play} -i complete" # Reset
+          # "SUPERSHIFT,z,exec,${notify-send} -t 1000 $(${tly} time)" # Show current time
+          "SUPERCONTROL,k,exec,${hyprctl} switchxkblayout brian-low-sofle-choc next"
+        ]
+        # ++ (lib.optionals config.targets.genericLinux.enable [
+        #   "SUPERSHIFT, F2, exec, nixGL ${browser}"
+        # ])
+        # ++ (lib.optionals (! config.targets.genericLinux.enable) [
+        #   "SUPERSHIFT, F2, exec, ${browser}"
+        # ])
+        ++ (lib.optionals config.services.playerctld.enable [
+          # Media control
+          ",XF86AudioNext,exec,${playerctl} next"
+          ",XF86AudioPrev,exec,${playerctl} previous"
+          ",XF86AudioPlay,exec,${playerctl} play-pause"
+          ",XF86AudioStop,exec,${playerctl} stop"
+          "ALT,XF86AudioNext,exec,${playerctld} shift"
+          "ALT,XF86AudioPrev,exec,${playerctld} unshift"
+          "ALT,XF86AudioPlay,exec,systemctl --user restart playerctld"
+        ])
+        # Screen lock
+        ++ (lib.optionals config.services.swayidle.enable [
+          "SUPER,l,exec,${pkill} -SIGUSR1 swayidle"
+          "SUPER SHIFT,l,exec,${hyprlock} --daemonize && ${pkill} -SIGUSR1 swayidle"
+        ])
+        # Logout screen
+        ++ (lib.optionals config.programs.wlogout.enable [
+          "SUPER, BACKSPACE, exec, ${wlogout}"
+        ])
+        # Notification manager
+        ++ (lib.optionals config.services.mako.enable
+          ["SUPER SHIFT,c,exec,${makoctl} dismiss"])
+        # Launcher
+        ++ (
+          lib.optionals config.programs.wofi.enable
+          ["SUPER,d,exec,${config.programs.wofi.package}/bin/wofi -S drun"]
+        )
+        ++ (
+          lib.optionals config.programs.fuzzel.enable
+          ["SUPER,d,exec,${pkgs.fuzzel}/bin/fuzzel"]
+        )
+        ++ (
+          lib.optionals config.programs.anyrun.enable
+          ["SUPER,d,exec,${pkgs.anyrun}/bin/anyrun"]
+        )
+        # ++ (lib.optionals config.programs.password-store.enable [
+        #   ",Scroll_Lock,exec,${pass-wofi}" # fn+k
+        #   ",XF86Calculator,exec,${pass-wofi}" # fn+f12
+        #   "SUPER,semicolon,exec,pass-wofi"
+        # ])
+        ++ (lib.optionals config.services.copyq.enable [
+          "SUPER, C, exec, ${copyq} toggle"
+        ])
         # ++ (lib.optionals config.services.ulauncher.enable
         #  [ "SUPER, D, exec, ulauncher-toggle" ])
         ;
 
+      binde = [
+        # Brightness control ()
+        ",XF86MonBrightnessUp,exec,light -A 10"
+        ",XF86MonBrightnessDown,exec,light -U 10"
+        # Volume
+        ",XF86AudioRaiseVolume,exec,wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
+        ",XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+      ];
+
       windowrulev2 = [
-        "float,class:(KeePassXC)"
-        "float,class:(pavucontrol)"
-        "float,class:(Vivaldi-Einstellungen)"
-        "float,class:(@joplin/app-desktop)"
+        "float,class:org.keepassxc.KeePassXC"
+        "float,class:org.pulseaudio.pavucontrol"
         "float,class:(org.speedcrunch.)"
         "float,class:(copyq)"
         "float,title:(twinkle)"
-        "float,title:(blueman-manager)"
+        "float,title:Bluetooth Devices"
 
         "workspace 2,class:([Vv]ivaldi.*)"
         "workspace 2,class:(org.qutebrowser.qutebrowser)"
-        "workspace 2,class:(firefox)"
+        "workspace 2,class:firefox"
 
-        "workspace 3,class:(thunderbird)"
+        "workspace 3,class:thunderbird"
         "float,title:(Kalendererinnerungen)"
 
         "workspace 0,class:(Slack)"

@@ -63,6 +63,7 @@
     nur.url = "github:nix-community/nur";
 
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    anyrun.url = "github:fufexan/anyrun/launch-prefix";
 
     # nixvim = {
     #   url = "github:nix-community/nixvim";
@@ -85,10 +86,10 @@
     #   url = "github:lilyinstarlight/nixos-cosmic";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-    hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # hyprpaper = {
+    #   url = "github:hyprwm/hyprpaper";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     nixvim = {
       url = "github:nix-community/nixvim";
@@ -97,6 +98,12 @@
     # Emacs
     nix-doom-emacs-unstraightened = {
       url = "github:marienz/nix-doom-emacs-unstraightened";
+      # Optional, to download less. Neither the module nor the overlay uses this input.
+      inputs.nixpkgs.follows = "";
+    };
+
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # svenivim = {
