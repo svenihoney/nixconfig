@@ -15,6 +15,7 @@
     [
       # inputs.impermanence.nixosModules.home-manager.impermanence
       inputs.nixvim.homeManagerModules.nixvim
+      inputs.hyprlux.homeManagerModules.default
 
       ../features/cli
       ../features/editors/nvim

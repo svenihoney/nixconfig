@@ -49,7 +49,8 @@
       timeout = 1;
     };
     # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
   };
 
   environment.etc.crypttab.text = ''

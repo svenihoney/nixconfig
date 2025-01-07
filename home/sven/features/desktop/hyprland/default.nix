@@ -52,6 +52,7 @@ in {
     # ./tty-init.nix
     ./basic-binds.nix
     # ./systemd-fixes.nix
+    ./hyprlux.nix
   ];
 
   # home.packages = with pkgs; [
@@ -304,6 +305,8 @@ in {
         "float,class:org.pulseaudio.pavucontrol"
         "float,class:(org.speedcrunch.)"
         "float,class:(copyq)"
+        "float,class:com.nextcloud.desktopclient.nextcloud"
+        "move onscreen cursor 50% 50%,class:com.nextcloud.desktopclient.nextcloud"
         "float,title:(twinkle)"
         "float,title:Bluetooth Devices"
 

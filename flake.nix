@@ -102,9 +102,13 @@
       inputs.nixpkgs.follows = "";
     };
 
+    # Currently broken
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprlux = {
+      url = "github:amadejkastelic/Hyprlux";
     };
     # svenivim = {
     #   url = "git+https://git.effeffcee.de/sven/nixvim.git";
