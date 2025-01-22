@@ -74,7 +74,7 @@
         cat = "${pkgs.bat}/bin/bat --paging=never";
         # ".j" = "${pkgs.just}/bin/just --justfile ~/.user.justfile";
         less = ''${pkgs.bat}/bin/bat --paging=always --pager "${pkgs.less}/bin/less -RF"'';
-        man = "${pkgs.bat-extras.batman}/bin/batman";
+        # man = "${pkgs.bat-extras.batman}/bin/batman";
         nis = "${pkgs.nix}/bin/nix search nixpkgs";
       };
       functions = {

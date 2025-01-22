@@ -17,6 +17,9 @@
   copyq = "${config.services.copyq.package}/bin/copyq";
   grimblast = "${lib.getExe pkgs.grimblast}";
   satty = "${lib.getExe pkgs.satty}";
+  neovide = "${lib.getExe pkgs.neovide}";
+  spotify = "${lib.getExe pkgs.spotify}";
+  keepassxc = "${lib.getExe pkgs.keepassxc}";
   # pass-wofi = "${
   #     pkgs.pass-wofi.override {
   #       pass = config.programs.password-store.package;
@@ -215,13 +218,14 @@ in {
           "SUPER, F3, exec, thunderbird"
           # "SUPER, F4, exec, teams-for-linux --enable-features=UseOzonePlatform --ozone-platform=wayland"
           "SUPER, F4, exec, fish -c ${editor}"
-          "SUPER SHIFT, F4, exec, neovide"
+          "SUPER SHIFT, F4, exec, ${neovide}"
+          "SUPER, F7, exec, ${spotify}"
           "SUPER, F12, exec, hyprctl switchxkblayout brian-low-sofle-choc next"
           # "SUPER, F11, exec, ~/bin/switchaudio btoff"
           # "SUPER, F11, exec, ~/bin/switchaudio hdmi"
           # "SUPER SHIFT, F11, exec, ~/bin/switchaudio btheadset"
 
-          "SUPER SHIFT, K, exec, keepassxc"
+          "SUPER SHIFT, K, exec, ${keepassxc}"
           # "SUPER SHIFT, E, exec, nwg-bar"
 
           # Volume

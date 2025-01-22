@@ -42,7 +42,7 @@
     xh # Better curl
     wget
     # diffsitter # Better diff
-    jq # JSON pretty printer and manipulator
+    jaq # JSON pretty printer and manipulator, Rust clone
     # trekscii # Cute startrek cli printer
     # timer # To help with my ADHD paralysis
 
@@ -71,6 +71,11 @@
       git = false;
       icons = "auto";
       extraOptions = ["--hyperlink"];
+    };
+    fish = {
+      shellAliases = {
+        jq = "jaq";
+      };
     };
   };
 }

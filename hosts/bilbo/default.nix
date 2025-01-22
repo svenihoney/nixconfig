@@ -58,7 +58,8 @@
       efi.efiSysMountPoint = "/efi";
       timeout = 1;
     };
-    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
+    kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
     # binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
   };
 
@@ -103,7 +104,7 @@
       nvidiaSettings = false;
 
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      # package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
   };
 

@@ -12,13 +12,14 @@
         runAsRoot = true;
         ovmf = {
           enable = true;
-          packages = [
-            (pkgs.OVMF.override {
-              secureBoot = true;
-              tpmSupport = true;
-            })
-            .fd
-          ];
+          # packages = [
+          #   (pkgs.OVMF.override {
+          #     secureBoot = true;
+          #     tpmSupport = true;
+          #   })
+          #   .fd
+          # ];
+          packages = [pkgs.OVMFFull.fd];
         };
         swtpm = {
           enable = true;
