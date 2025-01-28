@@ -84,9 +84,15 @@
     # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
     # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     # binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
-    supportedFilesystems = ["zfs"];
+    # supportedFilesystems = ["zfs"];
   };
-  zramSwap.enable = true;
+  zramSwap = {
+    enable = true;
+    priority = 100;
+    memoryPercent = 30;
+    swapDevices = 1;
+    algorithm = "zstd";
+  };
 
   programs = {
     adb.enable = true;
@@ -99,11 +105,15 @@
     amdgpu.amdvlk.enable = true;
     # amdgpu.opencl.enable = false;
   };
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = "schedutil";
+  };
 
-  # Usevia access to hidraw device
   services = {
     gvfs.enable = true;
     udev = {
+      # Usevia access to hidraw device
       extraRules = ''
         KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="fc32", ATTRS{idProduct}=="0287", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
         KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="2717", ATTRS{idProduct}=="d001", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
@@ -112,6 +122,11 @@
     };
     udisks2.enable = true;
     fwupd.enable = true;
+
+    fstrim = {
+      enable = true;
+      interval = "weekly";
+    };
 
     btrbk = {
       instances.local = {

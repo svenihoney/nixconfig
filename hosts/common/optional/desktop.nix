@@ -27,6 +27,7 @@
       enable = true;
       xwayland.enable = true;
       portalPackage = pkgs.xdg-desktop-portal-wlr;
+      withUWSM = true;
       # portalPackage = pkgs.xdg-desktop-portal-kde;
     };
   };

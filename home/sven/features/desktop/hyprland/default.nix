@@ -14,7 +14,7 @@
   playerctld = "${config.services.playerctld.package}/bin/playerctld";
   makoctl = "${config.services.mako.package}/bin/makoctl";
   # wofi = "${config.programs.wofi.package}/bin/wofi";
-  copyq = "${config.services.copyq.package}/bin/copyq";
+  copyq = "${lib.getExe config.services.copyq.package}";
   grimblast = "${lib.getExe pkgs.grimblast}";
   satty = "${lib.getExe pkgs.satty}";
   neovide = "${lib.getExe pkgs.neovide}";
@@ -180,11 +180,12 @@ in {
         ];
       };
 
-      # exec = [
-      #   # "${pkgs.swaybg}/bin/swaybg -i ${config.stylix.image} --mode center"
-      #   # "${pkgs.hyprland}/bin/hyprctl setcursor ${pointer.name} ${toString pointer.size}"
-      #   "${pkgs.hyprpaper}/bin/hyprpaper"
-      # ];
+      exec = [
+        #   # "${pkgs.swaybg}/bin/swaybg -i ${config.stylix.image} --mode center"
+        #   # "${pkgs.hyprland}/bin/hyprctl setcursor ${pointer.name} ${toString pointer.size}"
+        #   "${pkgs.hyprpaper}/bin/hyprpaper"
+        "${copyq}"
+      ];
       # exec-once = [
       # "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
       # "dbus-update-activation-environment --systemd --all"
@@ -288,9 +289,11 @@ in {
         #   ",XF86Calculator,exec,${pass-wofi}" # fn+f12
         #   "SUPER,semicolon,exec,pass-wofi"
         # ])
-        ++ (lib.optionals config.services.copyq.enable [
+        ++ [
+          # (lib.optionals config.services.copyq.enable [
           "SUPER, C, exec, ${copyq} toggle"
-        ])
+        ]
+        #)
         # ++ (lib.optionals config.services.ulauncher.enable
         #  [ "SUPER, D, exec, ulauncher-toggle" ])
         ;
@@ -308,7 +311,9 @@ in {
         "float,class:org.keepassxc.KeePassXC"
         "float,class:org.pulseaudio.pavucontrol"
         "float,class:(org.speedcrunch.)"
-        "float,class:(copyq)"
+        "float,class:com.github.hluk.copyq"
+        # "move onscreen cursor 50% 50%,class:com.github.hluk.copyq"
+        "move onscreen cursor 0 0,class:com.github.hluk.copyq"
         "float,class:com.nextcloud.desktopclient.nextcloud"
         "move onscreen cursor 50% 50%,class:com.nextcloud.desktopclient.nextcloud"
         "float,title:(twinkle)"
@@ -321,7 +326,8 @@ in {
         "workspace 3,class:thunderbird"
         "float,title:(Kalendererinnerungen)"
 
-        "workspace 0,class:(Slack)"
+        "workspace 7,class:spotify"
+        "workspace 0,class:Slack"
       ];
 
       monitor =

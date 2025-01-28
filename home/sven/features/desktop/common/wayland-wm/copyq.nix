@@ -1,6 +1,6 @@
 {config, ...}: {
   services.copyq = {
     enable = true;
-    systemdTarget = "hyprland-session.target";
+    # systemdTarget = "hyprland-session.target";
   };
 }

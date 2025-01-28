@@ -9,7 +9,8 @@
     settings = {
       terminal.vt = 1;
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd \'${lib.getExe config.programs.uwsm.package} start hyprland-uwsm.desktop\'";
+        # command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd \'${lib.getExe config.programs.uwsm.package} start hyprland-uwsm.desktop\'";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember";
         # user = "${user}";
         # user = lib.mkOverride 100 "sven";
       };
@@ -19,10 +20,10 @@
 
   programs.uwsm = {
     enable = true;
-    waylandCompositors.hyprland = {
-      binPath = "${lib.getExe config.programs.hyprland.package}";
-      prettyName = "Hyprland";
-      comment = "Hyprland managed by UWSM";
-    };
+    # waylandCompositors.hyprland = {
+    #   binPath = "${lib.getExe config.programs.hyprland.package}";
+    #   prettyName = "Hyprland";
+    #   comment = "Hyprland managed by UWSM";
+    # };
   };
 }

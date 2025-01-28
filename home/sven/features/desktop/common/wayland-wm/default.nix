@@ -18,7 +18,8 @@
     ./vimiv.nix
     # ./wezterm.nix
     ./kitty.nix
-    ./copyq.nix
+    ./ghostty.nix
+    # ./copyq.nix
     # ./quickshell
     # ./flameshot.nix # TODO: Does not work with wayland currently
   ];
