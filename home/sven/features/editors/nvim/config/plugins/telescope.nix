@@ -32,6 +32,7 @@
         "<leader>fr" = "oldfiles";
         "<leader>sp" = "live_grep";
         "<leader>ss" = "current_buffer_fuzzy_find";
+        "<leader>*" = "grep_string";
         "<leader>bb" = "buffers";
         "<leader>fh" = "help_tags";
       };

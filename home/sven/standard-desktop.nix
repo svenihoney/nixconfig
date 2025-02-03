@@ -27,5 +27,8 @@
     };
   };
   home.packages = with pkgs; [pcmanfm udiskie];
-  xdg.mimeApps.defaultApplications = {"inode/directory" = "pcmanfm.desktop";};
+  xdg.mimeApps.defaultApplications = {
+    "text/plain" = "neovide.desktop";
+    "inode/directory" = "pcmanfm.desktop";
+  };
 }

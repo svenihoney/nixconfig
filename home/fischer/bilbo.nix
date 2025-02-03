@@ -16,7 +16,6 @@
 
     ../sven/features/desktop/hyprland
     ../sven/features/desktop/common/networkmanager.nix
-    ../sven/features/desktop/common/wayland-wm/wofi.nix
 
     ../sven/features/desktop/common/browser.nix
     ../sven/features/desktop/common/virtualisation.nix

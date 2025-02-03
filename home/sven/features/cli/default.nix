@@ -36,8 +36,8 @@
     ncdu # TUI disk usage
     ripgrep # Better grep
     fd # Better find
-    file
     sd # Better sed
+    file
 
     xh # Better curl
     wget

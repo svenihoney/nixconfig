@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   globals = {
     mapleader = " ";
     maplocalleader = " ";
@@ -114,8 +114,4 @@
   ];
 
   # colorschemes.dracula-nvim.enable = true;
-  extraPlugins = with pkgs.vimPlugins; [
-    # For these no nixvim plugin exisis
-    vim-abolish
-  ];
 }

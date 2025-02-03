@@ -19,6 +19,15 @@ in {
       gtk-tabs-location = bottom
       gtk-titlebar = false
       theme = Dracula
+
+      shell-integration = fish
+      shell-integration-features = no-cursor
+      window-inherit-working-directory = true
+
+      mouse-hide-while-typing = true
+      scrollback-limit = 80000000
+
+      keybind = ctrl+shift+h=write_scrollback_file:open
     '';
   };
 }

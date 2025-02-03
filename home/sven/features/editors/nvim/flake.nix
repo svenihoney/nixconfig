@@ -5,6 +5,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixvim.url = "github:nix-community/nixvim";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    vim-compile-mode = {
+      url = "github:ej-shafran/compile-mode.nvim";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -32,7 +36,7 @@
           module = import ./config; # import the module directly
           # You can use `extraSpecialArgs` to pass additional arguments to your module files
           extraSpecialArgs = {
-            # inherit (inputs) foo;
+            inherit (inputs) vim-compile-mode;
           };
         };
         nvim = nixvim'.makeNixvimWithModule nixvimModule;
