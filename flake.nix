@@ -95,10 +95,6 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    vim-compile-mode = {
-      url = "github:ej-shafran/compile-mode.nvim";
-      flake = false;
-    };
     # Emacs
     nix-doom-emacs-unstraightened = {
       url = "github:marienz/nix-doom-emacs-unstraightened";
@@ -134,7 +130,6 @@
     pre-commit-hooks,
     # nixgl,
     nixvim,
-    vim-compile-mode,
     sops-nix,
     ...
   } @ inputs: let
@@ -205,7 +200,6 @@
       inherit self;
       inherit nixpkgs;
       inherit nixvim;
-      inherit vim-compile-mode;
       inherit flake-parts;
     };
   in {

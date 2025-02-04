@@ -17,7 +17,7 @@ HEADSET=F4_B6_88_8C_27_9F
 # alsa_output.pci-0000_09_00.1.hdmi-stereo-extra2
 HDMI_NUMBER=0000_09_00.1
 HDMI_CARD=alsa_card.pci-$HDMI_NUMBER
-HDMI_OUTPUT=hdmi-stereo-extra2
+HDMI_OUTPUT=hdmi-stereo-extra3
 HDMI_SINK=alsa_output.pci-$HDMI_NUMBER.$HDMI_OUTPUT
 
 #Pulseaudio

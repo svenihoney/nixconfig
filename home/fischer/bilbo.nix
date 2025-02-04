@@ -84,4 +84,6 @@
       transform = "1";
     }
   ];
+
+  services.ollama.acceleration = "cuda";
 }

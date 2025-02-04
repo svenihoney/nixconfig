@@ -1,8 +1,4 @@
-{
-  pkgs,
-  vim-compile-mode,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     # General
     ./telescope.nix
@@ -15,6 +11,7 @@
     ./lsp.nix
     ./treesitter.nix
     ./cmp.nix
+    ./cmake-tools.nix
   ];
   plugins = {
     lz-n.enable = true;
@@ -79,6 +76,14 @@
   '';
 
   keymaps = [
+    {
+      mode = ["n"];
+      key = "\\";
+      action = "<cmd>ToggleTerm<CR>";
+      options = {
+        desc = "Toggle terminal";
+      };
+    }
     {
       mode = ["n"];
       key = "gss";

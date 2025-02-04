@@ -103,7 +103,8 @@
   hardware = {
     graphics.enable = true;
     amdgpu.amdvlk.enable = true;
-    # amdgpu.opencl.enable = false;
+    # amdgpu.opencl.enable = true;
+    # graphics.extraPackages = with pkgs.rocmPackages; [ clr clr.icd ];
   };
   powerManagement = {
     enable = true;

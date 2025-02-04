@@ -92,6 +92,21 @@ in {
         "ssh.r2dc.de" = {
           port = 53022;
         };
+        "ssh.r1" = {
+          hostname = "ssh1.r25dc.de";
+          port = 10022;
+          #       user sven
+          extraOptions = {
+            ForwardAgent = "yes";
+            AddressFamily = "inet";
+          };
+        };
+        "asv2" = {
+          hostname = "dockweb123";
+          extraOptions = {
+            ProxyJump = "ssh.r1";
+          };
+        };
 
         # TaxDigits
         "taxworker" = {

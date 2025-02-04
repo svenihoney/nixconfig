@@ -307,8 +307,7 @@
       "inputs": {
         "flake-parts": "flake-parts",
         "nixpkgs": "nixpkgs",
-        "nixvim": "nixvim",
-        "vim-compile-mode": "vim-compile-mode"
+        "nixvim": "nixvim"
       }
     },
     "systems": {
@@ -344,22 +343,6 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "type": "github"
-      }
-    },
-    "vim-compile-mode": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1737726682,
-        "narHash": "sha256-wkiKD+TWE40blMk48Vg2UTBpeSQL0QOpq1Rba9arGOo=",
-        "owner": "ej-shafran",
-        "repo": "compile-mode.nvim",
-        "rev": "8dff8d8472363e01499a4e8cc02f5f5595ce3922",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ej-shafran",
-        "repo": "compile-mode.nvim",
         "type": "github"
       }
     }

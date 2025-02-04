@@ -75,4 +75,5 @@
   ];
 
   programs.waybar.settings.primary.output = ["DP-2"];
+  services.ollama.acceleration = "rocm";
 }
