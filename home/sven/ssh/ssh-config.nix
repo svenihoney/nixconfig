@@ -93,12 +93,12 @@ in {
           port = 53022;
         };
         "ssh.r1" = {
-          hostname = "ssh1.r25dc.de";
+          hostname = "ssh3.r25dc.de";
           port = 10022;
           #       user sven
           extraOptions = {
             ForwardAgent = "yes";
-            AddressFamily = "inet";
+            # AddressFamily = "inet";
           };
         };
         "asv2" = {
