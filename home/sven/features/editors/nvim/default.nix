@@ -4,10 +4,6 @@
   inputs,
   ...
 }: {
-  home.packages = [
-    pkgs.neovide
-  ];
-
   programs.nixvim = {
     enable = true;
 

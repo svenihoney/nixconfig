@@ -26,7 +26,7 @@
       difftool.prompt = false;
     };
   };
-  home.packages = with pkgs; [pcmanfm udiskie];
+  home.packages = with pkgs; [pcmanfm udiskie neovide];
   xdg.mimeApps.defaultApplications = {
     "text/plain" = "neovide.desktop";
     "inode/directory" = "pcmanfm.desktop";

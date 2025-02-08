@@ -4,18 +4,20 @@
   lib,
   ...
 }: {
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk3";
-    style = {
-      name = lib.mkForce "adwaita-dark";
-      # name = "adwaita-dark";
-    };
-    # platformTheme = "gtk";
-    # style = {
-    #   name = lib.mkForce "gtk2";
-    # };
-  };
+  # Handled by stylix
+
+  # qt = {
+  #   enable = true;
+  #   # platformTheme.name = "gtk3";
+  #   style = {
+  #     # name = lib.mkForce "adwaita-dark";
+  #     # name = "adwaita-dark";
+  #   };
+  #   # platformTheme = "gtk";
+  #   # style = {
+  #   #   name = lib.mkForce "gtk2";
+  #   # };
+  # };
 
   # home.packages = with pkgs; [libsForQt5.qtstyleplugins qt6Packages.qt6gtk2 adwaita-qt adwaita-qt6];
   # home.packages = with pkgs; [libsForQt5.qtstyleplugins qt6Packages.qt6gtk2];

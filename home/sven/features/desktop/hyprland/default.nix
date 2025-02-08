@@ -33,7 +33,7 @@
   # tly = "${pkgs.tly}/bin/tly";
   gtk-play = "${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play";
   notify-send = "${pkgs.libnotify}/bin/notify-send";
-  pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
+  pwvucontrol = "${lib.getExe pkgs.pwvucontrol}";
 
   gtk-launch = "${pkgs.gtk3}/bin/gtk-launch";
   xdg-mime = "${pkgs.xdg-utils}/bin/xdg-mime";
@@ -231,7 +231,7 @@ in {
 
           # Volume
           ",XF86AudioMute,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-          "SUPER SHIFT, V, exec, ${pavucontrol}"
+          "SUPER SHIFT, V, exec, ${pwvucontrol}"
           # Screenshotting
           "SUPER ,Print,exec,${grimblast} --notify --freeze save area - | ${satty} --filename - --fullscreen --output-filename /tmp/satty-area-$(date '+%Y%m%d-%H:%M:%S').png"
           "SUPER SHIFT,Print,exec,${grimblast} --notify --freeze save window - | ${satty} --filename - --fullscreen --output-filename /tmp/satty-window-$(date '+%Y%m%d-%H:%M:%S').png"
@@ -309,7 +309,7 @@ in {
 
       windowrulev2 = [
         "float,class:org.keepassxc.KeePassXC"
-        "float,class:org.pulseaudio.pavucontrol"
+        "float,class:com.saivert.pwvucontrol"
         "float,class:(org.speedcrunch.)"
         "float,class:com.github.hluk.copyq"
         # "move onscreen cursor 50% 50%,class:com.github.hluk.copyq"

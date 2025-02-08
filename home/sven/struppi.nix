@@ -1,6 +1,7 @@
 {
   inputs,
   outputs,
+  lib,
   ...
 }: {
   imports = [
@@ -28,6 +29,7 @@
 
   # workaround for error in home manager module if used standalone
   stylix.targets.kde.enable = false;
+  gtk.enable = lib.mkForce false;
 
   #targets.genericLinux.enable = true;
   # colorscheme = inputs.nix-colors.colorschemes.tokyo-night-storm;

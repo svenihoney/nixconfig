@@ -58,7 +58,7 @@
 
 ;; (package! fira-code-mode :recipe (:host github :repo "jming422/fira-code-mode"))
 
-(package! robot-mode :recipe (:host github :repo "jstvz/robot-mode"))
+;; (package! robot-mode :recipe (:host github :repo "jstvz/robot-mode"))
 
 ;; (package! company-tabnine :recipe (:host github :repo "TommyX12/company-tabnine"))
 
@@ -74,5 +74,6 @@
 (package! protobuf-mode)
 
 ;; (package! with-venv)
+(package! ellama)
 
 ;; ############ corfu

@@ -282,21 +282,32 @@
 (setq-default vterm-shell (executable-find "fish"))
 (setq-default explicit-shell-file-name (executable-find "fish"))
 
-;; (if (string= "wayland" (getenv "XDG_SESSION_TYPE"))
-;;     (progn
-;;       (setq wl-copy-process nil)
-;;       (defun wl-copy (text)
-;;         (setq wl-copy-process (make-process :name "wl-copy"
-;;                                             :buffer nil
-;;                                             :command '("wl-copy" "-f" "-n")
-;;                                             :connection-type 'pipe))
-;;         (process-send-string wl-copy-process text)
-;;         (process-send-eof wl-copy-process))
-;;       (defun wl-paste ()
-;;         (if (and wl-copy-process (process-live-p wl-copy-process))
-;;             nil ; should return nil if we're the current paste owner
-;;           (shell-command-to-string "wl-paste -n | tr -d '\r'")
-;;           ))
-;;       (setq interprogram-cut-function #'wl-copy)
-;;       (setq interprogram-paste-function #'wl-paste))
-;;   )
+(after! ellama
+        (setopt ellama-keymap-prefix "C-c e")  ;; keymap for all ellama functions
+        (setopt ellama-language "English")     ;; language ellama should translate to
+        (require 'llm-ollama)
+        (setopt ellama-provider
+                (make-llm-ollama
+                 ;; this model should be pulled to use it
+                 ;; value should be the same as you print in terminal during pull
+                 :chat-model "llama3.2"
+                 :embedding-model "nomic-embed-text"
+                 :default-chat-non-standard-params '(("num_ctx" . 8192))))
+        ;; Predefined llm providers for interactive switching.
+        (setopt ellama-providers
+                '(
+                  ("llama3.2" . (make-llm-ollama
+                                 :chat-model "llama3.2"
+                                 :embedding-model "llama3.2"))
+                  ("mixtral" . (make-llm-ollama
+                                :chat-model "mixtral"
+                                :embedding-model "mixtral"))))
+        (setopt ellama-naming-scheme 'ellama-generate-name-by-llm)
+        ;; Translation llm provider
+        (setopt ellama-translation-provider (make-llm-ollama
+                                             :chat-model "mixtral"
+                                             :embedding-model "nomic-embed-text"))
+
+        (setq
+         ellama-sessions-directory "~/.config/emacs/ellama-sessions/"
+         ellama-sessions-auto-save nil)
