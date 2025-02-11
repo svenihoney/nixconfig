@@ -17,14 +17,14 @@
   timeout = "${pkgs.coreutils}/bin/timeout";
   ping = "${pkgs.iputils}/bin/ping";
 
-  jq = "${pkgs.jq}/bin/jq";
-  gamemoded = "${pkgs.gamemode}/bin/gamemoded";
-  gammastep = "${pkgs.gammastep}/bin/gammastep";
+  jq = "${lib.getExe pkgs.jaq}";
+  # gamemoded = "${pkgs.gamemode}/bin/gamemoded";
+  # gammastep = "${pkgs.gammastep}/bin/gammastep";
   systemctl = "${pkgs.systemd}/bin/systemctl";
   journalctl = "${pkgs.systemd}/bin/journalctl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   playerctld = "${pkgs.playerctl}/bin/playerctld";
-  pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
+  pavucontrol = "${lib.getExe pkgs.pwvucontrol}";
   # wofi = "${pkgs.wofi}/bin/wofi";
 
   # Function to simplify making waybar outputs
@@ -243,43 +243,43 @@ in {
           };
           on-click = "";
         };
-        "custom/gamemode" = {
-          exec-if = "${gamemoded} --status | ${grep} 'is active' -q";
-          interval = 2;
-          return-type = "json";
-          exec = jsonOutput "gamemode" {tooltip = "Gamemode is active";};
-          format = " ";
-        };
-        "custom/gammastep" = {
-          interval = 5;
-          return-type = "json";
-          exec = jsonOutput "gammastep" {
-            pre = ''
-              if unit_status="$(${systemctl} --user is-active gammastep)"; then
-                status="$unit_status ($(LANG=C ${gammastep} -p 2>&1| ${grep} Period| ${tail} -n 1| ${cut} -d ' ' -f 3))"
-              else
-                status="$unit_status"
-              fi
-            '';
-            alt = "\${status:-inactive}";
-            tooltip = "Gammastep is $status";
-          };
-          format = "{icon}";
-          format-icons = {
-            "activating" = "󰁪 ";
-            "deactivating" = "󰁪 ";
-            "inactive" = "? ";
-            "active (Night)" = " ";
-            "active (Nighttime)" = " ";
-            "active (Transition (Night)" = " ";
-            "active (Transition (Nighttime)" = " ";
-            "active (Day)" = " ";
-            "active (Daytime)" = " ";
-            "active (Transition (Day)" = " ";
-            "active (Transition (Daytime)" = " ";
-          };
-          on-click = "${systemctl} --user is-active gammastep && ${systemctl} --user stop gammastep || ${systemctl} --user start gammastep";
-        };
+        # "custom/gamemode" = {
+        #   exec-if = "${gamemoded} --status | ${grep} 'is active' -q";
+        #   interval = 2;
+        #   return-type = "json";
+        #   exec = jsonOutput "gamemode" {tooltip = "Gamemode is active";};
+        #   format = " ";
+        # };
+        # "custom/gammastep" = {
+        #   interval = 5;
+        #   return-type = "json";
+        #   exec = jsonOutput "gammastep" {
+        #     pre = ''
+        #       if unit_status="$(${systemctl} --user is-active gammastep)"; then
+        #         status="$unit_status ($(LANG=C ${gammastep} -p 2>&1| ${grep} Period| ${tail} -n 1| ${cut} -d ' ' -f 3))"
+        #       else
+        #         status="$unit_status"
+        #       fi
+        #     '';
+        #     alt = "\${status:-inactive}";
+        #     tooltip = "Gammastep is $status";
+        #   };
+        #   format = "{icon}";
+        #   format-icons = {
+        #     "activating" = "󰁪 ";
+        #     "deactivating" = "󰁪 ";
+        #     "inactive" = "? ";
+        #     "active (Night)" = " ";
+        #     "active (Nighttime)" = " ";
+        #     "active (Transition (Night)" = " ";
+        #     "active (Transition (Nighttime)" = " ";
+        #     "active (Day)" = " ";
+        #     "active (Daytime)" = " ";
+        #     "active (Transition (Day)" = " ";
+        #     "active (Transition (Daytime)" = " ";
+        #   };
+        #   on-click = "${systemctl} --user is-active gammastep && ${systemctl} --user stop gammastep || ${systemctl} --user start gammastep";
+        # };
         "custom/currentplayer" = {
           interval = 2;
           return-type = "json";

@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   imports = [
     # ./hyprland-vnc.nix
-    ./gammastep.nix
+    # ./gammastep.nix
     ./udiskie.nix
     ./mako.nix
     # ./qutebrowser.nix

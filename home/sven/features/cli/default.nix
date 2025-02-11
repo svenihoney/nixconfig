@@ -63,7 +63,7 @@
   ];
 
   programs = {
-    zellij.enable = true;
+    # zellij.enable = true;
     # thefuck.enable = true;
     eza = {
       # Better ls

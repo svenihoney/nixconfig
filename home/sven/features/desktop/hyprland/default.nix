@@ -39,7 +39,8 @@
   xdg-mime = "${pkgs.xdg-utils}/bin/xdg-mime";
   defaultApp = type: "${gtk-launch} $(${xdg-mime} query default ${type})";
 
-  terminal = config.home.sessionVariables.TERMINAL;
+  # terminal = config.home.sessionVariables.TERMINAL;
+  terminal = "${lib.getExe pkgs.ghostty}";
   # browser = defaultApp "x-scheme-handler/https";
   # browser = "${pkgs.qutebrowser}/bin/qutebrowser";
   browser = "${pkgs.vivaldi}/bin/vivaldi";

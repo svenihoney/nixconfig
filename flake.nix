@@ -14,6 +14,10 @@
     hardware.url = "github:nixos/nixos-hardware";
     # impermanence.url = "github:nix-community/impermanence";
     # nix-colors.url = "github:misterio77/nix-colors";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -163,6 +167,7 @@
         nixpkgs.lib.nixosSystem {
           # pkgs = self.unstable-pkgs.${hostPlatform};
           modules = [
+            inputs.lanzaboote.nixosModules.lanzaboote
             inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
             ./hosts/${hostName}

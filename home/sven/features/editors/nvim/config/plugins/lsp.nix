@@ -28,8 +28,8 @@
         #   #     ];
         #   # };
         # };
-        # ruff-lsp.enable = true;
-        basedpyright.enable = true;
+        # basedpyright.enable = true;
+        ruff.enable = true;
         # # CSS
         # cssls = {
         #     enable = true;

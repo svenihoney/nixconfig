@@ -73,7 +73,7 @@
   boot = {
     loader = {
       systemd-boot = {
-        enable = true;
+        enable = false;
         configurationLimit = 3;
       };
       efi.canTouchEfiVariables = true;
@@ -85,6 +85,10 @@
     # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     # binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
     # supportedFilesystems = ["zfs"];
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+    };
   };
   zramSwap = {
     enable = true;
