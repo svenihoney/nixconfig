@@ -112,9 +112,9 @@
       url = "github:quickshell-mirror/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprlux = {
-      url = "github:amadejkastelic/Hyprlux";
-    };
+    # hyprlux = {
+    #   url = "github:amadejkastelic/Hyprlux";
+    # };
     # svenivim = {
     #   url = "git+https://git.effeffcee.de/sven/nixvim.git";
     #   inputs.nixpkgs.follows = "nixpkgs";

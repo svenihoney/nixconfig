@@ -9,6 +9,7 @@
   hyprlock = "${lib.getExe config.programs.hyprlock.package}";
   pkill = "${pkgs.procps}/bin/pkill";
   hyprctl = "${pkgs.hyprland}/bin/hyprctl";
+  hyprsunset = "${pkgs.hyprsunset}/bin/hyprsunset";
   wlogout = "${config.programs.wlogout.package}/bin/wlogout";
   playerctl = "${config.services.playerctld.package}/bin/playerctl";
   playerctld = "${config.services.playerctld.package}/bin/playerctld";
@@ -56,7 +57,7 @@ in {
     # ./tty-init.nix
     ./basic-binds.nix
     # ./systemd-fixes.nix
-    ./hyprlux.nix
+    # ./hyprlux.nix
   ];
 
   # home.packages = with pkgs; [
@@ -182,10 +183,6 @@ in {
       };
 
       exec = [
-        #   # "${pkgs.swaybg}/bin/swaybg -i ${config.stylix.image} --mode center"
-        #   # "${pkgs.hyprland}/bin/hyprctl setcursor ${pointer.name} ${toString pointer.size}"
-        #   "${pkgs.hyprpaper}/bin/hyprpaper"
-        "${copyq}"
       ];
       # exec-once = [
       # "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
@@ -198,6 +195,8 @@ in {
         # set cursor for HL itself
         # "hyprctl setcursor ${cursorName} ${toString pointer.size}"
         # "hyprlock"
+        "${copyq}"
+        "${hyprsunset}"
       ];
 
       env = [

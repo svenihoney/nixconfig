@@ -8,7 +8,7 @@
   ];
   home.packages = with pkgs; [
     lutris
-    teamspeak_client
+    # teamspeak_client
     # teamspeak5_client
   ];
 
