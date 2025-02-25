@@ -23,6 +23,7 @@ in {
       shell-integration = fish
       shell-integration-features = no-cursor
       window-inherit-working-directory = true
+      clipboard-paste-protection = false
 
       mouse-hide-while-typing = true
       scrollback-limit = 80000000

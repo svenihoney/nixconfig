@@ -18,7 +18,7 @@
     };
     # wlr.enable = true;
     # extraPortals = [pkgs.xdg-desktop-portal-gtk];
-    extraPortals = [pkgs.xdg-desktop-portal-kde];
+    extraPortals = [pkgs.kdePackages.xdg-desktop-portal-kde];
   };
 
   services.geoclue2.enable = true;

@@ -32,7 +32,7 @@ in {
       bookmarks = {};
       # languagePacks = [ "de" "en-US" ];
       # extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+      extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         keepassxc-browser
         ublock-origin
         cookie-autodelete

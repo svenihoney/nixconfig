@@ -11,6 +11,10 @@ with lib.hm.gvariant; {
     ./nix.nix
     ./xml.nix
     ./python.nix
+
+    ../editors/emacs
+    ../editors/vscode
+    #../editors/zed	
   ];
 
   home.packages = with pkgs;

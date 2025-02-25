@@ -1,14 +1,14 @@
 # { inputs, outputs, pkgs, self, ... }:
 let
   hosts = {
-    dodo = {
-      type = "nixos";
+    C54L91SWREPO01 = {
+      type = "homeManager";
       hostPlatform = "x86_64-linux";
-      address = "dodo";
+      address = "C54L91SWREPO01";
       remoteBuild = false;
       user = "fischer";
       homeDirectory = "/home/fischer";
-      stable = true;
+      stable = false;
     };
     # beely = {
     #   type = "homeManager";

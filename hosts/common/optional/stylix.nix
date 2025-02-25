@@ -17,7 +17,7 @@
       name = "Bibata-Modern-Classic";
       size = 24;
     };
-    image = "${pkgs.plasma-workspace-wallpapers}/share/wallpapers/MilkyWay/contents/images/5120x2880.png";
+    image = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/MilkyWay/contents/images/5120x2880.png";
 
     fonts = {
       sansSerif = {
@@ -41,8 +41,6 @@
 
         package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrainsMono Nerd Font";
-        # name = "JetBrainsMono Nerd Font";
-        # name = "JetBrainsMono";
 
         # package = pkgs.nerdfonts.override {fonts = ["Cousine"];};
         # name = "Cousine Nerd Font";

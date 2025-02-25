@@ -73,7 +73,7 @@
 
   programs.doom-emacs = {
     enable = true;
-    emacs = pkgs.emacs29-pgtk;
+    emacs = pkgs.emacs30-pgtk;
     doomDir = ./doom.d;
     experimentalFetchTree = true; # Disable if there are fetcher issues
     extraPackages = epkgs:
@@ -92,4 +92,13 @@
   #   };
   # };
   programs.fish.shellAbbrs.ec = "emacsclient -t";
+
+  wayland.windowManager.hyprland = {
+    settings = {
+      bind =
+        [
+          "SUPER, F4, exec, fish -c ${lib.getExe config.programs.doom-emacs.finalEmacsPackage}"
+        ];
+    };
+  };
 }

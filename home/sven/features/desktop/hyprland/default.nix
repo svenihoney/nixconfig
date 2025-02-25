@@ -18,6 +18,7 @@
   copyq = "${lib.getExe config.services.copyq.package}";
   grimblast = "${lib.getExe pkgs.grimblast}";
   satty = "${lib.getExe pkgs.satty}";
+  satty_cmd = "${satty} --filename - --early-exit --initial-tool arrow --annotation-size-factor 0.5 --action-on-enter save-to-clipboard --output-filename /tmp/satty-area-$(date '+%Y%m%d-%H:%M:%S').png";
   neovide = "${lib.getExe pkgs.neovide}";
   spotify = "${lib.getExe pkgs.spotify}";
   keepassxc = "${lib.getExe pkgs.keepassxc}";
@@ -152,11 +153,11 @@ in {
           new_optimizations = true;
           ignore_opacity = true;
         };
-        shadow = {
-          enabled = true;
-          range = 12;
-          offset = "3 3";
-        };
+        # shadow = {
+        #   enabled = true;
+        #   range = 12;
+        #   offset = "3 3";
+        # };
       };
 
       animations = {
@@ -218,7 +219,7 @@ in {
           "SUPER SHIFT, F2, exec, ${firefox}"
           "SUPER, F3, exec, thunderbird"
           # "SUPER, F4, exec, teams-for-linux --enable-features=UseOzonePlatform --ozone-platform=wayland"
-          "SUPER, F4, exec, fish -c ${editor}"
+          # "SUPER, F4, exec, fish -c ${editor}"
           "SUPER SHIFT, F4, exec, ${neovide}"
           "SUPER, F7, exec, ${spotify}"
           "SUPER, F12, exec, hyprctl switchxkblayout brian-low-sofle-choc next"
@@ -233,9 +234,9 @@ in {
           ",XF86AudioMute,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
           "SUPER SHIFT, V, exec, ${pwvucontrol}"
           # Screenshotting
-          "SUPER ,Print,exec,${grimblast} --notify --freeze save area - | ${satty} --filename - --fullscreen --output-filename /tmp/satty-area-$(date '+%Y%m%d-%H:%M:%S').png"
-          "SUPER SHIFT,Print,exec,${grimblast} --notify --freeze save window - | ${satty} --filename - --fullscreen --output-filename /tmp/satty-window-$(date '+%Y%m%d-%H:%M:%S').png"
-          "SUPER CONTROL,Print,exec,${grimblast} --notify --freeze save output - | ${satty} --filename - --fullscreen --output-filename /tmp/satty-screen-$(date '+%Y%m%d-%H:%M:%S').png"
+          "SUPER ,Print,exec,${grimblast} --notify --freeze save area - | ${satty_cmd}"
+          "SUPER SHIFT,Print,exec,${grimblast} --notify --freeze save window - | ${satty_cmd} --filename - --output-filename /tmp/satty-window-$(date '+%Y%m%d-%H:%M:%S').png"
+          "SUPER CONTROL,Print,exec,${grimblast} --notify --freeze save output - | ${satty_cmd} --filename - --output-filename /tmp/satty-screen-$(date '+%Y%m%d-%H:%M:%S').png"
           # Tally counter
           # "SUPER,z,exec,${notify-send} -t 1000 $(${tly} time) && ${tly} add && ${gtk-play} -i dialog-information" # Add new entry
           # "SUPERCONTROL,z,exec,${notify-send} -t 1000 $(${tly} time) && ${tly} undo && ${gtk-play} -i dialog-warning" # Undo last entry
@@ -312,6 +313,7 @@ in {
         "float,class:com.saivert.pwvucontrol"
         "float,class:(org.speedcrunch.)"
         "float,class:com.github.hluk.copyq"
+        "float,class:com.gabm.satty"
         # "move onscreen cursor 50% 50%,class:com.github.hluk.copyq"
         "move onscreen cursor 0 0,class:com.github.hluk.copyq"
         "float,class:com.nextcloud.desktopclient.nextcloud"

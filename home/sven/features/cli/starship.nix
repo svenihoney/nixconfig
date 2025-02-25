@@ -108,7 +108,6 @@
           ")"
           "(↓ on input line ↓)"
           "($localip)"
-          "($cmd_duration)"
           "($shlvl)"
           "($jobs)"
           "($status)"
@@ -122,6 +121,7 @@
           "("
           "[](bg:none fg:color_background_base)"
           "($character)"
+          "($cmd_duration)"
           "([](bg:color_background_base fg:color_shellix)$guix_shell[](bg:color_shellix fg:color_background_base))"
           "([](bg:color_background_base fg:color_shellix)$nix_shell[](bg:color_shellix fg:color_background_base))"
           "([](bg:color_background_base fg:color_vcsh)$vcsh[](bg:color_vcsh fg:color_background_base))"
@@ -1013,14 +1013,14 @@
       };
 
       battery = {
-        # disabled = true;
+        disabled = true;
         full_symbol = "󰁹 "; # nf-md-battery
         charging_symbol = "󱊥 "; # nf-md-battery_charging_medium
         discharging_symbol = "󱊡 "; # nf-md-battery_low
         unknown_symbol = "󰂑 "; # nf-md-battery_unknown
         empty_symbol = "󰂎 "; # nf-md-battery_outline
         format = "[$symbol$percentage]($style)";
-        battery.display = {
+        display = {
           # [[battery.display]]; # uncomment this section to always see your battery information
           # threshold = 100
           # style = "bg:color_battery fg:color_battery_text";
