@@ -35,7 +35,7 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
-    # nixgl.url = "github:guibou/nixGL";
+    nixgl.url = "github:guibou/nixGL";
 
     # nh = {
     #   url = "github:viperml/nh";

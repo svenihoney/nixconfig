@@ -8,7 +8,6 @@
     ../../hosts/common/optional/stylix-cli.nix
 
     ../sven/global
-    ./C54L91SWREPO01-ssh-config.nix
 
     ../sven/standard-desktop.nix
 

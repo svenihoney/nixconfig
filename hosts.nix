@@ -1,10 +1,10 @@
 # { inputs, outputs, pkgs, self, ... }:
 let
   hosts = {
-    C54L91SWREPO01 = {
+    dodo = {
       type = "homeManager";
       hostPlatform = "x86_64-linux";
-      address = "C54L91SWREPO01";
+      address = "dodo";
       remoteBuild = false;
       user = "fischer";
       homeDirectory = "/home/fischer";
