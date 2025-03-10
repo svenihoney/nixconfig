@@ -6,7 +6,7 @@
     # ./vdirsyncer.nix
 
     ./mail.nix
-    ./neomutt.nix
+    # ./neomutt.nix
 
     ./office.nix
     # Pass feature is required

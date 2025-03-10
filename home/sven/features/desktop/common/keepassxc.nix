@@ -11,23 +11,23 @@
 
   # config.keepassFile = lib.mkDefault "${config.home.homeDirectory}/cloud/sync/keepass.kdbx";
 
-  systemd.user.services.keepassxc = {
-    Unit = {
-      Description = "keepassxc";
-      Documentation = ["man:keepassxc(1)"];
-      PartOf = ["hyprland-session.target"];
-    };
-    Service = {
-      Type = "simple";
-      # ExecStart = "${pkgs.keepassxc}/bin/keepassxc -platform wayland ${config.users.username.home}/cloud/sync/keepass.kdbx";
-      ExecStart = "${pkgs.keepassxc}/bin/keepassxc -platform wayland ${config.home.homeDirectory}/cloud/sync/keepass.kdbx";
-      RestartSec = 3;
-      Restart = "always";
-    };
-    Install = {
-      WantedBy = ["hyprland-session.target"];
-    };
-  };
+  # systemd.user.services.keepassxc = {
+  #   Unit = {
+  #     Description = "keepassxc";
+  #     Documentation = ["man:keepassxc(1)"];
+  #     PartOf = ["hyprland-session.target"];
+  #   };
+  #   Service = {
+  #     Type = "simple";
+  #     # ExecStart = "${pkgs.keepassxc}/bin/keepassxc -platform wayland ${config.users.username.home}/cloud/sync/keepass.kdbx";
+  #     ExecStart = "${pkgs.keepassxc}/bin/keepassxc -platform wayland ${config.home.homeDirectory}/cloud/sync/keepass.kdbx";
+  #     RestartSec = 3;
+  #     Restart = "always";
+  #   };
+  #   Install = {
+  #     WantedBy = ["hyprland-session.target"];
+  #   };
+  # };
 
   xdg.configFile."keepassxc/keepassxc.ini".text = ''
     [General]

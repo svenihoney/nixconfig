@@ -54,15 +54,15 @@ in {
     # package = pkgs.waybar.overrideAttrs (oa: {
     #   mesonFlags = (oa.mesonFlags or  [ ]) ++ [ "-Dexperimental=true" ];
     # });
-    systemd = {
-      enable = true;
-      target = "hyprland-session.target";
-    };
+    # systemd = {
+    #   enable = true;
+    #   target = "hyprland-session.target";
+    # };
     settings = {
       primary = {
         # mode = "dock";
         layer = "top";
-        height = 25;
+        height = 28;
         margin = "3";
         position = "bottom";
         # modules-left = [ "custom/menu" ]

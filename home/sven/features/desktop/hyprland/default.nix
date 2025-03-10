@@ -22,6 +22,7 @@
   neovide = "${lib.getExe pkgs.neovide}";
   spotify = "${lib.getExe pkgs.spotify}";
   keepassxc = "${lib.getExe pkgs.keepassxc}";
+  waybar = "${lib.getExe pkgs.waybar}";
   # pass-wofi = "${
   #     pkgs.pass-wofi.override {
   #       pass = config.programs.password-store.package;
@@ -50,6 +51,7 @@
   # editor = defaultApp "text/plain";
   # editor = "${config.programs.emacs.package}/bin/emacs";
   editor = "${config.programs.doom-emacs.finalEmacsPackage}/bin/emacs";
+  uswmapp = "${lib.getExe pkgs.uwsm} app -- ";
 in {
   imports = [
     ../common
@@ -82,7 +84,7 @@ in {
     # package = pkgs.inputs.hyprland.hyprland;
 
     # xwayland.enable = true;
-    systemd.enable = true;
+    systemd.enable = false; # Using uwsm
     systemd.variables = ["--all"];
     # wrapperFeatures.gtk = true;
 
@@ -196,8 +198,10 @@ in {
         # set cursor for HL itself
         # "hyprctl setcursor ${cursorName} ${toString pointer.size}"
         # "hyprlock"
-        "${copyq}"
-        "${hyprsunset}"
+        "${uswmapp}${copyq}"
+        "${uswmapp}${hyprsunset}"
+        "${uswmapp}${keepassxc}"
+        "${uswmapp}${waybar}"
       ];
 
       env = [
@@ -211,28 +215,28 @@ in {
       bind =
         [
           # Program bindings
-          "SUPER,Return,exec,${terminal}"
+          "SUPER,Return,exec,${uswmapp}${terminal}"
           # "SUPER,e,exec,${editor}"
           # "SUPER,v,exec,${editor}"
           # "SUPER,b,exec,${browser}"
-          "SUPER, F2, exec, ${browser}"
-          "SUPER SHIFT, F2, exec, ${firefox}"
-          "SUPER, F3, exec, thunderbird"
+          "SUPER SHIFT, F2, exec, ${uswmapp}${browser}"
+          "SUPER, F2, exec, ${uswmapp}${firefox}"
+          "SUPER, F3, exec, ${uswmapp}thunderbird"
           # "SUPER, F4, exec, teams-for-linux --enable-features=UseOzonePlatform --ozone-platform=wayland"
           # "SUPER, F4, exec, fish -c ${editor}"
-          "SUPER SHIFT, F4, exec, ${neovide}"
-          "SUPER, F7, exec, ${spotify}"
+          "SUPER SHIFT, F4, exec, ${uswmapp}${neovide}"
+          "SUPER, F7, exec, ${uswmapp}${spotify}"
           "SUPER, F12, exec, hyprctl switchxkblayout brian-low-sofle-choc next"
           # "SUPER, F11, exec, ~/bin/switchaudio btoff"
           # "SUPER, F11, exec, ~/bin/switchaudio hdmi"
           # "SUPER SHIFT, F11, exec, ~/bin/switchaudio btheadset"
 
-          "SUPER SHIFT, K, exec, ${keepassxc}"
+          "SUPER, K, exec, ${uswmapp}${keepassxc}"
           # "SUPER SHIFT, E, exec, nwg-bar"
 
           # Volume
           ",XF86AudioMute,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-          "SUPER SHIFT, V, exec, ${pwvucontrol}"
+          "SUPER, V, exec, ${uswmapp}${pwvucontrol}"
           # Screenshotting
           "SUPER ,Print,exec,${grimblast} --notify --freeze save area - | ${satty_cmd}"
           "SUPER SHIFT,Print,exec,${grimblast} --notify --freeze save window - | ${satty_cmd} --filename - --output-filename /tmp/satty-window-$(date '+%Y%m%d-%H:%M:%S').png"
@@ -263,11 +267,11 @@ in {
         # Screen lock
         ++ (lib.optionals config.services.swayidle.enable [
           "SUPER,l,exec,${pkill} -SIGUSR1 swayidle"
-          "SUPER SHIFT,l,exec,${hyprlock} --daemonize && ${pkill} -SIGUSR1 swayidle"
+          "SUPER SHIFT,l,exec,${uswmapp}${hyprlock} --daemonize && ${pkill} -SIGUSR1 swayidle"
         ])
         # Logout screen
         ++ (lib.optionals config.programs.wlogout.enable [
-          "SUPER, BACKSPACE, exec, ${wlogout}"
+          "SUPER, BACKSPACE, exec, ${uswmapp}${wlogout}"
         ])
         # Notification manager
         ++ (lib.optionals config.services.mako.enable

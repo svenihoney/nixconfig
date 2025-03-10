@@ -10,7 +10,7 @@
         asvetliakov.vscode-neovim
         yzhang.markdown-all-in-one
         mkhl.direnv
-        ms-python.python
+        # ms-python.python
         # vadimcn.vscode-lldb
       ];
       userSettings = {

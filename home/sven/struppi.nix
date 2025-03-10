@@ -31,6 +31,10 @@
   stylix.targets.kde.enable = false;
   gtk.enable = lib.mkForce false;
 
+  programs.nixvim = {
+    dap.enable = false;
+    lsp.enable = false;
+  };
   #targets.genericLinux.enable = true;
   # colorscheme = inputs.nix-colors.colorschemes.tokyo-night-storm;
   # wallpaper = outputs.wallpapers.watercolor-beach;

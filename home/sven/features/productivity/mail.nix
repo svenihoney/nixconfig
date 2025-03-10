@@ -35,7 +35,7 @@
     #   trash = "Trash";
     # };
     neomutt = {
-      enable = true;
+      enable = false;
       extraMailboxes = ["Archive" "Drafts" "Junk" "Sent" "Trash"];
     };
     # msmtp.enable = true;

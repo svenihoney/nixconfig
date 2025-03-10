@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   globals = {
     mapleader = " ";
     maplocalleader = " ";
@@ -114,4 +114,7 @@
   ];
 
   # colorschemes.dracula-nvim.enable = true;
+
+  dap.enable = lib.mkDefault true;
+  lsp.enable = lib.mkDefault true;
 }

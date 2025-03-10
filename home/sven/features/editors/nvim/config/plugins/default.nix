@@ -12,6 +12,7 @@
     ./treesitter.nix
     ./cmp.nix
     ./cmake-tools.nix
+    ./dap.nix
   ];
   plugins = {
     lz-n.enable = true;
@@ -68,11 +69,12 @@
       dependencies = [plenary-nvim baleia-nvim];
     })
   ];
-  extraConfigLua = ''    vim.g.compile_mode = {
-            default_command = "cmake --build build",
-            ask_about_save = false,
-            baleia_setup = true,
-          }
+  extraConfigLua = ''
+    vim.g.compile_mode = {
+      default_command = "cmake --build build",
+      ask_about_save = false,
+      baleia_setup = true,
+    }
   '';
 
   keymaps = [

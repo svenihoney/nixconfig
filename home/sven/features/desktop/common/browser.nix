@@ -4,8 +4,8 @@
   lib,
   ...
 }: let
-  browser = ["vivaldi-stable.desktop"];
-  # browser = ["firefox.desktop"];
+  # browser = ["vivaldi-stable.desktop"];
+  browser = ["firefox.desktop"];
 
   # XDG MIME types
   associations = {
@@ -28,6 +28,7 @@ in {
   # programs.browserpass.enable = true;
   programs.firefox = {
     enable = true;
+    languagePacks = ["de" "en-US"];
     profiles.sven = {
       bookmarks = {};
       # languagePacks = [ "de" "en-US" ];
@@ -43,13 +44,14 @@ in {
         vimium
         wikiwand-wikipedia-modernized
         user-agent-string-switcher
-        deutsch-de-language-pack
+        # deutsch-de-language-pack
       ];
       search = {
         default = lib.mkDefault "DuckDuckGo";
         force = true;
       };
       settings = {
+        "widget.use-xdg-desktop-portal.file-picker" = 1;
         "browser.ctrlTab.sortByRecentlyUsed" = true;
         "browser.disableResetPrompt" = true;
         "browser.download.panel.shown" = true;

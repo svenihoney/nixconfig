@@ -4,4 +4,5 @@
     enableFishIntegration = true;
     enableNushellIntegration = true;
   };
+  programs.fish.shellAbbrs.y = "yazi";
 }
