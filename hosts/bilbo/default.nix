@@ -112,8 +112,8 @@
     xserver.videoDrivers = ["nvidia"];
     # Lid settings
     logind = {
-      lidSwitch = "suspend";
-      lidSwitchExternalPower = "lock";
+      lidSwitch = "suspend-then-hibernate";
+      lidSwitchExternalPower = "suspend";
     };
     fprintd.enable = true;
 

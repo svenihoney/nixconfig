@@ -68,8 +68,8 @@
 
   # Lid settings
   services.logind = {
-    lidSwitch = "suspend";
-    lidSwitchExternalPower = "lock";
+    lidSwitch = "suspend-then-hibernate";
+    lidSwitchExternalPower = "suspend";
   };
 
   hardware = {
