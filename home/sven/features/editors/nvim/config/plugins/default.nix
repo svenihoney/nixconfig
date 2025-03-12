@@ -53,6 +53,7 @@
         # modes.char.jump_labels = true;
       };
     };
+    firenvim.enable = true;
   };
   extraPlugins = with pkgs.vimPlugins; [
     # For these no nixvim plugin exists

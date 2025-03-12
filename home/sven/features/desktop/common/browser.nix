@@ -44,7 +44,9 @@ in {
         vimium
         wikiwand-wikipedia-modernized
         user-agent-string-switcher
-        # deutsch-de-language-pack
+        deutsch-de-language-pack
+        dictionary-german
+        firenvim
       ];
       search = {
         default = lib.mkDefault "DuckDuckGo";
