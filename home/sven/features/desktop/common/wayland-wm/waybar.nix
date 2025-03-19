@@ -24,7 +24,7 @@
   journalctl = "${pkgs.systemd}/bin/journalctl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   playerctld = "${pkgs.playerctl}/bin/playerctld";
-  pavucontrol = "${lib.getExe pkgs.pwvucontrol}";
+  pavucontrol = "${lib.getExe pkgs.pavucontrol}";
   # wofi = "${pkgs.wofi}/bin/wofi";
 
   # Function to simplify making waybar outputs

@@ -18,7 +18,7 @@
 
       ../features/cli
       ../features/editors/nvim
-      # ../features/editors/helix
+      ../features/editors/helix
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
 

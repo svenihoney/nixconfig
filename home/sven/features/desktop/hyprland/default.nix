@@ -31,12 +31,11 @@
 
   # grimblast = "${pkgs.inputs.hyprwm-contrib.grimblast}/bin/grimblast";
   # grimblast = "grimblast";
-  pactl = "${pkgs.pulseaudio}/bin/pactl";
-  pamixer = "${pkgs.pamixer}/bin/pamixer";
   # tly = "${pkgs.tly}/bin/tly";
   gtk-play = "${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play";
   notify-send = "${pkgs.libnotify}/bin/notify-send";
-  pwvucontrol = "${lib.getExe pkgs.pwvucontrol}";
+  # pwvucontrol = "${lib.getExe pkgs.pwvucontrol}";
+  volcontrol = "${lib.getExe pkgs.pwvucontrol}";
 
   gtk-launch = "${pkgs.gtk3}/bin/gtk-launch";
   xdg-mime = "${pkgs.xdg-utils}/bin/xdg-mime";
@@ -236,7 +235,7 @@ in {
 
           # Volume
           ",XF86AudioMute,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-          "SUPER, V, exec, ${uswmapp}${pwvucontrol}"
+          "SUPER, V, exec, ${uswmapp}${volcontrol}"
           # Screenshotting
           "SUPER ,Print,exec,${grimblast} --notify --freeze save area - | ${satty_cmd}"
           "SUPER SHIFT,Print,exec,${grimblast} --notify --freeze save window - | ${satty_cmd} --filename - --output-filename /tmp/satty-window-$(date '+%Y%m%d-%H:%M:%S').png"

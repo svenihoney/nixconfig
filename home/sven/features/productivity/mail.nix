@@ -11,7 +11,7 @@
 
   common = rec {
     realName = "Sven Fischer";
-    imap.host = "mx1.effeffcee.de";
+    imap.host = "${mailhost-effeffcee}";
     imap.tls.enable = true;
     imap.port = 993;
     smtp.host = "${mailhost-effeffcee}";
@@ -92,6 +92,32 @@ in {
         }
         common
       ];
+
+      # dgm = lib.mkMerge [
+      #   rec {
+      #     address = "sven.fischer@moitzfeld-ev.de";
+      #     passwordCommand = "${secret-tool} lookup ${mailhost-effeffcee} ${address}";
+      #     signature.text = ''
+      #     '';
+
+      #     # msmtp.enable = true;
+      #     userName = address;
+      #   }
+      #   common
+      # ];
+
+      # taxdigits = lib.mkMerge [
+      #   rec {
+      #     address = "s.fischer@taxdigits.de";
+      #     passwordCommand = "${secret-tool} lookup ${mailhost-effeffcee} ${address}";
+      #     signature.text = ''
+      #     '';
+
+      #     # msmtp.enable = true;
+      #     userName = address;
+      #   }
+      #   common
+      # ];
     };
   };
 
