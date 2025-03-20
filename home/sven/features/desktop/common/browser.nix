@@ -31,7 +31,6 @@ in {
     languagePacks = ["de" "en-US"];
     profiles.sven = {
       bookmarks = {};
-      # languagePacks = [ "de" "en-US" ];
       # extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         keepassxc-browser
@@ -49,7 +48,7 @@ in {
         firenvim
       ];
       search = {
-        default = lib.mkDefault "DuckDuckGo";
+        default = lib.mkDefault "ddg";
         force = true;
       };
       settings = {
@@ -69,11 +68,13 @@ in {
         "ui.context_menus.after_mouseup" = true;
         "identity.fxaccounts.enabled" = false;
         "intl.accept_languages" = "de, en-US, en";
+        "intl.locale.requested" = "de,en-US";
         "privacy.trackingprotection.enabled" = true;
         "signon.rememberSignons" = false;
       };
     };
   };
+  stylix.targets.firefox.profileNames = ["sven"];
 
   programs.vivaldi = {
     enable = true;

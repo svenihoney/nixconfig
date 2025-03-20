@@ -10,7 +10,7 @@
       command_timeout = 500; # default = 500
       add_newline = false; # Don't print a new line before the start of the prompt
       continuation_prompt = "[](bg:color_background_base fg:color_base_orange)[](fg:color_background_base)";
-      palette = "dracula"; # select the color palette to be used
+      palette = lib.mkForce "dracula"; # select the color palette to be used
 
       # format = let
       #   git = "$git_branch$git_commit$git_state$git_status";

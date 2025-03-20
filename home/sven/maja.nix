@@ -9,7 +9,7 @@
     # ./features/desktop/common/wayland-wm/fuzzel.nix
     # ./features/desktop/wireless
     ./features/productivity
-    ./features/productivity/ollama.nix
+    # ./features/productivity/ollama.nix
     ./features/media
     # ./features/pass
     ./features/games

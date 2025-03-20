@@ -6,7 +6,7 @@
 }: {
   services.ollama = {
     enable = true;
-    # acceleration = "rocm";
+    # acceleration = "rocm"; # Will be set in machine config
     # environmentVariables = {
     #   HCC_AMDGPU_TARGET = "gfx1030"; # used to be necessary, but doesn't seem to anymore
     # };

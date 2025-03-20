@@ -11,6 +11,8 @@
 
     ../sven/standard-desktop.nix
 
+    ../sven/features/desktop/common/nixgl.nix
+
     ../sven/features/desktop/hyprland
 
     ../sven/features/desktop/common/browser.nix
