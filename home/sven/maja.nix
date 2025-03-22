@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./global
     ./standard-desktop.nix
@@ -9,7 +13,7 @@
     # ./features/desktop/common/wayland-wm/fuzzel.nix
     # ./features/desktop/wireless
     ./features/productivity
-    # ./features/productivity/ollama.nix
+    ./features/productivity/ollama.nix
     ./features/media
     # ./features/pass
     ./features/games
@@ -32,6 +36,9 @@
 
     ./features/work
   ];
+
+  ollama.tools.enable = true;
+  # ollama.service.enable = true;
 
   #targets.genericLinux.enable = true;
   # colorscheme = inputs.nix-colors.colorschemes.tokyo-night-storm;
@@ -75,5 +82,4 @@
   ];
 
   programs.waybar.settings.primary.output = ["DP-2"];
-  services.ollama.acceleration = "rocm";
 }

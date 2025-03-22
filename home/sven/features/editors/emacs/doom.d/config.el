@@ -104,9 +104,9 @@
   )
 ;; Magit force
 ;;(after! forge
-  ;;(setcdr (last forge-alist) '(("git.deutaeit.de" "git.deutaeit.de/api/v4" "git.deutaeit.de" forge-gitlab-repository)))
-  ;;(setq auth-sources '("secrets:keepassx"))
-  ;;)
+;;(setcdr (last forge-alist) '(("git.deutaeit.de" "git.deutaeit.de/api/v4" "git.deutaeit.de" forge-gitlab-repository)))
+;;(setq auth-sources '("secrets:keepassx"))
+;;)
 
 
 (setq-default history-length 1000)
@@ -132,10 +132,10 @@
   ;;          (imenu (:not indexed mouse))
   ;;          (symbol (vertico-sort-function . vertico-sort-alpha))))
   (setq vertico-multiform-categories
-      '((consult-grep grid)))
+        '((consult-grep grid)))
   (map! :map vertico-map
         [backspace] #'delete-backward-char)
-        ;; [?\t] #'minibuffer-complete)
+  ;; [?\t] #'minibuffer-complete)
   (vertico-multiform-mode)
   )
 
@@ -198,9 +198,9 @@
 (after! dap-mode
   (setq dap-python-debugger 'debugpy)
   )
-  ;; (defun dap-python--pyenv-executable-find (command)
-  ;;   (with-venv (executable-find "python")))
-  ;;   )
+;; (defun dap-python--pyenv-executable-find (command)
+;;   (with-venv (executable-find "python")))
+;;   )
 
 ;; NIX
 (set-formatter! 'alejandra '("alejandra" "--quiet") :modes '(nix-mode))
@@ -232,7 +232,7 @@
 
 (after! nxml-mode
   (setq nxml-child-indent 4)
-)
+  )
 
 ;; #################### org -> koma -> letter
 
@@ -259,22 +259,20 @@
 
 (setq shfmt-arguments "-i 4 -ci")
 
-(use-package! robot-mode)
-
 ;; deft
+(setq deft-directory "~/cloud/Notizen")
 (after! deft
-  (setq deft-directory "~/cloud/joplin"
-        deft-default-extension "md"
+  (setq deft-default-extension "md"
         deft-extensions '("txt" "md" "org")
         deft-recursive t)
   )
 
-(after! impatient-mode
-  (defun markdown-html (buffer)
-    (princ (with-current-buffer buffer
-      (format "<!DOCTYPE html><html><title>Impatient Markdown</title><xmp theme=\"united\" style=\"display:none;\"> %s  </xmp><script src=\"http://strapdownjs.com/v/0.2/strapdown.js\"></script></html>" (buffer-substring-no-properties (point-min) (point-max))))
-    (current-buffer)))
-  )
+;; (after! impatient-mode
+;;   (defun markdown-html (buffer)
+;;     (princ (with-current-buffer buffer
+;;              (format "<!DOCTYPE html><html><title>Impatient Markdown</title><xmp theme=\"united\" style=\"display:none;\"> %s  </xmp><script src=\"http://strapdownjs.com/v/0.2/strapdown.js\"></script></html>" (buffer-substring-no-properties (point-min) (point-max))))
+;;            (current-buffer)))
+;;   )
 
 ;; Shell recommendation from doom doctor
 (setq shell-file-name (executable-find "bash"))
@@ -282,32 +280,75 @@
 (setq-default vterm-shell (executable-find "fish"))
 (setq-default explicit-shell-file-name (executable-find "fish"))
 
-(after! ellama
-        (setopt ellama-keymap-prefix "C-c e")  ;; keymap for all ellama functions
-        (setopt ellama-language "English")     ;; language ellama should translate to
-        (require 'llm-ollama)
-        (setopt ellama-provider
-                (make-llm-ollama
-                 ;; this model should be pulled to use it
-                 ;; value should be the same as you print in terminal during pull
-                 :chat-model "llama3.2"
-                 :embedding-model "nomic-embed-text"
-                 :default-chat-non-standard-params '(("num_ctx" . 8192))))
-        ;; Predefined llm providers for interactive switching.
-        (setopt ellama-providers
-                '(
-                  ("llama3.2" . (make-llm-ollama
-                                 :chat-model "llama3.2"
-                                 :embedding-model "llama3.2"))
-                  ("mixtral" . (make-llm-ollama
-                                :chat-model "mixtral"
-                                :embedding-model "mixtral"))))
-        (setopt ellama-naming-scheme 'ellama-generate-name-by-llm)
-        ;; Translation llm provider
-        (setopt ellama-translation-provider (make-llm-ollama
-                                             :chat-model "mixtral"
-                                             :embedding-model "nomic-embed-text"))
+;; (use-package! ellama
+;;   :defer
+;;   :config
+;;   (setopt ellama-keymap-prefix "C-c e")  ;; keymap for all ellama functions
+;;   (setopt ellama-language "English")     ;; language ellama should translate to
+;;   (require 'llm-ollama)
+;;   (setopt ellama-provider
+;;           (make-llm-ollama
+;;            ;; this model should be pulled to use it
+;;            ;; value should be the same as you print in terminal during pull
+;;            :chat-model "llama3.2"
+;;            :embedding-model "nomic-embed-text"
+;;            :default-chat-non-standard-params '(("num_ctx" . 8192))))
+;;   ;; Predefined llm providers for interactive switching.
+;;   (setopt ellama-providers
+;;           '(
+;;             ("llama3.2" . (make-llm-ollama
+;;                            :chat-model "llama3.2"
+;;                            :embedding-model "llama3.2"))
+;;             ("mixtral" . (make-llm-ollama
+;;                           :chat-model "mixtral"
+;;                           :embedding-model "mixtral"))))
+;;   (setopt ellama-naming-scheme 'ellama-generate-name-by-llm)
+;;   ;; Translation llm provider
+;;   (setopt ellama-translation-provider (make-llm-ollama
+;;                                        :chat-model "mixtral"
+;;                                        :embedding-model "nomic-embed-text"))
 
-        (setq
-         ellama-sessions-directory "~/.config/emacs/ellama-sessions/"
-         ellama-sessions-auto-save nil)
+;;   (setq
+;;    ellama-sessions-directory "~/.config/emacs/ellama-sessions/"
+;;    ellama-sessions-auto-save nil)
+;;   )
+
+(use-package! gptel
+  :defer
+  :config
+  (setq gptel-default-mode 'org-mode
+        gptel-post-response-functions #'gptel-end-of-response
+        gptel-expert-commands t)
+
+
+  ;; ----------------------------------------------------------------------------------
+  ;; olama
+  ;; ----------------------------------------------------------------------------------
+
+  (setq gptel-model 'qwen2.5-coder)
+  (setq gptel-model 'deepseek-coder)
+  (setq gptel-model 'deepseek-r1:7b)
+  (setq gptel-backend (gptel-make-ollama "Ollama"
+                        :host "localhost:11434"
+                        :stream t
+                        :models '(qwen2.5-coder
+                                  deepseek-coder
+                                  deepseek-r1:7b)))
+
+  )
+
+(use-package! aidermacs
+  ;; :defer
+  :config
+  (setenv "OLLAMA_API_BASE" "http://127.0.0.1:11434")
+  :custom
+  (aidermacs-use-architect-mode t)
+  (aidermacs-architect-model "ollama_chat/deepseek-r1:7b")
+  (aidermacs-default-model "ollama_chat/deepseek-r1:7b")
+  (aidermacs-editor-model "ollama_chat/qwen2.5-coder")
+  )
+
+(map! :leader
+      (:prefix-map ("k" . "AI tools")
+       :desc "Aidermacs" "a" #'aidermacs-transient-menu)
+      )

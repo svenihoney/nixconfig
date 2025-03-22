@@ -74,6 +74,10 @@
 (package! protobuf-mode)
 
 ;; (package! with-venv)
+
+;; AI
 (package! ellama)
+(package! gptel)
+(package! aidermacs)
 
 ;; ############ corfu

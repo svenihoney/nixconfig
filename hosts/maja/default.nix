@@ -107,9 +107,9 @@
   hardware = {
     graphics.enable = true;
     amdgpu.amdvlk.enable = true;
-    # amdgpu.opencl.enable = true;
-    # graphics.extraPackages = with pkgs.rocmPackages; [ clr clr.icd ];
+    amdgpu.opencl.enable = true;
   };
+
   powerManagement = {
     enable = true;
     cpuFreqGovernor = "schedutil";
