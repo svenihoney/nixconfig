@@ -323,6 +323,7 @@ in {
         "move onscreen cursor 50% 50%,class:com.nextcloud.desktopclient.nextcloud"
         "float,title:(twinkle)"
         "float,title:Bluetooth Devices"
+        "float,title:Netxp.*"
 
         "workspace 2,class:([Vv]ivaldi.*)"
         "workspace 2,class:(org.qutebrowser.qutebrowser)"

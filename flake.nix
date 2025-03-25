@@ -42,6 +42,11 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0-1.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     deploy-rs = {
       url = "github:serokell/deploy-rs";
       inputs = {
@@ -130,6 +135,7 @@
     home-manager-stable,
     # flake-utils,
     flake-parts,
+    lix-module,
     deploy-rs,
     pre-commit-hooks,
     # nixgl,
@@ -167,6 +173,7 @@
         nixpkgs.lib.nixosSystem {
           # pkgs = self.unstable-pkgs.${hostPlatform};
           modules = [
+            lix-module.nixosModules.default
             inputs.lanzaboote.nixosModules.lanzaboote
             inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
