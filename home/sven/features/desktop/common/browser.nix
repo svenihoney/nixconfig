@@ -4,8 +4,8 @@
   lib,
   ...
 }: let
-  # browser = ["vivaldi-stable.desktop"];
-  browser = ["firefox.desktop"];
+  browser = ["vivaldi-stable.desktop"];
+  # browser = ["firefox.desktop"];
 
   # XDG MIME types
   associations = {

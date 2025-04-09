@@ -19,14 +19,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    sops-nix-stable = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
-    };
+    # sops-nix = {
+    #   url = "github:Mic92/sops-nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # sops-nix-stable = {
+    #   url = "github:Mic92/sops-nix";
+    #   inputs.nixpkgs.follows = "nixpkgs-stable";
+    # };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,10 +42,10 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0-1.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # lix-module = {
+    #   url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0-1.tar.gz";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     deploy-rs = {
       url = "github:serokell/deploy-rs";
@@ -56,7 +56,7 @@
       };
     };
     stylix.url = "github:danth/stylix";
-    stylix-stable.url = "github:danth/stylix/release-24.05";
+    stylix-stable.url = "github:danth/stylix/release-24.11";
     # hyprland = {
     #   url = "github:hyprwm/hyprland";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -112,11 +112,11 @@
     };
 
     # Currently broken
-    quickshell = {
-      # url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      url = "github:quickshell-mirror/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # quickshell = {
+    #   # url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+    #   url = "github:quickshell-mirror/quickshell";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     # hyprlux = {
     #   url = "github:amadejkastelic/Hyprlux";
     # };
@@ -135,12 +135,12 @@
     home-manager-stable,
     # flake-utils,
     flake-parts,
-    lix-module,
+    # lix-module,
     deploy-rs,
     pre-commit-hooks,
     # nixgl,
     nixvim,
-    sops-nix,
+    # sops-nix,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -173,7 +173,7 @@
         nixpkgs.lib.nixosSystem {
           # pkgs = self.unstable-pkgs.${hostPlatform};
           modules = [
-            lix-module.nixosModules.default
+            # lix-module.nixosModules.default
             inputs.lanzaboote.nixosModules.lanzaboote
             inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager

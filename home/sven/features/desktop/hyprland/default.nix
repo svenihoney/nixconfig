@@ -46,7 +46,7 @@
   # browser = defaultApp "x-scheme-handler/https";
   # browser = "${pkgs.qutebrowser}/bin/qutebrowser";
   browser = "${pkgs.vivaldi}/bin/vivaldi";
-  firefox = "${pkgs.firefox}/bin/firefox";
+  altbrowser = "${pkgs.firefox}/bin/firefox";
   # editor = defaultApp "text/plain";
   # editor = "${config.programs.emacs.package}/bin/emacs";
   editor = "${config.programs.doom-emacs.finalEmacsPackage}/bin/emacs";
@@ -218,8 +218,8 @@ in {
           # "SUPER,e,exec,${editor}"
           # "SUPER,v,exec,${editor}"
           # "SUPER,b,exec,${browser}"
-          "SUPER SHIFT, F2, exec, ${uswmapp}${browser}"
-          "SUPER, F2, exec, ${uswmapp}${firefox}"
+          "SUPER SHIFT, F2, exec, ${uswmapp}${altbrowser}"
+          "SUPER, F2, exec, ${uswmapp}${browser}"
           "SUPER, F3, exec, ${uswmapp}thunderbird"
           # "SUPER, F4, exec, teams-for-linux --enable-features=UseOzonePlatform --ozone-platform=wayland"
           # "SUPER, F4, exec, fish -c ${editor}"

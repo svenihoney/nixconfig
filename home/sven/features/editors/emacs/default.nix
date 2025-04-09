@@ -91,14 +91,13 @@
   #     package = lib.mkForce config.programs.doom-emacs.finalEmacsPackage;
   #   };
   # };
-  programs.fish.shellAbbrs.ec = "emacsclient -t";
+  # programs.fish.shellAbbrs.ec = "emacsclient -t";
 
   wayland.windowManager.hyprland = {
     settings = {
-      bind =
-        [
-          "SUPER, F4, exec, fish -c ${lib.getExe config.programs.doom-emacs.finalEmacsPackage}"
-        ];
+      bind = [
+        "SUPER, F4, exec, fish -c ${lib.getExe config.programs.doom-emacs.finalEmacsPackage}"
+      ];
     };
   };
 }
