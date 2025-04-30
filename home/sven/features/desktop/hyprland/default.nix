@@ -15,7 +15,7 @@
   playerctld = "${config.services.playerctld.package}/bin/playerctld";
   makoctl = "${config.services.mako.package}/bin/makoctl";
   # wofi = "${config.programs.wofi.package}/bin/wofi";
-  copyq = "${lib.getExe config.services.copyq.package}";
+  # copyq = "${lib.getExe config.services.copyq.package}";
   grimblast = "${lib.getExe pkgs.grimblast}";
   satty = "${lib.getExe pkgs.satty}";
   satty_cmd = "${satty} --filename - --early-exit --initial-tool arrow --annotation-size-factor 0.5 --action-on-enter save-to-clipboard --output-filename /tmp/satty-area-$(date '+%Y%m%d-%H:%M:%S').png";
@@ -197,7 +197,7 @@ in {
         # set cursor for HL itself
         # "hyprctl setcursor ${cursorName} ${toString pointer.size}"
         # "hyprlock"
-        "${uswmapp}${copyq}"
+        # "${uswmapp}${copyq}"
         "${uswmapp}${hyprsunset}"
         "${uswmapp}${keepassxc}"
         "${uswmapp}${waybar}"
@@ -295,7 +295,7 @@ in {
         # ])
         ++ [
           # (lib.optionals config.services.copyq.enable [
-          "SUPER, C, exec, ${copyq} toggle"
+          # "SUPER, C, exec, ${copyq} toggle"
         ]
         #)
         # ++ (lib.optionals config.services.ulauncher.enable
