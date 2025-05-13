@@ -8,7 +8,13 @@
       # Ciphers = "aes128-cbc";
     };
   };
-  qnxSshHost = rec {user = "root";} // oldSshHost;
+  rootUser = {
+    user = "root";
+  };
+  xterm = {
+    setEnv = {TERM = "xterm";};
+  };
+  qnxSshHost = rootUser // xterm // oldSshHost;
 in {
   programs = {
     ssh = {
@@ -49,15 +55,18 @@ in {
         #   HostKeyAlgorithms +ssh-rsa
         #   PubkeyAcceptedAlgorithms +ssh-rsa
 
-        docker = {user = "rancher";};
-        mirror = {user = "root";};
+        docker = {
+          user = "rancher";
+          setEnv = {TERM = "xterm";};
+        };
+        mirror = rootUser // xterm;
         proxmox = {
           hostname = "proxmox1";
           user = "root";
         };
-        chuck = {user = "root";};
-        nas1 = {user = "root";};
-        "gerrit.software.ads" = oldSshHost;
+        chuck = rootUser // xterm;
+        nas1 = rootUser;
+        "gerrit.software.ads" = oldSshHost // xterm;
 
         willi = {
           hostname = "192.168.11.63";
