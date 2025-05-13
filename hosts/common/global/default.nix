@@ -66,7 +66,7 @@
     # };
     sudo-rs = {
       enable = true;
-      execWheelOnly = true;
+      # execWheelOnly = true;
       wheelNeedsPassword = false;
     };
   };
