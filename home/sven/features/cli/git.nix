@@ -23,6 +23,7 @@
       credential.helper = "${config.programs.git.package}/share/git/contrib/credential/libsecret/git-credential-libsecret";
       color.ui = "auto";
       push.default = "current";
+      merge.conflictstyle = "diff3";
     };
     lfs.enable = true;
     # delta = {

@@ -31,21 +31,20 @@ in {
     languagePacks = ["de" "en-US"];
     profiles.sven = {
       bookmarks = {};
-      # extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         keepassxc-browser
-        ublock-origin
-        cookie-autodelete
-        istilldontcareaboutcookies
-        decentraleyes
-        sponsorblock
+        # ublock-origin
+        # cookie-autodelete
+        # istilldontcareaboutcookies
+        # decentraleyes
+        # sponsorblock
         gesturefy
-        vimium
-        wikiwand-wikipedia-modernized
-        user-agent-string-switcher
+        # vimium
+        # wikiwand-wikipedia-modernized
+        # user-agent-string-switcher
         deutsch-de-language-pack
-        dictionary-german
-        firenvim
+        # dictionary-german
+        # firenvim
       ];
       search = {
         default = lib.mkDefault "ddg";
@@ -62,7 +61,6 @@ in {
         "browser.shell.defaultBrowserCheckCount" = 1;
         "browser.startup.homepage" = "https://start.duckduckgo.com";
         "browser.translations.neverTranslateLanguages" = "en";
-        # "browser.uiCustomization.state" = ''{"placements":{"widget-overflow-fixed-list":[],"nav-bar":["back-button","forward-button","stop-reload-button","home-button","urlbar-container","downloads-button","library-button","ublock0_raymondhill_net-browser-action","_testpilot-containers-browser-action"],"toolbar-menubar":["menubar-items"],"TabsToolbar":["tabbrowser-tabs","new-tab-button","alltabs-button"],"PersonalToolbar":["import-button","personal-bookmarks"]},"seen":["save-to-pocket-button","developer-button","ublock0_raymondhill_net-browser-action","_testpilot-containers-browser-action"],"dirtyAreaCache":["nav-bar","PersonalToolbar","toolbar-menubar","TabsToolbar","widget-overflow-fixed-list"],"currentVersion":18,"newElementCount":4}'';
         "dom.security.https_only_mode" = true;
         "dom.event.contextmenu.enabled" = true;
         "ui.context_menus.after_mouseup" = true;
@@ -83,7 +81,7 @@ in {
       {id = "edibdbjcniadpccecjdfdjjppcpchdlm";} # I still don't care about cookies
       {id = "hfjbmagddngcpeloejdejnfgbamkjaeg";} # Vimium C
       {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # ublock origin
-      {id = "emffkefkbkpkgpdeeooapgaicgmcbolj";} # Wikiwand
+      # {id = "emffkefkbkpkgpdeeooapgaicgmcbolj";} # Wikiwand
     ];
   };
 

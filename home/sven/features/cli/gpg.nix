@@ -5,13 +5,10 @@
   services,
   ...
 }: let
-  pinentryPkg =
+  pinentryConfig =
     if config.gtk.enable && builtins.hasAttr "pinentry-gnome3" pkgs
-    then pkgs.pinentry-gnome3
-    else pkgs.pinentry-curses;
-  pinentryConfig = {
-    pinentryPackage = pinentryPkg;
-  };
+    then {pinentry.package = pkgs.pinentry-gnome3;}
+    else {pinentryPackage = pkgs.pinentry-curses;};
 in {
   # home.packages = pinentry.packages;
 
