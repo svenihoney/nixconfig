@@ -192,7 +192,7 @@
         home-manager-stable.lib.homeManagerConfiguration
         {
           modules = [
-            inputs.stylix-stable.homeManagerModules.stylix
+            inputs.stylix-stable.homeModules.stylix
             ./home/${user}/${hostName}.nix
           ];
           pkgs = self.stable-pkgs.${hostPlatform};
@@ -201,7 +201,7 @@
       else
         home-manager.lib.homeManagerConfiguration {
           modules = [
-            inputs.stylix.homeManagerModules.stylix
+            inputs.stylix.homeModules.stylix
             ./home/${user}/${hostName}.nix
           ];
           pkgs = self.unstable-pkgs.${hostPlatform};

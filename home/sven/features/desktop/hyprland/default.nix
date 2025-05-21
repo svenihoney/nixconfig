@@ -42,7 +42,8 @@
   defaultApp = type: "${gtk-launch} $(${xdg-mime} query default ${type})";
 
   # terminal = config.home.sessionVariables.TERMINAL;
-  terminal = "${lib.getExe pkgs.ghostty}";
+  # terminal = "${lib.getExe pkgs.ghostty}";
+  terminal = "ghostty";
   # browser = defaultApp "x-scheme-handler/https";
   # browser = "${pkgs.qutebrowser}/bin/qutebrowser";
   browser = "${pkgs.vivaldi}/bin/vivaldi";
