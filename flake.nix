@@ -8,8 +8,9 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    # nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
     # nixpkgs-trunk.url = "github:nixos/nixpkgs";
+    # nixpkgs.url = "github:nixos/nixpkgs";
 
     hardware.url = "github:nixos/nixos-hardware";
     # impermanence.url = "github:nix-community/impermanence";
@@ -31,10 +32,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    home-manager-stable = {
-      url = "github:nix-community/home-manager/release-24.11";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
-    };
+    # home-manager-stable = {
+    #   url = "github:nix-community/home-manager/release-25.05";
+    #   inputs.nixpkgs.follows = "nixpkgs-stable";
+    # };
     nixgl.url = "github:guibou/nixGL";
 
     # nh = {
@@ -56,7 +57,7 @@
       };
     };
     stylix.url = "github:danth/stylix";
-    stylix-stable.url = "github:danth/stylix/release-24.11";
+    # stylix-stable.url = "github:danth/stylix/release-25.05";
     # hyprland = {
     #   url = "github:hyprwm/hyprland";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -72,14 +73,14 @@
     nur.url = "github:nix-community/nur";
 
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
-    anyrun.url = "github:fufexan/anyrun/launch-prefix";
+    anyrun.url = "github:fufexan/anyrun?ref=launch-prefix";
 
     # nixvim = {
     #   url = "github:nix-community/nixvim";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
     # nixvim-stable = {
-    #   url = "github:nix-community/nixvim/nixos-24.11";
+    #   url = "github:nix-community/nixvim/nixos-25.05";
     #   inputs.nixpkgs.follows = "nixpkgs-stable";
     # };
     # flake-utils.url = "github:numtide/flake-utils";
@@ -111,6 +112,8 @@
       inputs.nixpkgs.follows = "";
     };
 
+    devenv.url = "github:cachix/devenv";
+
     # Currently broken
     # quickshell = {
     #   # url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
@@ -129,10 +132,10 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-stable,
+    # nixpkgs-stable,
     # nixpkgs-trunk,
     home-manager,
-    home-manager-stable,
+    # home-manager-stable,
     # flake-utils,
     flake-parts,
     # lix-module,
@@ -141,6 +144,7 @@
     # nixgl,
     nixvim,
     # sops-nix,
+    devenv,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -156,57 +160,57 @@
       stable,
       ...
     }:
-      if stable
-      then
-        nixpkgs-stable.lib.nixosSystem
-        {
-          # pkgs = self.stable-pkgs.${hostPlatform};
-          modules = [
-            # trunkOverlay
-            inputs.stylix-stable.nixosModules.stylix
-            inputs.home-manager-stable.nixosModules.home-manager
-            ./hosts/${hostName}
-          ];
-          specialArgs = {inherit inputs outputs;};
-        }
-      else
-        nixpkgs.lib.nixosSystem {
-          # pkgs = self.unstable-pkgs.${hostPlatform};
-          modules = [
-            # lix-module.nixosModules.default
-            inputs.lanzaboote.nixosModules.lanzaboote
-            inputs.stylix.nixosModules.stylix
-            inputs.home-manager.nixosModules.home-manager
-            ./hosts/${hostName}
-          ];
-          specialArgs = {inherit inputs outputs;};
-        };
+    # if stable
+    # then
+    #   nixpkgs-stable.lib.nixosSystem
+    #   {
+    #     # pkgs = self.stable-pkgs.${hostPlatform};
+    #     modules = [
+    #       # trunkOverlay
+    #       inputs.stylix-stable.nixosModules.stylix
+    #       inputs.home-manager-stable.nixosModules.home-manager
+    #       ./hosts/${hostName}
+    #     ];
+    #     specialArgs = {inherit inputs outputs;};
+    #   }
+    # else
+      nixpkgs.lib.nixosSystem {
+        # pkgs = self.unstable-pkgs.${hostPlatform};
+        modules = [
+          # lix-module.nixosModules.default
+          inputs.lanzaboote.nixosModules.lanzaboote
+          inputs.stylix.nixosModules.stylix
+          inputs.home-manager.nixosModules.home-manager
+          ./hosts/${hostName}
+        ];
+        specialArgs = {inherit inputs outputs;};
+      };
     genHomeConfig = hostName: {
       user,
       hostPlatform,
       stable,
       ...
     }:
-      if stable
-      then
-        home-manager-stable.lib.homeManagerConfiguration
-        {
-          modules = [
-            inputs.stylix-stable.homeModules.stylix
-            ./home/${user}/${hostName}.nix
-          ];
-          pkgs = self.stable-pkgs.${hostPlatform};
-          extraSpecialArgs = {inherit inputs outputs;};
-        }
-      else
-        home-manager.lib.homeManagerConfiguration {
-          modules = [
-            inputs.stylix.homeModules.stylix
-            ./home/${user}/${hostName}.nix
-          ];
-          pkgs = self.unstable-pkgs.${hostPlatform};
-          extraSpecialArgs = {inherit inputs outputs;};
-        };
+    # if stable
+    # then
+    #   home-manager-stable.lib.homeManagerConfiguration
+    #   {
+    #     modules = [
+    #       inputs.stylix-stable.homeModules.stylix
+    #       ./home/${user}/${hostName}.nix
+    #     ];
+    #     pkgs = self.stable-pkgs.${hostPlatform};
+    #     extraSpecialArgs = {inherit inputs outputs;};
+    #   }
+    # else
+      home-manager.lib.homeManagerConfiguration {
+        modules = [
+          inputs.stylix.homeModules.stylix
+          ./home/${user}/${hostName}.nix
+        ];
+        pkgs = self.unstable-pkgs.${hostPlatform};
+        extraSpecialArgs = {inherit inputs outputs;};
+      };
     nvim-flake = import ./home/sven/features/editors/nvim/flake.nix;
     nvim-outputs = nvim-flake.outputs {
       inherit self;
@@ -216,25 +220,25 @@
     };
   in {
     # inherit lib;
-    stable-pkgs = forEachSystem (system:
-      import nixpkgs-stable {
-        inherit system;
+    # stable-pkgs = forEachSystem (system:
+    #   import nixpkgs-stable {
+    #     inherit system;
 
-        overlays = [
-          (final: prev: {
-            python3 = prev.python3.override {
-              packageOverrides = pfinal: pprev: {
-                debugpy = pprev.debugpy.overrideAttrs (oldAttrs: {
-                  pytestCheckPhase = "true";
-                });
-              };
-            };
-            python3Packages = final.python3.pkgs;
-          })
-        ];
+    #     overlays = [
+    #       (final: prev: {
+    #         python3 = prev.python3.override {
+    #           packageOverrides = pfinal: pprev: {
+    #             debugpy = pprev.debugpy.overrideAttrs (oldAttrs: {
+    #               pytestCheckPhase = "true";
+    #             });
+    #           };
+    #         };
+    #         python3Packages = final.python3.pkgs;
+    #       })
+    #     ];
 
-        # overlays = [nixgl.overlay];
-      });
+    #     # overlays = [nixgl.overlay];
+    #   });
     unstable-pkgs = forEachSystem (system:
       import nixpkgs {
         inherit system;

@@ -39,6 +39,7 @@
 
   ollama.tools.enable = true;
   ollama.service.enable = true;
+  services.ollama.acceleration = "rocm";
 
   #targets.genericLinux.enable = true;
   # colorscheme = inputs.nix-colors.colorschemes.tokyo-night-storm;

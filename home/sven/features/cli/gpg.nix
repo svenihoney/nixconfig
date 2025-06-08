@@ -8,7 +8,7 @@
   pinentryConfig =
     if config.gtk.enable && builtins.hasAttr "pinentry-gnome3" pkgs
     then {pinentry.package = pkgs.pinentry-gnome3;}
-    else {pinentryPackage = pkgs.pinentry-curses;};
+    else {pinentry.package = pkgs.pinentry-curses;};
 in {
   # home.packages = pinentry.packages;
 

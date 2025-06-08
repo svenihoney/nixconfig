@@ -23,7 +23,10 @@
     options = ["subvol=@" "compress=zstd"];
   };
 
-  boot.initrd.luks.devices."nix".device = "/dev/disk/by-uuid/b68384de-b169-4568-a5af-5395690b27ff";
+  boot.initrd.luks.devices."nix" = {
+    device = "/dev/disk/by-uuid/b68384de-b169-4568-a5af-5395690b27ff";
+    allowDiscards = true;
+  };
 
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/a18f78cc-1743-488e-8d28-4975390df574";

@@ -343,9 +343,9 @@
   (setenv "OLLAMA_API_BASE" "http://127.0.0.1:11434")
   :custom
   (aidermacs-use-architect-mode t)
-  (aidermacs-architect-model "ollama_chat/deepseek-r1:7b")
-  (aidermacs-default-model "ollama_chat/deepseek-r1:7b")
-  (aidermacs-editor-model "ollama_chat/qwen2.5-coder")
+  (aidermacs-architect-model "ollama_chat/deepseek-r1:14b")
+  (aidermacs-default-model "ollama_chat/deepseek-r1:14b")
+  (aidermacs-editor-model "ollama_chat/deepseek-coder-v2")
   )
 
 (map! :leader

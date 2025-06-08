@@ -24,7 +24,7 @@ let
       address = "struppi.effeffcee.de";
       remoteBuild = false;
       user = "sven";
-      stable = true;
+      stable = false;
     };
     # struppi = {
     #   type = "homeManager";
