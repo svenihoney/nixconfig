@@ -56,7 +56,11 @@
         # flake-compat.follows = "flake-compat";
       };
     };
-    stylix.url = "github:danth/stylix";
+    stylix = {
+      # url = "github:danth/stylix";
+      url = "github:nix-community/stylix?ref=63b887772d8262430ae8fd70bcf688e54147019f";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # stylix-stable.url = "github:danth/stylix/release-25.05";
     # hyprland = {
     #   url = "github:hyprwm/hyprland";

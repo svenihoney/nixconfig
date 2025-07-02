@@ -313,29 +313,52 @@
 ;;    ellama-sessions-auto-save nil)
 ;;   )
 
+(use-package! secrets
+  :config
+  (secrets-open-session)
+  )
+
 (use-package! gptel
-  :defer
   :config
   (setq gptel-default-mode 'org-mode
         gptel-post-response-functions #'gptel-end-of-response
         gptel-expert-commands t)
-
-
-  ;; ----------------------------------------------------------------------------------
-  ;; olama
-  ;; ----------------------------------------------------------------------------------
-
-  (setq gptel-model 'qwen2.5-coder)
-  (setq gptel-model 'deepseek-coder)
-  (setq gptel-model 'deepseek-r1:7b)
-  (setq gptel-backend (gptel-make-ollama "Ollama"
-                        :host "localhost:11434"
-                        :stream t
-                        :models '(qwen2.5-coder
-                                  deepseek-coder
-                                  deepseek-r1:7b)))
-
+  (setq gptel-backend
+        (gptel-make-ollama "Ollama"
+          :host "localhost:11434"
+          :stream t
+          :models '(deepseek-coder-v2
+                    qwen2.5-coder
+                    deepseek-r1:7b))
+        )
+  (gptel-make-gemini "Gemini" :key (secrets-get-secret "keepassx" "Gemini API key") :stream t :models
+                     '(gemini-2.5-flash-lite-preview-06-17))
   )
+
+;; (use-package! gptel
+;;   :defer
+;;   :config
+;;   (setq gptel-default-mode 'org-mode
+;;         gptel-post-response-functions #'gptel-end-of-response
+;;         gptel-expert-commands t)
+
+
+;;   ;; ----------------------------------------------------------------------------------
+;;   ;; ollama
+;;   ;; ----------------------------------------------------------------------------------
+
+;;   (setq gptel-model 'qwen2.5-coder)
+;;   (setq gptel-model 'deepseek-coder)
+;;   (setq gptel-model 'deepseek-r1:7b)
+;;   (setq gptel-backend (gptel-make-ollama "Ollama"
+;;                         :host "localhost:11434"
+;;                         :stream t
+;;                         :models '(qwen2.5-coder
+;;                                   deepseek-coder
+;;                                   deepseek-r1:7b)))
+
+;;   )
+;; :key can be a function that returns the API key.
 
 (use-package! aidermacs
   ;; :defer
@@ -350,5 +373,10 @@
 
 (map! :leader
       (:prefix-map ("k" . "AI tools")
-       :desc "Aidermacs" "a" #'aidermacs-transient-menu)
+       :desc "Aidermacs" "a" #'aidermacs-transient-menu
+       :desc "GPtel menu" "m" #'gptel-menu
+       :desc "GPtel Aibo" "i" #'gptel-aibo
+       :desc "GPtel Aibo send" "s" #'gptel-aibo-send
+       :desc "GPtel Aibo summon" "S" #'gptel-aibo-summon
+       )
       )

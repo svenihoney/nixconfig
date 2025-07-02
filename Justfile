@@ -17,6 +17,9 @@ home host=`hostname`:
 deploy host=`hostname`:
     deploy -s .#{{host}} -- --impure --verbose
 
+build host=`hostname`:
+    nh os build . -H {{host}}
+
 clean:
     nix-collect-garbage -d --delete-older-than 1d
 

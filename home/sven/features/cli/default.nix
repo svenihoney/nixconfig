@@ -69,8 +69,10 @@
       # Better ls
       enable = true;
       git = false;
+      colors = "auto";
       icons = "auto";
-      extraOptions = ["--hyperlink"];
+      theme = "dracula";
+      # extraOptions = ["--hyperlink"];
     };
     fish = {
       shellAliases = {

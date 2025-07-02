@@ -77,7 +77,8 @@
 
 ;; AI
 (package! ellama)
-(package! gptel)
+(package! gptel :recipe (:nonrecursive t))
+(package! gptel-aibo)
 (package! aidermacs)
 
 ;; ############ corfu
