@@ -85,5 +85,7 @@
     }
   ];
 
+  ollama.tools.enable = true;
+  ollama.service.enable = true;
   services.ollama.acceleration = "cuda";
 }
