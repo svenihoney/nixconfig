@@ -16,6 +16,9 @@
     vivaldi = {
       package = config.lib.nixGL.wrap pkgs.vivaldi;
     };
+    ghostty = {
+      package = config.lib.nixGL.wrap pkgs.ghostty;
+    };
   };
   wayland.windowManager.hyprland.package = config.lib.nixGL.wrap pkgs.hyprland;
 }
