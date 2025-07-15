@@ -42,6 +42,9 @@ in {
           user = "root";
           hostname = "nas.fritz.box";
         };
+        nas2 = {
+          setEnv = {TERM = "xterm";};
+        };
         "bluecake" = {
           hostname = "hosting155974.a2ee8.netcup.net";
           user = "hosting155974";
