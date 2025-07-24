@@ -1,9 +1,4 @@
-{
-  inputs,
-  outputs,
-  pkgs,
-  ...
-}: {
+{...}: {
   imports = [
     ./global
     ./standard-desktop.nix
@@ -32,10 +27,17 @@
     ./features/work
   ];
 
+  svenihoney.devel = {
+    all = true;
+    emacs = true;
+    # helix = true;
+    # code = true;
+    zed = true;
+  };
   # wallpaper = outputs.wallpapers.aenami-lunar;
   # colorscheme = inputs.nix-colors.colorSchemes.atelier-heath;
-  programs.emacs.package = pkgs.emacs30-pgtk;
-  services.emacs.package = pkgs.emacs30-pgtk;
+  # programs.emacs.package = pkgs.emacs30-pgtk;
+  # services.emacs.package = pkgs.emacs30-pgtk;
   services.blueman-applet.enable = true;
 
   monitors = [

@@ -4,8 +4,10 @@
   pkgs,
   ...
 }: {
-  home.packages = with pkgs; [
-    libxslt
-    libxml2
-  ];
+  config = lib.mkIf config.svenihoney.devel.xml {
+    home.packages = with pkgs; [
+      libxslt
+      libxml2
+    ];
+  };
 }

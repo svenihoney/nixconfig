@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{...}: {
   imports = [
     ./global
     ./standard-desktop.nix
@@ -36,6 +32,14 @@
 
     ./features/work
   ];
+
+  svenihoney.devel = {
+    all = true;
+    emacs = true;
+    # helix = true;
+    zed = true;
+    copilot = true;
+  };
 
   ollama.tools.enable = true;
   ollama.service.enable = true;

@@ -22,9 +22,14 @@
       difftool.prompt = false;
     };
   };
-  home.packages = with pkgs; [pcmanfm udiskie neovide];
+  home.packages = with pkgs; [xfce.thunar udiskie neovide];
   xdg.mimeApps.defaultApplications = {
     "text/plain" = "neovide.desktop";
-    "inode/directory" = "pcmanfm.desktop";
+    "inode/directory" = "thunar.desktop";
   };
+  # home.packages = with pkgs; [pcmanfm udiskie neovide];
+  # xdg.mimeApps.defaultApplications = {
+  #   "text/plain" = "neovide.desktop";
+  #   "inode/directory" = "pcmanfm.desktop";
+  # };
 }

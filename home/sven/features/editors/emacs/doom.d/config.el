@@ -201,6 +201,26 @@
 ;; (defun dap-python--pyenv-executable-find (command)
 ;;   (with-venv (executable-find "python")))
 ;;   )
+;; (after! lsp-pyright
+;;   (setq lsp-pyright-langserver-command-args '("--stdio")
+;;         lsp-pyright-python-executable-cmd "python3"))
+
+;; ;; Basedpyright als Command setzen
+;; (setq lsp-pyright-server-command '("basedpyright-langserver" "--stdio"))
+
+;; (after! lsp-mode
+;;   (lsp-register-client
+;;    (make-lsp-client
+;;     :new-connection (lsp-stdio-connection '("basedpyright-langserver" "--stdio"))
+;;     :activation-fn (lsp-activate-on "python")
+;;     :server-id 'basedpyright
+;;     :priority 1))) ; Höhere Priorität als pyright
+
+;; ;; Basedpyright als Standard für Python setzen
+;; (after! python
+;;   (setq lsp-disabled-clients '(pyright pylsp ruff))
+;;   (add-hook 'python-mode-hook
+;;             (lambda () (setq lsp-enabled-clients '(basedpyright)))))
 
 ;; NIX
 (set-formatter! 'alejandra '("alejandra" "--quiet") :modes '(nix-mode))
@@ -333,6 +353,7 @@
         )
   (gptel-make-gemini "Gemini" :key (secrets-get-secret "keepassx" "Gemini API key") :stream t :models
                      '(gemini-2.5-flash-lite-preview-06-17))
+  (gptel-make-gh-copilot "Copilot")
   )
 
 ;; (use-package! gptel

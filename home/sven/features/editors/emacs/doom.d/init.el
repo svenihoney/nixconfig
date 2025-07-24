@@ -159,6 +159,7 @@
        markdown          ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
        (nix               ; I hereby declare "nix geht mehr!"
+       +lsp
        +tree-sitter)
        ;;ocaml             ; an objective camel
        (org               ; organize your plain life in plain text
@@ -171,8 +172,10 @@
        ;; python            ; beautiful is better than ugly
        (python            ; beautiful is better than ugly
         +lsp
-        +pyenv
-        +pyright)
+        +treesitter
+        +pyright
+        )
+        ;; +pyright)
        qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6

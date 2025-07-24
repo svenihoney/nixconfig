@@ -37,8 +37,8 @@
           #   #     ];
           #   # };
           # };
-          basedpyright.enable = true;
-          ruff.enable = true;
+          # basedpyright.enable = true;
+          # ruff.enable = true;
           # # CSS
           # cssls = {
           #     enable = true;
@@ -48,13 +48,13 @@
           #     enable = true;
           # };
           # C / C++
-          clangd = {
-            enable = true;
-            # extraOptions = "--log=verbose";
-            # cmd = ["/opt/veld/2.0.0/sysroots/x86_64-pokysdk-linux/usr/bin/clangd" "--log=verbose"];
-            # cmd = ["/opt/veld/2.0.0/sysroots/x86_64-pokysdk-linux/usr/bin/clangd"];
-            # extraOptions = { log = "verbose"; };
-          };
+          # clangd = {
+          #   enable = true;
+          #   # extraOptions = "--log=verbose";
+          #   # cmd = ["/opt/veld/2.0.0/sysroots/x86_64-pokysdk-linux/usr/bin/clangd" "--log=verbose"];
+          #   # cmd = ["/opt/veld/2.0.0/sysroots/x86_64-pokysdk-linux/usr/bin/clangd"];
+          #   # extraOptions = { log = "verbose"; };
+          # };
         };
         #  keymaps.lspBuf = {
         #   "gd" = "definition";
@@ -374,7 +374,10 @@
       }
       {
         key = "<leader>cf";
-        mode = ["n" "v"];
+        mode = [
+          "n"
+          "v"
+        ];
         # action = "<Cmd>lua vim.lsp.buf.format({ async = true, range = { [\"start\"] = vim.api.nvim_buf_get_mark(0, \"<\"), [\"end\"] = vim.api.nvim_buf_get_mark(0, \">\"), } })<CR>";
         action = "<Cmd>lua vim.lsp.buf.format({ async = true})<CR>";
         options = {

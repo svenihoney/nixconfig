@@ -4,5 +4,7 @@
   pkgs,
   ...
 }: {
-  home.packages = [pkgs.zed-editor];
+  config = lib.mkIf config.svenihoney.devel.zed {
+    home.packages = [pkgs.zed-editor];
+  };
 }
