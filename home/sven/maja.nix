@@ -38,7 +38,8 @@
     emacs = true;
     # helix = true;
     zed = true;
-    copilot = true;
+    # copilot = true;
+    vscode = true;
   };
 
   ollama.tools.enable = true;

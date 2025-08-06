@@ -191,9 +191,9 @@
 (setq lsp-enable-file-watchers t)
 (setq lsp-file-watch-threshold 50000)
 
-(after! lsp-mode
-  (require 'dap-cpptools)
-  )
+;; (after! lsp-mode
+;;   (require 'dap-cpptools)
+;;   )
 
 (after! dap-mode
   (setq dap-python-debugger 'debugpy)
