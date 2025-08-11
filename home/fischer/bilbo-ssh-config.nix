@@ -65,7 +65,7 @@ in {
           user = "root";
         };
         chuck = rootUser // xterm;
-        nas1 = rootUser;
+        nas1 = rootUser // xterm;
         "gerrit.software.ads" = oldSshHost // xterm;
 
         willi = {
