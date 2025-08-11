@@ -345,9 +345,10 @@
         gptel-expert-commands t)
   (setq gptel-backend
         (gptel-make-ollama "Ollama"
-          :host "localhost:11434"
+          :host "maja:11434"
           :stream t
-          :models '(deepseek-coder-v2
+          :models '(gpt-oss:20b
+                    deepseek-coder-v2
                     qwen2.5-coder
                     deepseek-r1:7b))
         )

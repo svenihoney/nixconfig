@@ -42,9 +42,14 @@
     vscode = true;
   };
 
-  ollama.tools.enable = true;
-  ollama.service.enable = true;
-  services.ollama.acceleration = "rocm";
+  ollama = {
+    tools.enable = true;
+    service.enable = true;
+  };
+  services.ollama = {
+    acceleration = "rocm";
+    host = "[::]";
+  };
 
   #targets.genericLinux.enable = true;
   # colorscheme = inputs.nix-colors.colorschemes.tokyo-night-storm;

@@ -14,7 +14,7 @@
   imports =
     [
       # inputs.impermanence.nixosModules.home-manager.impermanence
-      inputs.nixvim.homeManagerModules.nixvim
+      inputs.nixvim.homeModules.nixvim
 
       ../features/cli
       ../features/editors/nvim
