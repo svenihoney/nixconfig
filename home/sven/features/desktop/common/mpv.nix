@@ -13,6 +13,7 @@
         vo = "gpu";
         hwdec = "auto";
         profile = "gpu-hq";
+        gpu-context = "wayland";
 
         scale = "ewa_lanczossharp";
         cscale = "ewa_lanczossharp";

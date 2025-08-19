@@ -173,10 +173,18 @@
     };
   };
 
-  # Firewall for syncthing
   networking.firewall = {
-    allowedTCPPorts = [22000];
-    allowedUDPPorts = [22000 21027];
+    allowedTCPPorts = [
+      # syncthing
+      22000
+      # ollama
+      11434
+    ];
+    allowedUDPPorts = [
+      # syncthing
+      22000
+      21027
+    ];
   };
 
   system.stateVersion = "23.11";

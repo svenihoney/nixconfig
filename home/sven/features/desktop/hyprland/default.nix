@@ -23,6 +23,7 @@
   spotify = "${lib.getExe pkgs.spotify}";
   keepassxc = "${lib.getExe pkgs.keepassxc}";
   waybar = "${lib.getExe pkgs.waybar}";
+  thunar = "${lib.getExe pkgs.xfce.thunar}";
   # pass-wofi = "${
   #     pkgs.pass-wofi.override {
   #       pass = config.programs.password-store.package;
@@ -225,6 +226,7 @@ in {
           # "SUPER, F4, exec, teams-for-linux --enable-features=UseOzonePlatform --ozone-platform=wayland"
           # "SUPER, F4, exec, fish -c ${editor}"
           "SUPER SHIFT, F4, exec, ${uswmapp}${neovide}"
+          "SUPER, F5, exec, ${uswmapp}${thunar}"
           "SUPER, F7, exec, ${uswmapp}${spotify}"
           "SUPER, F12, exec, hyprctl switchxkblayout brian-low-sofle-choc next"
           # "SUPER, F11, exec, ~/bin/switchaudio btoff"
@@ -279,15 +281,15 @@ in {
         # Launcher
         ++ (
           lib.optionals config.programs.wofi.enable
-          ["SUPER,d,exec,${config.programs.wofi.package}/bin/wofi -S drun"]
+          ["SUPER,d,exec,${uswmapp}${config.programs.wofi.package}/bin/wofi -S drun"]
         )
         ++ (
           lib.optionals config.programs.fuzzel.enable
-          ["SUPER,d,exec,${pkgs.fuzzel}/bin/fuzzel"]
+          ["SUPER,d,exec,${uswmapp}${pkgs.fuzzel}/bin/fuzzel"]
         )
         ++ (
           lib.optionals config.programs.anyrun.enable
-          ["SUPER,d,exec,${pkgs.anyrun}/bin/anyrun"]
+          ["SUPER,d,exec,${uswmapp}${pkgs.anyrun}/bin/anyrun"]
         )
         # ++ (lib.optionals config.programs.password-store.enable [
         #   ",Scroll_Lock,exec,${pass-wofi}" # fn+k

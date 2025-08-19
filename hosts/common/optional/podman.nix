@@ -10,6 +10,10 @@ in {
     dockerCompat = !dockerEnabled;
     dockerSocket.enable = !dockerEnabled;
     defaultNetwork.settings.dns_enabled = true;
+    autoPrune = {
+      enable = true;
+      dates = "weekly";
+    };
   };
 
   environment.systemPackages = with pkgs; [

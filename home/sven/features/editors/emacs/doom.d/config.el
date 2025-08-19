@@ -349,6 +349,7 @@
           :stream t
           :models '(gpt-oss:20b
                     deepseek-coder-v2
+                    gemma3:4b
                     qwen2.5-coder
                     deepseek-r1:7b))
         )
@@ -385,12 +386,12 @@
 (use-package! aidermacs
   ;; :defer
   :config
-  (setenv "OLLAMA_API_BASE" "http://127.0.0.1:11434")
+  (setenv "OLLAMA_API_BASE" "http://maja:11434")
   :custom
   (aidermacs-use-architect-mode t)
-  (aidermacs-architect-model "ollama_chat/deepseek-r1:14b")
-  (aidermacs-default-model "ollama_chat/deepseek-r1:14b")
-  (aidermacs-editor-model "ollama_chat/deepseek-coder-v2")
+  (aidermacs-architect-model "ollama_chat/gpt-oss:20b")
+  (aidermacs-default-model "ollama_chat/gpt-oss:20b")
+  (aidermacs-editor-model "ollama_chat/Omoeba/gpt-oss-coder:20b")
   )
 
 (map! :leader
