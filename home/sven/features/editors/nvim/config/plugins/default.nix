@@ -22,7 +22,26 @@
       enableTelescope = true;
     };
     guess-indent.enable = true; # Guess tabwidth from indentation in file
-    indent-blankline.enable = true; # indentation markers
+    indent-blankline = {
+      enable = true; # indentation markers
+      # settings = let
+      #   highlight = ["CursorColumn" "Whitespace"];
+      # in {
+      #   indent = {
+      #     highlight = highlight;
+      #     char = "";
+      #   };
+      #   whitespace = {
+      #     highlight = highlight;
+      #     remove_blankline_trail = false;
+      #   };
+      #   scope = {enabled = false;};
+      # };
+      settings = {
+        # indent.char = "·";
+        indent.char = "│";
+      };
+    };
     lastplace.enable = true; # return to last edit place
     trim.enable = true; # trim whitespace
     illuminate.enable = true; # highlight same keywords
@@ -64,8 +83,8 @@
       src = pkgs.fetchFromGitHub {
         owner = "ej-shafran";
         repo = "compile-mode.nvim";
-        rev = "8dff8d8472363e01499a4e8cc02f5f5595ce3922";
-        hash = "sha256-wkiKD+TWE40blMk48Vg2UTBpeSQL0QOpq1Rba9arGOo=";
+        rev = "d436d8f11f156de619baba72cd1fbc4216586cd6";
+        hash = "sha256-T2l/lEOiO+X5TfAT1mcsyg307nktT+YxxlpbCloNLp4=";
       };
       dependencies = [plenary-nvim baleia-nvim];
     })
@@ -113,7 +132,15 @@
     }
     {
       mode = ["n" "v"];
-      # key = "<S-F7>";
+      key = "<S-F7>";
+      action = "<cmd>Compile<CR>";
+      options = {
+        desc = "Run a compilation";
+      };
+    }
+    {
+      mode = ["n" "v"];
+      # key = "<S-F7>" for terminal
       key = "<F19>";
       action = "<cmd>Compile<CR>";
       options = {
@@ -130,10 +157,28 @@
     }
     {
       mode = ["n" "v"];
+      key = "<S-F8>";
+      action = "<cmd>PrevError<CR>";
+      options = {
+        desc = "Jump to previous error";
+      };
+    }
+    {
+      mode = ["n" "v"];
+      # key = "<S-F8>" for terminal
       key = "<F20>";
       action = "<cmd>PrevError<CR>";
       options = {
         desc = "Jump to previous error";
+      };
+    }
+    # Project selection
+    {
+      mode = ["n"];
+      key = "<leader>pp";
+      action = "<cmd>Telescope projects<CR>";
+      options = {
+        desc = "Select project";
       };
     }
   ];

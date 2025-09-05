@@ -15,8 +15,8 @@
           line-number = "relative";
           bufferline = "multiple";
           lsp.display-messages = true;
-          mouse = false;
-          middle-click-paste = false;
+          # mouse = false;
+          # middle-click-paste = false;
         };
         keys = {
           normal = {

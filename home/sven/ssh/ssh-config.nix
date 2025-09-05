@@ -12,7 +12,8 @@ in {
   programs = {
     ssh = {
       enable = true;
-      hashKnownHosts = true;
+      # hashKnownHosts = true;
+      enableDefaultConfig = false;
 
       extraOptionOverrides = {
         AddKeysToAgent = "confirm";
@@ -39,11 +40,15 @@ in {
           hostname = "2a03:4000:61:a732::21:1916";
         };
         "nas" = {
-          user = "root";
-          hostname = "nas.fritz.box";
+          setEnv = {
+            TERM = "xterm";
+          };
+          # hostname = "nas.fritz.box";
         };
         nas2 = {
-          setEnv = {TERM = "xterm";};
+          setEnv = {
+            TERM = "xterm";
+          };
         };
         "bluecake" = {
           hostname = "hosting155974.a2ee8.netcup.net";
@@ -118,6 +123,7 @@ in {
           port = 222;
           extraOptions = {
             ForwardAgent = "yes";
+            SetEnv = "TERM=xterm";
           };
         };
 

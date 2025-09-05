@@ -12,13 +12,16 @@
     user = "root";
   };
   xterm = {
-    setEnv = {TERM = "xterm";};
+    setEnv = {
+      TERM = "xterm";
+    };
   };
   qnxSshHost = rootUser // xterm // oldSshHost;
 in {
   programs = {
     ssh = {
-      hashKnownHosts = true;
+      # hashKnownHosts = true;
+      enableDefaultConfig = false;
 
       extraOptionOverrides = {
         AddKeysToAgent = "confirm";
@@ -26,8 +29,16 @@ in {
       };
       matchBlocks = {
         # ekf = {hostname = "ekf-fischer";} // qnxSshHost;
-        ekf = {hostname = "ekf-fischer";} // qnxSshHost;
-        halle = {hostname = "192.168.0.2";} // qnxSshHost;
+        ekf =
+          {
+            hostname = "ekf-fischer";
+          }
+          // qnxSshHost;
+        halle =
+          {
+            hostname = "192.168.0.2";
+          }
+          // qnxSshHost;
         # ekf = qnxSshHost;
 
         # Host ekf
@@ -57,7 +68,9 @@ in {
 
         docker = {
           user = "rancher";
-          setEnv = {TERM = "xterm";};
+          setEnv = {
+            TERM = "xterm";
+          };
         };
         mirror = rootUser // xterm;
         proxmox = {

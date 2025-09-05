@@ -17,8 +17,8 @@
       inputs.nixvim.homeModules.nixvim
 
       ../features/cli
-      ../features/editors/nvim
-      ../features/editors/helix
+      ../features/editors
+      # ../features/development
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
 

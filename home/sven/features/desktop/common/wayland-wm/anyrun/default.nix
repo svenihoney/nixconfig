@@ -6,17 +6,34 @@
   # imports = [
   #   inputs.anyrun.homeManagerModules.default
   # ];
+  nix.settings = {
+    builders-use-substitutes = true;
+    extra-substituters = [
+      "https://anyrun.cachix.org"
+    ];
+
+    extra-trusted-public-keys = [
+      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
+    ];
+  };
 
   programs.anyrun = {
     enable = true;
 
     config = {
-      plugins = with inputs.anyrun.packages.${pkgs.system}; [
-        uwsm_app
-        rink
-        shell
-        symbols
-        websearch
+      # plugins = with inputs.anyrun.packages.${pkgs.system}; [
+      #   uwsm_app
+      #   rink
+      #   shell
+      #   symbols
+      #   websearch
+      # ];
+      plugins = [
+        "${pkgs.anyrun}/lib/libapplications.so"
+        "${pkgs.anyrun}/lib/librink.so"
+        "${pkgs.anyrun}/lib/libshell.so"
+        "${pkgs.anyrun}/lib/libsymbols.so"
+        "${pkgs.anyrun}/lib/libwebsearch.so"
       ];
 
       width.fraction = 0.25;

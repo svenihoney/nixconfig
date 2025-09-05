@@ -24,7 +24,6 @@
     # # ./features/desktop/common/wayland-wm/qutebrowser.nix
     # ./features/desktop/common/browser.nix
     # ./features/desktop/common/virtualisation.nix
-    # ./features/development
   ];
 
   # workaround for error in home manager module if used standalone

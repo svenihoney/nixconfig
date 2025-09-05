@@ -27,7 +27,7 @@
       extraPackages = epkgs:
         with epkgs; [
           vterm
-          # treesit-grammars.with-all-grammars
+          treesit-grammars.with-all-grammars
         ];
     };
 

@@ -58,7 +58,7 @@
     };
     stylix = {
       # url = "github:danth/stylix";
-      url = "github:nix-community/stylix?ref=63b887772d8262430ae8fd70bcf688e54147019f";
+      url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # stylix-stable.url = "github:danth/stylix/release-25.05";
@@ -77,7 +77,7 @@
     nur.url = "github:nix-community/nur";
 
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
-    anyrun.url = "github:fufexan/anyrun?ref=launch-prefix";
+    # anyrun.url = "github:fufexan/anyrun?ref=launch-prefix";
 
     # nixvim = {
     #   url = "github:nix-community/nixvim";
@@ -105,10 +105,23 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
+    # Neovim
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
+    # nvf = {
+    #   url = "github:NotAShelf/nvf";
+    #   # You can override the input nixpkgs to follow your system's
+    #   # instance of nixpkgs. This is safe to do as nvf does not depend
+    #   # on a binary cache.
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   # Optionally, you can also override individual plugins
+    #   # for example:
+    #   # inputs.obsidian-nvim.follows = "obsidian-nvim"; # <- this will use the obsidian-nvim from your inputs
+    # };
+    # # nixCats.url = "github:BirdeeHub/nixCats-nvim";
+    # lazyvim.url = "github:BirdeeHub/nixCats-nvim?dir=templates/LazyVim";
+
     # Emacs
     nix-doom-emacs-unstraightened = {
       url = "github:marienz/nix-doom-emacs-unstraightened";
@@ -243,17 +256,19 @@
 
     #     # overlays = [nixgl.overlay];
     #   });
-    unstable-pkgs = forEachSystem (system:
-      import nixpkgs {
-        inherit system;
-        # overlays = [nixgl.overlay self.overlays];
-        # overlays = [inputs.firefox-addons.overlay];
-        # overlays = [inputs.nur.overlay];
-        #     pkgs = prev;
-        # config.allowUnfree = true;
-        #   }; })];
-        # overlays = [nixgl.overlay];
-      });
+    unstable-pkgs = forEachSystem (
+      system:
+        import nixpkgs {
+          inherit system;
+          # overlays = [nixgl.overlay self.overlays];
+          # overlays = [inputs.firefox-addons.overlay];
+          # overlays = [inputs.nur.overlay];
+          #     pkgs = prev;
+          # config.allowUnfree = true;
+          #   }; })];
+          # overlays = [nixgl.overlay];
+        }
+    );
 
     nixosModules = import ./nix/modules/nixos;
     homeManagerModules = import ./nix/modules/home-manager;
@@ -273,10 +288,8 @@
     # wallpapers = import ./home/sven/wallpapers;
     hosts = import ./hosts.nix;
 
-    nixosConfigurations =
-      nixpkgs.lib.mapAttrs genNixosConfig (self.hosts.nixos or {});
-    homeConfigurations =
-      nixpkgs.lib.mapAttrs genHomeConfig (self.hosts.homeManager or {});
+    nixosConfigurations = nixpkgs.lib.mapAttrs genNixosConfig (self.hosts.nixos or {});
+    homeConfigurations = nixpkgs.lib.mapAttrs genHomeConfig (self.hosts.homeManager or {});
 
     # packages = forEachSystem (?inherit nvim-outputs.packages.default);
   };

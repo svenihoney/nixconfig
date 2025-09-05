@@ -13,8 +13,18 @@
     ../../hosts/common/optional/stylix.nix
   ];
 
+  svenihoney.desktop = {
+    enable = true;
+  };
+
+  svenihoney.devel = {
+    emacs = true;
+    nvim = true;
+    extended = true;
+  };
+
   programs.git = {
-    extraConfig = {
+    extraConfig = lib.mkIf config.svenihoney.desktop.enable {
       diff.tool = "meld";
       difftool.meld.path = "${pkgs.meld}/bin/meld";
       merge.tool = "kdiff3";

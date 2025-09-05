@@ -8,6 +8,7 @@
     # ./features/desktop/common/wayland-wm/wofi.nix
     # ./features/desktop/common/wayland-wm/fuzzel.nix
     # ./features/desktop/wireless
+    ./features/development
     ./features/productivity
     ./features/productivity/ollama.nix
     ./features/media
@@ -23,7 +24,6 @@
     ./features/desktop/common/linphone.nix
     ./features/desktop/common/jameica.nix
     ./features/desktop/common/switchaudio.nix
-    ./features/development
     ./features/development/syncthing.nix
     ./features/development/networking.nix
     ./features/media/creativity.nix
@@ -35,11 +35,10 @@
 
   svenihoney.devel = {
     all = true;
-    emacs = true;
-    # helix = true;
     zed = true;
-    # copilot = true;
     vscode = true;
+    helix = true;
+    # nvf = true;
   };
 
   ollama = {

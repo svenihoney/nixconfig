@@ -19,7 +19,7 @@
     };
     home.packages = with pkgs;
       lib.mkIf config.ollama.tools.enable [
-        # oterm
+        oterm
         alpaca
         aider-chat
       ];

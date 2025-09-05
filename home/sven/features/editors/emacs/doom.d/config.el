@@ -239,14 +239,14 @@
 
 ;; #################### PROGRAMMING / Rust
 
-(after! rustic
-  (map! :map rustic-mode-map
-        ;; [f7] 'rustic-recompile
-        [f7] (lambda () (interactive) (projectile-save-project-buffers) (rustic-recompile))
-        [S-f7] 'rustic-compile
-        [f6] 'rustic-cargo-run
-        )
-  )
+;; (after! rustic
+;;   (map! :map rustic-mode-map
+;;         ;; [f7] 'rustic-recompile
+;;         [f7] (lambda () (interactive) (projectile-save-project-buffers) (rustic-recompile))
+;;         [S-f7] 'rustic-compile
+;;         [f6] 'rustic-cargo-run
+;;         )
+;;   )
 
 ;; #################### XML
 
@@ -387,6 +387,7 @@
   ;; :defer
   :config
   (setenv "OLLAMA_API_BASE" "http://maja:11434")
+  (setenv "OPENROUTER_API_KEY" (secrets-get-secret "keepassx" "OpenRouter free key"))
   :custom
   (aidermacs-use-architect-mode t)
   (aidermacs-architect-model "ollama_chat/gpt-oss:20b")

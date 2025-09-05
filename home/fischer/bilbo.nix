@@ -23,8 +23,6 @@
     ../sven/features/desktop/common/keepassxc.nix
     ../sven/features/desktop/common/wine.nix
     # ./keepassxc.nix
-    ../sven/features/development
-    ../sven/features/editors/emacs
 
     ./bilbo-ssh-config.nix
     ./bilbo-mail.nix

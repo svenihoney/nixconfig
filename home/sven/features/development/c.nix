@@ -5,20 +5,23 @@
   ...
 }: {
   config = lib.mkIf config.svenihoney.devel.c {
-    home.packages = with pkgs; [
-      # LSP
-      cmake-language-server
-      clang-tools
+    home.packages = with pkgs;
+      [
+        # LSP
+        cmake-language-server
+        neocmakelsp
+        clang-tools
 
-      gnumake
-      cmakeCurses
-      ninja
-      gcc
-      gdb
-
-      zeal
-      # qtcreator
-    ];
+        gnumake
+        cmakeCurses
+        ninja
+        gcc
+        gdb
+      ]
+      ++ (lib.optionals config.svenihoney.desktop.enable [
+        zeal
+        # qtcreator
+      ]);
 
     home.sessionVariables = {
       CMAKE_GENERATOR = "Ninja";

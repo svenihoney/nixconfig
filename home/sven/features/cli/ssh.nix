@@ -2,7 +2,8 @@
   programs = {
     ssh = {
       enable = true;
-      hashKnownHosts = true;
+      # hashKnownHosts = true;
+      enableDefaultConfig = false;
 
       extraOptionOverrides = {
         AddKeysToAgent = "confirm";
