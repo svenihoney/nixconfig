@@ -287,10 +287,6 @@ in {
           lib.optionals config.programs.fuzzel.enable
           ["SUPER,d,exec,${uswmapp}${pkgs.fuzzel}/bin/fuzzel"]
         )
-        ++ (
-          lib.optionals config.programs.anyrun.enable
-          ["SUPER,d,exec,${uswmapp}${pkgs.anyrun}/bin/anyrun"]
-        )
         # ++ (lib.optionals config.programs.password-store.enable [
         #   ",Scroll_Lock,exec,${pass-wofi}" # fn+k
         #   ",XF86Calculator,exec,${pass-wofi}" # fn+f12

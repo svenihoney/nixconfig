@@ -36,13 +36,15 @@
   # workaround for error in home manager module if used standalone
   # stylix.targets.kde.enable = false;
   # stylix.targets.gnome.enable = false;
-  svenihoney.devel = {
-    all = true;
-    emacs = true;
-    # helix = true;
-    # zed = true;
-    # copilot = true;
-    # vscode = true;
+  svenihoney = {
+    desktop.enable = true;
+    devel = {
+      all = true;
+      zed = true;
+      # vscode = true;
+      helix = true;
+      # nvf = true;
+    };
   };
 
   home = {

@@ -77,7 +77,7 @@
     nur.url = "github:nix-community/nur";
 
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
-    # anyrun.url = "github:fufexan/anyrun?ref=launch-prefix";
+    anyrun.url = "github:fufexan/anyrun?ref=launch-prefix";
 
     # nixvim = {
     #   url = "github:nix-community/nixvim";

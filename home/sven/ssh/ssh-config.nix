@@ -8,6 +8,11 @@
       Ciphers = "aes128-cbc";
     };
   };
+  xterm = {
+    setEnv = {
+      TERM = "xterm";
+    };
+  };
 in {
   programs = {
     ssh = {
@@ -35,21 +40,14 @@ in {
         "s2" = {
           hostname = "2a03:4000:48:5aa:4844:36ff:feeb:c58a";
         };
-        "dgm" = {
-          user = "hosting211916";
-          hostname = "2a03:4000:61:a732::21:1916";
-        };
-        "nas" = {
-          setEnv = {
-            TERM = "xterm";
-          };
-          # hostname = "nas.fritz.box";
-        };
-        nas2 = {
-          setEnv = {
-            TERM = "xterm";
-          };
-        };
+        "dgm" =
+          {
+            user = "hosting211916";
+            hostname = "2a03:4000:61:a732::21:1916";
+          }
+          // xterm;
+        "nas" = xterm;
+        nas2 = xterm;
         "bluecake" = {
           hostname = "hosting155974.a2ee8.netcup.net";
           user = "hosting155974";

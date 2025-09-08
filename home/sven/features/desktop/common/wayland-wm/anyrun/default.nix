@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }: {
   # imports = [
@@ -21,20 +22,20 @@
     enable = true;
 
     config = {
-      # plugins = with inputs.anyrun.packages.${pkgs.system}; [
-      #   uwsm_app
-      #   rink
-      #   shell
-      #   symbols
-      #   websearch
-      # ];
-      plugins = [
-        "${pkgs.anyrun}/lib/libapplications.so"
-        "${pkgs.anyrun}/lib/librink.so"
-        "${pkgs.anyrun}/lib/libshell.so"
-        "${pkgs.anyrun}/lib/libsymbols.so"
-        "${pkgs.anyrun}/lib/libwebsearch.so"
+      plugins = with inputs.anyrun.packages.${pkgs.system}; [
+        uwsm_app
+        rink
+        shell
+        symbols
+        websearch
       ];
+      # plugins = [
+      #   "${pkgs.anyrun}/lib/libapplications.so"
+      #   "${pkgs.anyrun}/lib/librink.so"
+      #   "${pkgs.anyrun}/lib/libshell.so"
+      #   "${pkgs.anyrun}/lib/libsymbols.so"
+      #   "${pkgs.anyrun}/lib/libwebsearch.so"
+      # ];
 
       width.fraction = 0.25;
       y.fraction = 0.3;
@@ -64,6 +65,14 @@
           engines: [DuckDuckGo]
         )
       '';
+    };
+  };
+
+  wayland.windowManager.hyprland = {
+    settings = {
+      bind = [
+        "SUPER,d,exec,${lib.getExe pkgs.uwsm} app -- ${pkgs.anyrun}/bin/anyrun"
+      ];
     };
   };
 }
