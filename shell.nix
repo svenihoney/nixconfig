@@ -8,7 +8,7 @@ with self.unstable-pkgs.${system}; {
       # agenix
       # cachix
       deploy-rs
-      nil
+      # nil
       nixd
       # nix-build-uncached
       # nix-eval-jobs
