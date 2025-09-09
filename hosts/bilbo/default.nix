@@ -1,7 +1,7 @@
 {
   pkgs,
   inputs,
-  config,
+  lib,
   ...
 }: {
   imports = [
@@ -63,6 +63,14 @@
     # binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
   };
 
+  # Auto login me
+  services.greetd.settings.initial_session = {
+    # Change "Hyprland" to the command to run your window manager. ^Note1
+    command = "${lib.getExe pkgs.uwsm} start -F ${lib.getExe pkgs.hyprland}";
+    # Change "${user}" to your username or to your username variable.
+    user = "fischer";
+  };
+
   programs = {
     light.enable = true;
     # adb.enable = true;
@@ -111,9 +119,9 @@
   services = {
     xserver.videoDrivers = ["nvidia"];
     # Lid settings
-    logind = {
-      lidSwitch = "suspend-then-hibernate";
-      lidSwitchExternalPower = "suspend";
+    logind.settings.Login = {
+      HandleLidSwitch = "suspend-then-hibernate";
+      HandleLidSwitchExternalPower = "suspend";
     };
     fprintd.enable = true;
 

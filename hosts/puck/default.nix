@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }: {
   imports = [
@@ -53,6 +54,14 @@
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
+  # Auto login me
+  services.greetd.settings.initial_session = {
+    # Change "Hyprland" to the command to run your window manager. ^Note1
+    command = "${lib.getExe pkgs.uwsm} start -F ${lib.getExe pkgs.hyprland}";
+    # Change "${user}" to your username or to your username variable.
+    user = "sven";
+  };
+
   environment.etc.crypttab.text = ''
     data UUID=c2bb0cf5-0d1a-4be1-a037-8643732fab89 /root/datakeyfile.key
   '';
@@ -67,9 +76,9 @@
   services.gvfs.enable = true;
 
   # Lid settings
-  services.logind = {
-    lidSwitch = "suspend-then-hibernate";
-    lidSwitchExternalPower = "suspend";
+  services.logind.settings.Login = {
+    HandleLidSwitch = "suspend-then-hibernate";
+    HandleLidSwitchExternalPower = "suspend";
   };
 
   hardware = {
