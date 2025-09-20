@@ -13,6 +13,7 @@
     ./cmp.nix
     ./cmake-tools.nix
     ./dap.nix
+    ./codecompanion.nix
   ];
   plugins = {
     lz-n.enable = true;
@@ -54,13 +55,14 @@
     toggleterm = {
       enable = true;
       settings = {
-        open_mapping = "[[<C-\>]]";
+        open_mapping = "[[<c-\\>]]";
         direction = "float";
         float_opts = {
           border = "curved";
         };
       };
     };
+    # snacks.enable = true;
     ts-comments = {
       # lazyLoad.enable = true;
       enable = true;
@@ -100,12 +102,21 @@
   keymaps = [
     {
       mode = ["n"];
-      key = "\\";
+      # key = "<c-/>";
+      key = "<F2>";
       action = "<cmd>ToggleTerm<CR>";
       options = {
         desc = "Toggle terminal";
       };
     }
+    # {
+    #   mode = ["n"];
+    #   key = "<c-\>";
+    #   action = "<cmd>Snacks.terminal()<CR>";
+    #   options = {
+    #     desc = "Toggle terminal";
+    #   };
+    # }
     {
       mode = ["n"];
       key = "gss";
@@ -133,6 +144,14 @@
     {
       mode = ["n" "v"];
       key = "<S-F7>";
+      action = "<cmd>Compile<CR>";
+      options = {
+        desc = "Run a compilation";
+      };
+    }
+    {
+      mode = ["n" "v"];
+      key = "<leader>pc";
       action = "<cmd>Compile<CR>";
       options = {
         desc = "Run a compilation";
@@ -179,6 +198,14 @@
       action = "<cmd>Telescope projects<CR>";
       options = {
         desc = "Select project";
+      };
+    }
+    {
+      mode = ["n"];
+      key = "<leader>ps";
+      action = "<cmd>wa<CR>";
+      options = {
+        desc = "Save all files in project";
       };
     }
   ];

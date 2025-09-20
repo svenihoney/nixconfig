@@ -14,8 +14,8 @@
     ];
 
     programs.nixvim.plugins.lsp.servers = {
-      basedpyright.enable = config.svenihoney.devel.python;
-      ruff.enable = config.svenihoney.devel.python;
+      basedpyright.enable = true;
+      ruff.enable = true;
     };
   };
 }

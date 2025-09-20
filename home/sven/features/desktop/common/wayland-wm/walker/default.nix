@@ -1,15 +1,22 @@
 {
+  config,
+  inputs,
   pkgs,
   lib,
   ...
 }: let
   uswmapp = "${lib.getExe pkgs.uwsm} app -- ";
 in {
-  home.packages = with pkgs; [walker];
+  # imports = [
+  #   inputs.walker.homeManagerModules.default
+  # ];
+
+  # home.packages = with pkgs; [walker];
   wayland.windowManager.hyprland = {
     settings = {
       bind = [
         "SUPER,d,exec,${uswmapp}${pkgs.walker}/bin/walker"
+        # "SUPER,d,exec,${lib.getExe config.programs.walker.package}"
       ];
     };
   };
@@ -17,61 +24,45 @@ in {
   systemd.user.services.walker = {
     Unit = {
       Description = "Application launcher backend";
+      After = "graphical-session.target";
+      ConditionEnvironment = "WAYLAND_DISPLAY";
+      PartOf = "graphical-session.target";
     };
     Install = {
-      WantedBy = ["hyprland-session.target"];
+      WantedBy = ["graphical-session.target"];
     };
     Service = {
-      ExecStart = "${lib.getExe pkgs.walker} --gapplication-service";
+      ExecStart = "${uswmapp}${lib.getExe pkgs.walker} --gapplication-service";
     };
   };
+
+  home.file."${config.xdg.configHome}/walker/config.toml".source = ./config.toml;
+
   # programs.walker = {
   #   enable = true;
+  #   runAsService = true;
 
-  #   config = {
-  #     # plugins = with inputs.anyrun.packages.${pkgs.system}; [
-  #     #   uwsm_app
-  #     #   rink
-  #     #   shell
-  #     #   symbols
-  #     #   websearch
-  #     # ];
-  #     plugins = [
-  #       "${pkgs.anyrun}/lib/libapplications.so"
-  #       "${pkgs.anyrun}/lib/librink.so"
-  #       "${pkgs.anyrun}/lib/libshell.so"
-  #       "${pkgs.anyrun}/lib/libsymbols.so"
-  #       "${pkgs.anyrun}/lib/libwebsearch.so"
-  #     ];
+  #   # All options from the config.toml can be used here.
+  #   # config = {
+  #   #   placeholders."default".input = "Example";
+  #   #   providers.prefixes = [
+  #   #     {
+  #   #       provider = "websearch";
+  #   #       prefix = "+";
+  #   #     }
+  #   #     {
+  #   #       provider = "providerlist";
+  #   #       prefix = "_";
+  #   #     }
+  #   #   ];
+  #   #   keybinds.quick_activate = ["F1" "F2" "F3"];
+  #   # };
 
-  #     width.fraction = 0.25;
-  #     y.fraction = 0.3;
-  #     hidePluginInfo = true;
-  #     closeOnClick = true;
-  #   };
-
-  #   extraCss = builtins.readFile (./. + "/style-dark.css");
-
-  #   extraConfigFiles = {
-  #     "uwsm_app.ron".text = ''
-  #       Config(
-  #         desktop_actions: false,
-  #         max_entries: 5,
-  #       )
-  #     '';
-
-  #     "shell.ron".text = ''
-  #       Config(
-  #         prefix: ">"
-  #       )
-  #     '';
-
-  #     "websearch.ron".text = ''
-  #       Config(
-  #         prefix: "?",
-  #         engines: [DuckDuckGo]
-  #       )
-  #     '';
-  #   };
+  #   # # If this is not set the default styling is used.
+  #   # theme.style = ''
+  #   #   * {
+  #   #     color: #dcd7ba;
+  #   #   }
+  #   # '';
   # };
 }

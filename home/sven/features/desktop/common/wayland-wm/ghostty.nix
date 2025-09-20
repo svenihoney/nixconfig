@@ -20,6 +20,7 @@
       keybind = [
         "ctrl+shift+h=write_scrollback_file:open"
       ];
+      custom-shader = toString ./ghostty/cursor_smear.glsl;
     };
   };
   # home = {

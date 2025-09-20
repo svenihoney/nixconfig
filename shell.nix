@@ -5,7 +5,7 @@ with self.unstable-pkgs.${system}; {
 
     nativeBuildInputs = [
       # Nix
-      # agenix
+      ragenix
       # cachix
       deploy-rs
       # nil

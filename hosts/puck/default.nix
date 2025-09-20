@@ -42,12 +42,16 @@
   boot = {
     loader = {
       systemd-boot = {
-        enable = true;
+        enable = false;
         configurationLimit = 3;
       };
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/efi";
       timeout = 1;
+    };
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
     };
     # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
     # kernelPackages = pkgs.linuxKernel.packages.linux_zen;

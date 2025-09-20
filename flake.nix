@@ -77,7 +77,8 @@
     nur.url = "github:nix-community/nur";
 
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
-    anyrun.url = "github:fufexan/anyrun?ref=launch-prefix";
+    # anyrun.url = "github:fufexan/anyrun?ref=launch-prefix";
+    walker.url = "github:abenz1267/walker";
 
     # nixvim = {
     #   url = "github:nix-community/nixvim";
@@ -91,6 +92,7 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    ragenix.url = "github:yaxitech/ragenix";
     # disconic.url = "github:misterio77/disconic";
     # website.url = "github:misterio77/website";
     # paste-misterio-me.url = "github:misterio77/paste.misterio.me";
@@ -146,31 +148,15 @@
     # };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    # nixpkgs-stable,
-    # nixpkgs-trunk,
-    home-manager,
-    # home-manager-stable,
-    # flake-utils,
-    flake-parts,
-    # lix-module,
-    deploy-rs,
-    pre-commit-hooks,
-    # nixgl,
-    nixvim,
-    # sops-nix,
-    devenv,
-    ...
-  } @ inputs: let
+  outputs = inputs @ {self, ...}
+  : let
     inherit (self) outputs;
     # lib = nixpkgs.lib // home-manager.lib;
     # lib = nixpkgs-stable.lib // home-manager-stable.lib;
     # systems = ["x86_64-linux" "aarch64-linux"];
     systems = ["x86_64-linux"];
     # trunkOverlay = final: prev: {trunk = nixpkgs-trunk.legacyPackages.${prev.system};};
-    forEachSystem = nixpkgs.lib.genAttrs systems;
+    forEachSystem = inputs.nixpkgs.lib.genAttrs systems;
     genNixosConfig = hostName: {
       user,
       hostPlatform,
@@ -191,13 +177,14 @@
     #     specialArgs = {inherit inputs outputs;};
     #   }
     # else
-      nixpkgs.lib.nixosSystem {
+      inputs.nixpkgs.lib.nixosSystem {
         # pkgs = self.unstable-pkgs.${hostPlatform};
         modules = [
           # lix-module.nixosModules.default
           inputs.lanzaboote.nixosModules.lanzaboote
           inputs.stylix.nixosModules.stylix
           inputs.home-manager.nixosModules.home-manager
+          inputs.ragenix.nixosModules.default
           ./hosts/${hostName}
         ];
         specialArgs = {inherit inputs outputs;};
@@ -220,7 +207,7 @@
     #     extraSpecialArgs = {inherit inputs outputs;};
     #   }
     # else
-      home-manager.lib.homeManagerConfiguration {
+      inputs.home-manager.lib.homeManagerConfiguration {
         modules = [
           inputs.stylix.homeModules.stylix
           ./home/${user}/${hostName}.nix
@@ -228,13 +215,13 @@
         pkgs = self.unstable-pkgs.${hostPlatform};
         extraSpecialArgs = {inherit inputs outputs;};
       };
-    nvim-flake = import ./home/sven/features/editors/nvim/flake.nix;
-    nvim-outputs = nvim-flake.outputs {
-      inherit self;
-      inherit nixpkgs;
-      inherit nixvim;
-      inherit flake-parts;
-    };
+    # nvim-flake = import ./home/sven/features/editors/nvim/flake.nix;
+    # nvim-outputs = nvim-flake.outputs {
+    #   inherit self;
+    #   inherit inputs.nixpkgs;
+    #   inherit inputs.nixvim;
+    #   inherit inputs.flake-parts;
+    # };
   in {
     # inherit lib;
     # stable-pkgs = forEachSystem (system:
@@ -258,7 +245,7 @@
     #   });
     unstable-pkgs = forEachSystem (
       system:
-        import nixpkgs {
+        import inputs.nixpkgs {
           inherit system;
           # overlays = [nixgl.overlay self.overlays];
           # overlays = [inputs.firefox-addons.overlay];
@@ -288,8 +275,8 @@
     # wallpapers = import ./home/sven/wallpapers;
     hosts = import ./hosts.nix;
 
-    nixosConfigurations = nixpkgs.lib.mapAttrs genNixosConfig (self.hosts.nixos or {});
-    homeConfigurations = nixpkgs.lib.mapAttrs genHomeConfig (self.hosts.homeManager or {});
+    nixosConfigurations = inputs.nixpkgs.lib.mapAttrs genNixosConfig (self.hosts.nixos or {});
+    homeConfigurations = inputs.nixpkgs.lib.mapAttrs genHomeConfig (self.hosts.homeManager or {});
 
     # packages = forEachSystem (?inherit nvim-outputs.packages.default);
   };

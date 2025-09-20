@@ -14,6 +14,7 @@
     # inputs.nixos-cosmic.nixosModules.default
 
     ./hardware-configuration.nix
+    ./restic.nix
 
     ../common/global
     ../common/users/sven

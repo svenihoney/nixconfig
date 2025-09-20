@@ -9,7 +9,6 @@
   hyprlock = "${lib.getExe config.programs.hyprlock.package}";
   pkill = "${pkgs.procps}/bin/pkill";
   hyprctl = "${pkgs.hyprland}/bin/hyprctl";
-  hyprsunset = "${pkgs.hyprsunset}/bin/hyprsunset";
   wlogout = "${config.programs.wlogout.package}/bin/wlogout";
   playerctl = "${config.services.playerctld.package}/bin/playerctl";
   playerctld = "${config.services.playerctld.package}/bin/playerctld";
@@ -200,7 +199,6 @@ in {
         # "hyprctl setcursor ${cursorName} ${toString pointer.size}"
         # "hyprlock"
         # "${uswmapp}${copyq}"
-        "${uswmapp}${hyprsunset}"
         "${uswmapp}${keepassxc}"
         "${uswmapp}${waybar}"
       ];
@@ -395,5 +393,24 @@ in {
 
       ${sofle}
     '';
+  };
+
+  services.hyprsunset = {
+    enable = true;
+    settings = {
+      max-gamma = 150;
+
+      profile = [
+        {
+          time = "7:30";
+          identity = true;
+        }
+        {
+          time = "23:00";
+          temperature = 5000;
+          gamma = 0.8;
+        }
+      ];
+    };
   };
 }

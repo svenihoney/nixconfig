@@ -26,6 +26,10 @@
         #   };
         # };
       };
+      extensions = {
+        fzf-native.enable = true;
+        manix.enable = true;
+      };
       keymaps = {
         "<leader><leader>" = "find_files";
         "<leader>ff" = "find_files";
