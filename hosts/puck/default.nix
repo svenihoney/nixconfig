@@ -66,9 +66,9 @@
     user = "sven";
   };
 
-  environment.etc.crypttab.text = ''
-    data UUID=c2bb0cf5-0d1a-4be1-a037-8643732fab89 /root/datakeyfile.key
-  '';
+  # environment.etc.crypttab.text = ''
+  #   data UUID=c2bb0cf5-0d1a-4be1-a037-8643732fab89 /root/datakeyfile.key
+  # '';
 
   powerManagement.powertop.enable = true;
   programs = {
@@ -87,7 +87,7 @@
 
   hardware = {
     graphics.enable = true;
-    amdgpu.amdvlk.enable = true;
+    # amdgpu.amdvlk.enable = true;
     # amdgpu.opencl.enable = false;
   };
 

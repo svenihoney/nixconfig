@@ -76,4 +76,8 @@
   #   d /tmp 1777 root root 3d
   #   d /var/tmp 1777 root root 3d
   # '';
+  networking.firewall = {
+    enable = true;
+    logRefusedPackets = true;
+  };
 }

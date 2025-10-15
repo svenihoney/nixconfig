@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  inputs,
   ...
 }: let
   # swaylock = "${config.programs.swaylock.package}/bin/swaylock";
@@ -22,6 +21,7 @@
   spotify = "${lib.getExe pkgs.spotify}";
   keepassxc = "${lib.getExe pkgs.keepassxc}";
   waybar = "${lib.getExe pkgs.waybar}";
+  polkit = "${lib.getExe pkgs.lxqt.lxqt-policykit}";
   thunar = "${lib.getExe pkgs.xfce.thunar}";
   # pass-wofi = "${
   #     pkgs.pass-wofi.override {
@@ -32,14 +32,14 @@
   # grimblast = "${pkgs.inputs.hyprwm-contrib.grimblast}/bin/grimblast";
   # grimblast = "grimblast";
   # tly = "${pkgs.tly}/bin/tly";
-  gtk-play = "${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play";
-  notify-send = "${pkgs.libnotify}/bin/notify-send";
+  # gtk-play = "${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play";
+  # notify-send = "${pkgs.libnotify}/bin/notify-send";
   # pwvucontrol = "${lib.getExe pkgs.pwvucontrol}";
   volcontrol = "${lib.getExe pkgs.pwvucontrol}";
 
-  gtk-launch = "${pkgs.gtk3}/bin/gtk-launch";
-  xdg-mime = "${pkgs.xdg-utils}/bin/xdg-mime";
-  defaultApp = type: "${gtk-launch} $(${xdg-mime} query default ${type})";
+  # gtk-launch = "${pkgs.gtk3}/bin/gtk-launch";
+  # xdg-mime = "${pkgs.xdg-utils}/bin/xdg-mime";
+  # defaultApp = type: "${gtk-launch} $(${xdg-mime} query default ${type})";
 
   # terminal = config.home.sessionVariables.TERMINAL;
   # terminal = "${lib.getExe pkgs.ghostty}";
@@ -50,7 +50,7 @@
   altbrowser = "${pkgs.firefox}/bin/firefox";
   # editor = defaultApp "text/plain";
   # editor = "${config.programs.emacs.package}/bin/emacs";
-  editor = "${config.programs.doom-emacs.finalEmacsPackage}/bin/emacs";
+  # editor = "${config.programs.doom-emacs.finalEmacsPackage}/bin/emacs";
   uswmapp = "${lib.getExe pkgs.uwsm} app -- ";
 in {
   imports = [
@@ -89,6 +89,10 @@ in {
     # wrapperFeatures.gtk = true;
 
     settings = {
+      ecosystem = {
+        no_update_news = true;
+        no_donation_nag = true;
+      };
       general = {
         # gaps_in = 15;
         # gaps_out = 20;
@@ -115,7 +119,7 @@ in {
 
       input = {
         kb_layout = "de";
-        kb_variant = "neo_qwertz";
+        kb_variant = "neo_qwertz,dead_acute";
         repeat_rate = "25";
         repeat_delay = "250";
 
@@ -201,6 +205,7 @@ in {
         # "${uswmapp}${copyq}"
         "${uswmapp}${keepassxc}"
         "${uswmapp}${waybar}"
+        "${uswmapp}${polkit}"
       ];
 
       env = [
@@ -246,7 +251,8 @@ in {
           # "SUPERCONTROL,z,exec,${notify-send} -t 1000 $(${tly} time) && ${tly} undo && ${gtk-play} -i dialog-warning" # Undo last entry
           # "SUPERCONTROLSHIFT,z,exec,${tly} reset && ${gtk-play} -i complete" # Reset
           # "SUPERSHIFT,z,exec,${notify-send} -t 1000 $(${tly} time)" # Show current time
-          "SUPERCONTROL,k,exec,${hyprctl} switchxkblayout brian-low-sofle-choc next"
+          # "SUPERCONTROL,k,exec,${hyprctl} switchxkblayout brian-low-sofle-choc next"
+          "SUPERCONTROL,k,exec,${hyprctl} switchxkblayout default next"
         ]
         # ++ (lib.optionals config.targets.genericLinux.enable [
         #   "SUPERSHIFT, F2, exec, nixGL ${browser}"

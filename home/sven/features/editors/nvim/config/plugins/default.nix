@@ -13,7 +13,8 @@
     ./cmp.nix
     ./cmake-tools.nix
     ./dap.nix
-    ./codecompanion.nix
+    # ./codecompanion.nix
+    ./avante.nix
   ];
   plugins = {
     lz-n.enable = true;
@@ -96,6 +97,8 @@
       default_command = "cmake --build build",
       ask_about_save = false,
       baleia_setup = true,
+      bang_expansion = true,
+      -- use_diagnostics = true,
     }
   '';
 

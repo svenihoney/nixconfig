@@ -45,28 +45,28 @@
     fsType = "vfat";
   };
 
-  fileSystems."/data" = {
-    device = "/dev/disk/by-uuid/9e504912-08a3-4686-8a01-5994d95f5e48";
-    fsType = "btrfs";
-    options = ["compress=zstd"];
-  };
-
-  fileSystems."/home/sven/kunden/vorwerk" = {
-    depends = [
-      # The mounts above have to be mounted in this given order
-      "/data"
-    ];
-    device = "/data/vorwerk";
-    fsType = "none";
-    options = [
-      "bind"
-    ];
-  };
-  swapDevices = [
-    {
-      device = "/dev/disk/by-uuid/6e52b611-7ab8-4cb5-867c-b5c0f5e7bda7";
-    }
-  ];
+  # fileSystems."/data" = {
+  #   device = "/dev/disk/by-uuid/9e504912-08a3-4686-8a01-5994d95f5e48";
+  #   fsType = "btrfs";
+  #   options = ["compress=zstd"];
+  # };
+  #
+  # fileSystems."/home/sven/kunden/vorwerk" = {
+  #   depends = [
+  #     # The mounts above have to be mounted in this given order
+  #     "/data"
+  #   ];
+  #   device = "/data/vorwerk";
+  #   fsType = "none";
+  #   options = [
+  #     "bind"
+  #   ];
+  # };
+  # swapDevices = [
+  #   {
+  #     device = "/dev/disk/by-uuid/6e52b611-7ab8-4cb5-867c-b5c0f5e7bda7";
+  #   }
+  # ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

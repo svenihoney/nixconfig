@@ -115,7 +115,6 @@
 
   hardware = {
     graphics.enable = true;
-    amdgpu.amdvlk.enable = true;
     amdgpu.opencl.enable = true;
   };
 

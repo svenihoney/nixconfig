@@ -19,7 +19,7 @@ in {
     bind =
       [
         "SUPER SHIFT, Q, killactive,"
-        "SUPER, M, exit,"
+        "SUPER SHIFT, M, exit,"
         "SUPER SHIFT, Space, togglefloating"
         "SUPER SHIFT, Space, movetoworkspace, m+0"
 

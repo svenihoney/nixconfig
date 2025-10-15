@@ -31,6 +31,7 @@
       # portalPackage = pkgs.xdg-desktop-portal-kde;
     };
   };
+  security.polkit.enable = true;
   security.pam.services = {
     swaylock = {};
     hyprlock = {};

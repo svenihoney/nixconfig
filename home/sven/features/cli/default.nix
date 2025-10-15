@@ -77,6 +77,7 @@
     fish = {
       shellAliases = {
         jq = "jaq";
+        lt = "eza --tree";
       };
     };
   };

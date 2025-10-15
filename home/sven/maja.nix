@@ -26,7 +26,7 @@
     ./features/desktop/common/switchaudio.nix
     ./features/development/syncthing.nix
     ./features/development/networking.nix
-    ./features/media/creativity.nix
+    # ./features/media/creativity.nix
 
     ./ssh/ssh-config.nix
 
@@ -46,7 +46,7 @@
     service.enable = true;
   };
   services.ollama = {
-    acceleration = "rocm";
+    # acceleration = "rocm";
     host = "[::]";
   };
 

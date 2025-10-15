@@ -1,26 +1,10 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   virtualisation = {
     libvirtd = {
       enable = true;
       qemu = {
-        package = pkgs.qemu_kvm; # x86 only
+        # package = pkgs.qemu_kvm; # x86 only
         runAsRoot = true;
-        ovmf = {
-          enable = true;
-          # packages = [
-          #   (pkgs.OVMF.override {
-          #     secureBoot = true;
-          #     tpmSupport = true;
-          #   })
-          #   .fd
-          # ];
-          packages = [pkgs.OVMFFull.fd];
-        };
         swtpm = {
           enable = true;
           # package = pkgs.swtpm-tpm2;

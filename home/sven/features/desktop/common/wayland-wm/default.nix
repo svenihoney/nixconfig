@@ -13,8 +13,8 @@
     ./wlogout.nix
     # ./wofi.nix
     # ./fuzzel.nix
-    # ./anyrun
-    ./walker
+    ./anyrun
+    # ./walker
     ./zathura.nix
     ./vimiv.nix
     # ./wezterm.nix

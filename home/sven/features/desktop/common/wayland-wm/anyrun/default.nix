@@ -31,7 +31,7 @@
       # ];
       plugins = [
         "${pkgs.anyrun}/lib/libapplications.so"
-        #   "${pkgs.anyrun}/lib/librink.so"
+        "${pkgs.anyrun}/lib/librink.so"
         #   "${pkgs.anyrun}/lib/libshell.so"
         #   "${pkgs.anyrun}/lib/libsymbols.so"
         #   "${pkgs.anyrun}/lib/libwebsearch.so"
@@ -44,7 +44,7 @@
       closeOnClick = true;
     };
 
-    # extraCss = builtins.readFile (./. + "/style-dark.css");
+    extraCss = builtins.readFile (./. + "/style.css");
 
     # extraConfigFiles = {
     #   "uwsm_app.ron".text = ''
@@ -69,11 +69,11 @@
     # };
   };
 
-  # wayland.windowManager.hyprland = {
-  #   settings = {
-  #     bind = [
-  #       "SUPER,d,exec,${lib.getExe pkgs.uwsm} app -- ${pkgs.anyrun}/bin/anyrun"
-  #     ];
-  #   };
-  # };
+  wayland.windowManager.hyprland = {
+    settings = {
+      bind = [
+        "SUPER,d,exec,${lib.getExe pkgs.uwsm} app -- ${pkgs.anyrun}/bin/anyrun"
+      ];
+    };
+  };
 }

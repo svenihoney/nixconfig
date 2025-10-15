@@ -70,7 +70,6 @@
     opengl = {
       enable = true;
     };
-    amdgpu.amdvlk = true;
     amdgpu.opencl = false;
   };
 
