@@ -6,6 +6,7 @@
 }: {
   home.packages = [
     pkgs.gnome-boxes
+    pkgs.swtpm
   ];
 
   dconf.settings = {

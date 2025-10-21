@@ -7,7 +7,7 @@
         runAsRoot = true;
         swtpm = {
           enable = true;
-          # package = pkgs.swtpm-tpm2;
+          package = pkgs.swtpm;
         };
       };
       allowedBridges = ["virbr0" "br0"];

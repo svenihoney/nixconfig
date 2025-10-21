@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   imports = [
     # General
-    ./telescope.nix
+    ./snacks.nix
     ./mini.nix
     # UI
     ./lualine.nix
@@ -14,14 +14,16 @@
     ./cmake-tools.nix
     ./dap.nix
     # ./codecompanion.nix
-    ./avante.nix
+    ./ai.nix
+    ./toggleterm.nix
+    # ./copilot.nix
   ];
   plugins = {
     lz-n.enable = true;
     direnv.enable = true;
     project-nvim = {
       enable = true;
-      enableTelescope = true;
+      # enableTelescope = true;
     };
     guess-indent.enable = true; # Guess tabwidth from indentation in file
     indent-blankline = {
@@ -53,17 +55,6 @@
       settings.skip_confirm_for_simple_edits = true;
     };
     neogit.enable = true;
-    toggleterm = {
-      enable = true;
-      settings = {
-        open_mapping = "[[<c-\\>]]";
-        direction = "float";
-        float_opts = {
-          border = "curved";
-        };
-      };
-    };
-    # snacks.enable = true;
     ts-comments = {
       # lazyLoad.enable = true;
       enable = true;
@@ -76,6 +67,14 @@
       };
     };
     firenvim.enable = true;
+    yanky = {
+      enable = true;
+      autoLoad = true;
+    };
+    noice = {
+      enable = true;
+      autoLoad = true;
+    };
   };
   extraPlugins = with pkgs.vimPlugins; [
     # For these no nixvim plugin exists
@@ -89,7 +88,10 @@
         rev = "d436d8f11f156de619baba72cd1fbc4216586cd6";
         hash = "sha256-T2l/lEOiO+X5TfAT1mcsyg307nktT+YxxlpbCloNLp4=";
       };
-      dependencies = [plenary-nvim baleia-nvim];
+      dependencies = [
+        plenary-nvim
+        baleia-nvim
+      ];
     })
   ];
   extraConfigLua = ''
@@ -103,23 +105,7 @@
   '';
 
   keymaps = [
-    {
-      mode = ["n"];
-      # key = "<c-/>";
-      key = "<F2>";
-      action = "<cmd>ToggleTerm<CR>";
-      options = {
-        desc = "Toggle terminal";
-      };
-    }
-    # {
-    #   mode = ["n"];
-    #   key = "<c-\>";
-    #   action = "<cmd>Snacks.terminal()<CR>";
-    #   options = {
-    #     desc = "Toggle terminal";
-    #   };
-    # }
+    # Other keymaps
     {
       mode = ["n"];
       key = "gss";
@@ -137,7 +123,10 @@
       };
     }
     {
-      mode = ["n" "v"];
+      mode = [
+        "n"
+        "v"
+      ];
       key = "<F7>";
       action = "<cmd>wa<CR><cmd>Recompile<CR>";
       options = {
@@ -145,7 +134,10 @@
       };
     }
     {
-      mode = ["n" "v"];
+      mode = [
+        "n"
+        "v"
+      ];
       key = "<S-F7>";
       action = "<cmd>Compile<CR>";
       options = {
@@ -153,7 +145,10 @@
       };
     }
     {
-      mode = ["n" "v"];
+      mode = [
+        "n"
+        "v"
+      ];
       key = "<leader>pc";
       action = "<cmd>Compile<CR>";
       options = {
@@ -161,7 +156,10 @@
       };
     }
     {
-      mode = ["n" "v"];
+      mode = [
+        "n"
+        "v"
+      ];
       # key = "<S-F7>" for terminal
       key = "<F19>";
       action = "<cmd>Compile<CR>";
@@ -170,7 +168,10 @@
       };
     }
     {
-      mode = ["n" "v"];
+      mode = [
+        "n"
+        "v"
+      ];
       key = "<F8>";
       action = "<cmd>NextError<CR>";
       options = {
@@ -178,7 +179,10 @@
       };
     }
     {
-      mode = ["n" "v"];
+      mode = [
+        "n"
+        "v"
+      ];
       key = "<S-F8>";
       action = "<cmd>PrevError<CR>";
       options = {
@@ -186,21 +190,15 @@
       };
     }
     {
-      mode = ["n" "v"];
+      mode = [
+        "n"
+        "v"
+      ];
       # key = "<S-F8>" for terminal
       key = "<F20>";
       action = "<cmd>PrevError<CR>";
       options = {
         desc = "Jump to previous error";
-      };
-    }
-    # Project selection
-    {
-      mode = ["n"];
-      key = "<leader>pp";
-      action = "<cmd>Telescope projects<CR>";
-      options = {
-        desc = "Select project";
       };
     }
     {
@@ -209,6 +207,17 @@
       action = "<cmd>wa<CR>";
       options = {
         desc = "Save all files in project";
+      };
+    }
+    {
+      mode = [
+        "n"
+        "x"
+      ];
+      key = "<leader>yh";
+      action = "<cmd>YankyRingHistory<CR>";
+      options = {
+        desc = "Open Yank History";
       };
     }
   ];

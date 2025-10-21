@@ -388,11 +388,12 @@
   :config
   (setenv "OLLAMA_API_BASE" "http://maja:11434")
   (setenv "OPENROUTER_API_KEY" (secrets-get-secret "keepassx" "OpenRouter free key"))
+  (setenv "OPENAI_API_KEY" (secrets-get-secret "keepassx" "github-copilot apikey"))
   :custom
-  (aidermacs-use-architect-mode t)
+  (aidermacs-default-chat-mode "architect")
   (aidermacs-architect-model "ollama_chat/gpt-oss:20b")
   (aidermacs-default-model "ollama_chat/gpt-oss:20b")
-  (aidermacs-editor-model "ollama_chat/Omoeba/gpt-oss-coder:20b")
+  (aidermacs-editor-model "ollama_chat/gpt-oss:20b")
   )
 
 (map! :leader

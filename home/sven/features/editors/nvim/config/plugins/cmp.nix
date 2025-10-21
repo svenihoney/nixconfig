@@ -1,42 +1,216 @@
-{
-  plugins = {
-    # luasnip = {
-    #   enable = true;
-    #   settings = {
-    #     enable_autosnippets = true;
-    #     store_selection_keys = "<Tab>";
-    #   };
-    #   fromVscode = [
-    #     {
-    #       lazyLoad = true;
-    #       paths = "${pkgs.vimPlugins.friendly-snippets}";
-    #     }
-    #   ];
-    # };
+{pkgs, ...}: {
+  extraPlugins = with pkgs.vimPlugins; [
+    blink-ripgrep-nvim
+  ];
 
-    cmp = {
+  plugins = {
+    blink-cmp-dictionary.enable = true;
+    blink-cmp-git.enable = true;
+    blink-cmp-spell.enable = true;
+    blink-copilot.enable = true;
+    blink-emoji.enable = true;
+    blink-ripgrep.enable = true;
+    blink-cmp = {
       enable = true;
-      autoEnableSources = true;
+      setupLspCapabilities = true;
+
       settings = {
-        mapping = {
-          "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-          "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-          "<C-p>" = "cmp.mapping.select_prev_item()";
-          "<C-n>" = "cmp.mapping.select_next_item()";
-          "<C-d>" = "cmp.mapping.scroll_docs(-4)";
-          "<C-f>" = "cmp.mapping.scroll_docs(4)";
-          "<C-Space>" = "cmp.mapping.complete()";
-          "<C-e>" = "cmp.mapping.close()";
-          "<CR>" = "cmp.mapping.confirm({ select = false, })";
-          "<S-CR>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false, })";
+        keymap = {
+          "<C-space>" = [
+            "show"
+            "show_documentation"
+            "hide_documentation"
+          ];
+          "<C-e>" = [
+            "hide"
+            "fallback"
+          ];
+          "<CR>" = [
+            "accept"
+            "fallback"
+          ];
+          "<Tab>" = [
+            "select_next"
+            "snippet_forward"
+            "fallback"
+          ];
+          "<S-Tab>" = [
+            "select_prev"
+            "snippet_backward"
+            "fallback"
+          ];
+          "<Up>" = [
+            "select_prev"
+            "fallback"
+          ];
+          "<Down>" = [
+            "select_next"
+            "fallback"
+          ];
+          "<C-p>" = [
+            "select_prev"
+            "fallback"
+          ];
+          "<C-n>" = [
+            "select_next"
+            "fallback"
+          ];
+          "<C-up>" = [
+            "scroll_documentation_up"
+            "fallback"
+          ];
+          "<C-down>" = [
+            "scroll_documentation_down"
+            "fallback"
+          ];
         };
-        sources = [
-          {name = "nvim_lsp";}
-          # {name = "luasnip";}
-          {name = "path";}
-          {name = "buffer";}
-          {name = "cmdline";}
-        ];
+        signature = {
+          enabled = true;
+          window = {
+            border = "rounded";
+          };
+        };
+
+        sources = {
+          default = [
+            "buffer"
+            "lsp"
+            "path"
+            "snippets"
+            # Community
+            "copilot"
+            "dictionary"
+            "emoji"
+            "git"
+            "spell"
+            "ripgrep"
+          ];
+          providers = {
+            ripgrep = {
+              name = "Ripgrep";
+              module = "blink-ripgrep";
+              score_offset = 1;
+            };
+            dictionary = {
+              name = "Dict";
+              module = "blink-cmp-dictionary";
+              min_keyword_length = 3;
+            };
+            emoji = {
+              name = "Emoji";
+              module = "blink-emoji";
+              score_offset = 1;
+            };
+            copilot = {
+              name = "copilot";
+              module = "blink-copilot";
+              async = true;
+              score_offset = 100;
+            };
+            lsp.score_offset = 4;
+            spell = {
+              name = "Spell";
+              module = "blink-cmp-spell";
+              score_offset = 1;
+            };
+            git = {
+              name = "Git";
+              module = "blink-cmp-git";
+              enabled = true;
+              score_offset = 100;
+              should_show_items.__raw = ''
+                function()
+                  return vim.o.filetype == 'gitcommit' or vim.o.filetype == 'markdown'
+                end
+              '';
+              opts = {
+                git_centers = {
+                  github = {
+                    issue = {
+                      on_error.__raw = "function(_,_) return true end";
+                    };
+                  };
+                };
+              };
+            };
+          };
+        };
+
+        appearance = {
+          nerd_font_variant = "mono";
+          kind_icons = {
+            Text = "󰉿";
+            Method = "";
+            Function = "󰊕";
+            Constructor = "󰒓";
+
+            Field = "󰜢";
+            Variable = "󰆦";
+            Property = "󰖷";
+
+            Class = "󱡠";
+            Interface = "󱡠";
+            Struct = "󱡠";
+            Module = "󰅩";
+
+            Unit = "󰪚";
+            Value = "󰦨";
+            Enum = "󰦨";
+            EnumMember = "󰦨";
+
+            Keyword = "󰻾";
+            Constant = "󰏿";
+
+            Snippet = "󱄽";
+            Color = "󰏘";
+            File = "󰈔";
+            Reference = "󰬲";
+            Folder = "󰉋";
+            Event = "󱐋";
+            Operator = "󰪚";
+            TypeParameter = "󰬛";
+            Error = "󰏭";
+            Warning = "󰏯";
+            Information = "󰏮";
+            Hint = "󰏭";
+
+            Emoji = "🤶";
+          };
+        };
+        completion = {
+          menu = {
+            border = "none";
+            draw = {
+              gap = 1;
+              treesitter = ["lsp"];
+              columns = [
+                {
+                  __unkeyed-1 = "label";
+                }
+                {
+                  __unkeyed-1 = "kind_icon";
+                  __unkeyed-2 = "kind";
+                  gap = 1;
+                }
+                {__unkeyed-1 = "source_name";}
+              ];
+            };
+          };
+          trigger = {
+            show_in_snippet = false;
+          };
+          documentation = {
+            auto_show = true;
+            window = {
+              border = "single";
+            };
+          };
+          accept = {
+            auto_brackets = {
+              enabled = false;
+            };
+          };
+        };
       };
     };
   };

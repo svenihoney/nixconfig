@@ -6,6 +6,28 @@
 }: {
   config = lib.mkIf config.lsp.enable {
     plugins = {
+      copilot-lua = {
+        enable = true;
+        settings = {
+          panel = {
+            auto_refresh = true;
+            enabled = true;
+          };
+          nes = {
+            enabled = true;
+          };
+          suggestion = {
+            enabled = true;
+            # auto_trigger = false;
+            # debounce = 90;
+            # hide_during_completion = false;
+            # keymap = {
+            #   accept_line = false;
+            #   accept_word = false;
+            # };
+          };
+        };
+      };
       avante = {
         enable = true;
         settings = {

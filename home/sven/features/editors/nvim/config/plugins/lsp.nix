@@ -26,7 +26,7 @@
           # Nix
           nil_ls = {
             enable = true;
-            settings.formatting.command = ["${pkgs.alejandra}/bin/alejandra"];
+            # settings.formatting.command = ["${pkgs.alejandra}/bin/alejandra"];
           };
           # lua-ls = {
           #   enable = true;

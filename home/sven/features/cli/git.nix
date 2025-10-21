@@ -7,13 +7,14 @@
   programs.git = {
     enable = true;
     package = pkgs.gitAndTools.gitFull;
-    aliases = {
-      graph = "log --decorate --oneline --graph";
-      si = "submodule update --init --recursive";
-    };
-    userName = "Sven Fischer";
-    userEmail = lib.mkDefault "sven@leiderfischer.de";
-    extraConfig = {
+    settings = {
+      aliases = {
+        graph = "log --decorate --oneline --graph";
+        si = "submodule update --init --recursive";
+      };
+      user.name = "Sven Fischer";
+      user.email = lib.mkDefault "sven@leiderfischer.de";
+      # extraConfig = {
       init.defaultBranch = "main";
       # user.signing.key = "CE707A2C17FAAC97907FF8EF2E54EA7BFE630916";
       # commit.gpgSign = true;
@@ -24,6 +25,7 @@
       color.ui = "auto";
       push.default = "current";
       merge.conflictstyle = "diff3";
+      # };
     };
     lfs.enable = true;
     # delta = {
@@ -33,9 +35,9 @@
     #     syntax-theme = "base16-stylix";
     #   };
     # };
-    difftastic = {
-      enable = true;
-    };
+    # difftastic = {
+    #   git.enable = true;
+    # };
     ignores = [".direnv" "result"];
   };
 

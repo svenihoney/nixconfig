@@ -24,7 +24,7 @@
   };
 
   programs.git = {
-    extraConfig = lib.mkIf config.svenihoney.desktop.enable {
+    settings = lib.mkIf config.svenihoney.desktop.enable {
       diff.tool = "meld";
       difftool.meld.path = "${pkgs.meld}/bin/meld";
       merge.tool = "kdiff3";
