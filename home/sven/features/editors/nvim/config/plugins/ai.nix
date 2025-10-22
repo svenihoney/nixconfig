@@ -8,16 +8,17 @@
     plugins = {
       copilot-lua = {
         enable = true;
+        lazyLoad.settings.event = ["DeferredUIEnter"];
         settings = {
           panel = {
             auto_refresh = true;
-            enabled = true;
+            enabled = !config.plugins.blink-cmp-copilot.enable;
           };
           nes = {
-            enabled = true;
+            enabled = !config.plugins.blink-cmp-copilot.enable;
           };
           suggestion = {
-            enabled = true;
+            enabled = !config.plugins.blink-cmp-copilot.enable;
             # auto_trigger = false;
             # debounce = 90;
             # hide_during_completion = false;
@@ -26,16 +27,32 @@
             #   accept_word = false;
             # };
           };
+
+          on_attach = ''
+            function()
+                if not vim.g.copilot_enabled then
+                  -- Immediately disable Copilot for this session
+                  vim.cmd('Copilot disable')
+                end
+              end'';
         };
       };
+
+      copilot-chat = {
+        inherit (config.plugins.copilot-lua) enable;
+      };
+
       avante = {
         enable = true;
+        lazyLoad.settings.event = ["DeferredUIEnter"];
         settings = {
-          provider = "ollama"; # Default provider at startup
+          # provider = "ollama"; # Default provider at startup
+          provider = "copilot"; # Default provider at startup
           behaviour = {
             auto_set_keymaps = true;
             auto_suggestions = false; # Set to true if you want auto-suggestions
             support_paste_from_clipboard = false;
+            auto_apply_diff_after_generation = false;
           };
           diff = {
             autojump = true;
@@ -64,7 +81,24 @@
           providers = {
             ollama = {
               endpoint = "http://maja:11434";
-              model = "qwen2.5-coder";
+              # model = "qwen2.5-coder:latest";
+              model = "danielsheep/Qwen3-Coder-30B-A3B-Instruct-1M-Unsloth:UD-IQ3_XXS";
+              is_env_set = {
+                __raw = ''
+                  function()
+                    return true
+                  end
+                '';
+              };
+
+              # api_type = "ollama";
+              extra_request_body = {
+                options = {
+                  temperature = 0.7;
+                  num_ctx = 8192;
+                  keep_alive = "5m";
+                };
+              };
             };
             copilot = {
               endpoint = "https://api.githubcopilot.com";
@@ -81,6 +115,21 @@
           };
         };
       };
+      which-key.settings.spec = lib.optionals config.plugins.avante.enable [
+        {
+          __unkeyed-1 = "<leader>a";
+          group = "Avante";
+          icon = "";
+        }
+      ];
     };
+    keymaps = lib.optionals config.plugins.avante.enable [
+      {
+        mode = "n";
+        key = "<leader>ac";
+        action = "<CMD>AvanteClear<CR>";
+        options.desc = "avante: clear";
+      }
+    ];
   };
 }

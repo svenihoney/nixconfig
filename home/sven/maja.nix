@@ -46,7 +46,8 @@
     service.enable = true;
   };
   services.ollama = {
-    acceleration = "rocm";
+    # acceleration = "rocm";
+    # acceleration = "vulkan";
     host = "[::]";
   };
 

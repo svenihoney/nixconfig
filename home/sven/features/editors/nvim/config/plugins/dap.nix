@@ -47,9 +47,7 @@
       {
         mode = "n";
         key = "<leader>dB";
-        action = "
-        <cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>
-      ";
+        action = "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>";
         options = {
           silent = true;
           desc = "Breakpoint Condition";
@@ -114,9 +112,7 @@
       {
         mode = "n";
         key = "<leader>dj";
-        action = "
-        <cmd>lua require('dap').down()<cr>
-      ";
+        action = "<cmd>lua require('dap').down()<cr>";
         options = {
           silent = true;
           desc = "Down";

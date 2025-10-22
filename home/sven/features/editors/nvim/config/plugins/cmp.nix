@@ -1,6 +1,12 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   extraPlugins = with pkgs.vimPlugins; [
     blink-ripgrep-nvim
+    blink-cmp-avante
   ];
 
   plugins = {
@@ -10,6 +16,7 @@
     blink-copilot.enable = true;
     blink-emoji.enable = true;
     blink-ripgrep.enable = true;
+    blink-compat.enable = true;
     blink-cmp = {
       enable = true;
       setupLspCapabilities = true;
@@ -72,68 +79,88 @@
         };
 
         sources = {
-          default = [
-            "buffer"
-            "lsp"
-            "path"
-            "snippets"
-            # Community
-            "copilot"
-            "dictionary"
-            "emoji"
-            "git"
-            "spell"
-            "ripgrep"
-          ];
-          providers = {
-            ripgrep = {
-              name = "Ripgrep";
-              module = "blink-ripgrep";
-              score_offset = 1;
-            };
-            dictionary = {
-              name = "Dict";
-              module = "blink-cmp-dictionary";
-              min_keyword_length = 3;
-            };
-            emoji = {
-              name = "Emoji";
-              module = "blink-emoji";
-              score_offset = 1;
-            };
-            copilot = {
-              name = "copilot";
-              module = "blink-copilot";
-              async = true;
-              score_offset = 100;
-            };
-            lsp.score_offset = 4;
-            spell = {
-              name = "Spell";
-              module = "blink-cmp-spell";
-              score_offset = 1;
-            };
-            git = {
-              name = "Git";
-              module = "blink-cmp-git";
-              enabled = true;
-              score_offset = 100;
-              should_show_items.__raw = ''
-                function()
-                  return vim.o.filetype == 'gitcommit' or vim.o.filetype == 'markdown'
-                end
-              '';
-              opts = {
-                git_centers = {
-                  github = {
-                    issue = {
-                      on_error.__raw = "function(_,_) return true end";
+          default =
+            [
+              "buffer"
+              "lsp"
+              "path"
+              "snippets"
+              # Community
+              "dictionary"
+              "emoji"
+              "git"
+              "spell"
+              "ripgrep"
+            ]
+            ++ lib.optionals config.plugins.copilot-lua.enable [
+              "copilot"
+            ]
+            ++ lib.optionals config.plugins.avante.enable [
+              "avante"
+            ];
+          providers =
+            {
+              ripgrep = {
+                name = "Ripgrep";
+                module = "blink-ripgrep";
+                score_offset = 1;
+              };
+              dictionary = {
+                name = "Dict";
+                module = "blink-cmp-dictionary";
+                min_keyword_length = 3;
+              };
+              emoji = {
+                name = "Emoji";
+                module = "blink-emoji";
+                score_offset = 1;
+              };
+              copilot = {
+                name = "copilot";
+                module = "blink-copilot";
+                async = true;
+                score_offset = 100;
+              };
+              lsp.score_offset = 4;
+              spell = {
+                name = "Spell";
+                module = "blink-cmp-spell";
+                score_offset = 1;
+              };
+              git = {
+                name = "Git";
+                module = "blink-cmp-git";
+                enabled = true;
+                score_offset = 100;
+                should_show_items.__raw = ''
+                  function()
+                    return vim.o.filetype == 'gitcommit' or vim.o.filetype == 'markdown'
+                  end
+                '';
+                opts = {
+                  git_centers = {
+                    github = {
+                      issue = {
+                        on_error.__raw = "function(_,_) return true end";
+                      };
                     };
                   };
                 };
               };
+            }
+            // lib.optionalAttrs config.plugins.blink-compat.enable {
+              calc = {
+                name = "calc";
+                module = "blink.compat.source";
+                score_offset = 2;
+              };
+            }
+            // lib.optionalAttrs (config.plugins.avante.enable && config.plugins.blink-compat.enable) {
+              avante = {
+                module = "blink-cmp-avante";
+                name = "Avante";
+              };
             };
-          };
         };
 
         appearance = {
@@ -175,11 +202,12 @@
             Hint = "󰏭";
 
             Emoji = "🤶";
+            Copilot = "";
           };
         };
         completion = {
           menu = {
-            border = "none";
+            border = "rounded";
             draw = {
               gap = 1;
               treesitter = ["lsp"];
@@ -202,7 +230,7 @@
           documentation = {
             auto_show = true;
             window = {
-              border = "single";
+              border = "rounded";
             };
           };
           accept = {
@@ -210,6 +238,7 @@
               enabled = false;
             };
           };
+          ghost_text.enabled = true;
         };
       };
     };

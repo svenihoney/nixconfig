@@ -231,6 +231,7 @@ in {
           "SUPER SHIFT, F4, exec, ${uswmapp}${neovide}"
           "SUPER, F5, exec, ${uswmapp}${thunar}"
           "SUPER, F7, exec, ${uswmapp}${spotify}"
+          "SUPER SHIFT, F7, exec, ${uswmapp}${browser} --new-window https://music.amazon.de"
           "SUPER, F12, exec, hyprctl switchxkblayout brian-low-sofle-choc next"
           # "SUPER, F11, exec, ~/bin/switchaudio btoff"
           # "SUPER, F11, exec, ~/bin/switchaudio hdmi"
@@ -336,6 +337,7 @@ in {
         "float,title:(Kalendererinnerungen)"
 
         "workspace 7,class:spotify"
+        "workspace 7,title:(Amazon Music Unlimited.*)"
         "workspace 0,class:Slack"
       ];
 
