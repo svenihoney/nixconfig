@@ -15,6 +15,7 @@
     [
       # inputs.impermanence.nixosModules.home-manager.impermanence
       inputs.nixvim.homeModules.nixvim
+      inputs.ragenix.homeManagerModules.default
 
       ../features/cli
       ../features/editors

@@ -136,6 +136,7 @@ in {
       dwindle.split_width_multiplier = 1.35;
 
       misc = {
+        focus_on_activate = true;
         disable_hyprland_logo = true;
         vrr = 2;
 
@@ -204,7 +205,7 @@ in {
         # "hyprlock"
         # "${uswmapp}${copyq}"
         "${uswmapp}${keepassxc}"
-        "${uswmapp}${waybar}"
+        # "${uswmapp}${waybar}"
         "${uswmapp}${polkit}"
       ];
 

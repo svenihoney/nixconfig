@@ -8,4 +8,5 @@ let
 in {
   "restic/env.age".publicKeys = users ++ systems;
   "restic/password.age".publicKeys = users ++ systems;
+  "weatherapi/key.age".publicKeys = users ++ systems;
 }

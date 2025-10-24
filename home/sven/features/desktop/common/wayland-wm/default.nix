@@ -3,13 +3,14 @@
     # ./hyprland-vnc.nix
     # ./gammastep.nix
     ./udiskie.nix
-    ./mako.nix
+    # ./mako.nix
     # ./qutebrowser.nix
     # ./swayidle.nix
     # ./swaylock.nix
     ./hyprlock.nix
     ./hypridle.nix
-    ./waybar.nix
+    # ./waybar.nix
+    ./hyprpanel
     ./wlogout.nix
     # ./wofi.nix
     # ./fuzzel.nix

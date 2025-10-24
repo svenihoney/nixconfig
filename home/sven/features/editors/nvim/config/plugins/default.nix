@@ -2,6 +2,7 @@
   imports = [
     # General
     ./snacks.nix
+    # ./telescope.nix
     ./mini.nix
     # UI
     ./lualine.nix

@@ -94,6 +94,7 @@
   services.tlp.settings = {
     STOP_CHARGE_THRESH_BAT0 = 1;
   };
+  services.upower.enable = true;
 
   # Usevia access to hidraw device
   services.udev.extraRules = ''
