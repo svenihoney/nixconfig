@@ -76,9 +76,9 @@
 ;; (package! with-venv)
 
 ;; AI
-(package! ellama)
-(package! gptel :recipe (:nonrecursive t))
-(package! gptel-aibo)
-(package! aidermacs)
+;; (package! ellama)
+;; (package! gptel :recipe (:nonrecursive t))
+;; (package! gptel-aibo)
+;; (package! aidermacs)
 
 ;; ############ corfu

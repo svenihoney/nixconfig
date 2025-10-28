@@ -347,7 +347,8 @@
         (gptel-make-ollama "Ollama"
           :host "maja:11434"
           :stream t
-          :models '(gpt-oss:20b
+          :models '(qwen3:8b
+                    gpt-oss:20b
                     deepseek-coder-v2
                     gemma3:4b
                     qwen2.5-coder
@@ -396,12 +397,12 @@
   (aidermacs-editor-model "ollama_chat/gpt-oss:20b")
   )
 
-(map! :leader
-      (:prefix-map ("k" . "AI tools")
-       :desc "Aidermacs" "a" #'aidermacs-transient-menu
-       :desc "GPtel menu" "m" #'gptel-menu
-       :desc "GPtel Aibo" "i" #'gptel-aibo
-       :desc "GPtel Aibo send" "s" #'gptel-aibo-send
-       :desc "GPtel Aibo summon" "S" #'gptel-aibo-summon
-       )
-      )
+;; (map! :leader
+;;       (:prefix-map ("k" . "AI tools")
+;;        :desc "Aidermacs" "a" #'aidermacs-transient-menu
+;;        :desc "GPtel menu" "m" #'gptel-menu
+;;        :desc "GPtel Aibo" "i" #'gptel-aibo
+;;        :desc "GPtel Aibo send" "s" #'gptel-aibo-send
+;;        :desc "GPtel Aibo summon" "S" #'gptel-aibo-summon
+;;        )
+;;       )

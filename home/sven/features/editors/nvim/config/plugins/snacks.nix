@@ -13,6 +13,10 @@
               };
             };
           };
+          # layout = "telescope";
+          matcher = {
+            frecency = true;
+          };
         };
       };
     };
@@ -22,7 +26,7 @@
     {
       mode = ["n"];
       key = "<leader><leader>";
-      action = "<cmd>lua Snacks.picker.files()<CR>";
+      action = "<cmd>lua Snacks.picker.smart()<CR>";
       options = {
         desc = "Find files";
       };

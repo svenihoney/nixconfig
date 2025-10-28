@@ -20,7 +20,8 @@
   neovide = "${lib.getExe pkgs.neovide}";
   spotify = "${lib.getExe pkgs.spotify}";
   keepassxc = "${lib.getExe pkgs.keepassxc}";
-  waybar = "${lib.getExe pkgs.waybar}";
+  # waybar = "${lib.getExe pkgs.waybar}";
+  hyprpanel = "${lib.getExe pkgs.hyprpanel}";
   polkit = "${lib.getExe pkgs.lxqt.lxqt-policykit}";
   thunar = "${lib.getExe pkgs.xfce.thunar}";
   # pass-wofi = "${
@@ -293,6 +294,13 @@ in {
           lib.optionals config.programs.fuzzel.enable
           ["SUPER,d,exec,${uswmapp}${pkgs.fuzzel}/bin/fuzzel"]
         )
+        ++ (
+          lib.optionals config.programs.hyprpanel.enable
+          [
+            "SUPER,n,exec,${hyprpanel} toggleWindow notificationsmenu"
+            "SUPER SHIFT,n,exec,${hyprpanel} clearNotifications"
+          ]
+        )
         # ++ (lib.optionals config.programs.password-store.enable [
         #   ",Scroll_Lock,exec,${pass-wofi}" # fn+k
         #   ",XF86Calculator,exec,${pass-wofi}" # fn+f12
@@ -339,7 +347,7 @@ in {
 
         "workspace 7,class:spotify"
         "workspace 7,title:(Amazon Music Unlimited.*)"
-        "workspace 0,class:Slack"
+        "workspace 10,class:Slack"
       ];
 
       monitor =

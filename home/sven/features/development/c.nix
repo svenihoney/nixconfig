@@ -19,7 +19,7 @@
         gdb
       ]
       ++ (lib.optionals config.svenihoney.desktop.enable [
-        zeal
+        # zeal
         # qtcreator
       ]);
 

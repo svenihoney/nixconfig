@@ -33,13 +33,11 @@ in {
         };
 
         # Netcup
-        "s1" = {
-          user = "sven";
-          hostname = "s1.effeffcee.de";
-        };
-        "s2" = {
-          hostname = "2a03:4000:48:5aa:4844:36ff:feeb:c58a";
-        };
+        "s2" =
+          {
+            hostname = "2a03:4000:48:5aa:4844:36ff:feeb:c58a";
+          }
+          // xterm;
         "dgm" =
           {
             user = "hosting211916";

@@ -1,5 +1,5 @@
 {lib, ...}: let
-  workspaces = map toString (lib.range 0 9);
+  workspaces = map toString (lib.range 1 10);
   # ++ (map (n: "F${toString n}") (lib.range 1 12));
   # Map keys to hyprland directions
   directions = rec {
@@ -41,10 +41,20 @@ in {
       ]
       ++
       # Change workspace
-      (map (n: "SUPER,${n},workspace,name:${n}") workspaces)
+      (map (n: "SUPER,${
+          if n == "10"
+          then "0"
+          else n
+        },workspace,${n}")
+        workspaces)
       ++
       # Move window to workspace
-      (map (n: "SUPER SHIFT,${n},movetoworkspacesilent,name:${n}") workspaces)
+      (map (n: "SUPER SHIFT,${
+          if n == "10"
+          then "0"
+          else n
+        },movetoworkspacesilent,${n}")
+        workspaces)
       ++
       # Move focus
       (lib.mapAttrsToList

@@ -17,6 +17,8 @@
       # Emacs vterm
       # libtool
       # libvterm
+      shellcheck
+      bash-language-server
     ];
 
     programs.doom-emacs = {
