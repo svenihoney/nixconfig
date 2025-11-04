@@ -1,6 +1,8 @@
 {
   pkgs,
   inputs,
+  self,
+  config,
   ...
 }: {
   imports = [
@@ -82,7 +84,7 @@
   boot = {
     loader = {
       systemd-boot = {
-        enable = false;
+        enable = !config.boot.lanzaboote.enable;
         configurationLimit = 3;
       };
       efi.canTouchEfiVariables = true;

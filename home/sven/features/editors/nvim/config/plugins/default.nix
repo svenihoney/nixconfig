@@ -11,7 +11,7 @@
     # Development
     ./lsp.nix
     ./treesitter.nix
-    # ./cmp.nix
+    ./cmp.nix
     ./cmake-tools.nix
     ./dap.nix
     # ./codecompanion.nix

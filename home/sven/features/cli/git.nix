@@ -6,7 +6,7 @@
 }: {
   programs.git = {
     enable = true;
-    package = pkgs.gitAndTools.gitFull;
+    package = pkgs.gitFull; # contains libsecret helper
     settings = {
       aliases = {
         graph = "log --decorate --oneline --graph";
@@ -22,6 +22,7 @@
       # credential.helper = "store";
       # credential.helper = "libsecret";
       credential.helper = "${config.programs.git.package}/share/git/contrib/credential/libsecret/git-credential-libsecret";
+      # credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
       color.ui = "auto";
       push.default = "current";
       merge.conflictstyle = "diff3";

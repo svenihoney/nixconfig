@@ -17,6 +17,14 @@
     # nix-colors.url = "github:misterio77/nix-colors";
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        rust-overlay.follows = "rust-overlay";
+      };
+    };
+    # Fix for lanzaboote error https://github.com/nix-community/lanzaboote/issues/485
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -148,8 +156,7 @@
     # };
   };
 
-  outputs = inputs @ {self, ...}
-  : let
+  outputs = inputs @ {self, ...}: let
     inherit (self) outputs;
     # lib = nixpkgs.lib // home-manager.lib;
     # lib = nixpkgs-stable.lib // home-manager-stable.lib;

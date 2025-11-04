@@ -7,7 +7,7 @@
   config = lib.mkIf config.lsp.enable {
     plugins = {
       copilot-lua = {
-        enable = true;
+        enable = false;
         lazyLoad.settings.event = ["DeferredUIEnter"];
         settings = {
           panel = {
@@ -82,7 +82,8 @@
             ollama = {
               endpoint = "http://maja:11434";
               # model = "qwen2.5-coder:latest";
-              model = "danielsheep/Qwen3-Coder-30B-A3B-Instruct-1M-Unsloth:UD-IQ3_XXS";
+              # model = "danielsheep/Qwen3-Coder-30B-A3B-Instruct-1M-Unsloth:UD-IQ3_XXS";
+              model = "qwen3:8b";
               is_env_set = {
                 __raw = ''
                   function()
@@ -107,8 +108,9 @@
               timeout = 30000;
             };
             gemini = {
-              endpoint = "https://generativelanguage.googleapis.com/v1beta/models";
-              model = "gemini-2.5-flash";
+              # endpoint = "https://generativelanguage.googleapis.com/v1beta/models";
+              # model = "gemini-2.5-flash";
+              model = "gemini-2.5-pro";
               api_key_name = "cmd:secret-tool lookup gemini apikey";
               timeout = 30000;
             };
@@ -126,7 +128,7 @@
     keymaps = lib.optionals config.plugins.avante.enable [
       {
         mode = "n";
-        key = "<leader>ac";
+        key = "<leader>aC";
         action = "<CMD>AvanteClear<CR>";
         options.desc = "avante: clear";
       }
