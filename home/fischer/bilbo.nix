@@ -51,8 +51,8 @@
   home = {
     username = "fischer";
   };
-  programs.git = {
-    userEmail = "fischer@software.ads";
+  programs.git.settings = {
+    user.email = "fischer@software.ads";
   };
   #targets.genericLinux.enable = true;
   # colorscheme = inputs.nix-colors.colorschemes.tokyo-night-storm;

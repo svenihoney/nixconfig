@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  config,
   lib,
   ...
 }: {
@@ -51,8 +52,8 @@
   boot = {
     loader = {
       systemd-boot = {
-        enable = true;
-        configurationLimit = 10;
+        enable = !config.boot.lanzaboote.enable;
+        configurationLimit = 3;
       };
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/efi";
@@ -60,7 +61,13 @@
     };
     kernelPackages = pkgs.linuxPackages_latest;
     # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
+    # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     # binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
+    # supportedFilesystems = ["zfs"];
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+    };
   };
 
   # Auto login me
@@ -161,6 +168,7 @@
     START_CHARGE_THRESH_BAT0 = 40;
     STOP_CHARGE_THRESH_BAT0 = 80;
   };
+  services.upower.enable = true;
 
   services.nfs.server = {
     enable = true;
