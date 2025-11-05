@@ -19,13 +19,14 @@
     ../sven/features/desktop/common/virtualisation.nix
     ../sven/features/desktop/common/keepassxc.nix
 
-    #../sven/features/development
+    ../sven/features/development
     #../sven/features/editors/emacs
 
     # ../sven/features/productivity/neomutt.nix
     # ../sven/features/productivity/office.nix
   ];
 
+  svenihoney.devel.emacs = lib.mkForce false;
   # stylix.targets.kde.enable = false;
   # stylix.targets.gnome.enable = false;
   targets.genericLinux.enable = true;
@@ -36,8 +37,8 @@
     username = "fischer";
   };
   programs = {
-    git = {
-      userEmail = "fischer@software.ads";
+    git.settings = {
+      user.email = "fischer@software.ads";
     };
 
     firefox = {

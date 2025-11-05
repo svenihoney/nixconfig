@@ -1,10 +1,13 @@
 {
-  self,
-  config,
   osConfig,
   lib,
   ...
-}: {
+}@args:
+let
+  isNixOS = builtins.hasAttr "nixosConfig" args;
+  hasUpower = isNixOS && osConfig.services.upower.enable;
+in
+{
   age.secrets = {
     "weatherapi/key".file = ../../../../../../../secrets/weatherapi/key.age;
   };
@@ -19,9 +22,9 @@
       bar.clock.format = "%H:%M:%S";
       bar.layouts = {
         "*" = {
-          left = [];
-          middle = [];
-          right = [];
+          left = [ ];
+          middle = [ ];
+          right = [ ];
         };
         "0" = {
           left = [
@@ -33,23 +36,22 @@
           middle = [
             "windowtitle"
           ];
-          right =
-            [
-              # "cpu"
-              # "ram"
-              # "storage"
-              "volume"
-              "network"
-            ]
-            ++ (lib.optionals osConfig.services.upower.enable [
-              "bluetooth"
-              "battery"
-            ])
-            ++ [
-              "systray"
-              "clock"
-              "notifications"
-            ];
+          right = [
+            # "cpu"
+            # "ram"
+            # "storage"
+            "volume"
+            "network"
+          ]
+          ++ (lib.optionals hasUpower [
+            "bluetooth"
+            "battery"
+          ])
+          ++ [
+            "systray"
+            "clock"
+            "notifications"
+          ];
         };
       };
       "theme.bar.location" = "bottom";
@@ -57,7 +59,7 @@
       "menus.clock.time.military" = true;
       "menus.clock.weather.location" = "Moitzfeld";
       "menus.clock.weather.unit" = "metric";
-      "menus.clock.weather.key" = config.age.secrets."weatherapi/key".path;
+      # "menus.clock.weather.key" = config.age.secrets."weatherapi/key".path;
 
       "menus.clock.weather.interval" = 1000000;
       "bar.customModules.worldclock.format" = "%H:%M:%S %Z";

@@ -25,7 +25,7 @@
         "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
       ];
 
-      trusted-users = ["root" "@wheel" "@adm"];
+      trusted-users = ["root" "@wheel" "@adm" "sven" "fischer"];
       auto-optimise-store = lib.mkDefault true;
       experimental-features = ["nix-command" "flakes"];
       warn-dirty = false;
