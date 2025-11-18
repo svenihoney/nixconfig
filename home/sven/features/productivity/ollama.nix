@@ -22,6 +22,7 @@
         oterm
         alpaca
         aider-chat
+        lmstudio
       ];
   };
 }

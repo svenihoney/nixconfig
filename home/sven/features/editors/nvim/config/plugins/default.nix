@@ -4,6 +4,7 @@
     ./snacks.nix
     # ./telescope.nix
     ./mini.nix
+    ./flash.nix
     # UI
     ./lualine.nix
     ./which-key.nix
@@ -14,6 +15,7 @@
     ./cmp.nix
     ./cmake-tools.nix
     ./dap.nix
+    ./trouble.nix
     # ./codecompanion.nix
     ./ai.nix
     ./toggleterm.nix
@@ -27,26 +29,12 @@
       # enableTelescope = true;
     };
     guess-indent.enable = true; # Guess tabwidth from indentation in file
-    indent-blankline = {
-      enable = true; # indentation markers
-      # settings = let
-      #   highlight = ["CursorColumn" "Whitespace"];
-      # in {
-      #   indent = {
-      #     highlight = highlight;
-      #     char = "";
-      #   };
-      #   whitespace = {
-      #     highlight = highlight;
-      #     remove_blankline_trail = false;
-      #   };
-      #   scope = {enabled = false;};
-      # };
-      settings = {
-        # indent.char = "·";
-        indent.char = "│";
-      };
-    };
+    # indent-blankline = {
+    #   enable = true; # indentation markers
+    #   settings = {
+    #     indent.char = "│";
+    #   };
+    # };
     lastplace.enable = true; # return to last edit place
     trim.enable = true; # trim whitespace
     illuminate.enable = true; # highlight same keywords
@@ -56,16 +44,10 @@
       settings.skip_confirm_for_simple_edits = true;
     };
     neogit.enable = true;
+    grug-far.enable = true;
     ts-comments = {
       # lazyLoad.enable = true;
       enable = true;
-    };
-    flash = {
-      enable = true;
-      settings = {
-        modes.search.enable = true;
-        # modes.char.jump_labels = true;
-      };
     };
     firenvim.enable = true;
     yanky = {
@@ -76,18 +58,19 @@
       enable = true;
       autoLoad = true;
     };
+    # leap.enable = true;
   };
   extraPlugins = with pkgs.vimPlugins; [
     # For these no nixvim plugin exists
-    vim-abolish
+    vim-abolish # Automatic case in search and replace
     (pkgs.vimUtils.buildVimPlugin {
       name = "vim-compile-mode";
       # src = vim-compile-mode;
       src = pkgs.fetchFromGitHub {
         owner = "ej-shafran";
         repo = "compile-mode.nvim";
-        rev = "d436d8f11f156de619baba72cd1fbc4216586cd6";
-        hash = "sha256-T2l/lEOiO+X5TfAT1mcsyg307nktT+YxxlpbCloNLp4=";
+        rev = "0b2a059baa734da932913f555eb157637dab5cdd";
+        hash = "sha256-kfZ6/8m0i8pQn0E9U9XK3dUshcR0No1P3iM5maCnvX0=";
       };
       dependencies = [
         plenary-nvim
@@ -108,28 +91,12 @@
   keymaps = [
     # Other keymaps
     {
-      mode = ["n"];
-      key = "gss";
-      action = "<cmd>lua require(\"flash\").jump()<CR>";
-      options = {
-        desc = "Jump to character";
-      };
-    }
-    {
-      mode = ["n"];
-      key = "gst";
-      action = "<cmd>lua require(\"flash\").treesitter()<CR>";
-      options = {
-        desc = "Jump to object";
-      };
-    }
-    {
       mode = [
         "n"
         "v"
       ];
       key = "<F7>";
-      action = "<cmd>wa<CR><cmd>Recompile<CR>";
+      action = "<cmd>wa<CR><cmd>bd \*compilation\*<CR><cmd>20Recompile<CR>";
       options = {
         desc = "Recompile sources";
       };
@@ -140,7 +107,7 @@
         "v"
       ];
       key = "<S-F7>";
-      action = "<cmd>Compile<CR>";
+      action = "<cmd>20Compile<CR>";
       options = {
         desc = "Run a compilation";
       };
@@ -151,7 +118,7 @@
         "v"
       ];
       key = "<leader>pc";
-      action = "<cmd>Compile<CR>";
+      action = "<cmd>20Compile<CR>";
       options = {
         desc = "Run a compilation";
       };
@@ -163,7 +130,7 @@
       ];
       # key = "<S-F7>" for terminal
       key = "<F19>";
-      action = "<cmd>Compile<CR>";
+      action = "<cmd>20Compile<CR>";
       options = {
         desc = "Run a compilation";
       };
@@ -217,6 +184,30 @@
       ];
       key = "<leader>yh";
       action = "<cmd>YankyRingHistory<CR>";
+      options = {
+        desc = "Open Yank History";
+      };
+    }
+    {
+      mode = [
+        "n"
+        "x"
+      ];
+      key = "<leader>sr";
+      action = {
+        __raw = ''
+          function()
+            local grug = require("grug-far")
+            local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
+            grug.open({
+              transient = true,
+              prefills = {
+                filesFilter = ext and ext ~= "" and "*." .. ext or nil,
+              },
+            })
+          end
+        '';
+      };
       options = {
         desc = "Open Yank History";
       };

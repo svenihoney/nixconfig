@@ -6,7 +6,8 @@
   options = {
     cmake.enable = lib.mkEnableOption "Enable cmake-tools module";
   };
-  config = lib.mkIf config.cmake.enable {
+  # config = lib.mkIf config.cmake.enable {
+  config = {
     plugins = {
       cmake-tools = {
         enable = true;

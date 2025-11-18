@@ -23,6 +23,7 @@ in {
       extraOptionOverrides = {
         AddKeysToAgent = "confirm";
         VerifyHostKeyDNS = "ask";
+        WarnWeakCrypto = "no";
       };
       matchBlocks = {
         # Private playground

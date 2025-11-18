@@ -109,6 +109,18 @@
     # get bash-like tab completions
     wildmode = "longest,list";
   };
+  diagnostic = {
+    settings = {
+      signs = {
+        text = {
+          ERROR = "❌";
+          WARN = "⚠️";
+          HINT = "💡";
+          INFO = "ℹ️";
+        };
+      };
+    };
+  };
   # Import all your configuration modules here
   imports = [
     ./plugins

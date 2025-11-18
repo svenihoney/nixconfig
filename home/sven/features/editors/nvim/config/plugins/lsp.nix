@@ -142,6 +142,10 @@
         enable = true;
       };
 
+      tiny-inline-diagnostic = {
+        enable = true;
+      };
+
       clangd-extensions = {
         enable = true;
       };

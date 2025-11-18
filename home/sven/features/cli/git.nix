@@ -43,9 +43,9 @@
   };
 
   programs = {
-    lazygit = {
-      enable = true;
-    };
+    gitui.enable = true;
+    lazygit.enable = true;
+
     fish = {
       shellAliases = {
         lg = "lazygit";

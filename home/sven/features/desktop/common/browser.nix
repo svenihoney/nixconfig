@@ -33,7 +33,7 @@ in {
       bookmarks = {};
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         keepassxc-browser
-        # ublock-origin
+        ublock-origin
         # cookie-autodelete
         # istilldontcareaboutcookies
         # decentraleyes

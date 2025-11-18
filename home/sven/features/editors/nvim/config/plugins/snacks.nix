@@ -18,10 +18,54 @@
             frecency = true;
           };
         };
+        indent = {
+          enabled = true;
+          animate = {
+            duration = {
+              step = 10;
+              total = 100;
+            };
+          };
+        };
+        bigfile.enabled = true;
+        quickfile.enabled = true;
+        input = {
+          enabled = true;
+        };
+        notifier = {
+          enabled = true;
+        };
+        scope = {
+          enabled = true;
+        };
+        scroll = {
+          enabled = true;
+        };
+        # statuscolumn = { enabled = false ;}; -- we set this in options.lua
+        # toggle = { map = LazyVim.safe_keymap_set ;};
+        words = {
+          enabled = true;
+        };
       };
     };
   };
   keymaps = [
+    {
+      mode = ["n"];
+      key = "<leader>n";
+      action = "<cmd>lua Snacks.picker.notifications()<CR>";
+      options = {
+        desc = "Show notifications";
+      };
+    }
+    {
+      mode = ["n"];
+      key = "<leader>un";
+      action = "<cmd>lua Snacks.notifier.hide()<CR>";
+      options = {
+        desc = "Dismiss notifications";
+      };
+    }
     # Snacks picker keymaps
     {
       mode = ["n"];

@@ -614,7 +614,7 @@
       };
 
       git_status = {
-        # disabled = true;
+        disabled = true;
         style = "bg:color_git_status fg:color_foreground_dark";
         staged = " \${count}"; # nf-fa-check
         modified = "  \${count}"; # nf-fa-edit
@@ -648,7 +648,7 @@
       };
 
       git_metrics = {
-        disabled = false;
+        disabled = true;
         added_style = "bg:color_git_metrics fg:color_foreground_light";
         deleted_style = "bg:color_git_metrics fg:color_foreground_light";
         # only_nonzero_diffs = false;

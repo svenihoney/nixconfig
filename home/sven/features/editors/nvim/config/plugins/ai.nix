@@ -79,6 +79,16 @@
             };
           };
           providers = {
+            openai = {
+              endpoint = "http://localhost:1234/v1";
+              # model = "qwen2.5-coder:latest";
+              # model = "danielsheep/Qwen3-Coder-30B-A3B-Instruct-1M-Unsloth:UD-IQ3_XXS";
+              # model = "qwen3:8b";
+              model = "openai/gpt-oss-20b";
+
+              # api_type = "ollama";
+              api_key_name = "LM_API_KEY";
+            };
             ollama = {
               endpoint = "http://maja:11434";
               # model = "qwen2.5-coder:latest";
@@ -101,6 +111,19 @@
                 };
               };
             };
+            # lmstudio = {
+            #   __inherited_from = "openai";
+            #   endpoint = "http://localhost:1234/v1";
+            #   model = "openai/gpt-oss-20b";
+            #   # api_key_name = "LM_API_KEY";
+            #   is_env_set = {
+            #     __raw = ''
+            #       function()
+            #         return true
+            #       end
+            #     '';
+            #   };
+            # };
             copilot = {
               endpoint = "https://api.githubcopilot.com";
               model = "claude-sonnet-4-20250514";
