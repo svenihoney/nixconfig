@@ -4,10 +4,13 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   # home.packages = lib.optionals config.targets.genericLinux.enable [
-  nixGL.packages = inputs.nixgl.packages;
-  nixGL.defaultWrapper = "mesa";
+  targets.genericLinux.nixGL = {
+    packages = inputs.nixgl.packages;
+    defaultWrapper = "mesa";
+  };
 
   programs = lib.mkIf (config.targets.genericLinux.enable == true) {
     kitty = {
