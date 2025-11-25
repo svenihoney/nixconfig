@@ -93,6 +93,14 @@
     }
     {
       mode = ["n"];
+      key = "<leader>ss";
+      action = "<cmd>lua Snacks.picker.lines()<CR>";
+      options = {
+        desc = "Grep";
+      };
+    }
+    {
+      mode = ["n"];
       key = "<leader>sp";
       action = "<cmd>lua Snacks.picker.grep()<CR>";
       options = {
@@ -101,8 +109,32 @@
     }
     {
       mode = ["n"];
-      key = "<leader>ss";
-      action = "<cmd>lua Snacks.picker.lines()<CR>";
+      key = "<leader>si";
+      action = "<cmd>lua Snacks.picker.lsp_symbols()<CR>";
+      options = {
+        desc = "Grep";
+      };
+    }
+    {
+      mode = ["n"];
+      key = "<leader>sI";
+      action = "<cmd>lua Snacks.picker.lsp_workspace_symbols()<CR>";
+      options = {
+        desc = "Grep";
+      };
+    }
+    {
+      mode = ["n"];
+      key = "<leader>sd";
+      action = "<cmd>lua Snacks.picker.diagnostics_buffer()<CR>";
+      options = {
+        desc = "Grep";
+      };
+    }
+    {
+      mode = ["n"];
+      key = "<leader>sD";
+      action = "<cmd>lua Snacks.picker.diagnostics()<CR>";
       options = {
         desc = "Grep";
       };

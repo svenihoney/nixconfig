@@ -45,14 +45,18 @@
         enable = false;
         configurationLimit = 3;
       };
+      limine = {
+        enable = true;
+        secureBoot.enable = true;
+      };
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/efi";
       timeout = 1;
     };
-    lanzaboote = {
-      enable = true;
-      pkiBundle = "/var/lib/sbctl";
-    };
+    # lanzaboote = {
+    #   enable = true;
+    #   pkiBundle = "/var/lib/sbctl";
+    # };
     # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
     # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     kernelPackages = pkgs.linuxPackages_latest;

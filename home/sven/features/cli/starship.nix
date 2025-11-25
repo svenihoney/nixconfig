@@ -597,7 +597,7 @@
         # truncation_symbol = ""; # default = "…";
         # only_attached = true;
         # ignore_branches = ["main", "master"]
-        format = "[$symbol $branch(:$remote_name)]($style)";
+        format = "[$symbol $branch(:$remote_name) ]($style)";
         ## other variables:
         ##   remote_branch = The name of the branch tracked on remote_name
       };

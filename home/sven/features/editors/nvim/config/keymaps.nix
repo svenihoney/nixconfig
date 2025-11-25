@@ -89,5 +89,13 @@
         desc = "Unindent lines";
       };
     }
+    {
+      mode = ["n"];
+      key = "<leader>qq";
+      action = ":qa<CR>";
+      options = {
+        desc = "Quit";
+      };
+    }
   ];
 }

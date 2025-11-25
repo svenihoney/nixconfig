@@ -32,17 +32,18 @@
             "hide"
             "fallback"
           ];
-          "<CR>" = [
-            "accept"
-            "fallback"
-          ];
           "<Tab>" = [
-            "select_next"
+            "accept"
             "snippet_forward"
             "fallback"
           ];
+          # "<Tab>" = [
+          #   "select_next"
+          #   "snippet_forward"
+          #   "fallback"
+          # ];
           "<S-Tab>" = [
-            "select_prev"
+            # "select_prev"
             "snippet_backward"
             "fallback"
           ];

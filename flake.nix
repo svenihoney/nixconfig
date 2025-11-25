@@ -1,10 +1,14 @@
 {
   description = "My NixOS configuration";
 
-  # nixConfig = {
-  #   extra-substituters = [ "https://cache.m7.rs" ];
-  #   extra-trusted-public-keys = [ "cache.m7.rs:kszZ/NSwE/TjhOcPPQ16IuUiuRSisdiIwhKZCxguaWg=" ];
-  # };
+  nixConfig = {
+    # extra-substituters = [ "https://cache.m7.rs" ];
+    # extra-trusted-public-keys = [ "cache.m7.rs:kszZ/NSwE/TjhOcPPQ16IuUiuRSisdiIwhKZCxguaWg=" ];
+    extra-substituters = ["https://chaotic-nyx.cachix.org/"];
+    extra-trusted-public-keys = [
+      "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+    ];
+  };
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -15,18 +19,18 @@
     hardware.url = "github:nixos/nixos-hardware";
     # impermanence.url = "github:nix-community/impermanence";
     # nix-colors.url = "github:misterio77/nix-colors";
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.2";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        rust-overlay.follows = "rust-overlay";
-      };
-    };
-    # Fix for lanzaboote error https://github.com/nix-community/lanzaboote/issues/485
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # lanzaboote = {
+    #   url = "github:nix-community/lanzaboote/v0.4.2";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     rust-overlay.follows = "rust-overlay";
+    #   };
+    # };
+    # # Fix for lanzaboote error https://github.com/nix-community/lanzaboote/issues/485
+    # rust-overlay = {
+    #   url = "github:oxalica/rust-overlay";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # sops-nix = {
     #   url = "github:Mic92/sops-nix";
@@ -45,6 +49,8 @@
     #   inputs.nixpkgs.follows = "nixpkgs-stable";
     # };
     nixgl.url = "github:guibou/nixGL";
+
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     # nh = {
     #   url = "github:viperml/nh";
@@ -139,7 +145,7 @@
       inputs.nixpkgs.follows = "";
     };
 
-    devenv.url = "github:cachix/devenv";
+    # devenv.url = "github:cachix/devenv";
 
     # Currently broken
     # quickshell = {
@@ -188,10 +194,11 @@
         # pkgs = self.unstable-pkgs.${hostPlatform};
         modules = [
           # lix-module.nixosModules.default
-          inputs.lanzaboote.nixosModules.lanzaboote
+          # inputs.lanzaboote.nixosModules.lanzaboote
           inputs.stylix.nixosModules.stylix
           inputs.home-manager.nixosModules.home-manager
           inputs.ragenix.nixosModules.default
+          inputs.chaotic.nixosModules.default
           ./hosts/${hostName}
         ];
         specialArgs = {inherit inputs outputs;};
