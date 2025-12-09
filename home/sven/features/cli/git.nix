@@ -39,7 +39,11 @@
     # difftastic = {
     #   git.enable = true;
     # };
-    ignores = [".direnv" "result"];
+    ignores = [
+      ".direnv"
+      "result"
+      ",*"
+    ];
   };
 
   programs = {

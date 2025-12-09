@@ -9,7 +9,7 @@
     # ./gh.nix
     ./git.nix
     ./gpg.nix
-    # ./jujutsu.nix
+    ./jujutsu.nix
     # ./lyrics.nix
     ./nix-index.nix
     # ./pfetch.nix

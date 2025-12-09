@@ -23,15 +23,6 @@
     extended = true;
   };
 
-  programs.git = {
-    settings = lib.mkIf config.svenihoney.desktop.enable {
-      diff.tool = "meld";
-      difftool.meld.path = "${pkgs.meld}/bin/meld";
-      merge.tool = "kdiff3";
-      mergetool.kdiff3.path = "${pkgs.kdiff3}/bin/kdiff3";
-      difftool.prompt = false;
-    };
-  };
   home.packages = with pkgs; [xfce.thunar udiskie neovide];
   xdg.mimeApps.defaultApplications = {
     "text/plain" = "neovide.desktop";

@@ -45,15 +45,15 @@
       };
     }
     # Open
-    {
-      mode = ["n"];
-      key = "<leader>o-";
-      action = "<cmd>Oil<cr>";
-      # action = "<cmd>:lua MiniFiles.open()<cr>";
-      options = {
-        desc = "Open file manager";
-      };
-    }
+    # {
+    #   mode = ["n"];
+    #   key = "<leader>o-";
+    #   action = "<cmd>Oil<cr>";
+    #   # action = "<cmd>:lua MiniFiles.open()<cr>";
+    #   options = {
+    #     desc = "Open file manager";
+    #   };
+    # }
     # Git
     {
       mode = ["n"];

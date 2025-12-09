@@ -23,10 +23,14 @@
         "/home/sven/privat"
         "/home/sven/projects"
       ];
+      extraBackupArgs = [
+        "--exclude-caches"
+        "--exclude=.esphome"
+      ];
 
       pruneOpts = [
-        "--keep-daily 7"
-        "--keep-weekly 5"
+        "--keep-daily 6"
+        "--keep-weekly 2"
         "--keep-monthly 1"
       ];
     };

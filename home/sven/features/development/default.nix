@@ -50,5 +50,15 @@
     #     installCargo = false;
     #   };
     # };
+    programs.git.settings = {
+      difftool.prompt = false;
+
+      diff.tool = "meld";
+      difftool.meld.path = "${pkgs.meld}/bin/meld";
+      # 1. Define a new tool called "kdiff3NoAuto"
+      mergetool.kdiff3NoAuto.cmd = "${pkgs.kdiff3}/bin/kdiff3 --L1 \"\$MERGED (Base)\" --L2 \"\$MERGED (Local)\" --L3 \"\$MERGED (Remote)\" -o \"\$MERGED\" \"\$BASE\" \"\$LOCAL\" \"\$REMOTE\"";
+      mergetool.kdiff3NoAuto.trustExitCode = false;
+      merge.tool = "kdiff3NoAuto";
+    };
   };
 }

@@ -39,8 +39,8 @@ with self.unstable-pkgs.${system}; {
       nh
     ];
 
-    shellHook = ''
-      ${self.checks.${system}.pre-commit-check.shellHook}
-    '';
+    # shellHook = ''
+    #   ${self.checks.${system}.pre-commit-check.shellHook}
+    # '';
   };
 }

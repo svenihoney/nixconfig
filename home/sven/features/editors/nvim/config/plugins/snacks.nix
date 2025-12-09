@@ -39,7 +39,7 @@
           enabled = true;
         };
         scroll = {
-          enabled = true;
+          enabled = false;
         };
         # statuscolumn = { enabled = false ;}; -- we set this in options.lua
         # toggle = { map = LazyVim.safe_keymap_set ;};
@@ -161,6 +161,14 @@
       action = "<cmd>lua Snacks.picker.help()<CR>";
       options = {
         desc = "Help";
+      };
+    }
+    {
+      mode = ["n"];
+      key = "<leader>'";
+      action = "<cmd>lua Snacks.picker.resume()<CR>";
+      options = {
+        desc = "Resume";
       };
     }
     # Project selection

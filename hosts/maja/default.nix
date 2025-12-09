@@ -71,6 +71,9 @@
     #     }];
     #   };
     # };
+    interfaces.wlp5s0.useDHCP = false;
+    networkmanager.unmanaged = ["interface-name:wlp5s0"];
+    wireless.enable = false; # if you previously used wpa_supplicant
   };
   services.resolved = {
     enable = true;
@@ -188,6 +191,9 @@
       11434
     ];
     allowedUDPPorts = [
+      # DHCP
+      53
+      67
       # syncthing
       22000
       21027

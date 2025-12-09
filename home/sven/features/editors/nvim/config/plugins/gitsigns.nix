@@ -68,9 +68,7 @@
     {
       key = "<leader>ghb";
       mode = ["n"];
-      action = {
-        __raw = ''function() require("gitsigns").blame_line({ full = true }) end'';
-      };
+      action = "<cmd>Gitsigns blame_line<CR>";
       options = {
         desc = "Blame line";
       };
@@ -78,9 +76,7 @@
     {
       key = "<leader>gb";
       mode = ["n"];
-      action = {
-        __raw = ''function() require("gitsigns").blame_buffer() end'';
-      };
+      action = "<cmd>Gitsigns blame<CR>";
       options = {
         desc = "Blame buffer";
       };

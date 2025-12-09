@@ -133,7 +133,8 @@
             gemini = {
               # endpoint = "https://generativelanguage.googleapis.com/v1beta/models";
               # model = "gemini-2.5-flash";
-              model = "gemini-2.5-pro";
+              # model = "gemini-2.5-pro";
+              model = "gemini-3-pro-preview";
               api_key_name = "cmd:secret-tool lookup gemini apikey";
               timeout = 30000;
             };

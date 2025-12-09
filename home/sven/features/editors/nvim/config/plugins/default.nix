@@ -39,11 +39,19 @@
     trim.enable = true; # trim whitespace
     illuminate.enable = true; # highlight same keywords
 
-    oil = {
-      enable = true;
-      settings.skip_confirm_for_simple_edits = true;
-    };
+    # oil = {
+    #   enable = true;
+    #   settings.skip_confirm_for_simple_edits = true;
+    # };
     neogit.enable = true;
+    git-conflict = {
+      enable = true;
+      settings = {
+        # Optional: custom highlights or keymaps
+        default_mappings = true; # default mappings: co, ct, cb, c0
+        disable_diagnostics = true; # disable lsp diagnostics in conflict files
+      };
+    };
     grug-far.enable = true;
     ts-comments = {
       # lazyLoad.enable = true;

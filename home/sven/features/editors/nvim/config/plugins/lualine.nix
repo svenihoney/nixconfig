@@ -29,7 +29,10 @@
           "branch"
         ];
         lualine_c = [
-          "filename"
+          {
+            __unkeyed-1 = "filename";
+            path = 1;
+          }
           "diff"
         ];
         lualine_x = [
