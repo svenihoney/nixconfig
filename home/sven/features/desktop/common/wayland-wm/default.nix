@@ -10,11 +10,12 @@
     ./hyprlock.nix
     ./hypridle.nix
     # ./waybar.nix
-    ./hyprpanel
+    # ./hyprpanel
+    ./caelestia.nix
     ./wlogout.nix
     # ./wofi.nix
     # ./fuzzel.nix
-    ./anyrun
+    # ./anyrun
     # ./walker
     ./zathura.nix
     ./vimiv.nix

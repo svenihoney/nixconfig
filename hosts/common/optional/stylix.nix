@@ -18,6 +18,12 @@
       size = 24;
     };
     image = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/MilkyWay/contents/images/5120x2880.png";
+    icons = {
+      enable = true;
+      dark = "Papirus-Dark";
+      light = "Papirus";
+      package = pkgs.papirus-icon-theme;
+    };
 
     fonts = {
       sansSerif = {

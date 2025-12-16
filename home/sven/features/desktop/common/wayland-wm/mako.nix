@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   services.mako = {
     enable = true;
     # iconPath =
@@ -20,4 +21,15 @@
       layer = "overlay";
     };
   };
+  wayland.windowManager.hyprland =
+    let
+      makoctl = "${config.services.mako.package}/bin/makoctl";
+    in
+    {
+      settings = {
+        bind = [
+          [ "SUPER SHIFT,c,exec,${makoctl} dismiss" ]
+        ];
+      };
+    };
 }

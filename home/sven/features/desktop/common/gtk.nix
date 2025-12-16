@@ -19,10 +19,10 @@
     #   package = lib.mkForce pkgs.gnome.gnome-themes-extra;
     #   name = lib.mkForce "Adwaita-dark";
     # };
-    iconTheme = {
-      name = "Papirus";
-      package = pkgs.papirus-icon-theme;
-    };
+    # iconTheme = {
+    #   name = "Papirus";
+    #   package = pkgs.papirus-icon-theme;
+    # };
   };
 
   xfconf.enable = false;

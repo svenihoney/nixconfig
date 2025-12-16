@@ -11,7 +11,6 @@
   wlogout = "${config.programs.wlogout.package}/bin/wlogout";
   playerctl = "${config.services.playerctld.package}/bin/playerctl";
   playerctld = "${config.services.playerctld.package}/bin/playerctld";
-  makoctl = "${config.services.mako.package}/bin/makoctl";
   # wofi = "${config.programs.wofi.package}/bin/wofi";
   # copyq = "${lib.getExe config.services.copyq.package}";
   grimblast = "${lib.getExe pkgs.grimblast}";
@@ -282,9 +281,6 @@ in {
         ++ (lib.optionals config.programs.wlogout.enable [
           "SUPER, BACKSPACE, exec, ${uswmapp}${wlogout}"
         ])
-        # Notification manager
-        ++ (lib.optionals config.services.mako.enable
-          ["SUPER SHIFT,c,exec,${makoctl} dismiss"])
         # Launcher
         ++ (
           lib.optionals config.programs.wofi.enable
