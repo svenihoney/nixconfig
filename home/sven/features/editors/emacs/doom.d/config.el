@@ -338,12 +338,40 @@
   (secrets-open-session)
   )
 
+;; (use-package! gptel
+;;   :config
+;;   (setq gptel-default-mode 'org-mode
+;;         gptel-post-response-functions #'gptel-end-of-response
+;;         gptel-expert-commands t)
+;;   (setq gptel-backend
+;;         (gptel-make-ollama "Ollama"
+;;           :host "maja:11434"
+;;           :stream t
+;;           :models '(qwen3:8b
+;;                     gpt-oss:20b
+;;                     deepseek-coder-v2
+;;                     gemma3:4b
+;;                     qwen2.5-coder
+;;                     deepseek-r1:7b))
+;;         )
+;;   (gptel-make-gemini "Gemini" :key (secrets-get-secret "keepassx" "Gemini API key") :stream t :models
+;;                      '(gemini-2.5-flash-lite-preview-06-17))
+;;   (gptel-make-gh-copilot "Copilot")
+;;   )
+
+;; https://blog.kaorubb.org/en/posts/gpt-mcp-setup/
 (use-package! gptel
   :config
-  (setq gptel-default-mode 'org-mode
-        gptel-post-response-functions #'gptel-end-of-response
-        gptel-expert-commands t)
-  (setq gptel-backend
+  (require 'gptel-integrations)
+  (require 'gptel-org)
+  (setq gptel-model 'gpt-4.1
+        gptel-default-mode 'org-mode
+        gptel-use-curl t
+        gptel-use-tools t
+        gptel-confirm-tool-calls 'always
+        gptel-include-tool-results 'auto
+        gptel--system-message (concat gptel--system-message " Make sure to use German language.")
+        ggptel-backend
         (gptel-make-ollama "Ollama"
           :host "maja:11434"
           :stream t
@@ -352,12 +380,32 @@
                     deepseek-coder-v2
                     gemma3:4b
                     qwen2.5-coder
-                    deepseek-r1:7b))
-        )
+                    deepseek-r1:7b)))
+  ;; (gptel-make-xai "Grok" :key "your-api-key" :stream t)
+  ;; (gptel-make-deepseek "DeepSeek" :key "your-api-key" :stream t))
   (gptel-make-gemini "Gemini" :key (secrets-get-secret "keepassx" "Gemini API key") :stream t :models
                      '(gemini-2.5-flash-lite-preview-06-17))
   (gptel-make-gh-copilot "Copilot")
   )
+
+; (use-package! mcp
+;   :after gptel
+;   :custom
+;   (mcp-hub-servers
+;    `(
+;      ;; ("github" . (:command "docker"
+;      ;;              :args ("run" "-i" "--rm"
+;      ;;                     "-e" "GITHUB_PERSONAL_ACCESS_TOKEN"
+;      ;;                     "ghcr.io/github/github-mcp-server")
+;      ;;              :env (:GITHUB_PERSONAL_ACCESS_TOKEN ,(get-sops-secret-value "gh_pat_mcp"))))
+;      ("duckduckgo" . (:command "uvx" :args ("duckduckgo-mcp-server")))
+;      ("nixos" . (:command "uvx" :args ("mcp-nixos")))
+;      ("fetch" . (:command "uvx" :args ("mcp-server-fetch")))
+;      ("filesystem" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" ,(getenv "HOME"))))
+;      ("sequential-thinking" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-sequential-thinking")))
+;      ("context7" . (:command "npx" :args ("-y" "@upstash/context7-mcp") :env (:DEFAULT_MINIMUM_TOKENS "6000")))))
+;   :config (require 'mcp-hub)
+;   :hook (after-init . mcp-hub-start-all-server))
 
 ;; (use-package! gptel
 ;;   :defer

@@ -38,6 +38,12 @@
     ../common/optional/stylix.nix
   ];
 
+  # TODO: Remove
+  programs.nix-ld = {
+    enable = true;
+    libraries = [ pkgs.zlib pkgs.openssl ];
+  };
+
   # fonts.packages = with pkgs; [
   #   jetbrains-mono
   # ];
@@ -71,9 +77,9 @@
     #     }];
     #   };
     # };
-    interfaces.wlp5s0.useDHCP = false;
+    # interfaces.wlp5s0.useDHCP = false;
     networkmanager.unmanaged = ["interface-name:wlp5s0"];
-    wireless.enable = false; # if you previously used wpa_supplicant
+    # wireless.enable = false; # if you previously used wpa_supplicant
   };
   services.resolved = {
     enable = true;
@@ -118,7 +124,7 @@
   };
 
   programs = {
-    adb.enable = true;
+    # adb.enable = true;
     dconf.enable = true;
     # kdeconnect.enable = true;
   };

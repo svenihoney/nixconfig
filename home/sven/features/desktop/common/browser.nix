@@ -4,8 +4,9 @@
   lib,
   ...
 }: let
-  browser = ["vivaldi-stable.desktop"];
+  # browser = ["vivaldi-stable.desktop"];
   # browser = ["firefox.desktop"];
+  browser = ["zen.desktop"];
 
   # XDG MIME types
   associations = {
@@ -27,7 +28,7 @@
 in {
   # programs.browserpass.enable = true;
   programs.firefox = {
-    enable = true;
+    enable = false;
     languagePacks = ["de" "en-US"];
     profiles.sven = {
       bookmarks = {};
@@ -85,6 +86,9 @@ in {
     ];
   };
 
+  home.packages = [
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+  ];
   # home = {
   #   persistence = {
   #     # Not persisting is safer
@@ -93,4 +97,19 @@ in {
   # };
 
   xdg.mimeApps.defaultApplications = associations;
+
+  wayland.windowManager.hyprland = let
+    uswmapp = "${lib.getExe pkgs.uwsm} app -- ";
+    # browser = "${pkgs.vivaldi}/bin/vivaldi";
+    # altbrowser = "${pkgs.firefox}/bin/firefox";
+    browser = "${lib.getExe inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default}";
+    altbrowser = "${pkgs.vivaldi}/bin/vivaldi";
+  in {
+    settings = {
+      bind = [
+        "SUPER SHIFT, F2, exec, ${uswmapp}${altbrowser}"
+        "SUPER, F2, exec, ${uswmapp}${browser}"
+      ];
+    };
+  };
 }

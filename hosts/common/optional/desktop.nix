@@ -11,7 +11,7 @@
       # common.default = ["kde"];
       # hyprland.default = ["kde" "hyprland"];
       common = {
-        default = ["gtk"];
+        # default = ["gtk"];
         "org.freedesktop.impl.portal.FileChooser" = "kde";
       };
       # hyprland.default = ["gtk" "hyprland"];
@@ -26,7 +26,7 @@
     hyprland = {
       enable = true;
       xwayland.enable = true;
-      portalPackage = pkgs.xdg-desktop-portal-wlr;
+      # portalPackage = pkgs.xdg-desktop-portal-wlr;
       withUWSM = true;
       # portalPackage = pkgs.xdg-desktop-portal-kde;
     };

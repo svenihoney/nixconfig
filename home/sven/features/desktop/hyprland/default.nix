@@ -22,7 +22,7 @@
   # waybar = "${lib.getExe pkgs.waybar}";
   hyprpanel = "${lib.getExe pkgs.hyprpanel}";
   polkit = "${lib.getExe pkgs.lxqt.lxqt-policykit}";
-  thunar = "${lib.getExe pkgs.xfce.thunar}";
+  thunar = "${lib.getExe pkgs.thunar}";
   # pass-wofi = "${
   #     pkgs.pass-wofi.override {
   #       pass = config.programs.password-store.package;
@@ -52,6 +52,7 @@
   # editor = "${config.programs.emacs.package}/bin/emacs";
   # editor = "${config.programs.doom-emacs.finalEmacsPackage}/bin/emacs";
   uswmapp = "${lib.getExe pkgs.uwsm} app -- ";
+  # uswmapp = "";
 in {
   imports = [
     ../common
@@ -86,6 +87,7 @@ in {
     # xwayland.enable = true;
     systemd.enable = false; # Using uwsm
     systemd.variables = ["--all"];
+    # withUwsm = true;
     # wrapperFeatures.gtk = true;
 
     settings = {
@@ -152,7 +154,7 @@ in {
         active_opacity = 1.0;
         inactive_opacity = 0.95;
         fullscreen_opacity = 1.0;
-        rounding = 5;
+        rounding = 10;
         blur = {
           enabled = true;
           size = 5;
@@ -210,7 +212,7 @@ in {
       ];
 
       env = [
-        "XDG_SESSION_DESKTOP,Hyprland"
+        # "XDG_SESSION_DESKTOP,Hyprland"
         "NIXOS_OZONE_WL,1"
         "ELECTRON_OZONE_PLATFORM_HINT,wayland"
       ];
@@ -224,15 +226,15 @@ in {
           # "SUPER,e,exec,${editor}"
           # "SUPER,v,exec,${editor}"
           # "SUPER,b,exec,${browser}"
-          "SUPER SHIFT, F2, exec, ${uswmapp}${altbrowser}"
-          "SUPER, F2, exec, ${uswmapp}${browser}"
+          # "SUPER, F2, exec, ${uswmapp}${browser}"
+          # "SUPER SHIFT, F2, exec, ${uswmapp}${altbrowser}"
           "SUPER, F3, exec, ${uswmapp}thunderbird"
           # "SUPER, F4, exec, teams-for-linux --enable-features=UseOzonePlatform --ozone-platform=wayland"
           # "SUPER, F4, exec, fish -c ${editor}"
           "SUPER SHIFT, F4, exec, ${uswmapp}${neovide}"
           "SUPER, F5, exec, ${uswmapp}${thunar}"
           "SUPER, F7, exec, ${uswmapp}${spotify}"
-          "SUPER SHIFT, F7, exec, ${uswmapp}${browser} --new-window https://music.amazon.de"
+          # "SUPER SHIFT, F7, exec, ${uswmapp}${browser} --new-window https://music.amazon.de"
           "SUPER, F12, exec, hyprctl switchxkblayout brian-low-sofle-choc next"
           # "SUPER, F11, exec, ~/bin/switchaudio btoff"
           # "SUPER, F11, exec, ~/bin/switchaudio hdmi"
@@ -320,30 +322,125 @@ in {
         ",XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
       ];
 
-      windowrulev2 = [
-        "float,class:org.keepassxc.KeePassXC"
-        "float,class:com.saivert.pwvucontrol"
-        "float,class:(org.speedcrunch.)"
-        "float,class:com.github.hluk.copyq"
-        "float,class:com.gabm.satty"
-        # "move onscreen cursor 50% 50%,class:com.github.hluk.copyq"
-        "move onscreen cursor 0 0,class:com.github.hluk.copyq"
-        "float,class:com.nextcloud.desktopclient.nextcloud"
-        "move onscreen cursor 50% 50%,class:com.nextcloud.desktopclient.nextcloud"
-        "float,title:(twinkle)"
-        "float,title:Bluetooth Devices"
-        "float,title:Netxp.*"
+      # windowrulev2 = [
+      #   "float,class:org.keepassxc.KeePassXC"
+      #   "float,class:com.saivert.pwvucontrol"
+      #   "float,class:(org.speedcrunch.)"
+      #   "float,class:com.github.hluk.copyq"
+      #   "float,class:com.gabm.satty"
+      #   # "move onscreen cursor 50% 50%,class:com.github.hluk.copyq"
+      #   "move onscreen cursor 0 0,class:com.github.hluk.copyq"
+      #   "float,class:com.nextcloud.desktopclient.nextcloud"
+      #   "move onscreen cursor 50% 50%,class:com.nextcloud.desktopclient.nextcloud"
+      #   "float,title:(twinkle)"
+      #   "float,title:Bluetooth Devices"
+      #   "float,title:Netxp.*"
 
-        "workspace 2,class:([Vv]ivaldi.*)"
-        "workspace 2,class:(org.qutebrowser.qutebrowser)"
-        "workspace 2,class:firefox"
+      #   "workspace 2,class:([Vv]ivaldi.*)"
+      #   "workspace 2,class:(org.qutebrowser.qutebrowser)"
+      #   "workspace 2,class:firefox"
+      #   "workspace 2,class:zen"
 
-        "workspace 3,class:thunderbird"
-        "float,title:(Kalendererinnerungen)"
+      #   "workspace 3,class:thunderbird"
+      #   "float,title:(Kalendererinnerungen)"
 
-        "workspace 7,class:spotify"
-        "workspace 7,title:(Amazon Music Unlimited.*)"
-        "workspace 10,class:Slack"
+      #   "workspace 7,class:spotify"
+      #   "workspace 7,title:(Amazon Music Unlimited.*)"
+      #   "workspace 10,class:Slack"
+      # ];
+      windowrule = [
+        {
+          "name" = "windowrule-3";
+          "float" = "on";
+          "match:class" = "org.keepassxc.KeePassXC";
+        }
+        {
+          "name" = "windowrule-4";
+          "float" = "on";
+          "match:class" = "com.saivert.pwvucontrol";
+        }
+        # {
+        #   "name" = "windowrule-5";
+        #   "float" = "on";
+        #   "match:class" = "(org.speedcrunch.)";
+        # }
+        # {
+        #   "name" = "windowrule-6";
+        #   "float" = "on";
+        #   "move" = "(cursor_x+(min(max(0,0),monitor_w-window_w))) (cursor_y+(min(max(0,0),monitor_h-window_h)))";
+        #   "match:class" = "com.github.hluk.copyq";
+        # }
+        {
+          "name" = "windowrule-7";
+          "float" = "on";
+          "match:class" = "com.gabm.satty";
+        }
+        # {
+        #   "name" = "windowrule-8";
+        #   "float" = "on";
+        #   "move" = "(cursor_x+(min(max((monitor_w*0.5),0),monitor_w-window_w))) (cursor_y+(min(max((monitor_h*0.5),0),monitor_h-window_h)))";
+        #   "match:class" = "com.nextcloud.desktopclient.nextcloud";
+        # }
+        {
+          "name" = "windowrule-9";
+          "float" = "on";
+          "match:title" = "(twinkle)";
+        }
+        {
+          "name" = "windowrule-10";
+          "float" = "on";
+          "match:title" = "Bluetooth Devices";
+        }
+        # {
+        #   "name" = "windowrule-11";
+        #   "float" = "on";
+        #   "match:title" = "Netxp.*";
+        # }
+        {
+          "name" = "windowrule-12";
+          "workspace" = "2";
+          "match:class" = "([Vv]ivaldi.*)";
+        }
+        {
+          "name" = "windowrule-13";
+          "workspace" = "2";
+          "match:class" = "(org.qutebrowser.qutebrowser)";
+        }
+        {
+          "name" = "windowrule-14";
+          "workspace" = "2";
+          "match:class" = "firefox";
+        }
+        {
+          "name" = "windowrule-15";
+          "workspace" = "2";
+          "match:class" = "zen";
+        }
+        {
+          "name" = "windowrule-16";
+          "workspace" = "3";
+          "match:class" = "thunderbird";
+        }
+        {
+          "name" = "windowrule-17";
+          "float" = "on";
+          "match:title" = "(Kalendererinnerungen)";
+        }
+        {
+          "name" = "windowrule-18";
+          "workspace" = "7";
+          "match:class" = "spotify";
+        }
+        {
+          "name" = "windowrule-19";
+          "workspace" = "7";
+          "match:title" = "(Amazon Music Unlimited.*)";
+        }
+        {
+          "name" = "windowrule-20";
+          "workspace" = "10";
+          "match:class" = "Slack";
+        }
       ];
 
       monitor =

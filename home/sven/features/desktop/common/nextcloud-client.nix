@@ -1,27 +1,19 @@
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
-  home.packages = with pkgs; [
-    nextcloud-client
-  ];
+  services.nextcloud-client = {
+    enable = true;
+    startInBackground = true;
+  };
 
-  systemd.user.services.nextcloud = {
-    Unit = {
-      Description = "nextcloud";
-      Documentation = ["man:nextcloud(1)"];
-      PartOf = ["hyprland-session.target"];
-    };
-    Service = {
-      Type = "simple";
-      ExecStart = "${pkgs.nextcloud-client}/bin/nextcloud --background";
-      RestartSec = 3;
-      Restart = "always";
-    };
-    Install = {
-      WantedBy = ["hyprland-session.target"];
+  wayland.windowManager.hyprland = {
+    settings = {
+      windowrule = [
+        {
+          "name" = "nextcloud";
+          "float" = "on";
+          "match:class" = "com.nextcloud.desktopclient.nextcloud";
+          "move" = "(cursor_x) (monitor_h - window_h)";
+        }
+      ];
     };
   };
 }

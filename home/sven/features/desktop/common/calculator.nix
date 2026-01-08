@@ -11,9 +11,12 @@
 
   wayland.windowManager.hyprland = {
     settings = {
-      windowrulev2 = [
-        # "float,class:(org.speedcrunch.)"
-        "float,title:(Qalculate!)"
+      windowrule = [
+        {
+          "name" = "qalculate";
+          "float" = "on";
+          "match:title" = "(Qalculate!)";
+        }
       ];
     };
   };

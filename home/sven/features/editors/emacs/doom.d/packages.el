@@ -80,5 +80,6 @@
 ;; (package! gptel :recipe (:nonrecursive t))
 ;; (package! gptel-aibo)
 ;; (package! aidermacs)
+;; (package! mcp)
 
 ;; ############ corfu

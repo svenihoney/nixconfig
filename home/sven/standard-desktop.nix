@@ -23,7 +23,7 @@
     extended = true;
   };
 
-  home.packages = with pkgs; [xfce.thunar udiskie neovide];
+  home.packages = with pkgs; [thunar udiskie neovide];
   xdg.mimeApps.defaultApplications = {
     "text/plain" = "neovide.desktop";
     "inode/directory" = "thunar.desktop";

@@ -8,8 +8,12 @@
 
   wayland.windowManager.hyprland = {
     settings = {
-      windowrulev2 = [
-        "float,class:(linphone)"
+      windowrule = [
+        {
+          "name" = "linphone";
+          "float" = "on";
+          "match:title" = "(linphone)";
+        }
       ];
     };
   };

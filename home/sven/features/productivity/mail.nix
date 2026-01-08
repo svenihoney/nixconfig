@@ -11,10 +11,10 @@
 
   common = rec {
     realName = "Sven Fischer";
-    imap.host = "${mailhost-effeffcee}";
+    imap.host = lib.mkDefault "${mailhost-effeffcee}";
     imap.tls.enable = true;
     imap.port = 993;
-    smtp.host = "${mailhost-effeffcee}";
+    smtp.host = lib.mkDefault "${mailhost-effeffcee}";
     gpg = {
       key = "58D4 8D66 4468 351D 3FDD  46B4 DDBD 617F 81BF 84F4";
       signByDefault = true;
@@ -35,7 +35,7 @@
     #   trash = "Trash";
     # };
     neomutt = {
-      enable = false;
+      enable = true;
       extraMailboxes = ["Archive" "Drafts" "Junk" "Sent" "Trash"];
     };
     # msmtp.enable = true;
@@ -66,7 +66,7 @@ in {
             "Ablage/DMS"
             "Ablage/EBay"
             "Ablage/nebenan.de"
-            "Ablage/Geschäftliches"
+            # "Ablage/Geschäftliches"
             "Ablage/OSS"
             "Ablage/Registrierungen"
             "Ablage/Schule"
@@ -93,31 +93,35 @@ in {
         common
       ];
 
-      # dgm = lib.mkMerge [
-      #   rec {
-      #     address = "sven.fischer@moitzfeld-ev.de";
-      #     passwordCommand = "${secret-tool} lookup ${mailhost-effeffcee} ${address}";
-      #     signature.text = ''
-      #     '';
+      dgm = lib.mkMerge [
+        rec {
+          imap.host = "imap.strato.de";
+          smtp.host = "${imap.host}";
+          address = "sven.fischer@moitzfeld-ev.de";
+          passwordCommand = "${secret-tool} lookup ${imap.host} ${address}";
+          signature.text = ''
+          '';
 
-      #     # msmtp.enable = true;
-      #     userName = address;
-      #   }
-      #   common
-      # ];
+          # msmtp.enable = true;
+          userName = address;
+        }
+        common
+      ];
 
-      # taxdigits = lib.mkMerge [
-      #   rec {
-      #     address = "s.fischer@taxdigits.de";
-      #     passwordCommand = "${secret-tool} lookup ${mailhost-effeffcee} ${address}";
-      #     signature.text = ''
-      #     '';
+      taxdigits = lib.mkMerge [
+        rec {
+          imap.host = "kunden.aditsystems.de";
+          smtp.host = "${imap.host}";
+          address = "s.fischer@taxdigits.de";
+          passwordCommand = "${secret-tool} lookup ${imap.host} ${address}";
+          signature.text = ''
+          '';
 
-      #     # msmtp.enable = true;
-      #     userName = address;
-      #   }
-      #   common
-      # ];
+          # msmtp.enable = true;
+          userName = address;
+        }
+        common
+      ];
     };
   };
 
