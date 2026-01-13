@@ -7,8 +7,8 @@
     # ./qutebrowser.nix
     # ./swayidle.nix
     # ./swaylock.nix
-    ./hyprlock.nix
-    ./hypridle.nix
+    # ./hyprlock.nix
+    # ./hypridle.nix
     # ./waybar.nix
     # ./hyprpanel
     ./caelestia.nix

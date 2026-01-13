@@ -206,7 +206,7 @@ in {
         # "hyprctl setcursor ${cursorName} ${toString pointer.size}"
         # "hyprlock"
         # "${uswmapp}${copyq}"
-        "${uswmapp}${keepassxc}"
+        # "${uswmapp}${keepassxc}"
         # "${uswmapp}${waybar}"
         "${uswmapp}${polkit}"
       ];

@@ -84,6 +84,9 @@ in {
       {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # ublock origin
       # {id = "emffkefkbkpkgpdeeooapgaicgmcbolj";} # Wikiwand
     ];
+    # nativeMessagingHosts = [
+    #   pkgs.keepassxc-browser
+    # ];
   };
 
   home.packages = [
