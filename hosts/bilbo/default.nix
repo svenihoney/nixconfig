@@ -125,6 +125,7 @@
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
       # package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
+    bluetooth.powerOnBoot = false;
   };
 
   services = {

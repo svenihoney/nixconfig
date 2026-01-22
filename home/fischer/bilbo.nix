@@ -95,9 +95,9 @@
   ];
 
   # Machine specific configuration
-  ollama.tools.enable = true;
-  ollama.service.enable = true;
-  services.ollama.acceleration = "cuda";
+  # ollama.tools.enable = true;
+  # ollama.service.enable = true;
+  # services.ollama.acceleration = "cuda";
 
   programs.caelestia.settings = {
     general.idle.timeouts = [
