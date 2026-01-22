@@ -407,13 +407,14 @@
 
       ###  Cloud provider section
       aws = {
-        # disabled = true;
+        disabled = true;
         symbol = "󰸏 "; # nf-md-aws
+        # symbol = "☁️  ";
         # symbol = " "; # nf-weather-cloud
         style = "bg:color_cloud fg:color_cloud_text";
         expiration_symbol = " ";
         force_display = true;
-        format = "[$symbol$profile(\($region\))(\[$duration\])]($style)";
+        format = "[$symbol$profile(\($region\))]($style)";
       };
 
       # aws.region_aliases = {

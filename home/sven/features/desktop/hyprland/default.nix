@@ -21,7 +21,7 @@
   keepassxc = "${lib.getExe pkgs.keepassxc}";
   # waybar = "${lib.getExe pkgs.waybar}";
   hyprpanel = "${lib.getExe pkgs.hyprpanel}";
-  polkit = "${lib.getExe pkgs.lxqt.lxqt-policykit}";
+  # polkit = "${lib.getExe pkgs.lxqt.lxqt-policykit}";
   thunar = "${lib.getExe pkgs.thunar}";
   # pass-wofi = "${
   #     pkgs.pass-wofi.override {
@@ -208,7 +208,7 @@ in {
         # "${uswmapp}${copyq}"
         # "${uswmapp}${keepassxc}"
         # "${uswmapp}${waybar}"
-        "${uswmapp}${polkit}"
+        # "${uswmapp}${polkit}"
       ];
 
       env = [

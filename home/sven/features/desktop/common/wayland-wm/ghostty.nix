@@ -19,7 +19,11 @@
 
       keybind = [
         "ctrl+shift+h=write_scrollback_file:open"
+        "ctrl+]=unbind"
       ];
+      # unbind = [
+      #   "ctrl+]"
+      # ];
       custom-shader = toString ./ghostty/cursor_smear.glsl;
     };
   };

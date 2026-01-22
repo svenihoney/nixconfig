@@ -14,7 +14,7 @@
     cli.enable = true;
     settings = {
       general.apps.terminal = ["foot"];
-      general.idle.timeouts = [
+      general.idle.timeouts = lib.mkDefault [
         {
           timeout = 600;
           idleAction = "lock";
@@ -50,7 +50,7 @@
         activeWindow = {
           inverted = true;
         };
-        excludedScreens = [
+        excludedScreens = lib.mkDefault [
           "HDMI-A-1"
         ];
       };

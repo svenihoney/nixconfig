@@ -94,7 +94,22 @@
     }
   ];
 
+  # Machine specific configuration
   ollama.tools.enable = true;
   ollama.service.enable = true;
   services.ollama.acceleration = "cuda";
+
+  programs.caelestia.settings = {
+    general.idle.timeouts = [
+      {
+        timeout = 600;
+        idleAction = "lock";
+      }
+    ];
+    bar.excludedScreens = [
+      "DP-2"
+      "DP-3"
+      "DP-4"
+    ];
+  };
 }

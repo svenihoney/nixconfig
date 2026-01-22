@@ -41,7 +41,7 @@
   # TODO: Remove
   programs.nix-ld = {
     enable = true;
-    libraries = [ pkgs.zlib pkgs.openssl ];
+    libraries = [pkgs.zlib pkgs.openssl];
   };
 
   # fonts.packages = with pkgs; [
@@ -108,7 +108,10 @@
     # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
     # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     kernelPackages = pkgs.linuxPackages_cachyos-lto;
-    # binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
+    binfmt = {
+      emulatedSystems = ["aarch64-linux"];
+      preferStaticEmulators = true;
+    };
     # supportedFilesystems = ["zfs"];
     # lanzaboote = {
     #   enable = true;

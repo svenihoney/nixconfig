@@ -17,7 +17,6 @@ in {
   programs = {
     ssh = {
       enable = true;
-      # hashKnownHosts = true;
       enableDefaultConfig = false;
 
       extraOptionOverrides = {
@@ -26,6 +25,9 @@ in {
         WarnWeakCrypto = "no";
       };
       matchBlocks = {
+        "*" = {
+      hashKnownHosts = true;
+        };
         # Private playground
         "localhost" = {
           extraOptions = {
@@ -36,7 +38,8 @@ in {
         # Netcup
         "s2" =
           {
-            hostname = "2a03:4000:48:5aa:4844:36ff:feeb:c58a";
+            # hostname = "2a03:4000:48:5aa:4844:36ff:feeb:c58a";
+            hostname = "struppi.effeffcee.de";
           }
           // xterm;
         "dgm" =
@@ -131,6 +134,10 @@ in {
           extraOptions = {
             SetEnv = "TERM=xterm";
           };
+        };
+        "i-* mi-*" = {
+          user = "ssm-user";
+          extraOptions = {ProxyCommand = "sh -c \"aws-gate ssh-proxy -P %p %h\"";};
         };
       };
     };

@@ -23,6 +23,7 @@
         alpaca
         aider-chat
         lmstudio
+        opencode
       ];
   };
 }
