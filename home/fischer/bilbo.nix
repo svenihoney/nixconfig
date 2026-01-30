@@ -22,6 +22,7 @@
     ../sven/features/desktop/common/kubernetes.nix
     ../sven/features/desktop/common/keepassxc.nix
     ../sven/features/desktop/common/wine.nix
+    ../sven/features/desktop/common/obsidian.nix
     # ./keepassxc.nix
     ../sven/features/development
 
