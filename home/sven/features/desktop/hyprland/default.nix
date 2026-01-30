@@ -23,6 +23,7 @@
   hyprpanel = "${lib.getExe pkgs.hyprpanel}";
   # polkit = "${lib.getExe pkgs.lxqt.lxqt-policykit}";
   thunar = "${lib.getExe pkgs.thunar}";
+  caelestia = "${lib.getExe config.programs.caelestia.cli.package}";
   # pass-wofi = "${
   #     pkgs.pass-wofi.override {
   #       pass = config.programs.password-store.package;
@@ -297,6 +298,14 @@ in {
           [
             "SUPER,n,exec,${hyprpanel} toggleWindow notificationsmenu"
             "SUPER SHIFT,n,exec,${hyprpanel} clearNotifications"
+          ]
+        )
+        ++ (
+          lib.optionals config.programs.caelestia.enable
+          [
+            "SUPER,l,exec,${caelestia} shell lock lock"
+            # "SUPER SHIFT,l,exec,systemctl suspend"
+            "SUPER SHIFT,l,exec,systemctl hybrid-sleep"
           ]
         )
         # ++ (lib.optionals config.programs.password-store.enable [

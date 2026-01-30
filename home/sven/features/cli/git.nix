@@ -56,5 +56,5 @@
       };
     };
   };
-  home.packages = [pkgs.gitu];
+  # home.packages = [pkgs.gitu];
 }

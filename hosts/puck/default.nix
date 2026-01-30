@@ -60,6 +60,11 @@
     # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
     # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     kernelPackages = pkgs.linuxPackages_latest;
+    binfmt = {
+      emulatedSystems = ["aarch64-linux"];
+      preferStaticEmulators = true;
+    };
+    # resumeDevice = "/dev/disk/by-uuid/6e52b611-7ab8-4cb5-867c-b5c0f5e7bda7";
   };
 
   # Auto login me
@@ -114,5 +119,5 @@
     allowedUDPPorts = [22000 21027];
   };
 
-  system.stateVersion = "23.11";
+  system.stateVersion = "25.11";
 }

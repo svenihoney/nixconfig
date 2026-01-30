@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     ./global
     ./standard-desktop.nix
@@ -20,7 +20,7 @@
     ./features/desktop/common/linphone.nix
     ./features/desktop/extended.nix
     ./features/development
-    ./features/development/syncthing.nix
+    # ./features/development/syncthing.nix
 
     ./ssh/ssh-config.nix
 
@@ -58,6 +58,14 @@
       transform = "1";
     }
   ];
+  programs.caelestia.settings = {
+    bar.excludedScreens = [
+      "DP-2"
+      "DP-3"
+      "DP-4"
+    ];
+  };
+  home.packages = [ pkgs.gparted ];
 
   # home.packages = [pkgs.lenopow];
   # Qt does not read the fractional scalea correctly...

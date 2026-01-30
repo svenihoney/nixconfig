@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     ./global
     ./standard-desktop.nix
@@ -24,7 +24,7 @@
     ./features/desktop/common/linphone.nix
     ./features/desktop/common/jameica.nix
     ./features/desktop/common/switchaudio.nix
-    ./features/development/syncthing.nix
+    # ./features/development/syncthing.nix
     ./features/development/networking.nix
     # ./features/media/creativity.nix
 
@@ -78,6 +78,12 @@
       transform = "1";
     }
   ];
+  programs.caelestia.settings = {
+    bar.excludedScreens = [
+      "HDMI-A-1"
+    ];
+  };
+  programs.waybar.settings.primary.output = ["DP-2"];
 
   wayland.windowManager.hyprland.settings.workspace = [
     "1, defaultName:1, monitor:desc:Lenovo Group Limited LEN T27p-10 0x4E395246"
@@ -92,5 +98,5 @@
     "0, defaultName:0, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
   ];
 
-  programs.waybar.settings.primary.output = ["DP-2"];
+  home.packages = [pkgs.rclone];
 }

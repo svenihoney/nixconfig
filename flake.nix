@@ -50,7 +50,7 @@
     # };
     nixgl.url = "github:guibou/nixGL";
 
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    # chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     # nh = {
     #   url = "github:viperml/nh";
@@ -76,7 +76,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     caelestia-shell = {
-      url = "github:caelestia-dots/shell";
+      # url = "github:caelestia-dots/shell";
+      url = "github:KebabObama/shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # firefox-addons = {
@@ -197,7 +198,6 @@
           inputs.stylix.nixosModules.stylix
           inputs.home-manager.nixosModules.home-manager
           inputs.ragenix.nixosModules.default
-          inputs.chaotic.nixosModules.default
           ./hosts/${hostName}
         ];
         specialArgs = {inherit inputs outputs;};

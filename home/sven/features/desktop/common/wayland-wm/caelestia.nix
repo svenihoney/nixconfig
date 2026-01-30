@@ -13,25 +13,29 @@
     };
     cli.enable = true;
     settings = {
-      general.apps.terminal = ["foot"];
-      general.idle.timeouts = lib.mkDefault [
-        {
-          timeout = 600;
-          idleAction = "lock";
-        }
-        {
-          timeout = 660;
-          idleAction = "dpms off";
-          returnAction = "dpms on";
-        }
-        {
-          timeout = 1800;
-          idleAction = [
-            "systemctl"
-            "suspend-then-hibernate"
-          ];
-        }
-      ];
+      general.apps.terminal = ["ghostty"];
+      general.idle = {
+        inhibitWhenAudio = true;
+        timeouts = [];
+      #   timeouts = lib.mkDefault [
+      #     {
+      #       timeout = 600;
+      #       idleAction = "lock";
+      #     }
+      #     {
+      #       timeout = 660;
+      #       idleAction = "dpms off";
+      #       returnAction = "dpms on";
+      #     }
+      #     {
+      #       timeout = 1800;
+      #       idleAction = [
+      #         "systemctl"
+      #         "suspend-then-hibernate"
+      #       ];
+      #     }
+      #   ];
+      };
 
       bar = {
         clock.showIcon = true;
@@ -50,9 +54,6 @@
         activeWindow = {
           inverted = true;
         };
-        excludedScreens = lib.mkDefault [
-          "HDMI-A-1"
-        ];
       };
       border.rounding = 15;
       notifs = {
