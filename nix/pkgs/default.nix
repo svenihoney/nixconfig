@@ -1,6 +1,7 @@
 {pkgs ? import <nixpkgs> {}}: rec {
   # Packages with an actual source
   switchaudio = pkgs.callPackage ./switchaudio {};
+  helix-assist = pkgs.callPackage ./helix-assist {};
   # shellcolord = pkgs.callPackage ./shellcolord { };
   # trekscii = pkgs.callPackage ./trekscii { };
   # hdos = pkgs.callPackage ./hdos { };

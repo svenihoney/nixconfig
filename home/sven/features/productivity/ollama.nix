@@ -20,7 +20,7 @@
     home.packages = with pkgs;
       lib.mkIf config.ollama.tools.enable [
         # oterm
-        alpaca
+        # alpaca
         aider-chat
         lmstudio
         opencode

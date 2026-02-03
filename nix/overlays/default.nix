@@ -39,14 +39,14 @@ in {
 
   # Modifies existing packages
   modifications = final: prev: {
-    python311 = prev.python311.override {
-      packageOverrides = pfinal: pprev: {
-        debugpy = pprev.debugpy.overrideAttrs (oldAttrs: {
-          pytestCheckPhase = "true";
-        });
-      };
-    };
-    python311Packages = final.python311.pkgs;
+    # python311 = prev.python311.override {
+    #   packageOverrides = pfinal: pprev: {
+    #     debugpy = pprev.debugpy.overrideAttrs (oldAttrs: {
+    #       pytestCheckPhase = "true";
+    #     });
+    #   };
+    # };
+    # python311Packages = final.python311.pkgs;
 
     # pytestCheckPhase = ''true'';
 
