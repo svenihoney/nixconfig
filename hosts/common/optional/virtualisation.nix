@@ -9,6 +9,7 @@
           enable = true;
           package = pkgs.swtpm;
         };
+        vhostUserPackages = [pkgs.virtiofsd];
       };
       allowedBridges = ["virbr0" "br0"];
     };

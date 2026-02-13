@@ -17,7 +17,7 @@
     ./dap.nix
     ./trouble.nix
     # ./codecompanion.nix
-    ./ai.nix
+    # ./ai.nix
     ./toggleterm.nix
     # ./copilot.nix
   ];

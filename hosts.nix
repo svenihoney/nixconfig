@@ -18,14 +18,14 @@ let
     #   user = "sven";
     #   stable = true;
     # };
-    struppi = {
-      type = "homeManager";
-      hostPlatform = "x86_64-linux";
-      address = "struppi.effeffcee.de";
-      remoteBuild = false;
-      user = "sven";
-      stable = false;
-    };
+    # struppi = {
+    #   type = "homeManager";
+    #   hostPlatform = "x86_64-linux";
+    #   address = "struppi.effeffcee.de";
+    #   remoteBuild = false;
+    #   user = "sven";
+    #   stable = false;
+    # };
     # struppi = {
     #   type = "homeManager";
     #   hostPlatform = "x86_64-linux";
@@ -50,14 +50,14 @@ let
     #   remoteBuild = true;
     #   user = "sven";
     # };
-    willi = {
-      type = "nixos";
-      hostPlatform = "x86_64-linux";
-      address = "willi";
-      remoteBuild = false;
-      user = "sven";
-      stable = false;
-    };
+    # willi = {
+    #   type = "nixos";
+    #   hostPlatform = "x86_64-linux";
+    #   address = "willi";
+    #   remoteBuild = false;
+    #   user = "sven";
+    #   stable = false;
+    # };
     puck = {
       type = "nixos";
       hostPlatform = "x86_64-linux";

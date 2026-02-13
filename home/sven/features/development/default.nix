@@ -58,6 +58,8 @@
       # 1. Define a new tool called "kdiff3NoAuto"
       mergetool.kdiff3NoAuto.cmd = "${pkgs.kdiff3}/bin/kdiff3 --L1 \"\$MERGED (Base)\" --L2 \"\$MERGED (Local)\" --L3 \"\$MERGED (Remote)\" -o \"\$MERGED\" \"\$BASE\" \"\$LOCAL\" \"\$REMOTE\"";
       mergetool.kdiff3NoAuto.trustExitCode = false;
+      mergetool.meld.useAutoMerge = true;
+
       merge.tool = "kdiff3NoAuto";
     };
   };

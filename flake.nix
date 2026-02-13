@@ -76,9 +76,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     caelestia-shell = {
-      # url = "github:caelestia-dots/shell";
-      url = "github:KebabObama/shell";
+      url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.quickshell.url = "github:quickshell-mirror/quickshell";
     };
     # firefox-addons = {
     #   url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
