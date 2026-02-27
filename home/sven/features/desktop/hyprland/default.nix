@@ -15,7 +15,7 @@
   # copyq = "${lib.getExe config.services.copyq.package}";
   grimblast = "${lib.getExe pkgs.grimblast}";
   satty = "${lib.getExe pkgs.satty}";
-  satty_cmd = "${satty} --filename - --early-exit --initial-tool arrow --annotation-size-factor 0.5";
+  satty_cmd = "${satty} --filename - --early-exit --initial-tool arrow --annotation-size-factor 0.5 --copy-command ${pkgs.wl-clipboard}/bin/wl-copy";
   neovide = "${lib.getExe pkgs.neovide}";
   spotify = "${lib.getExe pkgs.spotify}";
   keepassxc = "${lib.getExe pkgs.keepassxc}";
@@ -45,13 +45,6 @@
   # terminal = config.home.sessionVariables.TERMINAL;
   # terminal = "${lib.getExe pkgs.ghostty}";
   terminal = "ghostty";
-  # browser = defaultApp "x-scheme-handler/https";
-  # browser = "${pkgs.qutebrowser}/bin/qutebrowser";
-  browser = "${pkgs.vivaldi}/bin/vivaldi";
-  altbrowser = "${pkgs.firefox}/bin/firefox";
-  # editor = defaultApp "text/plain";
-  # editor = "${config.programs.emacs.package}/bin/emacs";
-  # editor = "${config.programs.doom-emacs.finalEmacsPackage}/bin/emacs";
   uswmapp = "${lib.getExe pkgs.uwsm} app -- ";
   # uswmapp = "";
 in {
@@ -224,9 +217,6 @@ in {
         [
           # Program bindings
           "SUPER,Return,exec,${uswmapp}${terminal}"
-          # "SUPER,e,exec,${editor}"
-          # "SUPER,v,exec,${editor}"
-          # "SUPER,b,exec,${browser}"
           # "SUPER, F2, exec, ${uswmapp}${browser}"
           # "SUPER SHIFT, F2, exec, ${uswmapp}${altbrowser}"
           "SUPER, F3, exec, ${uswmapp}thunderbird"
@@ -513,6 +503,8 @@ in {
       ${sofle}
     '';
   };
+
+  services.hyprpolkitagent.enable = true;
 
   services.hyprsunset = {
     enable = true;

@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  home.packages = with pkgs; [wineWowPackages.waylandFull winetricks];
+  home.packages = with pkgs; [wineWow64Packages.waylandFull winetricks];
 
   xdg.mimeApps.associations.removed = {
     "application/x-mswinurl" = "wine-extension-url.desktop";

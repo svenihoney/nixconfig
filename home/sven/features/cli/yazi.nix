@@ -3,6 +3,7 @@
     enable = true;
     enableFishIntegration = true;
     enableNushellIntegration = true;
+    shellWrapperName = "y";
   };
-  programs.fish.shellAbbrs.y = "yazi";
+  # programs.fish.shellAbbrs.y = "yazi";
 }
