@@ -92,28 +92,8 @@ in {
 
         # ASV
         "asv" = {
-          hostname = "sven146.r2dc.de";
-          extraOptions = {
-            ProxyJump = "ssh.r2dc.de";
-          };
-        };
-        "ssh.r2dc.de" = {
+          hostname = "ssh.asv-bonn.de";
           port = 53022;
-        };
-        "ssh.r1" = {
-          hostname = "ssh3.r25dc.de";
-          port = 10022;
-          #       user sven
-          extraOptions = {
-            ForwardAgent = "yes";
-            # AddressFamily = "inet";
-          };
-        };
-        "asv2" = {
-          hostname = "dockweb123";
-          extraOptions = {
-            ProxyJump = "ssh.r1";
-          };
         };
 
         # TaxDigits

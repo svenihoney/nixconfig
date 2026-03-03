@@ -12,13 +12,13 @@
       # hyprland.default = ["kde" "hyprland"];
       common = {
         # default = ["gtk"];
-        "org.freedesktop.impl.portal.FileChooser" = "kde";
+        # "org.freedesktop.impl.portal.FileChooser" = "kde";
       };
       # hyprland.default = ["gtk" "hyprland"];
     };
     # wlr.enable = true;
     # extraPortals = [pkgs.xdg-desktop-portal-gtk];
-    extraPortals = [pkgs.kdePackages.xdg-desktop-portal-kde];
+    # extraPortals = [pkgs.kdePackages.xdg-desktop-portal-kde];
   };
 
   services.geoclue2.enable = true;

@@ -5,7 +5,7 @@
   ...
 }: {
   home.packages = with pkgs; [
-    libreoffice-qt
+    libreoffice-fresh
     hunspell
     hunspellDicts.de_DE
     hunspellDicts.en_US

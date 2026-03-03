@@ -17,7 +17,7 @@
       name = "Bibata-Modern-Classic";
       size = 24;
     };
-    image = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/MilkyWay/contents/images/5120x2880.png";
+    # image = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/MilkyWay/contents/images/5120x2880.png";
     icons = {
       enable = true;
       dark = "Papirus-Dark";

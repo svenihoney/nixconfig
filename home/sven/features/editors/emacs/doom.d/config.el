@@ -221,6 +221,41 @@
 ;;   (setq lsp-disabled-clients '(pyright pylsp ruff))
 ;;   (add-hook 'python-mode-hook
 ;;             (lambda () (setq lsp-enabled-clients '(basedpyright)))))
+(after! dape
+        (add-to-list 'dape-configs
+                     `(py modes (python-mode python-ts-mode)
+                       ensure (lambda (config) (dape-ensure-command config)
+                                (let ((python (dape-config-get config 'command)))
+                                  (unless
+                                      (zerop
+                                       (call-process-shell-command
+                                        (format "%s -c \"import debugpy.adapter\"" python)))
+                                    (user-error "%s module debugpy is not installed"
+                                                python))))
+                       command dap-python-executable
+                       command-args ("-m" "debugpy.adapter" "--host" "0.0.0.0" "--port" :autoport)
+                       port :autoport
+                       :request "launch"
+                       :type "python"
+                       :mode "debug"
+                       :cwd dape-cwd
+                       :program dape-buffer-default
+                       :args []
+                       :justMyCode nil
+                       :console "integratedTerminal"
+                       :showReturnValue t
+                       :stopOnEntry nil)
+        (add-to-list 'dape-configs
+                     `(uv-debugpy
+                       modes (python-mode python-ts-mode)
+                       command "uv"
+                       command-args ("run" "--" "python" "-m" "debugpy" "--listen" :autoport "--wait-for-client")
+                       command-cwd dape-cwd-fn
+                       :type "python"
+                       :request "launch"
+                       :program dape-buffer-default
+                       :justMyCode ni
+)
 
 ;; NIX
 (set-formatter! 'alejandra '("alejandra" "--quiet") :modes '(nix-mode))
@@ -388,24 +423,24 @@
   (gptel-make-gh-copilot "Copilot")
   )
 
-; (use-package! mcp
-;   :after gptel
-;   :custom
-;   (mcp-hub-servers
-;    `(
-;      ;; ("github" . (:command "docker"
-;      ;;              :args ("run" "-i" "--rm"
-;      ;;                     "-e" "GITHUB_PERSONAL_ACCESS_TOKEN"
-;      ;;                     "ghcr.io/github/github-mcp-server")
-;      ;;              :env (:GITHUB_PERSONAL_ACCESS_TOKEN ,(get-sops-secret-value "gh_pat_mcp"))))
-;      ("duckduckgo" . (:command "uvx" :args ("duckduckgo-mcp-server")))
-;      ("nixos" . (:command "uvx" :args ("mcp-nixos")))
-;      ("fetch" . (:command "uvx" :args ("mcp-server-fetch")))
-;      ("filesystem" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" ,(getenv "HOME"))))
-;      ("sequential-thinking" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-sequential-thinking")))
-;      ("context7" . (:command "npx" :args ("-y" "@upstash/context7-mcp") :env (:DEFAULT_MINIMUM_TOKENS "6000")))))
-;   :config (require 'mcp-hub)
-;   :hook (after-init . mcp-hub-start-all-server))
+                                        ; (use-package! mcp
+                                        ;   :after gptel
+                                        ;   :custom
+                                        ;   (mcp-hub-servers
+                                        ;    `(
+                                        ;      ;; ("github" . (:command "docker"
+                                        ;      ;;              :args ("run" "-i" "--rm"
+                                        ;      ;;                     "-e" "GITHUB_PERSONAL_ACCESS_TOKEN"
+                                        ;      ;;                     "ghcr.io/github/github-mcp-server")
+                                        ;      ;;              :env (:GITHUB_PERSONAL_ACCESS_TOKEN ,(get-sops-secret-value "gh_pat_mcp"))))
+                                        ;      ("duckduckgo" . (:command "uvx" :args ("duckduckgo-mcp-server")))
+                                        ;      ("nixos" . (:command "uvx" :args ("mcp-nixos")))
+                                        ;      ("fetch" . (:command "uvx" :args ("mcp-server-fetch")))
+                                        ;      ("filesystem" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" ,(getenv "HOME"))))
+                                        ;      ("sequential-thinking" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-sequential-thinking")))
+                                        ;      ("context7" . (:command "npx" :args ("-y" "@upstash/context7-mcp") :env (:DEFAULT_MINIMUM_TOKENS "6000")))))
+                                        ;   :config (require 'mcp-hub)
+                                        ;   :hook (after-init . mcp-hub-start-all-server))
 
 ;; (use-package! gptel
 ;;   :defer

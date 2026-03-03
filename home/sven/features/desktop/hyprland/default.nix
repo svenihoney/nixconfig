@@ -413,7 +413,7 @@ in {
         {
           "name" = "windowrule-15";
           "workspace" = "2";
-          "match:class" = "zen";
+          "match:class" = "zen.*";
         }
         {
           "name" = "windowrule-16";

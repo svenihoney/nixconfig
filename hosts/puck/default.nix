@@ -50,7 +50,7 @@
         secureBoot.enable = true;
       };
       efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint = "/efi";
+      efi.efiSysMountPoint = "/boot";
       timeout = 1;
     };
     # lanzaboote = {

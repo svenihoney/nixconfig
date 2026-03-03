@@ -51,6 +51,20 @@
     host = "[::]";
   };
 
+  # services.unison = {
+  #   enable = true;
+  #   pairs = {
+  #     projects = {
+  #       roots = [
+  #         "/home/sven/projects"
+  #         "ssh://sven@puck//home/sven/projects"
+  #       ];
+  #       commandOptions = {
+  #         ignore = "Regex (.devenv|.direnv)";
+  #       };
+  #     };
+  #   };
+  # };
   #targets.genericLinux.enable = true;
   # colorscheme = inputs.nix-colors.colorschemes.tokyo-night-storm;
   # wallpaper = outputs.wallpapers.watercolor-beach;
@@ -98,5 +112,5 @@
     "0, defaultName:0, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
   ];
 
-  home.packages = [pkgs.rclone];
+  home.packages = with pkgs; [rclone unison];
 }
