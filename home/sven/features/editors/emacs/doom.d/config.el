@@ -22,6 +22,8 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 10))
+;; (setq doom-font (font-spec :family "FantasqueSansM Nerd Font Mono" :size 11))
+
 ;; (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 10))
 ;; (setq doom-big-font (font-spec :family "FuraCode Nerd Font Mono" :size 20))
 ;;(setq doom-variable-pitch-font (font-spec :family "Overpass" :size 10))
@@ -222,40 +224,49 @@
 ;;   (add-hook 'python-mode-hook
 ;;             (lambda () (setq lsp-enabled-clients '(basedpyright)))))
 (after! dape
-        (add-to-list 'dape-configs
-                     `(py modes (python-mode python-ts-mode)
-                       ensure (lambda (config) (dape-ensure-command config)
-                                (let ((python (dape-config-get config 'command)))
-                                  (unless
-                                      (zerop
-                                       (call-process-shell-command
-                                        (format "%s -c \"import debugpy.adapter\"" python)))
-                                    (user-error "%s module debugpy is not installed"
-                                                python))))
-                       command dap-python-executable
-                       command-args ("-m" "debugpy.adapter" "--host" "0.0.0.0" "--port" :autoport)
-                       port :autoport
-                       :request "launch"
-                       :type "python"
-                       :mode "debug"
-                       :cwd dape-cwd
-                       :program dape-buffer-default
-                       :args []
-                       :justMyCode nil
-                       :console "integratedTerminal"
-                       :showReturnValue t
-                       :stopOnEntry nil)
-        (add-to-list 'dape-configs
-                     `(uv-debugpy
-                       modes (python-mode python-ts-mode)
-                       command "uv"
-                       command-args ("run" "--" "python" "-m" "debugpy" "--listen" :autoport "--wait-for-client")
-                       command-cwd dape-cwd-fn
-                       :type "python"
-                       :request "launch"
-                       :program dape-buffer-default
-                       :justMyCode ni
-)
+  (add-to-list 'dape-configs
+               `(py modes (python-mode python-ts-mode)
+                 ensure (lambda (config) (dape-ensure-command config)
+                          (let ((python (dape-config-get config 'command)))
+                            (unless
+                                (zerop
+                                 (call-process-shell-command
+                                  (format "%s -c \"import debugpy.adapter\"" python)))
+                              (user-error "%s module debugpy is not installed"
+                                          python))))
+                 command dap-python-executable
+                 command-args ("-m" "debugpy.adapter" "--host" "0.0.0.0" "--port" :autoport)
+                 port :autoport
+                 :request "launch"
+                 :type "python"
+                 :mode "debug"
+                 :cwd dape-cwd
+                 :program dape-buffer-default
+                 :args []
+                 :justMyCode nil
+                 :console "integratedTerminal"
+                 :showReturnValue t
+                 :stopOnEntry nil))
+  (add-to-list 'dape-configs
+               `(uv-debugpy
+                 modes (python-mode python-ts-mode)
+                 command "uv"
+                 command-args ("run" "--" "python" "-m" "debugpy.adapter" "--host" "0.0.0.0" "--port" :autoport)
+                 port :autoport
+                 :request "launch"
+                 :type "python"
+                 :cwd dape-cwd
+                 ;; :program dape-buffer-default
+                 :args []
+                 :justMyCode nil
+                 :console
+                 "integratedTerminal"
+                 :showReturnValue t
+                 :stopOnEntry nil
+                 )
+               ))
+
+(repeat-mode t)
 
 ;; NIX
 (set-formatter! 'alejandra '("alejandra" "--quiet") :modes '(nix-mode))
@@ -394,6 +405,16 @@
 ;;   (gptel-make-gh-copilot "Copilot")
 ;;   )
 
+(defun get-ollama-models ()
+  "Fetch the list of installed Ollama models."
+  (let* ((output (shell-command-to-string "ollama list"))
+         (lines (split-string output "\n" t))
+         models)
+    (dolist (line (cdr lines))  ; Skip the first line
+      (when (string-match "^\\([^[:space:]]+\\)" line)
+        (push (match-string 1 line) models)))
+    (nreverse models)))
+
 ;; https://blog.kaorubb.org/en/posts/gpt-mcp-setup/
 (use-package! gptel
   :config
@@ -410,12 +431,8 @@
         (gptel-make-ollama "Ollama"
           :host "maja:11434"
           :stream t
-          :models '(qwen3:8b
-                    gpt-oss:20b
-                    deepseek-coder-v2
-                    gemma3:4b
-                    qwen2.5-coder
-                    deepseek-r1:7b)))
+          :models (get-ollama-models)
+          ))
   ;; (gptel-make-xai "Grok" :key "your-api-key" :stream t)
   ;; (gptel-make-deepseek "DeepSeek" :key "your-api-key" :stream t))
   (gptel-make-gemini "Gemini" :key (secrets-get-secret "keepassx" "Gemini API key") :stream t :models

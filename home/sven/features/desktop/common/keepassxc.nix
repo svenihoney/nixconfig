@@ -81,18 +81,18 @@ in {
         "chrome-extension://iopaggbpplllidnfmcghoonnokmjoicf/"
       ];
     };
-  systemd.user.services.keepassxc = {
-    Unit = {
-      Description = "Password manager";
-      After = "graphical-session.target";
-      ConditionEnvironment = "WAYLAND_DISPLAY";
-      PartOf = "graphical-session.target";
-    };
-    Install = {
-      WantedBy = ["graphical-session.target"];
-    };
-    Service = {
-      ExecStart = "${uswmapp}${lib.getExe config.programs.keepassxc.package}";
-    };
-  };
+  # systemd.user.services.keepassxc = {
+  #   Unit = {
+  #     Description = "Password manager";
+  #     After = "graphical-session.target";
+  #     ConditionEnvironment = "WAYLAND_DISPLAY";
+  #     PartOf = "graphical-session.target";
+  #   };
+  #   Install = {
+  #     WantedBy = ["graphical-session.target"];
+  #   };
+  #   Service = {
+  #     ExecStart = "${uswmapp}${lib.getExe config.programs.keepassxc.package}";
+  #   };
+  # };
 }

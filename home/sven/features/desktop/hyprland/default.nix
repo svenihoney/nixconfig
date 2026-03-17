@@ -114,8 +114,8 @@ in {
       };
 
       input = {
-        kb_layout = "de";
-        kb_variant = "neo_qwertz,dead_acute";
+        kb_layout = "de,de";
+        kb_variant = "neo_qwertz,deadacute";
         repeat_rate = "25";
         repeat_delay = "250";
 
@@ -200,7 +200,7 @@ in {
         # "hyprctl setcursor ${cursorName} ${toString pointer.size}"
         # "hyprlock"
         # "${uswmapp}${copyq}"
-        # "${uswmapp}${keepassxc}"
+        "${uswmapp}${keepassxc}"
         # "${uswmapp}${waybar}"
         # "${uswmapp}${polkit}"
       ];
@@ -226,7 +226,7 @@ in {
           "SUPER, F5, exec, ${uswmapp}${thunar}"
           "SUPER, F7, exec, ${uswmapp}${spotify}"
           # "SUPER SHIFT, F7, exec, ${uswmapp}${browser} --new-window https://music.amazon.de"
-          "SUPER, F12, exec, hyprctl switchxkblayout brian-low-sofle-choc next"
+          "SUPER, F12, exec, hyprctl switchxkblayout current next"
           # "SUPER, F11, exec, ~/bin/switchaudio btoff"
           # "SUPER, F11, exec, ~/bin/switchaudio hdmi"
           # "SUPER SHIFT, F11, exec, ~/bin/switchaudio btheadset"
@@ -440,6 +440,11 @@ in {
           "workspace" = "10";
           "match:class" = "Slack";
         }
+        {
+          "name" = "windowrule-21";
+          "float" = "on";
+          "match:title" = "Wargaming.*";
+        }
       ];
 
       monitor =
@@ -474,35 +479,22 @@ in {
       # ];
     };
     # This is order sensitive, so it has to come here.
-    extraConfig = let
-      sofleOld = ''
-        device:brian-low-sofle-choc {
-          kb_layout=de,de
-          kb_variant=koy,neo_qwertz
-        }
-      '';
-      sofleNew = ''
-        # Name has to be first option, does not work with settings section
-        device {
-          name=brian-low-sofle-choc
-          kb_layout=de,de
-          kb_variant=koy,neo_qwertz
-        }
-      '';
-      sofle =
-        if builtins.compareVersions pkgs.hyprland.version "0.36" < 0
-        then sofleOld
-        else sofleNew;
-    in ''
+    extraConfig = ''
       # Passthrough mode (e.g. for VNC)
       bind=SUPER,P,submap,passthrough
       submap=passthrough
       bind=SUPER,P,submap,reset
       submap=reset
 
-      ${sofle}
+      device {
+        name=brian-low-sofle-choc
+        kb_layout=de,de
+        kb_variant=koy,neo_qwertz
+      }
     '';
   };
+
+  home.pointerCursor.hyprcursor.enable = true;
 
   services.hyprpolkitagent.enable = true;
 

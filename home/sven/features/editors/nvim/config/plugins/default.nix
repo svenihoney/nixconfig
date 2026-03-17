@@ -24,10 +24,10 @@
   plugins = {
     lz-n.enable = true;
     direnv.enable = true;
-    project-nvim = {
-      enable = true;
-      # enableTelescope = true;
-    };
+    # project-nvim = {
+    #   enable = true;
+    #   # enableTelescope = true;
+    # };
     guess-indent.enable = true; # Guess tabwidth from indentation in file
     # indent-blankline = {
     #   enable = true; # indentation markers

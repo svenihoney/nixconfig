@@ -17,6 +17,7 @@
     # ./fuzzel.nix
     # ./anyrun
     # ./walker
+
     ./zathura.nix
     ./vimiv.nix
     # ./wezterm.nix

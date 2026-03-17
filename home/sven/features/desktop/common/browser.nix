@@ -99,7 +99,7 @@ in {
   programs.zen-browser = {
     enable = true;
 
-    # nativeMessagingHosts = [pkgs.keepassxc-browser];
+    nativeMessagingHosts = [pkgs.keepassxc];
 
     policies = let
       mkLockedAttrs = builtins.mapAttrs (_: value: {
@@ -179,7 +179,6 @@ in {
         "browser.download.dir" = "/home/${config.home.username}/Downloads/zen";
       };
     };
-    suppressXdgMigrationWarning = true;
   };
   stylix.targets.zen-browser.profileNames = ["sven"];
 

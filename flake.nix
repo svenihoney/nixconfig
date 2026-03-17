@@ -77,6 +77,7 @@
     };
     caelestia-shell = {
       url = "github:caelestia-dots/shell";
+      # url = "github:nik-bsta/shell?ref=fix/app2unit-version-pin";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.quickshell.url = "github:quickshell-mirror/quickshell";
     };

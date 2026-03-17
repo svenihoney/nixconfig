@@ -70,7 +70,7 @@
   # Auto login me
   services.greetd.settings.initial_session = {
     # Change "Hyprland" to the command to run your window manager. ^Note1
-    command = "${lib.getExe pkgs.uwsm} start -F ${lib.getExe pkgs.hyprland}";
+    command = "${lib.getExe pkgs.uwsm} start -F hyprland.desktop";
     # Change "${user}" to your username or to your username variable.
     user = "sven";
   };
@@ -81,7 +81,7 @@
 
   powerManagement.powertop.enable = true;
   programs = {
-    light.enable = true;
+    # light.enable = true;
     # adb.enable = true;
     dconf.enable = true;
     # kdeconnect.enable = true;

@@ -18,11 +18,11 @@
       # rocmOverrideGfx = "10.3.0";
     };
     home.packages = with pkgs;
-      lib.mkIf config.ollama.tools.enable [
+      [
         # oterm
         # alpaca
-        aider-chat
-        lmstudio
+        # aider-chat
+        # lmstudio
         opencode
       ];
   };

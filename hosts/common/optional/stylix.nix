@@ -42,19 +42,12 @@
         # package = pkgs.julia-mono;
         # name = "Julia Mono";
 
-        # package = pkgs.jetbrains-mono;
-        # name = "JetBrainsMono";
-
         package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrainsMono Nerd Font";
 
-        # package = pkgs.nerdfonts.override {fonts = ["Cousine"];};
-        # name = "Cousine Nerd Font";
-        # package = pkgs.nerdfonts.override {fonts = ["Lilex"];};
-        # name = "Lilex Nerd Font";
+        # package = pkgs.nerd-fonts.fantasque-sans-mono;
+        # name = "FantasqueSansMono Nerd Font";
 
-        # package = pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" ]; };
-        # name = "BlexMono Nerd Font";
       };
       emoji = {
         package = pkgs.noto-fonts-color-emoji;
