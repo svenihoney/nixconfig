@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }: {
   options = {
@@ -28,6 +29,15 @@
             enable = true;
             # settings.formatting.command = ["${pkgs.alejandra}/bin/alejandra"];
           };
+          # tix = {
+          #   enable = true;
+          #   package = inputs.tix.packages.${pkgs.system}.default;
+          #   config = {
+          #     cmd = ["tix" "lsp"];
+          #     filetypes = ["nix"];
+          #   };
+          #   name = "tix";
+          # };
           # lua-ls = {
           #   enable = true;
           #   # settings = {

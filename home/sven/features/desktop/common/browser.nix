@@ -85,21 +85,16 @@ in {
   programs.vivaldi = {
     enable = true;
     extensions = [
-      {id = "oboonakemofpalcgghocfoadofidjkkk";} # KeepassXC}
+      {id = "oboonakemofpalcgghocfoadofidjkkk";} # KeepassXC
       {id = "edibdbjcniadpccecjdfdjjppcpchdlm";} # I still don't care about cookies
       {id = "hfjbmagddngcpeloejdejnfgbamkjaeg";} # Vimium C
       {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # ublock origin
       # {id = "emffkefkbkpkgpdeeooapgaicgmcbolj";} # Wikiwand
     ];
-    # nativeMessagingHosts = [
-    #   pkgs.keepassxc-browser
-    # ];
   };
 
   programs.zen-browser = {
     enable = true;
-
-    nativeMessagingHosts = [pkgs.keepassxc];
 
     policies = let
       mkLockedAttrs = builtins.mapAttrs (_: value: {

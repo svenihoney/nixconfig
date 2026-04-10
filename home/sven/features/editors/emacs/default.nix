@@ -19,6 +19,7 @@
       # libvterm
       shellcheck
       bash-language-server
+      emacs-lsp-booster
     ];
 
     programs.doom-emacs = {

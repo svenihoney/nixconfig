@@ -135,6 +135,7 @@
     nixvim = {
       url = "github:nix-community/nixvim";
     };
+    # tix.url = "github:JRMurr/tix";
     # nvf = {
     #   url = "github:NotAShelf/nvf";
     #   # You can override the input nixpkgs to follow your system's

@@ -32,6 +32,7 @@
     #../common/optional/nfs.nix
     ../common/optional/stylix.nix
     ../common/optional/bluetooth.nix
+    ../common/optional/backlight.nix
   ];
 
   networking = {
@@ -81,7 +82,6 @@
 
   powerManagement.powertop.enable = true;
   programs = {
-    # light.enable = true;
     # adb.enable = true;
     dconf.enable = true;
     # kdeconnect.enable = true;

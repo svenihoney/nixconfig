@@ -112,5 +112,5 @@
     "0, defaultName:0, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
   ];
 
-  home.packages = with pkgs; [rclone unison];
+  home.packages = with pkgs; [rclone unison linphone];
 }

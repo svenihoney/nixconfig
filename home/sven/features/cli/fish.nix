@@ -88,6 +88,7 @@
         # Open command buffer in vim when alt+e is pressed
         ''
           bind \ee edit_command_buffer
+          ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
         '';
     };
   };

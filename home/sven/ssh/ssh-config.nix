@@ -26,7 +26,7 @@ in {
       };
       matchBlocks = {
         "*" = {
-      hashKnownHosts = true;
+          hashKnownHosts = true;
         };
         # Private playground
         "localhost" = {
@@ -97,24 +97,25 @@ in {
         };
 
         # TaxDigits
-        "taxworker" = {
-          hostname = "dedivirt2025.your-server.de";
-          user = "taxadmin";
-          port = 222;
-          extraOptions = {
-            ForwardAgent = "yes";
-            SetEnv = "TERM=xterm";
-          };
-        };
+        "taxworker" =
+          {
+            hostname = "dedivirt2025.your-server.de";
+            user = "taxadmin";
+            port = 222;
+            extraOptions = {
+              ForwardAgent = "yes";
+            };
+          }
+          // xterm;
 
         # Kunden
-        "cosy" = {
-          user = "root";
-          hostname = "192.168.0.4";
-          extraOptions = {
-            SetEnv = "TERM=xterm";
-          };
-        };
+        "cosy" =
+          {
+            user = "root";
+            hostname = "192.168.0.4";
+            identityFile = "~/.ssh/nwot_mif.rsa";
+          }
+          // xterm;
         "i-* mi-*" = {
           user = "ssm-user";
           extraOptions = {ProxyCommand = "sh -c \"aws-gate ssh-proxy -P %p %h\"";};

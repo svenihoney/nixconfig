@@ -196,12 +196,12 @@ in {
       # ];
       exec-once = [
         # finalize startup
-        "uwsm finalize"
+        "uwsm finalize SSH_AUTH_SOCK"
         # set cursor for HL itself
         # "hyprctl setcursor ${cursorName} ${toString pointer.size}"
         # "hyprlock"
         # "${uswmapp}${copyq}"
-        "${uswmapp}${keepassxc}"
+        "${lib.getExe pkgs.fish} -c ${keepassxc}"
         # "${uswmapp}${waybar}"
         # "${uswmapp}${polkit}"
       ];
@@ -444,7 +444,17 @@ in {
         {
           "name" = "windowrule-21";
           "float" = "on";
-          "match:title" = "Wargaming.*";
+          "match:title" = "Wargaming.net Game Center";
+        }
+        {
+          "name" = "windowrule-22";
+          "fullscreen" = "on";
+          "match:title" = "W.o.T. Client";
+        }
+        {
+          "name" = "windowrule-22";
+          "float" = "on";
+          "match:title" = "Huddle";
         }
       ];
 

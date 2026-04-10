@@ -10,8 +10,6 @@ in {
     libsecret
   ];
 
-
-
   programs.keepassxc = {
     enable = true;
     settings = {
@@ -69,18 +67,18 @@ in {
       };
     };
   };
-  home.file.".config/vivaldi/NativeMessagingHosts/org.keepassxc.keepassxc_browser.json".text =
-    builtins.toJSON
-    {
-      name = "org.keepassxc.keepassxc_browser";
-      description = "KeePassXC integration with native messaging support";
-      path = "${config.programs.keepassxc.package}/bin/keepassxc-proxy";
-      type = "stdio";
-      allowed_origins = [
-        "chrome-extension://oboonakemofpalcgghocfoadofidjkkk/"
-        "chrome-extension://iopaggbpplllidnfmcghoonnokmjoicf/"
-      ];
-    };
+  # home.file.".config/vivaldi/NativeMessagingHosts/org.keepassxc.keepassxc_browser.json".text =
+  #   builtins.toJSON
+  #   {
+  #     name = "org.keepassxc.keepassxc_browser";
+  #     description = "KeePassXC integration with native messaging support";
+  #     path = "${config.programs.keepassxc.package}/bin/keepassxc-proxy";
+  #     type = "stdio";
+  #     allowed_origins = [
+  #       "chrome-extension://oboonakemofpalcgghocfoadofidjkkk/"
+  #       "chrome-extension://iopaggbpplllidnfmcghoonnokmjoicf/"
+  #     ];
+  #   };
   # systemd.user.services.keepassxc = {
   #   Unit = {
   #     Description = "Password manager";
@@ -95,4 +93,11 @@ in {
   #     ExecStart = "${uswmapp}${lib.getExe config.programs.keepassxc.package}";
   #   };
   # };
+  programs.vivaldi = {
+    nativeMessagingHosts = [pkgs.keepassxc];
+  };
+
+  programs.zen-browser = {
+    nativeMessagingHosts = [pkgs.keepassxc];
+  };
 }

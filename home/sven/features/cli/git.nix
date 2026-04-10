@@ -44,6 +44,7 @@
       "result"
       ",*"
     ];
+    signing.format = null;
   };
 
   programs = {

@@ -65,7 +65,10 @@
       "DP-4"
     ];
   };
-  home.packages = with pkgs; [ gparted unison ];
+  home.packages = with pkgs; [
+    gparted
+    unison
+  ];
 
   # home.packages = [pkgs.lenopow];
   # Qt does not read the fractional scalea correctly...

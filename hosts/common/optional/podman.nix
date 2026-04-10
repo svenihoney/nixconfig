@@ -22,6 +22,12 @@ in {
     docker-compose
     passt
   ];
+
+  # Enable container name DNS for non-default Podman networks.
+  # https://github.com/NixOS/nixpkgs/issues/226365
+  networking.firewall.interfaces."podman+".allowedUDPPorts = [53];
+
+  virtualisation.oci-containers.backend = "podman";
   # environment.persistence = {
   #   "/persist".directories = [
   #     "/var/lib/containers"

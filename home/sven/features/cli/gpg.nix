@@ -17,7 +17,7 @@ in {
       enable = true;
       enableExtraSocket = true;
       # enableScDaemon = true;
-      enableSshSupport = true;
+      enableSshSupport = lib.mkDefault true;
       defaultCacheTtl = 34560000;
       maxCacheTtl = 34560000;
       #extraConfig = ''
@@ -71,4 +71,3 @@ in {
   # };
 }
 # vim: filetype=nix
-
