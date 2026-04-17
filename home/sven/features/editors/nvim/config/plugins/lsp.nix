@@ -29,6 +29,7 @@
             enable = true;
             # settings.formatting.command = ["${pkgs.alejandra}/bin/alejandra"];
           };
+          tinymist.enable = true;
           # tix = {
           #   enable = true;
           #   package = inputs.tix.packages.${pkgs.system}.default;

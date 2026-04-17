@@ -452,9 +452,9 @@ in {
           "match:title" = "W.o.T. Client";
         }
         {
-          "name" = "windowrule-22";
+          "name" = "windowrule-23";
           "float" = "on";
-          "match:title" = "Huddle";
+          "match:title" = ".*Huddle.*";
         }
       ];
 

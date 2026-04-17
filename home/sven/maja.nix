@@ -10,7 +10,7 @@
     # ./features/desktop/wireless
     ./features/development
     ./features/productivity
-    ./features/productivity/ollama.nix
+    ./features/productivity/ai.nix
     ./features/media
     # ./features/pass
     ./features/games
@@ -41,15 +41,16 @@
     # nvf = true;
   };
 
-  ollama = {
-    tools.enable = true;
-    service.enable = true;
-  };
+  # ollama = {
+  #   tools.enable = true;
+  #   service.enable = true;
+  # };
   services.ollama = {
     acceleration = "rocm";
     # acceleration = "vulkan";
     host = "[::]";
   };
+  llama-cpp.enable = true;
 
   # services.unison = {
   #   enable = true;

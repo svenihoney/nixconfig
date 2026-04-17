@@ -4,7 +4,8 @@
   self,
   config,
   ...
-}: {
+}:
+{
   imports = [
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-amd
@@ -41,7 +42,10 @@
   # TODO: Remove
   programs.nix-ld = {
     enable = true;
-    libraries = [pkgs.zlib pkgs.openssl];
+    libraries = [
+      pkgs.zlib
+      pkgs.openssl
+    ];
   };
 
   # fonts.packages = with pkgs; [
@@ -78,7 +82,7 @@
     #   };
     # };
     # interfaces.wlp5s0.useDHCP = false;
-    networkmanager.unmanaged = ["interface-name:wlp5s0"];
+    networkmanager.unmanaged = [ "interface-name:wlp5s0" ];
     # wireless.enable = false; # if you previously used wpa_supplicant
   };
   services.resolved = {
@@ -110,7 +114,7 @@
     # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     # kernelPackages = pkgs.linuxPackages_cachyos-lto-znver4;
     binfmt = {
-      emulatedSystems = ["aarch64-linux"];
+      emulatedSystems = [ "aarch64-linux" ];
       preferStaticEmulators = true;
     };
     resumeDevice = "/dev/disk/by-uuid/6e52b611-7ab8-4cb5-867c-b5c0f5e7bda7";
@@ -152,7 +156,7 @@
         KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="fc32", ATTRS{idProduct}=="0287", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
         KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="2717", ATTRS{idProduct}=="d001", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
       '';
-      packages = [pkgs.qmk-udev-rules];
+      packages = [ pkgs.qmk-udev-rules ];
     };
     udisks2.enable = true;
     fwupd.enable = true;
@@ -177,20 +181,26 @@
           volume."/" = {
             # target = "ssh://myhost/mnt/mybackups";
             subvolume = {
-              home = {};
-              "home/sven/virtualmachines" = {};
+              home = { };
+              "home/sven/virtualmachines" = { };
             };
             snapshot_dir = "/.snapshots";
           };
           volume."/home/sven/kunden/vorwerk/image" = {
             # target = "ssh://myhost/mnt/mybackups";
             subvolume = {
-              "." = {};
+              "." = { };
             };
             snapshot_dir = "/home/sven/kunden/vorwerk/image/.snapshots";
           };
         };
       };
+    };
+
+    kmscon = {
+      enable = true;
+      hwRender = true;
+      useXkbConfig = true;
     };
   };
 

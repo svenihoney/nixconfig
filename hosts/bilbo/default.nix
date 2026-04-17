@@ -36,6 +36,7 @@
     # ../common/optional/nfs.nix
     ../common/optional/stylix.nix
     ../common/optional/bluetooth.nix
+    ../common/optional/backlight.nix
   ];
 
   networking = {
