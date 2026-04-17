@@ -30,7 +30,7 @@
     ./bilbo-mail.nix
     ../sven/features/productivity/neomutt.nix
     ../sven/features/productivity/office.nix
-    ../sven/features/productivity/ollama.nix
+    ../sven/features/productivity/ai.nix
   ];
 
   # config.keepassFile = "${config.home.homeDirectory}/Passwörter.kdbx";

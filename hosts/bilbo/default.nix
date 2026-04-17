@@ -7,7 +7,8 @@
 }: {
   imports = [
     inputs.hardware.nixosModules.lenovo-thinkpad-x1-extreme-gen2
-    # inputs.hardware.nixosModules.common-gpu-intel
+    inputs.hardware.nixosModules.common-gpu-intel
+    inputs.hardware.nixosModules.common-gpu-nvidia-nonprime
     inputs.hardware.nixosModules.common-pc-laptop
 
     # inputs.stylix-stable.nixosModules.stylix
@@ -131,7 +132,6 @@
   };
 
   services = {
-    xserver.videoDrivers = ["nvidia"];
     # Lid settings
     logind.settings.Login = {
       HandleLidSwitch = "suspend-then-hibernate";

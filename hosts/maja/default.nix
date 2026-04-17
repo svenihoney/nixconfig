@@ -108,6 +108,7 @@
       efi.efiSysMountPoint = "/efi";
 
       timeout = 1;
+
     };
     kernelPackages = pkgs.linuxPackages_latest;
     # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
@@ -119,6 +120,7 @@
     };
     resumeDevice = "/dev/disk/by-uuid/6e52b611-7ab8-4cb5-867c-b5c0f5e7bda7";
     # supportedFilesystems = ["zfs"];
+    supportedFilesystems = [ "nfs" ];
     # lanzaboote = {
     #   enable = true;
     #   pkiBundle = "/var/lib/sbctl";

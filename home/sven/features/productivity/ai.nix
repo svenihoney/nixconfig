@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  osConfig,
   ...
 }: {
   options = {
@@ -18,14 +19,29 @@
       # };
       # rocmOverrideGfx = "10.3.0";
     };
-    home.packages = with pkgs; [
-      # oterm
-      # alpaca
-      # aider-chat
-      # lmstudio
-      opencode
-      llama-cpp-rocm
-    ];
+    home.packages = with pkgs;
+      lib.mkMerge
+      [
+        [
+          # oterm
+          # alpaca
+          # aider-chat
+          # lmstudio
+          opencode
+        ]
+        (
+          lib.mkIf osConfig.hardware.amdgpu.initrd.enable
+          [
+            llama-cpp-rocm
+          ]
+        )
+        (
+          lib.mkIf (!osConfig.hardware.amdgpu.initrd.enable)
+          [
+            llama-cpp
+          ]
+        )
+      ];
 
     systemd.user.services.llama-cpp = lib.mkIf config.llama-cpp.enable {
       Unit = {
