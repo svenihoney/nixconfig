@@ -85,6 +85,14 @@
       workspace = "4";
       transform = "1";
     }
+    {
+      name = "desc:Lenovo Group Limited TIO24Gen3 V3018ATR";
+      width = 1920;
+      height = 1080;
+      x = 3840;
+      workspace = "4";
+      transform = "1";
+    }
     # PH34
     {
       name = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
@@ -111,7 +119,7 @@
     bar.excludedScreens = [
       "DP-2"
       "DP-3"
-      "DP-4"
+      # "DP-4"
     ];
   };
 }
