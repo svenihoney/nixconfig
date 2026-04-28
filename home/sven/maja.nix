@@ -50,7 +50,8 @@
     # acceleration = "vulkan";
     host = "[::]";
   };
-  llama-cpp.enable = true;
+  ai-client.enable = true;
+  ai-server.enable = true;
 
   # services.unison = {
   #   enable = true;

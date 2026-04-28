@@ -55,6 +55,7 @@
   programs.git.settings = {
     user.email = "fischer@software.ads";
   };
+  ai-client.enable = true;
   #targets.genericLinux.enable = true;
   # colorscheme = inputs.nix-colors.colorschemes.tokyo-night-storm;
   # wallpaper = outputs.wallpapers.watercolor-beach;

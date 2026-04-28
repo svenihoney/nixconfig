@@ -27,6 +27,7 @@
       push.default = "current";
       merge.conflictstyle = "diff3";
       # };
+      # blame.ignoreRevsFile = ".git-blame-ignore-revs";
     };
     lfs.enable = true;
     # delta = {

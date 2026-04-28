@@ -6,44 +6,50 @@
   ...
 }: {
   options = {
-    ollama.service.enable = lib.mkEnableOption "Enable ollama service module";
-    ollama.tools.enable = lib.mkEnableOption "Enable ollama clients";
-    llama-cpp.enable = lib.mkEnableOption "Enable llama-cpp";
+    # ollama.service.enable = lib.mkEnableOption "Enable ollama service module";
+    # ollama.tools.enable = lib.mkEnableOption "Enable ollama clients";
+    # llama-cpp.enable = lib.mkEnableOption "Enable llama-cpp";
+    ai-server.enable = lib.mkEnableOption "Enable local AI server";
+    ai-client.enable = lib.mkEnableOption "Enable AI client";
   };
-  config = {
-    services.ollama = lib.mkIf config.ollama.service.enable {
+  config = let
+    llamaPackage =
+      if osConfig.hardware.amdgpu.initrd.enable
+      then pkgs.llama-cpp-rocm
+      else pkgs.llama-cpp;
+  in {
+    home.packages = with pkgs;
+      lib.mkMerge
+      [
+        (
+          lib.mkIf config.ai-client.enable
+          [
+            # oterm
+            # alpaca
+            # aider-chat
+            # lmstudio
+            opencode
+          ]
+        )
+        (
+          lib.mkIf config.ai-server.enable
+          [
+            llamaPackage
+          ]
+        )
+      ];
+
+    services.ollama = lib.mkIf config.ai-server.enable {
       enable = true;
+      acceleration =
+        lib.optionals osConfig.hardware.amdgpu.initrd.enable "rocm";
       # acceleration = "rocm"; # Will be set in machine config
       # environmentVariables = {
       #   HCC_AMDGPU_TARGET = "gfx1030"; # used to be necessary, but doesn't seem to anymore
       # };
       # rocmOverrideGfx = "10.3.0";
     };
-    home.packages = with pkgs;
-      lib.mkMerge
-      [
-        [
-          # oterm
-          # alpaca
-          # aider-chat
-          # lmstudio
-          opencode
-        ]
-        (
-          lib.mkIf osConfig.hardware.amdgpu.initrd.enable
-          [
-            llama-cpp-rocm
-          ]
-        )
-        (
-          lib.mkIf (!osConfig.hardware.amdgpu.initrd.enable)
-          [
-            llama-cpp
-          ]
-        )
-      ];
-
-    systemd.user.services.llama-cpp = lib.mkIf config.llama-cpp.enable {
+    systemd.user.services.llama-cpp = lib.mkIf config.ai-server.enable {
       Unit = {
         Description = "Run llama-cpp with llama-swap as frontend";
       };
