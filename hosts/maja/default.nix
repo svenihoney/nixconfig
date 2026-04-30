@@ -199,11 +199,11 @@
       };
     };
 
-    kmscon = {
-      enable = true;
-      hwRender = true;
-      useXkbConfig = true;
-    };
+    # kmscon = {
+    #   enable = true;
+    #   hwRender = true;
+    #   useXkbConfig = true;
+    # };
   };
 
   networking.firewall = {

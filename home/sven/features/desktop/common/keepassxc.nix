@@ -100,4 +100,8 @@ in {
   programs.zen-browser = {
     nativeMessagingHosts = [pkgs.keepassxc];
   };
+
+  programs.thunderbird = {
+    nativeMessagingHosts = [pkgs.keepassxc];
+  };
 }
