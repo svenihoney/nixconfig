@@ -5,7 +5,7 @@
     # ./todoman.nix
     # ./vdirsyncer.nix
 
-    ./mail.nix
+    ./thunderbird.nix
     # ./neomutt.nix
 
     ./office.nix

@@ -11,6 +11,9 @@
     ./features/development
     ./features/productivity
     ./features/productivity/ai.nix
+    ./features/productivity/mail.nix
+    ./features/productivity/calendar.nix
+
     ./features/media
     # ./features/pass
     ./features/games

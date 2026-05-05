@@ -37,7 +37,24 @@
     profiles."sven" = {
       isDefault = true;
       withExternalGnupg = true;
-      extensions = [pkgs.keepassxc-mail pkgs.thunderbird-de];
+      extensions = [
+        pkgs.keepassxc-mail
+        pkgs.thunderbird-de
+        pkgs.nur.repos.rycee.thunderbird-addons.cardbook
+      ];
+
+      accountsOrder = [
+        "leiderfischer"
+        "effeffcee"
+        "dgm"
+        "taxdigits"
+      ];
+
+      # feedAccounts.feeds.name = "feeds";
+      feedAccounts = {
+        "feeds" = {};
+      };
+
       settings = {
         "mail.show_headers" = 1;
         "mail.phishing.detection.enabled" = true;
@@ -52,6 +69,7 @@
         "mail.close_delete_window.exit_if_last_window" = true;
         "mail.display_name_type" = 2;
         "mail.openpgp.allow_external_gnupg" = true;
+        "mail.openpgp.fetch_pubkeys_from_gnupg" = true;
         "mail.provider.mode" = 1;
         "mail.provider.suggestFromAddress" = true;
         "mail.rights.version" = 1;

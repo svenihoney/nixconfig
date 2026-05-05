@@ -1,8 +1,7 @@
 {
   pkgs,
   inputs,
-  self,
-  config,
+  lib,
   ...
 }:
 {
@@ -35,7 +34,7 @@
     ../common/optional/warpinator.nix
     ../common/optional/printing.nix
     ../common/optional/networking.nix
-    ../common/optional/nfs.nix
+    # ../common/optional/nfs.nix
     ../common/optional/stylix.nix
   ];
 
@@ -126,6 +125,7 @@
     #   pkiBundle = "/var/lib/sbctl";
     # };
   };
+  services.rpcbind.enable = lib.mkForce false;
   zramSwap = {
     enable = true;
     priority = 100;
