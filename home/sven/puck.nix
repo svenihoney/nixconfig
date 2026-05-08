@@ -8,6 +8,7 @@
     # ./features/desktop/common/wayland-wm/wofi.nix
     # ./features/desktop/wireless
     ./features/productivity
+    ./features/productivity/mail.nix
     ./features/media
     # ./features/pass
     ./features/games

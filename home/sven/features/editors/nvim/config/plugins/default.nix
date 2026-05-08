@@ -22,6 +22,7 @@
     # ./copilot.nix
   ];
   plugins = {
+    abolish.enable = true;
     lz-n.enable = true;
     direnv.enable = true;
     # project-nvim = {
@@ -44,14 +45,15 @@
     #   settings.skip_confirm_for_simple_edits = true;
     # };
     neogit.enable = true;
-    git-conflict = {
-      enable = true;
-      settings = {
-        # Optional: custom highlights or keymaps
-        default_mappings = true; # default mappings: co, ct, cb, c0
-        disable_diagnostics = true; # disable lsp diagnostics in conflict files
-      };
-    };
+    # This is non-free...
+    # git-conflict = {
+    #   enable = true;
+    #   settings = {
+    #     # Optional: custom highlights or keymaps
+    #     default_mappings = true; # default mappings: co, ct, cb, c0
+    #     disable_diagnostics = true; # disable lsp diagnostics in conflict files
+    #   };
+    # };
     grug-far.enable = true;
     ts-comments = {
       # lazyLoad.enable = true;
@@ -70,14 +72,27 @@
   };
   extraPlugins = with pkgs.vimPlugins; [
     # For these no nixvim plugin exists
-    vim-abolish # Automatic case in search and replace
     (pkgs.vimUtils.buildVimPlugin {
       name = "vim-compile-mode";
       # src = vim-compile-mode;
       src = pkgs.fetchFromGitHub {
         owner = "ej-shafran";
         repo = "compile-mode.nvim";
-        rev = "0b2a059baa734da932913f555eb157637dab5cdd";
+        rev = "dd3e952076a33faba0a55b04b2b73945832c0527";
+        hash = "sha256-kfZ6/8m0i8pQn0E9U9XK3dUshcR0No1P3iM5maCnvX0=";
+      };
+      dependencies = [
+        plenary-nvim
+        baleia-nvim
+      ];
+    })
+    (pkgs.vimUtils.buildVimPlugin {
+      name = "resolve";
+      # src = vim-compile-mode;
+      src = pkgs.fetchFromGitHub {
+        owner = "spacedentist";
+        repo = "resolve.nvim";
+        rev = "master";
         hash = "sha256-kfZ6/8m0i8pQn0E9U9XK3dUshcR0No1P3iM5maCnvX0=";
       };
       dependencies = [

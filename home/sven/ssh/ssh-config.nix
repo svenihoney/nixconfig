@@ -59,7 +59,7 @@ in {
         "github.com" = {
           user = "svenihoney";
           hostname = "github.com";
-          identityFile = "~/.ssh/id_dsa";
+          identityFile = "~/.ssh/id_ed25519";
           extraOptions = {
             PreferredAuthentications = "publickey";
           };

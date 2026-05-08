@@ -43,18 +43,6 @@
         pkgs.nur.repos.rycee.thunderbird-addons.cardbook
       ];
 
-      accountsOrder = [
-        "leiderfischer"
-        "effeffcee"
-        "dgm"
-        "taxdigits"
-      ];
-
-      # feedAccounts.feeds.name = "feeds";
-      feedAccounts = {
-        "feeds" = {};
-      };
-
       settings = {
         "mail.show_headers" = 1;
         "mail.phishing.detection.enabled" = true;

@@ -15,30 +15,26 @@
     imap.tls.enable = true;
     imap.port = 993;
     smtp.host = "${mailhost-chuck}";
-    # gpg = {
-    #   key = "58D4 8D66 4468 351D 3FDD  46B4 DDBD 617F 81BF 84F4";
-    #   signByDefault = true;
-    # };
+
     signature = {
       showSignature = "append";
     };
-    # thunderbird.enable = true;
+
     mbsync = {
       enable = true;
       create = "maildir";
       expunge = "both";
     };
-    # folders = {
-    #   inbox = "Inbox";
-    #   drafts = "Drafts";
-    #   sent = "Sent";
-    #   trash = "Trash";
-    # };
+
+    thunderbird = {
+      enable = true;
+      profiles = ["sven"];
+    };
+
     neomutt = {
       enable = true;
       extraMailboxes = ["Drafts" "Sent" "Trash"];
     };
-    # msmtp.enable = true;
   };
 in {
   # home.persistence = {
@@ -60,7 +56,6 @@ in {
                             Mobil: +49-(0)172-2012493, Web: http://www.effeffcee.de
           '';
 
-          # msmtp.enable = true;
           userName = address;
           # neomutt.extraMailboxes = ["Rheinmetall" "Taxdigits" "Taxdigits/YouTrack"];
         }
@@ -69,19 +64,6 @@ in {
     };
   };
 
-  # home.packages = [
-  #   pkgs.thunderbird
-  # ];
-  # xdg.mimeApps.defaultApplications = {
-  #   "x-scheme-handler/mailto" = ["thunderbird.desktop"];
-  # };
-  # programs.thunderbird = {
-  #   enable = true;
-  #   # profiles."2ec6vn7f.default" = {
-  #   #   isDefault = true;
-  #   #   name = "default";
-  #   # };
-  # };
   programs.mbsync.enable = true;
   # programs.msmtp.enable = true;
 

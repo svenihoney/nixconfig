@@ -28,8 +28,7 @@
 
     ./bilbo-ssh-config.nix
     ./bilbo-mail.nix
-    ../sven/features/productivity/neomutt.nix
-    ../sven/features/productivity/office.nix
+    ../sven/features/productivity
     ../sven/features/productivity/ai.nix
   ];
 

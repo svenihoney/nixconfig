@@ -2,14 +2,17 @@
   pkgs,
   lib,
   config,
+  inputs,
+  # self,
   ...
 }: let
-  mbsync = "${config.programs.mbsync.package}/bin/mbsync";
+  inherit (inputs) self;
+  # mbsync = "${config.programs.mbsync.package}/bin/mbsync";
   secret-tool = "${pkgs.libsecret}/bin/secret-tool";
 
   mailhost-effeffcee = "mx1.effeffcee.de";
 
-  common = rec {
+  common = {
     realName = "Sven Fischer";
     imap.host = lib.mkDefault "${mailhost-effeffcee}";
     imap.tls.enable = true;
@@ -52,6 +55,12 @@ in {
   # home.persistence = {
   #   "/persist/home/${user}".directories = [ "Mail" ];
   # };
+  age.secrets = {
+    "leiderfischer.de".file = self + /secrets/signatures/leiderfischer.de.age;
+    "effeffcee.de".file = self + /secrets/signatures/effeffcee.de.age;
+    "taxdigits.de".file = self + /secrets/signatures/taxdigits.de.age;
+    "moitzfeld-ev.de".file = self + /secrets/signatures/moitzfeld-ev.de.age;
+  };
 
   accounts.email = {
     maildirBasePath = "Mail";
@@ -62,11 +71,20 @@ in {
           address = "sven@leiderfischer.de";
           # aliases = ["gabriel@gsfontes.com" "eu@sven.me"];
           passwordCommand = "${secret-tool} lookup ${mailhost-effeffcee} ${address}";
-          signature.text = ''
-            Sven Fischer -- Platzer Höhenweg 34, 51429 Bergisch Gladbach, Germany
-                            Tel: +49-(0)2204-480985, Fax: +49-(0)2204-9670019
-                            sven@leiderfischer.de
-          '';
+          # signature.file = config.age.secrets."leiderfischer.de".path;
+          signature.command = "cat ${config.age.secrets."leiderfischer.de".path}";
+          # signature.text = ''
+          #   Sven Fischer -- Platzer Höhenweg 34, 51429 Bergisch Gladbach, Germany
+          #                   Tel: +49-(0)2204-480985, Fax: +49-(0)2204-9670019
+          #                   sven@leiderfischer.de
+          # '';
+          thunderbird = {
+            enable = true;
+            perIdentitySettings = id: {
+              "mail.identity.id_${id}.attach_signature" = true;
+              "mail.identity.id_${id}.sig_file" = config.age.secrets."leiderfischer.de".path;
+            };
+          };
 
           userName = address;
 
@@ -92,12 +110,14 @@ in {
         rec {
           address = "sven.fischer@effeffcee.de";
           passwordCommand = "${secret-tool} lookup ${mailhost-effeffcee} ${address}";
-          signature.text = ''
-            Sven Fischer (Dipl.-Phys.) - EDV- und SAP-Beratung
-                            Platzer Höhenweg 34, 51429 Bergisch Gladbach, Germany
-                            Tel.: +49-(0)2204-9670010, Fax: +49-(0)2204-9670019
-                            Mobil: +49-(0)172-2012493, Web: http://www.effeffcee.de
-          '';
+          signature.command = "cat ${config.age.secrets."effeffcee.de".path}";
+          thunderbird = {
+            enable = true;
+            perIdentitySettings = id: {
+              "mail.identity.id_${id}.attach_signature" = true;
+              "mail.identity.id_${id}.sig_file" = config.age.secrets."effeffcee.de".path;
+            };
+          };
 
           gpg = {
             key = "DDBD617F81BF84F4";
@@ -114,11 +134,17 @@ in {
       dgm = lib.mkMerge [
         rec {
           imap.host = "imap.strato.de";
-          smtp.host = "${imap.host}";
+          smtp.host = "smtp.strato.de";
           address = "sven.fischer@moitzfeld-ev.de";
           passwordCommand = "${secret-tool} lookup ${imap.host} ${address}";
-          signature.text = ''
-          '';
+          signature.command = "cat ${config.age.secrets."moitzfeld-ev.de".path}";
+          thunderbird = {
+            enable = true;
+            perIdentitySettings = id: {
+              "mail.identity.id_${id}.attach_signature" = true;
+              "mail.identity.id_${id}.sig_file" = config.age.secrets."moitzfeld-ev.de".path;
+            };
+          };
 
           # msmtp.enable = true;
           userName = address;
@@ -132,40 +158,34 @@ in {
           smtp.host = "${imap.host}";
           address = "s.fischer@taxdigits.de";
           passwordCommand = "${secret-tool} lookup ${imap.host} ${address}";
-          signature.text = ''
-          '';
+          signature.command = "cat ${config.age.secrets."taxdigits.de".path}";
+          thunderbird = {
+            enable = true;
+            perIdentitySettings = id: {
+              "mail.identity.id_${id}.attach_signature" = true;
+              "mail.identity.id_${id}.sig_file" = config.age.secrets."taxdigits.de".path;
+            };
+          };
 
           # msmtp.enable = true;
           userName = address;
         }
         common
       ];
-
     };
+  };
+
+  programs.thunderbird.profiles."sven" = {
+    feedAccounts."feeds" = {};
+
+    accountsOrder = [
+      "leiderfischer"
+      "effeffcee"
+      "dgm"
+      "taxdigits"
+    ];
   };
 
   programs.mbsync.enable = true;
   # programs.msmtp.enable = true;
-
-  # systemd.user.services.mbsync = {
-  #   Unit = { Description = "mbsync synchronization"; };
-  #   Service =
-  #     let gpgCmds = import ../cli/gpg-commands.nix { inherit pkgs; };
-  #     in
-  #     {
-  #       Type = "oneshot";
-  #       ExecCondition = ''
-  #         /bin/sh -c "${gpgCmds.isUnlocked}"
-  #       '';
-  #       ExecStart = "${mbsync} -a";
-  #     };
-  # };
-  # systemd.user.timers.mbsync = {
-  #   Unit = { Description = "Automatic mbsync synchronization"; };
-  #   Timer = {
-  #     OnBootSec = "30";
-  #     OnUnitActiveSec = "5m";
-  #   };
-  #   Install = { WantedBy = [ "timers.target" ]; };
-  # };
 }

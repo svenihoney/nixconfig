@@ -3,11 +3,15 @@ let
   fischer = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMe/Zxuwysu4HI10NPuDKFxTBqpwVB6HY8i8T1+ynOqh";
   users = [sven fischer];
 
-  nas = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ9Eq6HD/KLe/DbZEv5nUmOHPOgeXP+KkKU1tq3yPvQl";
+  puck = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPn6JX5pFfCe/05bwpp3kqrDX83JswN8M1ZgA9AbM9QZ";
   maja = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBhP1VoxGI946RmSiXjDnt7nIaORRyDdTKkYVLejcBJ5";
-  systems = [nas maja];
+  systems = [puck maja];
 in {
   "restic/env.age".publicKeys = users ++ systems;
   "restic/password.age".publicKeys = users ++ systems;
   "weatherapi/key.age".publicKeys = users ++ systems;
+  "signatures/leiderfischer.de.age".publicKeys = users ++ systems;
+  "signatures/effeffcee.de.age".publicKeys = users ++ systems;
+  "signatures/taxdigits.de.age".publicKeys = users ++ systems;
+  "signatures/moitzfeld-ev.de.age".publicKeys = users ++ systems;
 }
