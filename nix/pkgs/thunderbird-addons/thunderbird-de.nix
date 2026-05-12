@@ -2,16 +2,21 @@
   lib,
   stdenv,
   fetchurl,
+  pkgs,
   ...
 }: let
   addonId = "langpack-de@thunderbird.mozilla.org";
 in
   stdenv.mkDerivation {
     pname = "langpack-de";
-    version = "149";
+    version = "150";
     src = fetchurl {
-      url = "https://addons.thunderbird.net/thunderbird/downloads/file/1045485/deutsch_de_language_pack-149.0.20260320.185705-tb.xpi?src=";
-      sha256 = "sha256-6K1sPU99tTbQupRa5mQrpn8IhNs2HNXvheeiLJKFrD0=";
+      # Check https://addons.thunderbird.net/de/thunderbird/addon/tb-langpack-de/versions/
+      # Copy the link
+      # Update the hash
+      url = "https://addons.thunderbird.net/thunderbird/downloads/file/1046298/deutsch_de_language_pack-150.0.20260416.11526-tb.xpi";
+      # hash = pkgs.lib.fakeHash;
+      hash = "sha256-f7ZROuD3IY2+py8iu6p4KDgCt0ustiSdyegUI5fFD8w=";
     };
     dontUnpack = true;
     installPhase = ''

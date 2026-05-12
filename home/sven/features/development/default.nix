@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -21,7 +22,8 @@
     # lib.hm.home.packages = with pkgs; [
     home.packages = with pkgs;
       [
-        devenv
+        # devenv
+        inputs.devenv.packages.${stdenv.hostPlatform.system}.devenv
       ]
       ++ (lib.optionals config.svenihoney.desktop.enable [
         meld

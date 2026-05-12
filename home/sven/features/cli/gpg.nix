@@ -6,8 +6,8 @@
   ...
 }: let
   pinentryConfig =
-    if config.gtk.enable && builtins.hasAttr "pinentry-gnome3" pkgs
-    then {pinentry.package = pkgs.pinentry-gnome3;}
+    if config.qt.enable && builtins.hasAttr "pinentry-qt" pkgs
+    then {pinentry.package = pkgs.pinentry-qt;}
     else {pinentry.package = pkgs.pinentry-curses;};
 in {
   # home.packages = pinentry.packages;
@@ -26,6 +26,7 @@ in {
       # if builtins.hasAttr "pinentryPackage" self then
       # pinentryPackage = pinentryPkg;
       # sshKeys = [ "149F16412997785363112F3DBD713BC91D51B831" ];
+      # pinentry.package = pkgs.pinentry-qt;
     }
     // pinentryConfig;
 

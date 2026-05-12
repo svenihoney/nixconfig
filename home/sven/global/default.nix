@@ -24,6 +24,8 @@
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
 
+  age.identityPaths = ["${config.home.homeDirectory}/.config/ragenix/key.txt"];
+
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;
     config = {

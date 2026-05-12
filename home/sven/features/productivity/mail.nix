@@ -49,17 +49,29 @@
       enable = true;
       extraMailboxes = ["Archive" "Drafts" "Junk" "Sent" "Trash"];
     };
-    # msmtp.enable = true;
+    msmtp.enable = true;
   };
 in {
   # home.persistence = {
   #   "/persist/home/${user}".directories = [ "Mail" ];
   # };
   age.secrets = {
-    "leiderfischer.de".file = self + /secrets/signatures/leiderfischer.de.age;
-    "effeffcee.de".file = self + /secrets/signatures/effeffcee.de.age;
-    "taxdigits.de".file = self + /secrets/signatures/taxdigits.de.age;
-    "moitzfeld-ev.de".file = self + /secrets/signatures/moitzfeld-ev.de.age;
+    "leiderfischer.de" = {
+      file = self + /secrets/signatures/leiderfischer.de.age;
+      path = "${config.home.homeDirectory}/.local/share/signatures/leiderfischer.txt";
+    };
+    "effeffcee.de" = {
+      file = self + /secrets/signatures/effeffcee.de.age;
+      path = "${config.home.homeDirectory}/.local/share/signatures/effeffcee.txt";
+    };
+    "taxdigits.de" = {
+      file = self + /secrets/signatures/taxdigits.de.age;
+      path = "${config.home.homeDirectory}/.local/share/signatures/taxdigits.txt";
+    };
+    "moitzfeld-ev.de" = {
+      file = self + /secrets/signatures/moitzfeld-ev.de.age;
+      path = "${config.home.homeDirectory}/.local/share/signatures/moitzfeld-ev.txt";
+    };
   };
 
   accounts.email = {
@@ -82,7 +94,8 @@ in {
             enable = true;
             perIdentitySettings = id: {
               "mail.identity.id_${id}.attach_signature" = true;
-              "mail.identity.id_${id}.sig_file" = config.age.secrets."leiderfischer.de".path;
+              "mail.identity.id_${id}.sig_file" =
+                config.age.secrets."leiderfischer.de".path;
             };
           };
 
@@ -187,5 +200,5 @@ in {
   };
 
   programs.mbsync.enable = true;
-  # programs.msmtp.enable = true;
+  programs.msmtp.enable = true;
 }

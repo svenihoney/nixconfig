@@ -79,7 +79,7 @@
         owner = "ej-shafran";
         repo = "compile-mode.nvim";
         rev = "dd3e952076a33faba0a55b04b2b73945832c0527";
-        hash = "sha256-kfZ6/8m0i8pQn0E9U9XK3dUshcR0No1P3iM5maCnvX0=";
+        hash = "sha256-aaQ4CVJMUdNBJUYCYowXxd1oCnssnjPbpOEzIE8H+m8=";
       };
       dependencies = [
         plenary-nvim
@@ -92,8 +92,8 @@
       src = pkgs.fetchFromGitHub {
         owner = "spacedentist";
         repo = "resolve.nvim";
-        rev = "master";
-        hash = "sha256-kfZ6/8m0i8pQn0E9U9XK3dUshcR0No1P3iM5maCnvX0=";
+        rev = "1ed8bcc9ce7d43a0e8e05d0001c9cadb822d95a8";
+        hash = "sha256-BuGUDSD/RdzcpFrQ51M48XabNAwyQEZvQG8xOPZPZcA=";
       };
       dependencies = [
         plenary-nvim

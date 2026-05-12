@@ -48,6 +48,14 @@ in {
             hostname = "2a03:4000:61:a732::21:1916";
           }
           // xterm;
+        # Strato
+        "dgmold" =
+          {
+            user = "stu844689249";
+            hostname = "54070345.ssh.w1.strato.hosting";
+          }
+          // xterm;
+
         "nas" = xterm;
         nas2 = xterm;
         "bluecake" = {

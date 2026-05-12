@@ -116,18 +116,18 @@
                 module = "blink-emoji";
                 score_offset = 1;
               };
-              copilot = {
-                name = "copilot";
-                module = "blink-copilot";
-                async = true;
-                score_offset = 100;
-              };
+              # copilot = {
+              #   name = "copilot";
+              #   module = "blink-copilot";
+              #   async = true;
+              #   score_offset = 100;
+              # };
               lsp.score_offset = 4;
-              spell = {
-                name = "Spell";
-                module = "blink-cmp-spell";
-                score_offset = 1;
-              };
+              # spell = {
+              #   name = "Spell";
+              #   module = "blink-cmp-spell";
+              #   score_offset = 1;
+              # };
               git = {
                 name = "Git";
                 module = "blink-cmp-git";

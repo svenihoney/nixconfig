@@ -41,6 +41,7 @@
         pkgs.keepassxc-mail
         pkgs.thunderbird-de
         pkgs.nur.repos.rycee.thunderbird-addons.cardbook
+        # pkgs.nur.repos.sigprof.thunderbird-langpack-de
       ];
 
       settings = {
@@ -48,6 +49,7 @@
         "mail.phishing.detection.enabled" = true;
         "mail.openMessageBehavior" = 0;
         "app.update.auto" = true;
+        "app.locale" = "de";
 
         "browser.policies.applied" = true;
         "browser.search.region" = "DE";

@@ -39,7 +39,7 @@
   # colorscheme = inputs.nix-colors.colorSchemes.atelier-heath;
   # programs.emacs.package = pkgs.emacs30-pgtk;
   # services.emacs.package = pkgs.emacs30-pgtk;
-  services.blueman-applet.enable = true;
+  # services.blueman-applet.enable = true;
 
   monitors = [
     {
