@@ -42,11 +42,14 @@
         # package = pkgs.julia-mono;
         # name = "Julia Mono";
 
-        package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrainsMono Nerd Font";
+        # package = pkgs.nerd-fonts.jetbrains-mono;
+        # name = "JetBrainsMono Nerd Font";
 
         # package = pkgs.nerd-fonts.fantasque-sans-mono;
         # name = "FantasqueSansMono Nerd Font";
+
+        package = pkgs.nerd-fonts.monaspace;
+        name = "MonaspiceNe Nerd Font Mono";
 
       };
       emoji = {

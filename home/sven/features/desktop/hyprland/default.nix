@@ -77,6 +77,7 @@ in {
   # services.hyprpaper.package = inputs.hyprpaper.overlays.hyprpaper.hyprpaper;
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "hyprlang";
     # package = pkgs.inputs.hyprland.hyprland;
 
     # xwayland.enable = true;

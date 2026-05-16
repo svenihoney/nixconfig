@@ -159,7 +159,7 @@
       inputs.nixpkgs.follows = "";
     };
 
-    devenv.url = "github:cachix/devenv";
+    # devenv.url = "github:cachix/devenv";
 
     # Currently broken
     # quickshell = {

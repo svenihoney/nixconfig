@@ -21,8 +21,12 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 10))
+; (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 10))
 ;; (setq doom-font (font-spec :family "FantasqueSansM Nerd Font Mono" :size 11))
+(after! doom-themes
+  (custom-set-faces!
+    '(font-lock-comment-face :family "MonaspiceRn Nerd Font Mono")
+    '(font-lock-comment-delimiter-face :family "MonaspiceRn Nerd Font Mono")))
 
 ;; (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 10))
 ;; (setq doom-big-font (font-spec :family "FuraCode Nerd Font Mono" :size 20))

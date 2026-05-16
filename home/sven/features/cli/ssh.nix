@@ -9,6 +9,8 @@
         AddKeysToAgent = "confirm";
         # VerifyHostKeyDNS = "ask";
       };
+
     };
   };
+  services.ssh-agent.enable = true;
 }

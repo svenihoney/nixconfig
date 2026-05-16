@@ -49,6 +49,12 @@ in {
           }
           // xterm;
         # Strato
+        "tim" =
+          {
+            # hostname = "2a03:4000:48:5aa:4844:36ff:feeb:c58a";
+            hostname = "tim.effeffcee.de";
+          }
+          // xterm;
         "dgmold" =
           {
             user = "stu844689249";

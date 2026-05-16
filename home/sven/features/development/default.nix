@@ -22,8 +22,8 @@
     # lib.hm.home.packages = with pkgs; [
     home.packages = with pkgs;
       [
-        # devenv
-        inputs.devenv.packages.${stdenv.hostPlatform.system}.devenv
+        devenv
+        # inputs.devenv.packages.${stdenv.hostPlatform.system}.devenv
       ]
       ++ (lib.optionals config.svenihoney.desktop.enable [
         meld
@@ -38,6 +38,7 @@
         wrap-mode = "none";
       };
     };
+    programs.fish.interactiveShellInit = lib.mkAfter ''devenv hook fish | source'';
     # programs.nixvim.plugins.lsp.servers = {
     #   clangd.enable = config.svenihoney.devel.c;
     #   # extraOptions = "--log=verbose";
