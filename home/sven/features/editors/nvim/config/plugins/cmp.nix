@@ -90,7 +90,7 @@
               "dictionary"
               "emoji"
               "git"
-              "spell"
+              # "spell"
               "ripgrep"
             ]
             ++ lib.optionals config.plugins.copilot-lua.enable [

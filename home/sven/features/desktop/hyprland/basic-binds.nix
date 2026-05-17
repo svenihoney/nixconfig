@@ -80,12 +80,12 @@ in {
       (lib.mapAttrsToList (key: direction: "SUPERCTRLSHIFT,${key},movecurrentworkspacetomonitor,${direction}")
         directions);
 
-    binde = [
-      "SUPER,p,splitratio,-0.25"
-      "SUPER SHIFT,P,splitratio,-0.3333333"
+    # binde = [
+    #   "SUPER,p,splitratio,-0.25"
+    #   "SUPER SHIFT,P,splitratio,-0.3333333"
 
-      "SUPER,w,splitratio,0.25"
-      "SUPER SHIFT,W,splitratio,0.3333333"
-    ];
+    #   "SUPER,w,splitratio,0.25"
+    #   "SUPER SHIFT,W,splitratio,0.3333333"
+    # ];
   };
 }

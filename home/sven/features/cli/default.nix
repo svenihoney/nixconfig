@@ -4,6 +4,7 @@
     ./bat.nix
     ./direnv.nix
     ./fish.nix
+    ./nushell.nix
     ./fzf.nix
     ./atuin.nix
     # ./gh.nix
