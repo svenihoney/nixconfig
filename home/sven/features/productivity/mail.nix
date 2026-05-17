@@ -51,26 +51,31 @@
     };
     msmtp.enable = true;
   };
+
+  leiderfischerSig = "${config.home.homeDirectory}/.local/share/signatures/leiderfischer.txt";
+  effeffceeSig = "${config.home.homeDirectory}/.local/share/signatures/effeffcee.txt";
+  taxdigitsSig = "${config.home.homeDirectory}/.local/share/signatures/taxdigits.txt";
+  dgmSig = "${config.home.homeDirectory}/.local/share/signatures/moitzfeld-ev.txt";
 in {
   # home.persistence = {
   #   "/persist/home/${user}".directories = [ "Mail" ];
   # };
   age.secrets = {
-    "leiderfischer.de" = {
+    leiderfischer = {
       file = self + /secrets/signatures/leiderfischer.de.age;
-      path = "${config.home.homeDirectory}/.local/share/signatures/leiderfischer.txt";
+      # path = "${config.home.homeDirectory}/.local/share/signatures/leiderfischer.txt";
     };
-    "effeffcee.de" = {
+    effeffcee = {
       file = self + /secrets/signatures/effeffcee.de.age;
-      path = "${config.home.homeDirectory}/.local/share/signatures/effeffcee.txt";
+      # path = "${config.home.homeDirectory}/.local/share/signatures/effeffcee.txt";
     };
-    "taxdigits.de" = {
+    taxdigits = {
       file = self + /secrets/signatures/taxdigits.de.age;
-      path = "${config.home.homeDirectory}/.local/share/signatures/taxdigits.txt";
+      # path = "${config.home.homeDirectory}/.local/share/signatures/taxdigits.txt";
     };
-    "moitzfeld-ev.de" = {
+    dgm = {
       file = self + /secrets/signatures/moitzfeld-ev.de.age;
-      path = "${config.home.homeDirectory}/.local/share/signatures/moitzfeld-ev.txt";
+      # path = "${config.home.homeDirectory}/.local/share/signatures/moitzfeld-ev.txt";
     };
   };
 
@@ -83,19 +88,13 @@ in {
           address = "sven@leiderfischer.de";
           # aliases = ["gabriel@gsfontes.com" "eu@sven.me"];
           passwordCommand = "${secret-tool} lookup ${mailhost-effeffcee} ${address}";
-          # signature.file = config.age.secrets."leiderfischer.de".path;
-          signature.command = "cat ${config.age.secrets."leiderfischer.de".path}";
-          # signature.text = ''
-          #   Sven Fischer -- Platzer Höhenweg 34, 51429 Bergisch Gladbach, Germany
-          #                   Tel: +49-(0)2204-480985, Fax: +49-(0)2204-9670019
-          #                   sven@leiderfischer.de
-          # '';
+          # signature.file = config.age.secrets.leiderfischer.path;
+          signature.command = "cat ${config.age.secrets.leiderfischer.path}";
           thunderbird = {
             enable = true;
             perIdentitySettings = id: {
               "mail.identity.id_${id}.attach_signature" = true;
-              "mail.identity.id_${id}.sig_file" =
-                config.age.secrets."leiderfischer.de".path;
+              "mail.identity.id_${id}.sig_file" = leiderfischerSig;
             };
           };
 
@@ -123,12 +122,12 @@ in {
         rec {
           address = "sven.fischer@effeffcee.de";
           passwordCommand = "${secret-tool} lookup ${mailhost-effeffcee} ${address}";
-          signature.command = "cat ${config.age.secrets."effeffcee.de".path}";
+          signature.command = "cat ${config.age.secrets.effeffcee.path}";
           thunderbird = {
             enable = true;
             perIdentitySettings = id: {
               "mail.identity.id_${id}.attach_signature" = true;
-              "mail.identity.id_${id}.sig_file" = config.age.secrets."effeffcee.de".path;
+              "mail.identity.id_${id}.sig_file" = effeffceeSig;
             };
           };
 
@@ -150,12 +149,12 @@ in {
           smtp.host = "smtp.strato.de";
           address = "sven.fischer@moitzfeld-ev.de";
           passwordCommand = "${secret-tool} lookup ${imap.host} ${address}";
-          signature.command = "cat ${config.age.secrets."moitzfeld-ev.de".path}";
+          signature.command = "cat ${config.age.secrets.dgm.path}";
           thunderbird = {
             enable = true;
             perIdentitySettings = id: {
               "mail.identity.id_${id}.attach_signature" = true;
-              "mail.identity.id_${id}.sig_file" = config.age.secrets."moitzfeld-ev.de".path;
+              "mail.identity.id_${id}.sig_file" = dgmSig;
             };
           };
 
@@ -171,12 +170,12 @@ in {
           smtp.host = "${imap.host}";
           address = "s.fischer@taxdigits.de";
           passwordCommand = "${secret-tool} lookup ${imap.host} ${address}";
-          signature.command = "cat ${config.age.secrets."taxdigits.de".path}";
+          signature.command = "cat ${config.age.secrets.taxdigits.path}";
           thunderbird = {
             enable = true;
             perIdentitySettings = id: {
               "mail.identity.id_${id}.attach_signature" = true;
-              "mail.identity.id_${id}.sig_file" = config.age.secrets."taxdigits.de".path;
+              "mail.identity.id_${id}.sig_file" = taxdigitsSig;
             };
           };
 
@@ -201,4 +200,15 @@ in {
 
   programs.mbsync.enable = true;
   programs.msmtp.enable = true;
+
+  # Copy for thunderbird. Otherwise it follows links and does lose the signature
+  # if the agenix path changes.
+  home.activation = {
+    copySig = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      cp ${config.age.secrets.leiderfischer.path} ${leiderfischerSig}
+      cp ${config.age.secrets.effeffcee.path} ${effeffceeSig}
+      cp ${config.age.secrets.dgm.path} ${dgmSig}
+      cp ${config.age.secrets.taxdigits.path} ${taxdigitsSig}
+    '';
+  };
 }

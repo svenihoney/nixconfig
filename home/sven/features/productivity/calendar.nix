@@ -8,7 +8,7 @@
 
   mailhost-effeffcee = "mx1.effeffcee.de";
 
-  common = rec {
+  common = {
     local = {
       type = "filesystem";
       fileExt = ".ics";
@@ -30,13 +30,14 @@ in {
     basePath = "${config.home.homeDirectory}/.local/share/calendars";
     accounts = {
       leiderfischer = lib.mkMerge [
-        rec {
+        {
           primary = true;
 
           remote = {
             type = "caldav";
             # url = "https://mx1.effeffcee.de/SOGo/dav/sven@leiderfischer.de/Calendar/personal/";
-            url = "https://mx1.effeffcee.de/.well-known/caldav";
+            # url = "https://mx1.effeffcee.de/.well-known/caldav";
+            url = "https://mx1.effeffcee.de/dav/cal/sven@leiderfischer.de";
             userName = "sven@leiderfischer.de";
             # passwordCommand = ["secret-tool" "lookup" "caldav" "work"];
             passwordCommand = ["${secret-tool}" "lookup" "${mailhost-effeffcee}" "sven@leiderfischer.de"];
@@ -53,11 +54,11 @@ in {
       ];
 
       effeffcee = lib.mkMerge [
-        rec {
+        {
           remote = {
             type = "caldav";
             # url = "https://mx1.effeffcee.de/SOGo/dav/sven.fischer@effeffcee.de/Calendar/personal/";
-            url = "https://mx1.effeffcee.de/.well-known/caldav";
+            url = "https://mx1.effeffcee.de/dav/cal/sven.fischer@effeffcee.de";
             userName = "sven.fischer@effeffcee.de";
             # passwordCommand = ["secret-tool" "lookup" "caldav" "work"];
             passwordCommand = ["${secret-tool}" "lookup" "${mailhost-effeffcee}" "sven.fischer@effeffcee.de"];
@@ -73,7 +74,7 @@ in {
         common
       ];
       familie = lib.mkMerge [
-        rec {
+        {
           remote = {
             type = "google_calendar";
             # url = "https://apidata.googleusercontent.com/caldav/v2/fischereiadressen@gmail.com/events/"; # not actually used for google_calendar type
@@ -105,7 +106,7 @@ in {
     basePath = "${config.home.homeDirectory}/.local/share/contacts";
     accounts = {
       leiderfischer = lib.mkMerge [
-        rec {
+        {
           remote = {
             type = "carddav";
             # url = "https://mx1.effeffcee.de/SOGo/dav/sven@leiderfischer.de/Contacts/personal/";
@@ -126,7 +127,7 @@ in {
       ];
 
       effeffcee = lib.mkMerge [
-        rec {
+        {
           remote = {
             type = "carddav";
             # url = "https://mx1.effeffcee.de/SOGo/dav/sven.fischer@effeffcee.de/Contacts/personal/";
@@ -147,7 +148,7 @@ in {
         common
       ];
       familie = lib.mkMerge [
-        rec {
+        {
           remote = {
             type = "google_contacts";
           };
