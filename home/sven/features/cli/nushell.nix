@@ -54,27 +54,27 @@
     };
 
     # Raw Nu code appended to config.nu — use for things settings can't express
-    # extraConfig = ''
-    #   # ── Carapace completions ────────────────────────────────────────────────
-    #   let carapace_completer = {|spans|
-    #     carapace $spans.0 nushell ...$spans
-    #       | from json
-    #       | if ($in | default [] | where value =~ '^-.*ERR$' | is-empty) { $in } else { null }
-    #   }
-    #   $env.config.completions.external.completer = $carapace_completer
+    extraConfig = ''
+      # ── Carapace completions ────────────────────────────────────────────────
+      # let carapace_completer = {|spans|
+      #   carapace $spans.0 nushell ...$spans
+      #     | from json
+      #     | if ($in | default [] | where value =~ '^-.*ERR$' | is-empty) { $in } else { null }
+      # }
+      # $env.config.completions.external.completer = $carapace_completer
 
-    #   # ── Better ls helpers ───────────────────────────────────────────────────
-    #   def ll [...args] { ls -l  ...(if $args == [] { ["."] } else { $args }) | sort-by type name -i }
-    #   def la [...args] { ls -a  ...(if $args == [] { ["."] } else { $args }) | sort-by type name -i }
-    #   def lla [...args] { ls -la ...(if $args == [] { ["."] } else { $args }) | sort-by type name -i }
+      # ── Better ls helpers ───────────────────────────────────────────────────
+      def ll [...args] { ls -l  ...(if $args == [] { ["."] } else { $args }) | sort-by type name -i }
+      def la [...args] { ls -a  ...(if $args == [] { ["."] } else { $args }) | sort-by type name -i }
+      def lla [...args] { ls -la ...(if $args == [] { ["."] } else { $args }) | sort-by type name -i }
 
-    #   # ── Convenience ─────────────────────────────────────────────────────────
-    #   def mkcd [dir: path] { mkdir $dir; cd $dir }
+      #   # ── Convenience ─────────────────────────────────────────────────────────
+      #   def mkcd [dir: path] { mkdir $dir; cd $dir }
 
-    #   def up [n: int = 1] {
-    #     cd (1..$n | reduce -f "." {|_, acc| $acc + "/.."})
-    #   }
-    # '';
+      def up [n: int = 1] {
+        cd (1..$n | reduce -f "." {|_, acc| $acc + "/.."})
+      }
+    '';
 
     # env.nu — PATH and environment variables
     # extraEnv = ''
@@ -104,6 +104,7 @@
       # man = "${pkgs.bat-extras.batman}/bin/batman";
       nis = "${pkgs.nix}/bin/nix search nixpkgs";
       j = "${lib.getExe pkgs.just}";
+
       #   # Editors
       #   v   = "hx";
       #   vim = "hx";
@@ -133,7 +134,7 @@
       # rgrc
       blkid = "${lib.getExe pkgs.rgrc} blkid";
       curl = "${lib.getExe pkgs.rgrc} curl";
-      # df = "${lib.getExe pkgs.rgrc} df";
+      df = "${lib.getExe pkgs.rgrc} df";
       diff = "${lib.getExe pkgs.rgrc} diff";
       dig = "${lib.getExe pkgs.rgrc} dig";
       docker = "${lib.getExe pkgs.rgrc} docker";
@@ -168,19 +169,22 @@
     };
   };
 
+  home.shell.enableNushellIntegration = true;
+
   # Companion tools that integrate with the config above
   programs = {
-    starship = {
-      enableNushellIntegration = true;
-    };
+    zoxide.enableNushellIntegration = true;
+    yazi.enableNushellIntegration = true;
+    starship.enableNushellIntegration = true;
+    # pay-respects.enableNushellIntegration = true;
+    nix-your-shell.enableNushellIntegration = true;
+    nix-index.enableNushellIntegration = true;
+    lazygit.enableNushellIntegration = true;
+    eza.enableNushellIntegration = true;
+    direnv.enableNushellIntegration = true;
 
-    # carapace = {
-    #   enable = true;
-    #   enableNushellIntegration = true;
-    # };
-
-    zoxide = {
-      enableNushellIntegration = true; # adds `z` command
-    };
+    carapace.enableNushellIntegration = true;
+    carapace.enable = true;
   };
+  services.gpg-agent.enableNushellIntegration = true;
 }

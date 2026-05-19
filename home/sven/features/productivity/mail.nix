@@ -205,6 +205,10 @@ in {
   # if the agenix path changes.
   home.activation = {
     copySig = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      rm -f ${leiderfischerSig}
+      rm -f ${effeffceeSig}
+      rm -f ${dgmSig}
+      rm -f ${taxdigitsSig}
       cp ${config.age.secrets.leiderfischer.path} ${leiderfischerSig}
       cp ${config.age.secrets.effeffcee.path} ${effeffceeSig}
       cp ${config.age.secrets.dgm.path} ${dgmSig}

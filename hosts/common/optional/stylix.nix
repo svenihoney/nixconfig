@@ -49,7 +49,7 @@
         # name = "FantasqueSansMono Nerd Font";
 
         package = pkgs.nerd-fonts.monaspace;
-        name = "MonaspiceNe Nerd Font Mono";
+        name = "MonaspiceAr Nerd Font Mono";
 
       };
       emoji = {
@@ -60,8 +60,8 @@
       sizes = {
         applications = 9;
         desktop = 9;
-        terminal = 10;
-        popups = 10;
+        terminal = 11;
+        popups = 11;
       };
     };
 
