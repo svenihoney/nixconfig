@@ -38,7 +38,9 @@
         wrap-mode = "none";
       };
     };
-    programs.fish.interactiveShellInit = lib.mkAfter ''devenv hook fish | source'';
+
+    # programs.fish.interactiveShellInit = lib.mkAfter ''devenv hook fish | source'';
+
     # programs.nixvim.plugins.lsp.servers = {
     #   clangd.enable = config.svenihoney.devel.c;
     #   # extraOptions = "--log=verbose";

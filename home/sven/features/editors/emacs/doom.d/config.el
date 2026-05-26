@@ -23,6 +23,7 @@
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 ; (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 10))
 ;; (setq doom-font (font-spec :family "FantasqueSansM Nerd Font Mono" :size 11))
+(setq doom-font (font-spec :family "MonaspiceNe Nerd Font Mono" :size 12))
 (after! doom-themes
   (custom-set-faces!
     '(font-lock-comment-face :family "MonaspiceRn Nerd Font Mono")

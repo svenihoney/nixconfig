@@ -24,16 +24,21 @@ in {
         VerifyHostKeyDNS = "ask";
         WarnWeakCrypto = "no";
       };
+      settings = {
+        # Private playground
+        localhost = {
+          StrictHostKeyChecking = "no";
+        };
+      };
       matchBlocks = {
         "*" = {
           hashKnownHosts = true;
         };
-        # Private playground
-        "localhost" = {
-          extraOptions = {
-            StrictHostKeyChecking = "no";
-          };
-        };
+        # "localhost" = {
+        #   extraOptions = {
+        #     StrictHostKeyChecking = "no";
+        #   };
+        # };
 
         # Netcup
         "s2" =
@@ -74,9 +79,9 @@ in {
           user = "svenihoney";
           hostname = "github.com";
           identityFile = "~/.ssh/id_ed25519";
-          extraOptions = {
-            PreferredAuthentications = "publickey";
-          };
+          # extraOptions = {
+          #   PreferredAuthentications = "publickey";
+          # };
         };
         "aur.archlinux.org" = {
           identityFile = "~/.ssh/aur";
@@ -89,9 +94,9 @@ in {
           port = 29418;
           user = "svenihoney";
           identityFile = "~/.ssh/id_rsa";
-          extraOptions = {
-            PreferredAuthentications = "publickey";
-          };
+          # extraOptions = {
+          #   PreferredAuthentications = "publickey";
+          # };
         };
 
         # gecon
@@ -132,7 +137,8 @@ in {
           // xterm;
         "i-* mi-*" = {
           user = "ssm-user";
-          extraOptions = {ProxyCommand = "sh -c \"aws-gate ssh-proxy -P %p %h\"";};
+          # extraOptions = {ProxyCommand = "sh -c \"aws-gate ssh-proxy -P %p %h\"";};
+          proxyCommand = "sh -c \"aws-gate ssh-proxy -P %p %h\"";
         };
       };
     };

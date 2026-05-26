@@ -27,6 +27,7 @@ in {
       FdoSecrets = {
         ConfirmAccessItem = false;
         Enabled = true;
+        ShowNotification = false;
       };
       #
       GUI = {

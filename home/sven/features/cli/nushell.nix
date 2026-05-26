@@ -55,13 +55,21 @@
 
     # Raw Nu code appended to config.nu — use for things settings can't express
     extraConfig = ''
-      # ── Carapace completions ────────────────────────────────────────────────
-      # let carapace_completer = {|spans|
-      #   carapace $spans.0 nushell ...$spans
-      #     | from json
-      #     | if ($in | default [] | where value =~ '^-.*ERR$' | is-empty) { $in } else { null }
-      # }
-      # $env.config.completions.external.completer = $carapace_completer
+      # ── Fish completions ────────────────────────────────────────────────
+      let fish_completer = {|spans|
+          fish --command $"complete '--do-complete=($spans | str replace --all "'" "\\'" | str join ' ')'"
+          | from tsv --flexible --noheaders --no-infer
+          | rename value description
+          | update value {|row|
+          let value = $row.value
+          let need_quote = ['\' ',' '[' ']' '(' ')' ' ' '\t' "'" '"' "`"] | any {$in in $value}
+          if ($need_quote and ($value | path exists)) {
+              let expanded_path = if ($value starts-with ~) {$value | path expand --no-symlink} else {$value}
+              $'"($expanded_path | str replace --all "\"" "\\\"")"'
+          } else {$value}
+          }
+      }
+      $env.config.completions.external.completer = $fish_completer
 
       # ── Better ls helpers ───────────────────────────────────────────────────
       def ll [...args] { ls -l  ...(if $args == [] { ["."] } else { $args }) | sort-by type name -i }
@@ -180,11 +188,11 @@
     nix-your-shell.enableNushellIntegration = true;
     nix-index.enableNushellIntegration = true;
     lazygit.enableNushellIntegration = true;
-    eza.enableNushellIntegration = true;
+    # eza.enableNushellIntegration = true; # Replaces ls and ll
     direnv.enableNushellIntegration = true;
 
-    carapace.enableNushellIntegration = true;
-    carapace.enable = true;
+    # carapace.enableNushellIntegration = true;
+    # carapace.enable = true;
   };
   services.gpg-agent.enableNushellIntegration = true;
 }

@@ -117,8 +117,8 @@
     # ];
     bar.excludedScreens = [
       "DP-2"
-      "DP-3"
-      # "DP-4"
+      # "DP-3"
+      "DP-4"
     ];
   };
 }
