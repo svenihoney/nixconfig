@@ -4,15 +4,15 @@
   pkgs,
   ...
 }: {
-  # home.packages = [pkgs.linphone];
+  home.packages = [pkgs.linphone];
 
   wayland.windowManager.hyprland = {
     settings = {
-      windowrule = [
+      window_rule = [
         {
-          "name" = "linphone";
-          "float" = "on";
-          "match:title" = "(linphone)";
+          name = "linphone";
+          float = true;
+          match.title = "(linphone)";
         }
       ];
     };

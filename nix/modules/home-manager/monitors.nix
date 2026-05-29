@@ -46,12 +46,12 @@ in {
           default = null;
         };
         transform = mkOption {
-          type = types.nullOr types.str;
-          default = "0";
+          type = types.nullOr types.int;
+          default = 0;
         };
         scale = mkOption {
-          type = types.nullOr types.str;
-          default = "1";
+          type = types.nullOr types.int;
+          default = 1;
         };
       };
     });

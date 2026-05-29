@@ -11,11 +11,11 @@
 
   wayland.windowManager.hyprland = {
     settings = {
-      windowrule = [
+      window_rule = [
         {
-          "name" = "qalculate";
-          "float" = "on";
-          "match:title" = "(Qalculate!)";
+          name = "qalculate";
+          float = true;
+          match.title = "(Qalculate!)";
         }
       ];
     };

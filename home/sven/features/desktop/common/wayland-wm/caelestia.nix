@@ -64,15 +64,4 @@
       };
     };
   };
-  wayland.windowManager.hyprland = let
-    shell = "${lib.getExe config.programs.caelestia.package}";
-  in {
-    settings = {
-      bind = [
-        "SUPER ,d,exec,${shell} ipc call drawers toggle launcher"
-        "SUPER ,n,exec,${shell} ipc call drawers toggle sidebar"
-        "SUPER SHIFT,n,exec,${shell} ipc call notifs clear"
-      ];
-    };
-  };
 }

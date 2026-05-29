@@ -6,12 +6,12 @@
 
   wayland.windowManager.hyprland = {
     settings = {
-      windowrule = [
+      window_rule = [
         {
-          "name" = "nextcloud";
-          "float" = "on";
-          "match:class" = "com.nextcloud.desktopclient.nextcloud";
-          "move" = "(cursor_x) (monitor_h - window_h)";
+          name = "nextcloud";
+          float = true;
+          match.class = "com.nextcloud.desktopclient.nextcloud";
+          move = "(cursor_x) (monitor_h - window_h)";
         }
       ];
     };

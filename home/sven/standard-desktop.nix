@@ -23,10 +23,14 @@
     extended = true;
   };
 
-  home.packages = with pkgs; [thunar udiskie neovide];
+  programs.neovide.enable = true;
+
+  # home.packages = with pkgs; [kdePackages.dolphin];
+  home.packages = with pkgs; [nautilus];
   xdg.mimeApps.defaultApplications = {
     "text/plain" = "neovide.desktop";
-    "inode/directory" = "thunar.desktop";
+    # "inode/directory" = "dolphin.desktop";
+    "inode/directory" = "nautilus.desktop";
   };
   # home.packages = with pkgs; [pcmanfm udiskie neovide];
   # xdg.mimeApps.defaultApplications = {

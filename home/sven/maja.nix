@@ -94,7 +94,7 @@
       height = 1440;
       x = 3840;
       workspace = "3";
-      transform = "1";
+      transform = 1;
     }
   ];
   programs.caelestia.settings = {
@@ -103,18 +103,54 @@
     ];
   };
   programs.waybar.settings.primary.output = ["DP-2"];
-
-  wayland.windowManager.hyprland.settings.workspace = [
-    "1, defaultName:1, monitor:desc:Lenovo Group Limited LEN T27p-10 0x4E395246"
-    "2, defaultName:2, monitor:desc:Lenovo Group Limited LEN T27p-10 0x4E395246"
-    "3, defaultName:3, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
-    "4, defaultName:4, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
-    "5, defaultName:5"
-    "6, defaultName:6"
-    "7, defaultName:7, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
-    "8, defaultName:8"
-    "9, defaultName:9, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
-    "0, defaultName:0, monitor:desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564"
+  wayland.windowManager.hyprland.settings.workspace_rule = [
+    {
+      workspace = "1";
+      default_name = "1";
+      monitor = "desc:Lenovo Group Limited LEN T27p-10 0x4E395246";
+    }
+    {
+      workspace = "2";
+      default_name = "2";
+      monitor = "desc:Lenovo Group Limited LEN T27p-10 0x4E395246";
+    }
+    {
+      workspace = "3";
+      default_name = "3";
+      monitor = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
+    }
+    {
+      workspace = "4";
+      default_name = "4";
+      monitor = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
+    }
+    {
+      workspace = "5";
+      default_name = "5";
+    }
+    {
+      workspace = "6";
+      default_name = "6";
+    }
+    {
+      workspace = "7";
+      default_name = "7";
+      monitor = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
+    }
+    {
+      workspace = "8";
+      default_name = "8";
+    }
+    {
+      workspace = "9";
+      default_name = "9";
+      monitor = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
+    }
+    {
+      workspace = "0";
+      default_name = "0";
+      monitor = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
+    }
   ];
 
   home.packages = with pkgs; [rclone unison linphone];

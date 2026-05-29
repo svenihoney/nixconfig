@@ -269,18 +269,4 @@ in {
 
   xdg.mimeApps.defaultApplications = associations;
 
-  wayland.windowManager.hyprland = let
-    uswmapp = "${lib.getExe pkgs.uwsm} app -- ";
-    # browser = "${pkgs.vivaldi}/bin/vivaldi";
-    # altbrowser = "${pkgs.firefox}/bin/firefox";
-    browser = "${lib.getExe inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default}";
-    altbrowser = "${pkgs.vivaldi}/bin/vivaldi";
-  in {
-    settings = {
-      bind = [
-        "SUPER SHIFT, F2, exec, ${uswmapp}${altbrowser}"
-        "SUPER, F2, exec, ${uswmapp}${browser}"
-      ];
-    };
-  };
 }
