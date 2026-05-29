@@ -72,6 +72,8 @@
   };
   extraPlugins = with pkgs.vimPlugins; [
     # For these no nixvim plugin exists
+    pkgs.vimPlugins.monaspace-nvim
+
     (pkgs.vimUtils.buildVimPlugin {
       name = "vim-compile-mode";
       # src = vim-compile-mode;
@@ -86,6 +88,7 @@
         baleia-nvim
       ];
     })
+
     (pkgs.vimUtils.buildVimPlugin {
       name = "resolve";
       # src = vim-compile-mode;

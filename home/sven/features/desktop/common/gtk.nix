@@ -23,7 +23,9 @@
     #   name = "Papirus";
     #   package = pkgs.papirus-icon-theme;
     # };
-    gtk4.theme = null;
+    gtk4 = {
+      theme = null;
+    };
   };
 
   xfconf.enable = false;
@@ -35,4 +37,9 @@
   #     "Net/IconThemeName" = "${gtk.iconTheme.name}";
   #   };
   # };
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      gtk-enable-primary-paste = true;
+    };
+  };
 }

@@ -9,8 +9,9 @@
     };
   };
   xterm = {
-    setEnv = {
+    SetEnv = {
       TERM = "xterm";
+      # "TERM=xterm"
     };
   };
 in {
@@ -29,116 +30,101 @@ in {
         localhost = {
           StrictHostKeyChecking = "no";
         };
-      };
-      matchBlocks = {
         "*" = {
-          hashKnownHosts = true;
+          HashKnownHosts = true;
         };
-        # "localhost" = {
-        #   extraOptions = {
-        #     StrictHostKeyChecking = "no";
-        #   };
-        # };
 
         # Netcup
         "s2" =
           {
             # hostname = "2a03:4000:48:5aa:4844:36ff:feeb:c58a";
-            hostname = "struppi.effeffcee.de";
+            HostName = "struppi.effeffcee.de";
           }
           // xterm;
         "dgm" =
           {
-            user = "hosting211916";
-            hostname = "2a03:4000:61:a732::21:1916";
+            User = "hosting211916";
+            HostName = "2a03:4000:61:a732::21:1916";
           }
           // xterm;
         # Strato
         "tim" =
           {
-            # hostname = "2a03:4000:48:5aa:4844:36ff:feeb:c58a";
-            hostname = "tim.effeffcee.de";
+            # HostName = "2a03:4000:48:5aa:4844:36ff:feeb:c58a";
+            HostName = "tim.effeffcee.de";
           }
           // xterm;
         "dgmold" =
           {
-            user = "stu844689249";
-            hostname = "54070345.ssh.w1.strato.hosting";
+            User = "stu844689249";
+            HostName = "54070345.ssh.w1.strato.hosting";
           }
           // xterm;
 
         "nas" = xterm;
         nas2 = xterm;
         "bluecake" = {
-          hostname = "hosting155974.a2ee8.netcup.net";
-          user = "hosting155974";
+          HostName = "hosting155974.a2ee8.netcup.net";
+          User = "hosting155974";
         };
 
         # Open source
         "github.com" = {
-          user = "svenihoney";
-          hostname = "github.com";
-          identityFile = "~/.ssh/id_ed25519";
-          # extraOptions = {
-          #   PreferredAuthentications = "publickey";
-          # };
+          User = "svenihoney";
+          HostName = "github.com";
+          IdentityFile = "~/.ssh/id_ed25519";
         };
         "aur.archlinux.org" = {
-          identityFile = "~/.ssh/aur";
-          user = "aur";
+          IdentityFile = "~/.ssh/aur";
+          User = "aur";
         };
 
         # Qt
         "codereview.qt-project.org" = {
-          hostname = "codereview.qt-project.org";
-          port = 29418;
-          user = "svenihoney";
-          identityFile = "~/.ssh/id_rsa";
-          # extraOptions = {
-          #   PreferredAuthentications = "publickey";
-          # };
+          HostName = "codereview.qt-project.org";
+          Port = 29418;
+          User = "svenihoney";
+          IdentityFile = "~/.ssh/id_rsa";
         };
 
         # gecon
         "gecon" = {
-          user = "hosting116266";
-          hostname = "hosting116266.a2f75.netcup.net";
+          User = "hosting116266";
+          HostName = "hosting116266.a2f75.netcup.net";
         };
         "gecondb" = {
-          user = "fischer";
-          hostname = "h2226969.stratoserver.net";
+          User = "fischer";
+          HostName = "h2226969.stratoserver.net";
         };
 
         # ASV
         "asv" = {
-          hostname = "ssh.asv-bonn.de";
-          port = 53022;
+          HostName = "ssh.asv-bonn.de";
+          Port = 53022;
         };
 
         # TaxDigits
         "taxworker" =
           {
-            hostname = "dedivirt2025.your-server.de";
-            user = "taxadmin";
-            port = 222;
-            extraOptions = {
-              ForwardAgent = "yes";
-            };
+            HostName = "dedivirt2025.your-server.de";
+            User = "taxadmin";
+            Port = 222;
+            ForwardAgent = "yes";
           }
           // xterm;
 
         # Kunden
         "cosy" =
           {
-            user = "root";
-            hostname = "192.168.0.4";
-            identityFile = "~/.ssh/nwot_mif.rsa";
+            User = "root";
+            HostName = "192.168.0.4";
+            IdentityFile = "~/.ssh/nwot_mif.rsa";
           }
           // xterm;
         "i-* mi-*" = {
-          user = "ssm-user";
+          User = "ssm-user";
           # extraOptions = {ProxyCommand = "sh -c \"aws-gate ssh-proxy -P %p %h\"";};
-          proxyCommand = "sh -c \"aws-gate ssh-proxy -P %p %h\"";
+          ProxyCommand = "sh -c \"aws-gate ssh-proxy -P %p %h\"";
         };
       };
     };

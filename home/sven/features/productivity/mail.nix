@@ -205,9 +205,10 @@ in {
   # if the agenix path changes.
   home.activation = {
     copySig = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      XDG_RUNTIME_DIR=/run/user/$(id -u)
       if [ -f ${leiderfischerSig} ]; then
         rm -f ${leiderfischerSig}
-        cp ${config.age.secrets.leiderfischer.path} ${leiderfischerSig}
+        cp ${config.age.secrets.leiderfischer.path}  ${leiderfischerSig}
       fi
       if [ -f ${effeffceeSig} ]; then
         rm -f ${effeffceeSig}
