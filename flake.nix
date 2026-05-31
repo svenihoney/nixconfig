@@ -81,6 +81,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.quickshell.url = "github:quickshell-mirror/quickshell";
     };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # firefox-addons = {
     #   url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
     #   inputs.nixpkgs.follows = "nixpkgs";

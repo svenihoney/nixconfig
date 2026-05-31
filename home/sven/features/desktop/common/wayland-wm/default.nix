@@ -12,6 +12,7 @@
     # ./waybar.nix
     # ./hyprpanel
     ./caelestia.nix
+    # ./noctalia.nix
     ./wlogout.nix
     # ./wofi.nix
     # ./fuzzel.nix

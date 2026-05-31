@@ -37,6 +37,10 @@
       #   ];
       };
 
+      background = {
+        enabled = false;
+        wallpaperEnabled = false;
+      };
       bar = {
         clock.showIcon = true;
         tray.recolour = true;
@@ -63,5 +67,11 @@
         expire = true;
       };
     };
+  };
+
+  home.activation = {
+    caelestiaWallpaper = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      ${lib.getExe config.programs.caelestia.cli.package} wallpaper -f ${config.stylix.image}
+    '';
   };
 }

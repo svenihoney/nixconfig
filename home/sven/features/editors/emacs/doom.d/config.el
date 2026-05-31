@@ -21,13 +21,22 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-; (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 10))
+;; (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 10))
+;; (setq doom-symbol-font (font-spec :family "JetBrainsMono Nerd Font"))
 ;; (setq doom-font (font-spec :family "FantasqueSansM Nerd Font Mono" :size 11))
-(setq doom-font (font-spec :family "MonaspiceNe Nerd Font Mono" :size 12))
+;; (setq doom-font (font-spec :family "Monaspace Neon NF" :size 12))
+;; === Fonts ===
+;; (setq doom-font        (font-spec :family "Monaspace Neon NF")) ;; :size 12))
+;; (setq doom-symbol-font (font-spec :family "JetBrainsMono Nerd Font" :size 12))
+
+;; (after! nerd-icons
+;;   (setq nerd-icons-font-family "Symbols Nerd Font Mono")) ;; M-x nerd-icons-install-fonts if needed
+
 (after! doom-themes
   (custom-set-faces!
-    '(font-lock-comment-face :family "MonaspiceRn Nerd Font Mono")
-    '(font-lock-comment-delimiter-face :family "MonaspiceRn Nerd Font Mono")))
+    '(font-lock-comment-face           :family "Monaspace Radon NF")
+    '(font-lock-comment-delimiter-face :family "Monaspace Radon NF")))
+
 
 ;; (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 10))
 ;; (setq doom-big-font (font-spec :family "FuraCode Nerd Font Mono" :size 20))
@@ -36,7 +45,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-dracula)
+;; (setq doom-theme 'doom-dracula)
 ;; (setq doom-theme 'base16-stylix)
 
 ;; If you use `org' and don't want your org files in the default location below,

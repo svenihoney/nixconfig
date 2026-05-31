@@ -20,6 +20,9 @@
       shellcheck
       bash-language-server
       emacs-lsp-booster
+
+      # nerd-fonts.jetbrains-mono
+      nerd-fonts.symbols-only
     ];
 
     programs.doom-emacs = {
