@@ -50,8 +50,8 @@ in {
           default = 0;
         };
         scale = mkOption {
-          type = types.nullOr types.int;
-          default = 1;
+          type = types.nullOr types.float;
+          default = 1.0;
         };
       };
     });

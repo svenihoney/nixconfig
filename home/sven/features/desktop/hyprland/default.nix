@@ -33,7 +33,8 @@
   satty = "${lib.getExe pkgs.satty}";
   satty_cmd = "${satty} --filename - --early-exit --initial-tool arrow --annotation-size-factor 0.5 --copy-command ${pkgs.wl-clipboard}/bin/wl-copy";
 
-  uswmapp = "${lib.getExe pkgs.uwsm} app -- ";
+  uwsm = "${lib.getExe pkgs.uwsm}";
+  uswmapp = "${uwsm} app -- ";
 in {
   imports = [
     ../common
@@ -512,7 +513,7 @@ in {
             "hyprland.start"
             (lib.generators.mkLuaInline ''
               function ()
-                hl.exec_cmd("uwsm finalize SSH_AUTH_SOCK")
+                hl.exec_cmd("${uwsm} finalize SSH_AUTH_SOCK")
                 hl.exec_cmd("${lib.getExe pkgs.fish} -c ${keepassxc}")
               end
             '')

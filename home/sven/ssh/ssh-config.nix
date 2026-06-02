@@ -119,6 +119,7 @@ in {
             User = "root";
             HostName = "192.168.0.4";
             IdentityFile = "~/.ssh/nwot_mif.rsa";
+            StrictHostKeyChecking = "no";
           }
           // xterm;
         "i-* mi-*" = {

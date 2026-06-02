@@ -206,19 +206,19 @@ in {
   home.activation = {
     copySig = lib.hm.dag.entryAfter ["writeBoundary"] ''
       XDG_RUNTIME_DIR=/run/user/$(id -u)
-      if [ -f ${leiderfischerSig} ]; then
+      if [ -f ${config.age.secrets.leiderfischer.path} ]; then
         rm -f ${leiderfischerSig}
         cp ${config.age.secrets.leiderfischer.path}  ${leiderfischerSig}
       fi
-      if [ -f ${effeffceeSig} ]; then
+      if [ -f ${config.age.secrets.effeffcee.path} ]; then
         rm -f ${effeffceeSig}
         cp ${config.age.secrets.effeffcee.path} ${effeffceeSig}
       fi
-      if [ -f ${dgmSig} ]; then
+      if [ -f ${config.age.secrets.dgm.path} ]; then
         rm -f ${dgmSig}
         cp ${config.age.secrets.dgm.path} ${dgmSig}
       fi
-      if [ -f ${taxdigitsSig} ]; then
+      if [ -f ${config.age.secrets.taxdigits.path} ]; then
         rm -f ${taxdigitsSig}
         cp ${config.age.secrets.taxdigits.path} ${taxdigitsSig}
       fi

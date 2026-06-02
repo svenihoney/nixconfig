@@ -69,9 +69,9 @@
     };
   };
 
-  home.activation = {
-    caelestiaWallpaper = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      ${lib.getExe config.programs.caelestia.cli.package} wallpaper -f ${config.stylix.image}
-    '';
-  };
+  # home.activation = {
+  #   caelestiaWallpaper = lib.hm.dag.entryAfter ["writeBoundary"] ''
+  #     ${lib.getExe config.programs.caelestia.cli.package} wallpaper -f ${config.stylix.image}
+  #   '';
+  # };
 }

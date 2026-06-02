@@ -195,5 +195,7 @@
     allowedUDPPorts = [111 2049 4000 4001 4002 20048];
   };
 
+  stylix.targets.kmscon.enable = false; # Workaround for 26.05 -> .11 change issue
+
   system.stateVersion = "23.11";
 }

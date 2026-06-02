@@ -48,7 +48,7 @@
       height = 1600;
       workspace = "1";
       primary = true;
-      scale = "1.333333";
+      scale = 1.333333;
     }
     {
       name = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
@@ -56,7 +56,7 @@
       height = 1440;
       x = 1920;
       workspace = "3";
-      transform = "1";
+      transform = 1;
     }
   ];
   programs.caelestia.settings = {

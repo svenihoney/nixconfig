@@ -67,7 +67,7 @@
       x = 0;
       workspace = "1";
       primary = true;
-      scale = "2";
+      scale = 2.0;
     }
     {
       name = "desc:Lenovo Group Limited LEN LT2423wC VN-A015TT";
@@ -82,7 +82,7 @@
       height = 1080;
       x = 3840;
       workspace = "4";
-      transform = "1";
+      transform = 1;
     }
     {
       name = "desc:Lenovo Group Limited TIO24Gen3 V3018ATR";
@@ -90,7 +90,7 @@
       height = 1080;
       x = 3840;
       workspace = "4";
-      transform = "1";
+      transform = 1;
     }
     # PH34
     {
@@ -99,7 +99,7 @@
       height = 1440;
       x = 1920;
       workspace = "3";
-      transform = "1";
+      transform = 1;
     }
   ];
 

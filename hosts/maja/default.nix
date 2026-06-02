@@ -222,6 +222,7 @@
       21027
     ];
   };
+  stylix.targets.kmscon.enable = false; # Workaround for 26.05 -> .11 change issue
 
   system.stateVersion = "23.11";
 }
