@@ -1,20 +1,4 @@
-{pkgs, ...}: let
-  oldSshHost = {
-    user = "root";
-    extraOptions = {
-      StrictHostKeyChecking = "no";
-      HostKeyAlgorithms = "ssh-rsa";
-      KexAlgorithms = "diffie-hellman-group1-sha1";
-      Ciphers = "aes128-cbc";
-    };
-  };
-  xterm = {
-    SetEnv = {
-      TERM = "xterm";
-      # "TERM=xterm"
-    };
-  };
-in {
+{...}: {
   programs = {
     ssh = {
       enable = true;
@@ -35,34 +19,24 @@ in {
         };
 
         # Netcup
-        "s2" =
-          {
-            # hostname = "2a03:4000:48:5aa:4844:36ff:feeb:c58a";
-            HostName = "struppi.effeffcee.de";
-          }
-          // xterm;
-        "dgm" =
-          {
-            User = "hosting211916";
-            HostName = "2a03:4000:61:a732::21:1916";
-          }
-          // xterm;
+        "s2" = {
+          # hostname = "2a03:4000:48:5aa:4844:36ff:feeb:c58a";
+          HostName = "struppi.effeffcee.de";
+        };
+        "dgm" = {
+          User = "hosting211916";
+          HostName = "2a03:4000:61:a732::21:1916";
+        };
         # Strato
-        "tim" =
-          {
-            # HostName = "2a03:4000:48:5aa:4844:36ff:feeb:c58a";
-            HostName = "tim.effeffcee.de";
-          }
-          // xterm;
-        "dgmold" =
-          {
-            User = "stu844689249";
-            HostName = "54070345.ssh.w1.strato.hosting";
-          }
-          // xterm;
+        "tim" = {
+          # HostName = "2a03:4000:48:5aa:4844:36ff:feeb:c58a";
+          HostName = "tim.effeffcee.de";
+        };
+        "dgmold" = {
+          User = "stu844689249";
+          HostName = "54070345.ssh.w1.strato.hosting";
+        };
 
-        "nas" = xterm;
-        nas2 = xterm;
         "bluecake" = {
           HostName = "hosting155974.a2ee8.netcup.net";
           User = "hosting155974";
@@ -104,24 +78,20 @@ in {
         };
 
         # TaxDigits
-        "taxworker" =
-          {
-            HostName = "dedivirt2025.your-server.de";
-            User = "taxadmin";
-            Port = 222;
-            ForwardAgent = "yes";
-          }
-          // xterm;
+        "taxworker" = {
+          HostName = "dedivirt2025.your-server.de";
+          User = "taxadmin";
+          Port = 222;
+          ForwardAgent = "yes";
+        };
 
         # Kunden
-        "cosy" =
-          {
-            User = "root";
-            HostName = "192.168.0.4";
-            IdentityFile = "~/.ssh/nwot_mif.rsa";
-            StrictHostKeyChecking = "no";
-          }
-          // xterm;
+        "cosy" = {
+          User = "root";
+          HostName = "192.168.0.4";
+          IdentityFile = "~/.ssh/nwot_mif.rsa";
+          StrictHostKeyChecking = "no";
+        };
         "i-* mi-*" = {
           User = "ssm-user";
           # extraOptions = {ProxyCommand = "sh -c \"aws-gate ssh-proxy -P %p %h\"";};

@@ -49,10 +49,11 @@
     # };
 
     # Leaves blue
-    image = pkgs.fetchurl {
-      url = "https://4kwallpapers.com/images/wallpapers/leaves-blue-3840x2160-17461.jpeg";
-      sha256 = "sha256-S2x7nt/7wBhFcYf094Fwm/3AqiIee/pizS3F8OgB3fQ=";
-    };
+    # image = pkgs.fetchurl {
+    #   url = "https://4kwallpapers.com/images/wallpapers/leaves-blue-3840x2160-17461.jpeg";
+    #   sha256 = "sha256-S2x7nt/7wBhFcYf094Fwm/3AqiIee/pizS3F8OgB3fQ=";
+    # };
+    image = ./assets/images/liquid1.jpg;
 
     icons = {
       enable = true;

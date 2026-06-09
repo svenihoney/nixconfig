@@ -9,12 +9,7 @@
   rootUser = {
     User = "root";
   };
-  xterm = {
-    SetEnv = {
-      TERM = "xterm";
-    };
-  };
-  qnxSshHost = rootUser // xterm // oldSshHost;
+  qnxSshHost = rootUser // oldSshHost;
 in {
   programs = {
     ssh = {
@@ -41,17 +36,16 @@ in {
         docker =
           {
             User = "rancher";
-          }
-          // xterm;
-        mirror = rootUser // xterm;
+          };
+        mirror = rootUser;
         proxmox =
           {
             HostName = "proxmox1";
           }
           // rootUser;
-        chuck = rootUser // xterm;
-        nas1 = rootUser // xterm;
-        "gerrit.software.ads" = oldSshHost // xterm;
+        chuck = rootUser;
+        nas1 = rootUser;
+        "gerrit.software.ads" = oldSshHost;
 
         willi = {
           HostName = "192.168.11.63";

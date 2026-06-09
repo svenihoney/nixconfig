@@ -14,9 +14,9 @@ in
       # Check https://addons.thunderbird.net/de/thunderbird/addon/tb-langpack-de/versions/
       # Copy the link
       # Update the hash
-      url = "https://addons.thunderbird.net/thunderbird/downloads/file/1046298/deutsch_de_language_pack-150.0.20260416.11526-tb.xpi";
+      url = "https://addons.thunderbird.net/thunderbird/downloads/file/1046973/deutsch_de_language_pack-151.0.20260515.20702-tb.xpi?src=version-history";
       # hash = pkgs.lib.fakeHash;
-      hash = "sha256-f7ZROuD3IY2+py8iu6p4KDgCt0ustiSdyegUI5fFD8w=";
+      hash = "sha256-naD6hTQ1QtX6kkqyK7usfCx81lK5iKX2ZYlQgj7sST8=";
     };
     dontUnpack = true;
     installPhase = ''

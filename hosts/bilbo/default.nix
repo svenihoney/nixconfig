@@ -186,6 +186,7 @@
     extraNfsdConfig = '''';
     exports = ''
       /srv/qnxexch 192.168.1.3(ro,nohide,insecure,no_subtree_check,root_squash) 192.168.1.55(ro,nohide,insecure,no_subtree_check,root_squash)
+      /srv/lnxexch 192.168.1.55(rw,nohide,insecure,no_subtree_check,root_squash)
     '';
   };
   networking.firewall = {

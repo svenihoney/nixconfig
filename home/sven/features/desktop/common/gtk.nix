@@ -23,22 +23,16 @@
     #   name = "Papirus";
     #   package = pkgs.papirus-icon-theme;
     # };
-    gtk4 = {
-      theme = null;
-    };
+    # gtk4 = {
+    #   theme = null;
+    # };
   };
 
   xfconf.enable = false;
 
-  # services.xsettingsd = {
-  #   enable = true;
-  #   settings = {
-  #     # "Net/ThemeName" = "${gtk.theme.name}";
-  #     "Net/IconThemeName" = "${gtk.iconTheme.name}";
-  #   };
-  # };
   dconf.settings = {
     "org/gnome/desktop/interface" = {
+      # Enable middle mouse button paste in GTK applications
       gtk-enable-primary-paste = true;
     };
   };

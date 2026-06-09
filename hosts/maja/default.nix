@@ -81,7 +81,7 @@
     #   };
     # };
     # interfaces.wlp5s0.useDHCP = false;
-    networkmanager.unmanaged = [ "interface-name:wlp5s0" ];
+    # networkmanager.unmanaged = [ "interface-name:wlp5s0" ];
     # wireless.enable = false; # if you previously used wpa_supplicant
   };
   services.resolved = {

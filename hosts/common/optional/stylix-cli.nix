@@ -32,8 +32,7 @@
     #   sha256 = "sha256-mTWlrcD3JSoOW1rvyqroM5w9qjJY4pukbJeLTaJGEtQ=";
     # };
 
-    # MilkyWay from KDE
-    image = lib.mkDefault ./black.png;
+    image = lib.mkDefault null;
 
     # Chalk board
     # image = pkgs.fetchurl {

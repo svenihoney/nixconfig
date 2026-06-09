@@ -8,7 +8,7 @@
 
   mailhost-effeffcee = "mx1.effeffcee.de";
 
-  common = {
+  commonCal = {
     local = {
       type = "filesystem";
       fileExt = ".ics";
@@ -18,6 +18,7 @@
 
     khal = {
       enable = true;
+      type = "discover";
     };
 
     thunderbird = {
@@ -50,7 +51,7 @@ in {
             color = "light blue";
           };
         }
-        common
+        commonCal
       ];
 
       effeffcee = lib.mkMerge [
@@ -71,7 +72,7 @@ in {
             color = "yellow";
           };
         }
-        common
+        commonCal
       ];
       familie = lib.mkMerge [
         {
@@ -98,11 +99,30 @@ in {
           };
           thunderbird.enable = false;
         }
-        common
+        commonCal
       ];
     };
   };
-  accounts.contact = {
+  accounts.contact = let
+    commonContact = {
+      local = {
+        type = "filesystem";
+      };
+
+      vdirsyncer.enable = true;
+
+      khard = {
+        enable = true;
+        type = "discover";
+      };
+
+      thunderbird = {
+        enable = lib.mkDefault true;
+        profiles = ["sven"];
+      };
+    };
+
+  in  {
     basePath = "${config.home.homeDirectory}/.local/share/contacts";
     accounts = {
       leiderfischer = lib.mkMerge [
@@ -117,13 +137,8 @@ in {
           vdirsyncer = {
             collections = ["from a"];
           };
-
-          khal = {
-            color = "light blue";
-          };
-          khard.enable = true;
         }
-        common
+        commonContact
       ];
 
       effeffcee = lib.mkMerge [
@@ -139,13 +154,8 @@ in {
           vdirsyncer = {
             collections = ["from a"];
           };
-
-          khal = {
-            color = "yellow";
-          };
-          khard.enable = true;
         }
-        common
+        commonContact
       ];
       familie = lib.mkMerge [
         {
@@ -159,14 +169,11 @@ in {
             tokenFile = "${config.home.homeDirectory}/.local/share/vdirsyncer/google_token";
             collections = ["from b"];
           };
-
-          khal = {
-            color = "light green";
+          khard = {
+            enable = true;
+            type = "discover";
           };
-          thunderbird.enable = false;
-          khard.enable = true;
         }
-        common
       ];
     };
   };

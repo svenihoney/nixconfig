@@ -10,7 +10,7 @@
       # theme = "Dracula";
 
       # shell-integration = fish;
-      shell-integration-features = "no-cursor";
+      shell-integration-features = "ssh-env,ssh-terminfo,no-cursor";
       window-inherit-working-directory = true;
       clipboard-paste-protection = false;
 
