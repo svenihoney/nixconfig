@@ -129,6 +129,15 @@
         # min_size = "{ 600, 800 }";
         # dim_around = true;
       }
+      {
+        name = "windowrule-26";
+        match.initial_class = ".exe";
+        float = true;
+        # center = true;
+        # size = "1920 1200";
+        # min_size = "{ 600, 800 }";
+        # dim_around = true;
+      }
     ];
   };
 }

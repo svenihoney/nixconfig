@@ -11,15 +11,15 @@
     inputs.hardware.nixosModules.common-pc-ssd
 
     inputs.home-manager.nixosModules.home-manager
-    # inputs.stylix.nixosModules.stylix
 
-    # inputs.nixos-cosmic.nixosModules.default
+    inputs.musnix.nixosModules.musnix
 
     ./hardware-configuration.nix
     ./restic.nix
 
     ../common/global
     ../common/users/sven
+    ../common/users/root
 
     # ../common/optional/gamemode.nix
     # ../common/optional/ckb-next.nix
@@ -113,6 +113,10 @@
     # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
     # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     # kernelPackages = pkgs.linuxPackages_cachyos-lto-znver4;
+
+    # Enable hugepages for libvirt
+    kernelParams = [ "hugepagesz=2M" "hugepages=8192" ];  # 8192 × 2MB = 16GB
+
     binfmt = {
       emulatedSystems = [ "aarch64-linux" ];
       preferStaticEmulators = true;
@@ -125,6 +129,8 @@
     #   pkiBundle = "/var/lib/sbctl";
     # };
   };
+  musnix.enable = true;
+
   services.rpcbind.enable = lib.mkForce false;
   zramSwap = {
     enable = true;
@@ -147,7 +153,7 @@
 
   powerManagement = {
     enable = true;
-    cpuFreqGovernor = "schedutil";
+    cpuFreqGovernor = lib.mkDefault "schedutil";
   };
 
   services = {

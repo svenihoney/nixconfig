@@ -50,6 +50,12 @@
     # };
     nixgl.url = "github:guibou/nixGL";
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    musnix.url = "github:musnix/musnix";
     # chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     # nh = {

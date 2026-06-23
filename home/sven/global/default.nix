@@ -16,7 +16,6 @@
       # inputs.impermanence.nixosModules.home-manager.impermanence
       inputs.nixvim.homeModules.nixvim
       inputs.ragenix.homeManagerModules.default
-      inputs.caelestia-shell.homeManagerModules.default
 
       ../features/cli
       ../features/editors

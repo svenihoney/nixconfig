@@ -1,47 +1,54 @@
-{
-  inputs,
-  outputs,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./global
     ./standard-desktop.nix
 
     ./features/desktop/hyprland
     ./features/desktop/common/networkmanager.nix
-    ./features/desktop/common/wayland-wm/wofi.nix
+    # ./features/desktop/common/wayland-wm/wofi.nix
     # ./features/desktop/wireless
     ./features/productivity
+    ./features/productivity/mail.nix
     ./features/media
     # ./features/pass
     ./features/games
     # TODO: For standard
-    ./features/desktop/common/keepassxc.nix
     ./features/desktop/common/nextcloud-client.nix
-    ./features/desktop/common/kubernetes.nix
+    # ./features/desktop/common/kubernetes.nix
     # ./features/desktop/common/wayland-wm/qutebrowser.nix
     ./features/desktop/common/browser.nix
     ./features/desktop/common/virtualisation.nix
     ./features/desktop/common/linphone.nix
-    ./features/development/syncthing.nix
+    ./features/desktop/extended.nix
+    ./features/development
+    # ./features/development/syncthing.nix
 
     ./ssh/ssh-config.nix
+
+    ./features/work
   ];
 
+  svenihoney.devel = {
+    all = true;
+    emacs = true;
+    # helix = true;
+    # code = true;
+    zed = true;
+  };
   # wallpaper = outputs.wallpapers.aenami-lunar;
   # colorscheme = inputs.nix-colors.colorSchemes.atelier-heath;
-  programs.emacs.package = pkgs.emacs30-pgtk;
-  services.emacs.package = pkgs.emacs30-pgtk;
-  services.blueman-applet.enable = true;
+  # programs.emacs.package = pkgs.emacs30-pgtk;
+  # services.emacs.package = pkgs.emacs30-pgtk;
+  # services.blueman-applet.enable = true;
 
   monitors = [
     {
-      name = "desc:BOE 0x08E2";
+      name = "desc:BOE 0x06B4";
       width = 1920;
       height = 1080;
       workspace = "1";
       primary = true;
+      scale = 1.0;
     }
     {
       name = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
@@ -49,7 +56,24 @@
       height = 1440;
       x = 1920;
       workspace = "3";
-      transform = "1";
+      transform = 1;
     }
   ];
+  programs.caelestia.settings = {
+    bar.excludedScreens = [
+      "DP-2"
+      "DP-3"
+      "DP-4"
+    ];
+  };
+  home.packages = with pkgs; [
+    gparted
+    unison
+  ];
+
+  # home.packages = [pkgs.lenopow];
+  # Qt does not read the fractional scalea correctly...
+  # home.sessionVariables = {
+  #   QT_SCREEN_SCALE_FACTORS = "1.33;1";
+  # };
 }

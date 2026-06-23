@@ -57,6 +57,10 @@
         hms = "home-manager --flake . switch";
 
         j = "just";
+        ds = "devenv shell";
+
+        sc = "systemctl";
+        jc = "journalctl";
       };
       shellAliases = {
         # Clear screen and scrollback

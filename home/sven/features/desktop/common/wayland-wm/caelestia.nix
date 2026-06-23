@@ -1,8 +1,10 @@
 {
   config,
+  inputs,
   lib,
   ...
 }: {
+  imports = [inputs.caelestia-shell.homeManagerModules.default];
   # services.caelestia-shell = {
   #   enable = true;
   # };
@@ -17,24 +19,24 @@
       general.idle = {
         inhibitWhenAudio = true;
         timeouts = [];
-      #   timeouts = lib.mkDefault [
-      #     {
-      #       timeout = 600;
-      #       idleAction = "lock";
-      #     }
-      #     {
-      #       timeout = 660;
-      #       idleAction = "dpms off";
-      #       returnAction = "dpms on";
-      #     }
-      #     {
-      #       timeout = 1800;
-      #       idleAction = [
-      #         "systemctl"
-      #         "suspend-then-hibernate"
-      #       ];
-      #     }
-      #   ];
+        #   timeouts = lib.mkDefault [
+        #     {
+        #       timeout = 600;
+        #       idleAction = "lock";
+        #     }
+        #     {
+        #       timeout = 660;
+        #       idleAction = "dpms off";
+        #       returnAction = "dpms on";
+        #     }
+        #     {
+        #       timeout = 1800;
+        #       idleAction = [
+        #         "systemctl"
+        #         "suspend-then-hibernate"
+        #       ];
+        #     }
+        #   ];
       };
 
       background = {

@@ -50,14 +50,14 @@ let
     #   remoteBuild = true;
     #   user = "sven";
     # };
-    # willi = {
-    #   type = "nixos";
-    #   hostPlatform = "x86_64-linux";
-    #   address = "willi";
-    #   remoteBuild = false;
-    #   user = "sven";
-    #   stable = false;
-    # };
+    willi = {
+      type = "nixos";
+      hostPlatform = "x86_64-linux";
+      address = "willi";
+      remoteBuild = false;
+      user = "sven";
+      stable = false;
+    };
     puck = {
       type = "nixos";
       hostPlatform = "x86_64-linux";

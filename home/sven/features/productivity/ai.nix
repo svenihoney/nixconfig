@@ -70,7 +70,7 @@
           WantedBy = [ "default.target" ];
         };
         Service = {
-          ExecStart = "${lib.getExe pkgs.llama-swap} --listen :8090";
+          ExecStart = "${lib.getExe pkgs.llama-swap} -listen :8090 -config config.yaml";
           WorkingDirectory = "/home/sven/kunden/vorwerk/image/llama-cpp";
         };
       };
