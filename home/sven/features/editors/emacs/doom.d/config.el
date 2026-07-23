@@ -177,12 +177,18 @@
 
 ;; #################### PROGRAMMING / C++
 (after! cc-mode
-  (c-add-style "svenihoney"
-               '("linux"
+  (c-add-style "svenihoney-c-style"
+               '("doom"
                  (c-basic-offset . 4)
-                 ))
-  (add-to-list 'c-default-style '(other . "svenihoney"))
-  )
+                 (c-syntactic-indentation . t)))
+  (setf (alist-get 'other c-default-style) "svenihoney-c-style"))
+;; (after! cc-mode
+;;   (c-add-style "svenihoney"
+;;                '("linux"
+;;                  (c-basic-offset . 4)
+;;                  ))
+;;   (add-to-list 'c-default-style '(other . "svenihoney"))
+;;   )
 
 (set-docsets! 'c++-mode :add "Qt_5")
 

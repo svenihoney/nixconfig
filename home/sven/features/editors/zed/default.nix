@@ -20,8 +20,8 @@
       load_direnv = "shell_hook";
       # load_direnv = "direct";
       # icon_theme = "Catppuccin Mocha";
-      features = {
-        edit_prediction_provider = "zed";
+      edit_predictions = {
+        provider = "zed";
       };
       base_keymap = "VSCode";
       # theme = "Dracula";
@@ -63,7 +63,7 @@
       agent = {
         default_model = {
           provider = "ollama";
-          model = "qwen3:8b";
+          model = "gemma:e4b";
         };
         provider = null;
       };
@@ -124,13 +124,13 @@
         #     show_other_hints = true;
         #     show_type_hints = true;
         #   };
-        # Nix = {
-        #   formatter = {
-        #     language_server = {
-        #       name = "${lib.getExe pkgs.alejandra}";
-        #     };
-        #   };
-        # };
+        Nix = {
+          formatter = {
+            language_server = {
+              name = "${lib.getExe pkgs.alejandra}";
+            };
+          };
+        };
       };
       #   Python = {
       #     format_on_save = {
@@ -301,6 +301,13 @@
         bindings = {
           c = "vim::CurrentLine";
           a = "editor::ToggleCodeActions";
+        };
+      }
+      {
+        context = "Editor && vim_operator == c";
+        bindings = {
+          c = "vim::CurrentLine";
+          f = "editor::Format";
         };
       }
       {

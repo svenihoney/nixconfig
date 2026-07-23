@@ -15,7 +15,7 @@
       clipboard-paste-protection = false;
 
       mouse-hide-while-typing = true;
-      scrollback-limit = 100000;
+      scrollback-limit = 80000000;
 
       keybind = [
         "ctrl+shift+h=write_scrollback_file:open"

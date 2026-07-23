@@ -69,7 +69,7 @@
       {
         name = "windowrule-15";
         workspace = "2";
-        match.class = "zen.*";
+        match.class = "^zen(-beta)?$";
       }
       {
         name = "windowrule-16";
@@ -133,6 +133,7 @@
         name = "windowrule-26";
         match.initial_class = ".exe";
         float = true;
+        workspace = "5";
         # center = true;
         # size = "1920 1200";
         # min_size = "{ 600, 800 }";

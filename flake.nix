@@ -81,14 +81,19 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    caelestia-shell = {
-      url = "github:caelestia-dots/shell";
-      # url = "github:nik-bsta/shell?ref=fix/app2unit-version-pin";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.quickshell.url = "github:quickshell-mirror/quickshell";
-    };
+    # caelestia-shell = {
+    #   url = "github:caelestia-dots/shell";
+    #   # url = "github:nik-bsta/shell?ref=fix/app2unit-version-pin";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.quickshell.url = "github:quickshell-mirror/quickshell";
+    # };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    mangowm = {
+      # url = "github:DreamMaoMao/mangowc";
+      url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -15,6 +15,10 @@
       condition = "gitdir:/home/sven/kunden/vorwerk/";
       contents = {user = {email = "sven.fischer@external.vorwerk.com";};};
     }
+    {
+      condition = "gitdir:/home/sven/kunden/taxdigits/";
+      contents = {user = {email = "s.fischer@taxdigits.de";};};
+    }
   ];
 
   home.file.".config/tio/config" = {

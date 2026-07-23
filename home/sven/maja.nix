@@ -4,6 +4,7 @@
     ./standard-desktop.nix
 
     ./features/desktop/hyprland
+    # ./features/desktop/mangowc
     ./features/desktop/common/networkmanager.nix
     # ./features/desktop/common/wayland-wm/wofi.nix
     # ./features/desktop/common/wayland-wm/fuzzel.nix
@@ -97,11 +98,18 @@
       transform = 1;
     }
   ];
-  programs.caelestia.settings = {
-    bar.excludedScreens = [
-      "HDMI-A-1"
-    ];
+  # programs.caelestia.enable = false;
+  # programs.caelestia.settings = {
+  #   bar.excludedScreens = [
+  #     "HDMI-A-1"
+  #   ];
+  # };
+  programs.noctalia.settings.bar.default.monitor = {
+    HDMI-A-1 = {
+      enabled = false;
+    };
   };
+
   programs.waybar.settings.primary.output = ["DP-2"];
   wayland.windowManager.hyprland.settings.workspace_rule = [
     {
@@ -152,6 +160,5 @@
       monitor = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
     }
   ];
-
   home.packages = with pkgs; [rclone unison linphone];
 }

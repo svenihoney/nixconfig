@@ -108,17 +108,22 @@
   # ollama.service.enable = true;
   # services.ollama.acceleration = "cuda";
 
-  programs.caelestia.settings = {
-    # general.idle.timeouts = [
-    #   {
-    #     timeout = 600;
-    #     idleAction = "lock";
-    #   }
-    # ];
-    bar.excludedScreens = [
-      "DP-2"
-      # "DP-3"
-      "DP-4"
-    ];
+  # programs.caelestia.settings = {
+  #   # general.idle.timeouts = [
+  #   #   {
+  #   #     timeout = 600;
+  #   #     idleAction = "lock";
+  #   #   }
+  #   # ];
+  #   bar.excludedScreens = [
+  #     "DP-2"
+  #     # "DP-3"
+  #     "DP-4"
+  #   ];
+  # };
+  programs.noctalia.settings.bar.default.monitor = {
+    DP-2 = {enabled = false;};
+    # DP-3 = {enabled = false;};
+    DP-4 = {enabled = false;};
   };
 }

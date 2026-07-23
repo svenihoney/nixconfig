@@ -11,8 +11,9 @@
     # ./hypridle.nix
     # ./waybar.nix
     # ./hyprpanel
-    ./caelestia.nix
-    # ./noctalia.nix
+
+    # ./caelestia.nix
+    ./noctalia.nix
     ./wlogout.nix
     # ./wofi.nix
     # ./fuzzel.nix

@@ -9,7 +9,7 @@ let
 
   terminal = config.programs.ghostty;
 
-  caelestia = "${lib.getExe config.programs.caelestia.cli.package}";
+  # caelestia = "${lib.getExe config.programs.caelestia.cli.package}";
 
   playerctl = "${lib.getExe config.services.playerctld.package}";
   wpctl = "${lib.getExe' pkgs.wireplumber "wpctl"}";
@@ -58,9 +58,7 @@ in
           "F10" = pkgs.slack;
         };
         commands = {
-          "SHIFT + F7" = "${caelestia} shell drawers toggle dashboard";
           "F12" = "${hyprctl} switchxkblayout current next";
-          "SHIFT + l" = "${caelestia} shell lock lock; systemctl hybrid-sleep";
 
           "Print" =
             "${grimblast} --notify --freeze save area - | ${satty_cmd} --action-on-enter save-to-clipboard --output-filename /tmp/satty-area-$(date '+%Y%m%d-%H:%M:%S').png";
@@ -68,19 +66,24 @@ in
             "${grimblast} --notify --freeze save window - | ${satty_cmd} --action-on-enter save-to-file --output-filename /tmp/satty-window-$(date '+%Y%m%d-%H:%M:%S').png";
           "CONTROL + Print" =
             "${grimblast} --notify --freeze save output - | ${satty_cmd} --action-on-enter save-to-file --output-filename /tmp/satty-screen-$(date '+%Y%m%d-%H:%M:%S').png";
+        }
+        // lib.attrsets.optionalAttrs config.programs.doom-emacs.enable {
           # Workaround for emacs not being set up correctly for ssh access
           "F4" =
             "${lib.getExe config.programs.fish.package} -c ${lib.getExe config.programs.doom-emacs.finalEmacsPackage}";
         }
-        // lib.attrsets.optionalAttrs config.programs.caelestia.enable {
-          "d" = "${caelestia} shell drawers toggle launcher";
+        # // lib.attrsets.optionalAttrs config.programs.caelestia.enable {
+        #   "SHIFT + F7" = "${caelestia} shell drawers toggle dashboard";
+        #   "SHIFT + l" = "${caelestia} shell lock lock; systemctl hybrid-sleep";
+        #   "d" = "${caelestia} shell drawers toggle launcher";
 
-          "l" = "${caelestia} shell lock lock";
-          "n" = "${caelestia} shell drawers toggle sidebar";
-          "SHIFT + n" = "${caelestia} shell notifs clear";
+        #   "l" = "${caelestia} shell lock lock";
+        #   "n" = "${caelestia} shell drawers toggle sidebar";
+        #   "SHIFT + n" = "${caelestia} shell notifs clear";
 
-          "F11" = "${caelestia} shell audio cycleOutput";
-        };
+        #   "F11" = "${caelestia} shell audio cycleOutput";
+        # }
+        ;
         nosuperCommands = {
         }
         // lib.attrsets.optionalAttrs config.services.playerctld.enable {

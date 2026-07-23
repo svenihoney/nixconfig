@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
   dockerEnabled = config.virtualisation.docker.enable;
@@ -28,6 +29,12 @@ in {
   networking.firewall.interfaces."podman+".allowedUDPPorts = [53];
 
   virtualisation.oci-containers.backend = "podman";
+
+  environment.etc."containers/registries.conf" = lib.mkForce {
+    text = ''
+      unqualified-search-registries = ["docker.io", "quay.io"]
+    '';
+  };
   # environment.persistence = {
   #   "/persist".directories = [
   #     "/var/lib/containers"

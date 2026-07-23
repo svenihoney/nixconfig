@@ -115,7 +115,7 @@
     # kernelPackages = pkgs.linuxPackages_cachyos-lto-znver4;
 
     # Enable hugepages for libvirt
-    kernelParams = [ "hugepagesz=2M" "hugepages=8192" ];  # 8192 × 2MB = 16GB
+    # kernelParams = [ "hugepagesz=2M" "hugepages=8192" ];  # 8192 × 2MB = 16GB
 
     binfmt = {
       emulatedSystems = [ "aarch64-linux" ];

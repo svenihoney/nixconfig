@@ -151,6 +151,8 @@ in {
           name = "brian-low-sofle-choc";
           kb_layout = "de,de";
           kb_variant = "koy,neo_qwertz";
+          # kb_layout = "de,en";
+          # kb_variant = "koy,neo_qwertz";
         }
       ];
 
@@ -176,10 +178,10 @@ in {
   };
 
   # stylix.targets.hyprland.image.enable = false;
-  services.hyprpolkitagent.enable = true;
+  services.hyprpolkitagent.enable = lib.mkDefault true;
 
   services.hyprsunset = {
-    enable = true;
+    enable = lib.mkDefault true;
     settings = {
       max-gamma = 150;
 

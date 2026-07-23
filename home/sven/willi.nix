@@ -71,6 +71,7 @@
     unison
   ];
 
+  services.hyprsunset.enable = false;
   # home.packages = [pkgs.lenopow];
   # Qt does not read the fractional scalea correctly...
   # home.sessionVariables = {

@@ -5,6 +5,6 @@
   ...
 }: {
   programs.wlogout = {
-    enable = true;
+    enable = lib.mkDefault true;
   };
 }

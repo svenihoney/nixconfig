@@ -18,8 +18,10 @@
       # libtool
       # libvterm
       shellcheck
-      bash-language-server
       emacs-lsp-booster
+
+      bash-language-server
+      # nil
 
       # nerd-fonts.jetbrains-mono
       nerd-fonts.symbols-only

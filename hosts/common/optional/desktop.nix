@@ -21,6 +21,7 @@
     # extraPortals = [pkgs.kdePackages.xdg-desktop-portal-kde];
   };
 
+  services.speechd.enable = false;
   services.geoclue2.enable = true;
   programs = {
     hyprland = {

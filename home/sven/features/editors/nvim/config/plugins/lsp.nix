@@ -29,6 +29,10 @@
             enable = true;
             # settings.formatting.command = ["${pkgs.alejandra}/bin/alejandra"];
           };
+          # nixd = {
+          #   enable = true;
+          #   # settings.formatting.command = ["${pkgs.alejandra}/bin/alejandra"];
+          # };
           tinymist.enable = true;
           # tix = {
           #   enable = true;

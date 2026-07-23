@@ -4,6 +4,7 @@
     ./standard-desktop.nix
 
     ./features/desktop/hyprland
+    ./features/desktop/mangowc
     ./features/desktop/common/networkmanager.nix
     # ./features/desktop/common/wayland-wm/wofi.nix
     # ./features/desktop/wireless
@@ -59,20 +60,26 @@
       transform = 1;
     }
   ];
-  programs.caelestia.settings = {
-    bar.excludedScreens = [
-      "DP-2"
-      "DP-3"
-      "DP-4"
-    ];
+  # programs.caelestia.settings = {
+  #   bar.excludedScreens = [
+  #     "DP-2"
+  #     "DP-3"
+  #     "DP-4"
+  #   ];
+  # };
+  programs.noctalia.settings.bar.default.monitor = {
+    DP-2 = {enabled = false;};
+    DP-3 = {enabled = false;};
+    DP-4 = {enabled = false;};
   };
+
   home.packages = with pkgs; [
     gparted
     unison
   ];
 
   # home.packages = [pkgs.lenopow];
-  # Qt does not read the fractional scalea correctly...
+  # Qt does not read the fractional scales correctly...
   home.sessionVariables = {
     QT_SCREEN_SCALE_FACTORS = "1.33;1";
   };
