@@ -121,6 +121,7 @@
       workspace = "2";
       default_name = "2";
       monitor = "desc:Lenovo Group Limited LEN T27p-10 0x4E395246";
+      layout = "scrolling";
     }
     {
       workspace = "3";
