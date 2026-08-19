@@ -31,19 +31,19 @@
   ];
 
   home.packages = with pkgs; [
-    grim
-    gtk3 # For gtk-launch
+    # grim
+    # slurp
+    # gtk3 # For gtk-launch
     mimeo
     # primary-xwayland
     pulseaudio
-    slurp
-    waypipe
+    # waypipe
     # wf-recorder
     wl-clipboard
     # wl-mirror
     # wl-mirror-pick
     # xdg-utils-spawn-terminal # Patched to open terminal
-    ydotool
+    # ydotool
   ];
 
   home.sessionVariables = {

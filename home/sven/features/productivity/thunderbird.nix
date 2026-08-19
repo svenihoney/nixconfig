@@ -80,4 +80,18 @@
       };
     };
   };
+
+  wayland.windowManager.hyprland.settings = {
+    bind =
+      [
+        # Shortcut for delete all. Bypasses the k.o,y problem with CTRL+A
+        {
+          _args = [
+            "SUPER + SHIFT + D"
+            # (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"hyprctl activewindow | grep -q 'class: [Tt]hunderbird' && ${lib.getExe pkgs.wtype} -M ctrl a -m ctrl && sleep 0.05 && ${lib.getExe pkgs.wtype} -M shift -k Delete -m shift\")")
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"sleep 0.5 && ${lib.getExe pkgs.wtype} -M ctrl a -m ctrl && sleep 0.05 && ${lib.getExe pkgs.wtype} -M shift -k Delete -m shift\")")
+          ];
+        }
+      ];
+  };
 }

@@ -109,7 +109,7 @@
       timeout = 1;
 
     };
-    kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxPackages_latest;
     # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
     # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     # kernelPackages = pkgs.linuxPackages_cachyos-lto-znver4;
@@ -215,17 +215,21 @@
   networking.firewall = {
     allowedTCPPorts = [
       # syncthing
-      22000
+      # 22000
       # ollama
       11434
+      # AusweisApp
+      24727
     ];
     allowedUDPPorts = [
       # DHCP
       53
       67
       # syncthing
-      22000
-      21027
+      # 22000
+      # 21027
+      # AusweisApp
+      24727
     ];
   };
   stylix.targets.kmscon.enable = false; # Workaround for 26.05 -> .11 change issue

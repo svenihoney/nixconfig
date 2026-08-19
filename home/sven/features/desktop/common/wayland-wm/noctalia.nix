@@ -23,8 +23,7 @@
           center = [
             "media"
             "active_window"
-          ]
-          ;
+          ];
           end = [
             "tray"
             "notifications"
@@ -37,8 +36,7 @@
             "clock"
             "control-center"
             "session"
-          ]
-          ;
+          ];
           margin_ends = 0.0;
           monitor = {
             HDMI-A-1 = {
@@ -46,7 +44,7 @@
             };
           };
           position = "left";
-          scale = 1.250000011175871;
+          scale = 1.25;
           start = [
             "launcher"
             "workspaces"

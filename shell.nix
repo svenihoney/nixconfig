@@ -37,6 +37,7 @@ with self.unstable-pkgs.${system}; {
       sops
 
       nh
+      glaze
     ];
 
     # shellHook = ''

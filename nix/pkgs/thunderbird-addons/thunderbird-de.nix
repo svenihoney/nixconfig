@@ -9,15 +9,16 @@
 in
   stdenv.mkDerivation {
     pname = "langpack-de";
-    version = "152";
+    # version = "152";
+    version = pkgs.thunderbird.version;
     src = fetchurl {
       # Check https://addons.thunderbird.net/de/thunderbird/addon/tb-langpack-de/versions/
       # Copy the link
       # Update the hash
       # url = "https://addons.thunderbird.net/thunderbird/downloads/file/1046973/deutsch_de_language_pack-151.0.20260515.20702-tb.xpi?src=version-history";
-      url = "https://download-origin.cdn.mozilla.net/pub/thunderbird/releases/152.0/linux-x86_64/xpi/de.xpi";
+      url = "https://download-origin.cdn.mozilla.net/pub/thunderbird/releases/${pkgs.thunderbird.version}/linux-x86_64/xpi/de.xpi";
       # hash = pkgs.lib.fakeHash;
-      hash = "sha256-QHbNT04M9pcRnd1icS6OYnxiEQ4epX6yTK0rHUzsoK4=";
+      hash = "sha256-RTmiKav5+LTX+K8bBWe0l9npZo5lqef9udqi2jFcvsg=";
     };
     dontUnpack = true;
     installPhase = ''

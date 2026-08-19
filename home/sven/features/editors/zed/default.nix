@@ -209,6 +209,15 @@
       chat_panel = {
         dock = "left";
       };
+      editPredictions = {
+        provider = "open_ai_compatible_api";
+        openAiCompatibleApi = {
+          apiUrl = "http://localhost:8090/v1/completions";
+          model = "qwen2.5coder";
+          promptFormat = "qwen2.5coder";
+          maxOutputTokens = 512;
+        };
+      };
     };
     userKeymaps = [
       {
@@ -263,7 +272,9 @@
           "space space" = "file_finder::Toggle";
           "space /" = "pane::DeploySearch";
           "space e" = "pane::RevealInProjectPanel";
-          "space s p" = "workspace::SaveAll";
+          "space p s" = "workspace::SaveAll";
+          "space p o" = "editor::SwitchSourceHeader";
+          "space s p" = "text_finder::Toggle";
           "F7"= "task::Rerun";
           "shift-F7" = "task::Spawn";
         };

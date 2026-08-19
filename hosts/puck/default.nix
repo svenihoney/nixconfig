@@ -113,12 +113,22 @@
   services.udisks2.enable = true;
   services.fwupd.enable = true;
 
-  # Firewall for syncthing
+  # Firewall rules
   networking.firewall = {
-    allowedTCPPorts = [22000];
-    allowedUDPPorts = [22000 21027];
+    allowedTCPPorts = [
+      # syncthing
+      # 22000
+      # AusweisApp
+      24727
+    ];
+    allowedUDPPorts = [
+      # syncthing
+      # 22000
+      # 21027
+      # AusweisApp
+      24727
+    ];
   };
-
   stylix.targets.kmscon.enable = false; # Workaround for 26.05 -> .11 change issue
 
   system.stateVersion = "25.11";

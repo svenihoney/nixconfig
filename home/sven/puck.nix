@@ -4,7 +4,7 @@
     ./standard-desktop.nix
 
     ./features/desktop/hyprland
-    ./features/desktop/mangowc
+    # ./features/desktop/mangowc
     ./features/desktop/common/networkmanager.nix
     # ./features/desktop/common/wayland-wm/wofi.nix
     # ./features/desktop/wireless
@@ -19,7 +19,7 @@
     # ./features/desktop/common/wayland-wm/qutebrowser.nix
     ./features/desktop/common/browser.nix
     ./features/desktop/common/virtualisation.nix
-    ./features/desktop/common/linphone.nix
+    # ./features/desktop/common/linphone.nix
     ./features/desktop/extended.nix
     ./features/development
     # ./features/development/syncthing.nix

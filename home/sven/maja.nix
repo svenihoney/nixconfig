@@ -25,7 +25,7 @@
     # ./features/desktop/common/wayland-wm/qutebrowser.nix
     ./features/desktop/common/browser.nix
     ./features/desktop/common/virtualisation.nix
-    ./features/desktop/common/linphone.nix
+    # ./features/desktop/common/linphone.nix
     ./features/desktop/common/jameica.nix
     ./features/desktop/common/switchaudio.nix
     # ./features/development/syncthing.nix
@@ -121,7 +121,7 @@
       workspace = "2";
       default_name = "2";
       monitor = "desc:Lenovo Group Limited LEN T27p-10 0x4E395246";
-      layout = "scrolling";
+      # layout = "scrolling";
     }
     {
       workspace = "3";
@@ -136,6 +136,7 @@
     {
       workspace = "5";
       default_name = "5";
+      monitor = "desc:Lenovo Group Limited LEN T27p-10 0x4E395246";
     }
     {
       workspace = "6";
@@ -161,5 +162,5 @@
       monitor = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
     }
   ];
-  home.packages = with pkgs; [rclone unison linphone];
+  home.packages = with pkgs; [rclone unison];
 }
