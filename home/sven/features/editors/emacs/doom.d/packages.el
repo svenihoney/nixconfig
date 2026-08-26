@@ -82,4 +82,5 @@
 ;; (package! aidermacs)
 ;; (package! mcp)
 
-;; ############ corfu
+
+(package! minuet)

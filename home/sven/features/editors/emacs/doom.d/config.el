@@ -460,24 +460,24 @@
   (gptel-make-gh-copilot "Copilot")
   )
 
-                                        ; (use-package! mcp
-                                        ;   :after gptel
-                                        ;   :custom
-                                        ;   (mcp-hub-servers
-                                        ;    `(
-                                        ;      ;; ("github" . (:command "docker"
-                                        ;      ;;              :args ("run" "-i" "--rm"
-                                        ;      ;;                     "-e" "GITHUB_PERSONAL_ACCESS_TOKEN"
-                                        ;      ;;                     "ghcr.io/github/github-mcp-server")
-                                        ;      ;;              :env (:GITHUB_PERSONAL_ACCESS_TOKEN ,(get-sops-secret-value "gh_pat_mcp"))))
-                                        ;      ("duckduckgo" . (:command "uvx" :args ("duckduckgo-mcp-server")))
-                                        ;      ("nixos" . (:command "uvx" :args ("mcp-nixos")))
-                                        ;      ("fetch" . (:command "uvx" :args ("mcp-server-fetch")))
-                                        ;      ("filesystem" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" ,(getenv "HOME"))))
-                                        ;      ("sequential-thinking" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-sequential-thinking")))
-                                        ;      ("context7" . (:command "npx" :args ("-y" "@upstash/context7-mcp") :env (:DEFAULT_MINIMUM_TOKENS "6000")))))
-                                        ;   :config (require 'mcp-hub)
-                                        ;   :hook (after-init . mcp-hub-start-all-server))
+; (use-package! mcp
+;   :after gptel
+;   :custom
+;   (mcp-hub-servers
+;    `(
+;      ;; ("github" . (:command "docker"
+;      ;;              :args ("run" "-i" "--rm"
+;      ;;                     "-e" "GITHUB_PERSONAL_ACCESS_TOKEN"
+;      ;;                     "ghcr.io/github/github-mcp-server")
+;      ;;              :env (:GITHUB_PERSONAL_ACCESS_TOKEN ,(get-sops-secret-value "gh_pat_mcp"))))
+;      ("duckduckgo" . (:command "uvx" :args ("duckduckgo-mcp-server")))
+;      ("nixos" . (:command "uvx" :args ("mcp-nixos")))
+;      ("fetch" . (:command "uvx" :args ("mcp-server-fetch")))
+;      ("filesystem" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" ,(getenv "HOME"))))
+;      ("sequential-thinking" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-sequential-thinking")))
+;      ("context7" . (:command "npx" :args ("-y" "@upstash/context7-mcp") :env (:DEFAULT_MINIMUM_TOKENS "6000")))))
+;   :config (require 'mcp-hub)
+;   :hook (after-init . mcp-hub-start-all-server))
 
 ;; (use-package! gptel
 ;;   :defer
@@ -526,3 +526,52 @@
 ;;        :desc "GPtel Aibo summon" "S" #'gptel-aibo-summon
 ;;        )
 ;;       )
+
+(use-package! minuet
+  :config
+  (setq minuet-provider 'openai-fim-compatible)
+  (setq minuet-n-completions 1) ; recommended for Local LLM for resource saving
+  ;; I recommend beginning with a small context window size and incrementally
+  ;; expanding it, depending on your local computing power. A context window
+  ;; of 512, serves as an good starting point to estimate your computing
+  ;; power. Once you have a reliable estimate of your local computing power,
+  ;; you should adjust the context window to a larger value.
+  (setq minuet-context-window 512)
+  (plist-put minuet-openai-fim-compatible-options :end-point "http://localhost:8090/v1/completions")
+  ;; an arbitrary non-null environment variable as placeholder
+  (plist-put minuet-openai-fim-compatible-options :name "Llama.cpp")
+  (plist-put minuet-openai-fim-compatible-options :api-key "TERM")
+  ;; The model is set by the llama-cpp server and cannot be altered
+  ;; post-launch.
+  (plist-put minuet-openai-fim-compatible-options :model "qwen2.5coder")
+
+  ;; Llama.cpp does not support the `suffix` option in FIM completion.
+  ;; Therefore, we must disable it and manually populate the special
+  ;; tokens required for FIM completion.
+  (minuet-set-nested-plist minuet-openai-fim-compatible-options nil :template :suffix)
+  (minuet-set-optional-options
+   minuet-openai-fim-compatible-options
+   :prompt
+   (defun minuet-llama-cpp-fim-qwen-prompt-function (ctx)
+     (format "<|fim_prefix|>%s\n%s<|fim_suffix|>%s<|fim_middle|>"
+             (plist-get ctx :language-and-tab)
+             (plist-get ctx :before-cursor)
+             (plist-get ctx :after-cursor)))
+   :template)
+
+  (minuet-set-optional-options minuet-openai-fim-compatible-options :max_tokens 56))
+
+
+  ;; Enable automatic completion as you type
+  ;; (minuet-auto-suggestion-mode 1))
+
+(map! :after minuet
+      :map global-map
+      "M-i" #'minuet-show-suggestion)
+
+(map! :after minuet
+      :map minuet-active-mode-map
+      "A-f" #'minuet-accept-suggestion
+      "M-n" #'minuet-next-suggestion
+      "M-p" #'minuet-previous-suggestion
+      "C-g" #'minuet-dismiss-suggestion)

@@ -38,15 +38,6 @@
     ../common/optional/stylix.nix
   ];
 
-  # TODO: Remove
-  programs.nix-ld = {
-    enable = true;
-    libraries = [
-      pkgs.zlib
-      pkgs.openssl
-    ];
-  };
-
   # fonts.packages = with pkgs; [
   #   jetbrains-mono
   # ];
@@ -86,12 +77,13 @@
   };
   services.resolved = {
     enable = true;
-    # dnssec = "true";
-    # domains = [ "~." ];
-    # fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
-    # dnsovertls = "true";
+    # settings = {
+    #   dnssec = "allow-downgrade";
+    #   domains = [ "~." ];
+    #   fallbackDns = [ "1.1.1.1" "1.0.0.1" ];
+    #   dnsovertls = "opportunistic";
+    # };
   };
-  environment.etc.hosts.mode = "0644";
 
   boot = {
     loader = {
@@ -109,7 +101,7 @@
       timeout = 1;
 
     };
-    # kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
     # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
     # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     # kernelPackages = pkgs.linuxPackages_cachyos-lto-znver4;

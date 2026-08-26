@@ -1,4 +1,7 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  lenovo = "desc:Lenovo Group Limited LEN T27p-10 0x4E395246";
+  philips = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
+in {
   imports = [
     ./global
     ./standard-desktop.nix
@@ -83,14 +86,14 @@
   #  ------   -----   ------
   monitors = [
     {
-      name = "desc:Lenovo Group Limited LEN T27p-10 0x4E395246";
+      name = lenovo;
       width = 3840;
       height = 2160;
       workspace = "1";
       primary = true;
     }
     {
-      name = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
+      name = philips;
       width = 2560;
       height = 1440;
       x = 3840;
@@ -115,28 +118,28 @@
     {
       workspace = "1";
       default_name = "1";
-      monitor = "desc:Lenovo Group Limited LEN T27p-10 0x4E395246";
+      monitor = lenovo;
     }
     {
       workspace = "2";
       default_name = "2";
-      monitor = "desc:Lenovo Group Limited LEN T27p-10 0x4E395246";
+      monitor = lenovo;
       # layout = "scrolling";
     }
     {
       workspace = "3";
       default_name = "3";
-      monitor = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
+      monitor = philips;
     }
     {
       workspace = "4";
       default_name = "4";
-      monitor = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
+      monitor = philips;
     }
     {
       workspace = "5";
       default_name = "5";
-      monitor = "desc:Lenovo Group Limited LEN T27p-10 0x4E395246";
+      monitor = lenovo;
     }
     {
       workspace = "6";
@@ -145,7 +148,7 @@
     {
       workspace = "7";
       default_name = "7";
-      monitor = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
+      monitor = philips;
     }
     {
       workspace = "8";
@@ -154,12 +157,12 @@
     {
       workspace = "9";
       default_name = "9";
-      monitor = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
+      monitor = philips;
     }
     {
       workspace = "0";
       default_name = "0";
-      monitor = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
+      monitor = philips;
     }
   ];
   home.packages = with pkgs; [rclone unison];

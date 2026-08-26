@@ -20,9 +20,6 @@
       load_direnv = "shell_hook";
       # load_direnv = "direct";
       # icon_theme = "Catppuccin Mocha";
-      edit_predictions = {
-        provider = "zed";
-      };
       base_keymap = "VSCode";
       # theme = "Dracula";
       # ui_font_size = 17;
@@ -63,15 +60,31 @@
       agent = {
         default_model = {
           provider = "ollama";
-          model = "gemma:e4b";
+          model = "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-IQ3_S";
         };
-        provider = null;
+        provider = "ollama";
       };
       language_models = {
         ollama = {
           api_url = "http://localhost:11434";
         };
       };
+      edit_predictions = {
+        ollama = {
+          prompt_format = "zeta2";
+          max_output_tokens = 512;
+          model = "hf.co/bartowski/zed-industries_zeta-2-GGUF:Q4_K_M";
+        };
+        openAiCompatibleApi = {
+          apiUrl = "http://localhost:8090/v1/completions";
+          model = "zeta2";
+          promptFormat = "zeta2";
+          maxOutputTokens = 512;
+        };
+        provider = "ollama";
+        # provider = "zed";
+      };
+
       inlay_hints = {
         enabled = true;
       };
@@ -83,11 +96,13 @@
           };
         };
 
-        # nix = {
-        #   binary = {
-        #     path_lookup = true;
-        #   };
-        # };
+        nixd = {
+          binary = {
+            # path_lookup = true;
+            path = "${lib.getExe pkgs.nixd}";
+          };
+
+        };
         nil = {
           binary = {
             path = "${lib.getExe pkgs.nil}";
@@ -100,6 +115,11 @@
           #     ignored = [
           #       "unused_binding"
           #     ];
+          #   };
+          # };
+          # initalisation_options = {
+          #   formatting = {
+          #     command = ["${lib.getExe pkgs.alejandra}" "--quiet" "--"];
           #   };
           # };
         };
@@ -125,9 +145,11 @@
         #     show_type_hints = true;
         #   };
         Nix = {
+          tab_size = 2;
           formatter = {
-            language_server = {
-              name = "${lib.getExe pkgs.alejandra}";
+            external = {
+              command = "${lib.getExe pkgs.alejandra}";
+              arguments = ["--quiet" "--"];
             };
           };
         };
@@ -209,15 +231,6 @@
       chat_panel = {
         dock = "left";
       };
-      editPredictions = {
-        provider = "open_ai_compatible_api";
-        openAiCompatibleApi = {
-          apiUrl = "http://localhost:8090/v1/completions";
-          model = "qwen2.5coder";
-          promptFormat = "qwen2.5coder";
-          maxOutputTokens = 512;
-        };
-      };
     };
     userKeymaps = [
       {
@@ -275,7 +288,7 @@
           "space p s" = "workspace::SaveAll";
           "space p o" = "editor::SwitchSourceHeader";
           "space s p" = "text_finder::Toggle";
-          "F7"= "task::Rerun";
+          "F7" = "task::Rerun";
           "shift-F7" = "task::Spawn";
         };
       }

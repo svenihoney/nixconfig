@@ -101,10 +101,10 @@ in {
         Value = value;
         Status = "locked";
       });
-      mkExtensionSettings = builtins.mapAttrs (_: pluginId: {
-        install_url = "https://addons.mozilla.org/firefox/downloads/latest/${pluginId}/latest.xpi";
-        installation_mode = "force_installed";
-      });
+      # mkExtensionSettings = builtins.mapAttrs (_: pluginId: {
+      #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/${pluginId}/latest.xpi";
+      #   installation_mode = "force_installed";
+      # });
     in {
       Preferences = mkLockedAttrs {
         "extensions.autoDisableScopes" = 0;
@@ -115,16 +115,16 @@ in {
         "browser.translations.neverTranslateLanguages" = "en";
         "browser.download.dir" = "/home/${config.home.username}/Downloads/zen";
       };
-      ExtensionSettings = mkExtensionSettings {
-        # "wappalyzer@crunchlabz.com" = "wappalyzer";
-        # "{85860b32-02a8-431a-b2b1-40fbd64c9c69}" = "github-file-icons";
-        "uBlock0@raymondhill.net" = "ublock-origin";
-        "keepassxc-browser@keepassxc.org" = "keepassxc-browser";
-        "floccus@handmadeideas.org" = "floccus";
-        "idcac-pub@guus.ninja" = "istilldontcareaboutcookies";
-        "{506e023c-7f2b-40a3-8066-bc5deb40aebe}" = "gesturefy";
-        "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = "vimium-ff";
-      };
+      # ExtensionSettings = mkExtensionSettings {
+      #   # "wappalyzer@crunchlabz.com" = "wappalyzer";
+      #   # "{85860b32-02a8-431a-b2b1-40fbd64c9c69}" = "github-file-icons";
+      #   "uBlock0@raymondhill.net" = "ublock-origin";
+      #   "keepassxc-browser@keepassxc.org" = "keepassxc-browser";
+      #   "floccus@handmadeideas.org" = "floccus";
+      #   "idcac-pub@guus.ninja" = "istilldontcareaboutcookies";
+      #   "{506e023c-7f2b-40a3-8066-bc5deb40aebe}" = "gesturefy";
+      #   "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = "vimium-ff";
+      # };
     };
     profiles.sven = {
       bookmarks = {};
@@ -140,7 +140,7 @@ in {
         vimium
         # wikiwand-wikipedia-modernized
         # user-agent-string-switcher
-        # dictionary-german
+        dictionary-german
         # firenvim
       ];
       # search = {
