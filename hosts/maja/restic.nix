@@ -1,7 +1,5 @@
 {
   config,
-  lib,
-  pkgs,
   ...
 }: {
   # configure agenix secrets
@@ -29,8 +27,8 @@
       ];
 
       pruneOpts = [
-        "--keep-daily 6"
-        "--keep-weekly 2"
+        "--keep-daily 7"
+        "--keep-weekly 4"
         "--keep-monthly 1"
       ];
     };

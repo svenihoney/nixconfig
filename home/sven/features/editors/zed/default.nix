@@ -4,9 +4,13 @@
   pkgs,
   ...
 }: {
-  # config = lib.mkIf config.svenihoney.devel.zed {
-  #   home.packages = [pkgs.zed-editor];
-  # };
+  stylix.targets.zed.fonts.override = {
+    # sizes.terminal = 12 * 3.0 / 4.0;
+    sizes.terminal = config.stylix.fonts.sizes.terminal * 12.0 / 11.0 * 3.0 / 4.0;
+    sizes.applications = config.stylix.fonts.sizes.applications * 14.0 / 9.0 * 3.0 / 4.0;
+  };
+  # stylix.targets.zed.fonts.enable = false;
+
   programs.zed-editor = {
     enable = config.svenihoney.devel.zed;
     extensions = [
@@ -14,13 +18,16 @@
       "elisp"
     ];
     userSettings = {
+      # buffer_font_size = 12;
+      # ui_font_size = 14;
+
       git_panel = {
         dock = "right";
       };
       load_direnv = "shell_hook";
       # load_direnv = "direct";
       # icon_theme = "Catppuccin Mocha";
-      base_keymap = "VSCode";
+      base_keymap = "Zed";
       # theme = "Dracula";
       # ui_font_size = 17;
       # buffer_font_size = 18;
@@ -50,13 +57,6 @@
         left_padding = 0.15;
         right_padding = 0.15;
       };
-      # assistant = {
-      #   default_model = {
-      #     provider = "copilot_chat";
-      #     model = "claude-3-7-sonnet";
-      #   };
-      #   version = "2";
-      # };
       agent = {
         default_model = {
           provider = "ollama";
@@ -81,8 +81,8 @@
           promptFormat = "zeta2";
           maxOutputTokens = 512;
         };
-        provider = "ollama";
-        # provider = "zed";
+        # provider = "ollama";
+        provider = "zed";
       };
 
       inlay_hints = {
@@ -101,7 +101,6 @@
             # path_lookup = true;
             path = "${lib.getExe pkgs.nixd}";
           };
-
         };
         nil = {
           binary = {
