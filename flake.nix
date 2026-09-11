@@ -91,11 +91,11 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    mangowm = {
-      # url = "github:DreamMaoMao/mangowc";
-      url = "github:mangowm/mango";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # mangowm = {
+    #   # url = "github:DreamMaoMao/mangowc";
+    #   url = "github:mangowm/mango";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # firefox-addons = {
     #   url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";

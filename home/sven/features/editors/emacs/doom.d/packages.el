@@ -62,6 +62,8 @@
 
 ;; (package! company-tabnine :recipe (:host github :repo "TommyX12/company-tabnine"))
 
+(package! fancy-compilation)
+
 (package! fish-mode)
 
 ;; Live preview of HTML/Markdown files
@@ -84,3 +86,6 @@
 
 
 (package! minuet)
+(package! shell-maker)
+(package! acp)
+(package! agent-shell)

@@ -91,6 +91,9 @@
           HostName = "192.168.0.4";
           IdentityFile = "~/.ssh/nwot_mif.rsa";
           StrictHostKeyChecking = "no";
+          SetEnv = {
+            TERM = "xterm-256color";
+          };
         };
         "i-* mi-*" = {
           User = "ssm-user";

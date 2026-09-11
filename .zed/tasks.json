@@ -1,0 +1,9 @@
+[
+  {
+    "label": "Apply config",
+    "command": "just",
+    "reveal": "no_focus",
+    "hide": "on_success",
+    "save": "all",
+  },
+]

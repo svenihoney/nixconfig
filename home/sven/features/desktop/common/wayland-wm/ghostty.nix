@@ -10,7 +10,8 @@
       # theme = "Dracula";
 
       # shell-integration = fish;
-      shell-integration-features = "ssh-env,ssh-terminfo,no-cursor";
+      # shell-integration-features = "ssh-env,ssh-terminfo,no-cursor";
+      shell-integration-features = "no-cursor";
       window-inherit-working-directory = true;
       clipboard-paste-protection = false;
 
@@ -19,7 +20,7 @@
 
       keybind = [
         "ctrl+shift+h=write_scrollback_file:open"
-        # "ctrl+]=unbind"
+        # "ctrl+shift+s=hint:regex:([\w\-\.\/]+/[\w\-\.]+|\b[\w\-]+\.\w{1,5}\b):copy"
       ];
       # unbind = [
       #   "ctrl+]"

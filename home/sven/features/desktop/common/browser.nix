@@ -130,18 +130,24 @@ in {
       bookmarks = {};
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         keepassxc-browser
+
         ublock-origin
+        disconnect
+        privacy-badger
+
         # cookie-autodelete
         istilldontcareaboutcookies
         # decentraleyes
         # sponsorblock
-        floccus
+        # floccus
         gesturefy
+        # gnome-download-notifications # Unavailable in rycee
         vimium
         # wikiwand-wikipedia-modernized
         # user-agent-string-switcher
         dictionary-german
         # firenvim
+        deutsch-de-language-pack
       ];
       # search = {
       #   default = lib.mkDefault "ddg";
@@ -159,7 +165,7 @@ in {
         "dom.security.https_only_mode" = true;
         "dom.event.contextmenu.enabled" = true;
         "ui.context_menus.after_mouseup" = true;
-        "identity.fxaccounts.enabled" = false;
+        "identity.fxaccounts.enabled" = true; # Firefox sync
         "intl.accept_languages" = "de, en-US, en";
         "intl.locale.requested" = "de,en-US";
         "privacy.trackingprotection.enabled" = true;

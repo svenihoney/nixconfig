@@ -211,7 +211,7 @@
         vimcmd_visual_symbol = "[](bg:color_background_base fg:color_base_yellow)[  ](bold bg:color_base_yellow fg:color_foreground_dark)[](bg:color_base_yellow fg:color_foreground_dark)";
         vimcmd_replace_symbol = "[](bg:color_background_base fg:color_base_orange)[  ](bold bg:color_base_orange fg:color_foreground_dark)[](bg:color_base_orange fg:color_foreground_dark)";
         vimcmd_replace_one_symbol = "[](bg:color_background_base fg:color_base_orange)[  ](bold bg:color_base_orange fg:color_foreground_light)[](bg:color_base_orange fg:color_foreground_dark)";
-        format = "$symbol";
+        # format = "$symbol";
       };
 
       line_break = {
@@ -1072,7 +1072,7 @@
         symbol = " "; # nf-fa-level_up
         style = "bold bg:color_shell_level fg:color_shell_level_text";
         # repeat = true;
-        # threshold = 3; # default = 2
+        threshold = 3; # default = 2
         format = "[$symbol$shlvl]($style)";
       };
 
@@ -1119,83 +1119,6 @@
         style = "none";
         # style = "fg:color_background_base";
       };
-
-      #     fill = {
-      #       symbol = " ";
-      #       disabled = false;
-      #     };
-
-      #     # Core
-      #     username = {
-      #       format = "[$user]($style)";
-      #       show_always = true;
-      #     };
-      #     hostname = {
-      #       format = "[@$hostname]($style) ";
-      #       ssh_only = false;
-      #       style = "bold green";
-      #     };
-      #     shlvl = {
-      #       format = "[$shlvl]($style) ";
-      #       style = "bold cyan";
-      #       threshold = 2;
-      #       repeat = true;
-      #       disabled = false;
-      #     };
-      #     cmd_duration = {
-      #       format = "took [$duration]($style) ";
-      #     };
-
-      #     directory = {
-      #       format = "[$path]($style)( [$read_only]($read_only_style)) ";
-      #     };
-      #     nix_shell = {
-      #       format = "[($name \\(develop\\) <- )$symbol]($style) ";
-      #       impure_msg = "";
-      #       symbol = " ";
-      #       style = "bold red";
-      #     };
-      #     custom = {
-      #       nix_inspect = let
-      #         excluded = [
-      #           "kitty"
-      #           "imagemagick"
-      #           "ncurses"
-      #           "user-environment"
-      #           "pciutils"
-      #           "binutils-wrapper"
-      #         ];
-      #       in {
-      #         disabled = false;
-      #         when = "test -z $IN_NIX_SHELL";
-      #         command = "${(lib.getExe pkgs.nix-inspect)} ${(lib.concatStringsSep " " excluded)}";
-      #         format = "[($output <- )$symbol]($style) ";
-      #         symbol = " ";
-      #         style = "bold blue";
-      #       };
-      #     };
-
-      #     character = {
-      #       error_symbol = "[~~>](bold red)";
-      #       success_symbol = "[->>](bold green)";
-      #       vimcmd_symbol = "[<<-](bold yellow)";
-      #       vimcmd_visual_symbol = "[<<-](bold cyan)";
-      #       vimcmd_replace_symbol = "[<<-](bold purple)";
-      #       vimcmd_replace_one_symbol = "[<<-](bold purple)";
-      #     };
-
-      #     time = {
-      #       format = "\\\[[$time]($style)\\\]";
-      #       disabled = false;
-      #     };
-
-      #     # Cloud
-      #     gcloud = {
-      #       format = "on [$symbol$active(/$project)(\\($region\\))]($style)";
-      #     };
-      #     aws = {
-      #       format = "on [$symbol$profile(\\($region\\))]($style)";
-      #     };
 
       #     # Icon changes only \/
       #     aws.symbol = "  ";

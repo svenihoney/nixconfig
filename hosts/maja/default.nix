@@ -212,6 +212,8 @@
       11434
       # AusweisApp
       24727
+      # Localsend
+      53317
     ];
     allowedUDPPorts = [
       # DHCP
@@ -222,6 +224,8 @@
       # 21027
       # AusweisApp
       24727
+      # Localsend
+      53317
     ];
   };
   stylix.targets.kmscon.enable = false; # Workaround for 26.05 -> .11 change issue

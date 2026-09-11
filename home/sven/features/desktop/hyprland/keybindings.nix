@@ -39,12 +39,9 @@ in
         // lib.attrsets.optionalAttrs config.programs.wlogout.enable {
           "BACKSPACE" = config.programs.wlogout.package;
         }
-        # // lib.attrsets.optionalAttrs config.programs.doom-emacs.enable {
-        #   "F4" = config.programs.doom-emacs.finalEmacsPackage;
+        # // lib.attrsets.optionalAttrs config.programs.neovide.enable {
+        #   "SHIFT + F4" = config.programs.neovide.package;
         # }
-        // lib.attrsets.optionalAttrs config.programs.neovide.enable {
-          "SHIFT + F4" = config.programs.neovide.package;
-        }
         // lib.attrsets.optionalAttrs (lib.elem pkgs.kdePackages.dolphin config.home.packages) {
           "F5" = pkgs.kdePackages.dolphin;
         }
@@ -69,20 +66,13 @@ in
         }
         // lib.attrsets.optionalAttrs config.programs.doom-emacs.enable {
           # Workaround for emacs not being set up correctly for ssh access
-          "F4" =
+          "SHIFT + F4" =
             "${lib.getExe config.programs.fish.package} -c ${lib.getExe config.programs.doom-emacs.finalEmacsPackage}";
         }
-        # // lib.attrsets.optionalAttrs config.programs.caelestia.enable {
-        #   "SHIFT + F7" = "${caelestia} shell drawers toggle dashboard";
-        #   "SHIFT + l" = "${caelestia} shell lock lock; systemctl hybrid-sleep";
-        #   "d" = "${caelestia} shell drawers toggle launcher";
-
-        #   "l" = "${caelestia} shell lock lock";
-        #   "n" = "${caelestia} shell drawers toggle sidebar";
-        #   "SHIFT + n" = "${caelestia} shell notifs clear";
-
-        #   "F11" = "${caelestia} shell audio cycleOutput";
-        # }
+        // lib.attrsets.optionalAttrs config.programs.zed-editor.enable {
+          # Workaround for emacs not being set up correctly for ssh access
+          "F4" = "${lib.getExe pkgs.zed-editor}";
+        }
         ;
         nosuperCommands = {
         }

@@ -160,8 +160,8 @@ in {
       monitor = philips;
     }
     {
-      workspace = "0";
-      default_name = "0";
+      workspace = "10";
+      default_name = "10";
       monitor = philips;
     }
   ];

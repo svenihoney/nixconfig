@@ -24,6 +24,8 @@
       git_panel = {
         dock = "right";
       };
+      git.inline_blame.enabled = false;
+
       load_direnv = "shell_hook";
       # load_direnv = "direct";
       # icon_theme = "Catppuccin Mocha";
@@ -60,7 +62,9 @@
       agent = {
         default_model = {
           provider = "ollama";
-          model = "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-IQ3_S";
+          # model = "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-IQ3_S";
+          model = "qwen3:14b";
+          keep_alive = "3m";
         };
         provider = "ollama";
       };
@@ -70,19 +74,20 @@
         };
       };
       edit_predictions = {
-        ollama = {
-          prompt_format = "zeta2";
-          max_output_tokens = 512;
-          model = "hf.co/bartowski/zed-industries_zeta-2-GGUF:Q4_K_M";
-        };
-        openAiCompatibleApi = {
-          apiUrl = "http://localhost:8090/v1/completions";
-          model = "zeta2";
-          promptFormat = "zeta2";
-          maxOutputTokens = 512;
+        # ollama = {
+        #   prompt_format = "zeta2";
+        #   max_output_tokens = 512;
+        #   model = "hf.co/bartowski/zed-industries_zeta-2-GGUF:Q4_K_M";
+        # };
+        open_ai_compatible_api = {
+          model = "hf.co/adilkairolla/zeta-2.1-GGUF:Q8_0";
+          api_url = "http://127.0.0.1:11434/v1/completions";
+          prompt_format = "zeta2_1";
+          max_output_tokens = 256;
         };
         # provider = "ollama";
-        provider = "zed";
+        # provider = "zed";
+        provider = "open_ai_compatible_api";
       };
 
       inlay_hints = {
@@ -92,6 +97,12 @@
         rust-analyzer = {
           binary = {
             # path = lib.getExe pkgs.rust-analyzer;
+            path_lookup = true;
+          };
+        };
+
+        clangd = {
+          binary = {
             path_lookup = true;
           };
         };
@@ -106,21 +117,6 @@
           binary = {
             path = "${lib.getExe pkgs.nil}";
           };
-          # settings = {
-          #   formatting = {
-          #     command = ["alejandra"];
-          #   };
-          #   diagnostics = {
-          #     ignored = [
-          #       "unused_binding"
-          #     ];
-          #   };
-          # };
-          # initalisation_options = {
-          #   formatting = {
-          #     command = ["${lib.getExe pkgs.alejandra}" "--quiet" "--"];
-          #   };
-          # };
         };
       };
 
@@ -239,12 +235,14 @@
           "space g g" = "git_panel::ToggleFocus";
           "space t i" = "editor::ToggleInlayHints";
           "space u w" = "editor::ToggleSoftWrap";
+          "space c f" = "editor::Format";
           "space c z" = "workspace::ToggleCenteredLayout";
           "space m p" = "markdown::OpenPreview";
           "space m P" = "markdown::OpenPreviewToTheSide";
           "space p p" = "projects::OpenRecent";
           "space s w" = "pane::DeploySearch";
           "space a c" = "assistant::ToggleFocus";
+          "space w m" = "workspace::CloseAllDocks";
           "g f" = "editor::OpenExcerpts";
         };
       }

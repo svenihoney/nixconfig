@@ -8,10 +8,10 @@
 in
 stdenv.mkDerivation {
   pname = "keepassxc-mail";
-  version = "1.16";
+  version = "1.18";
   src = fetchurl {
-    url = "https://github.com/kkapsner/keepassxc-mail/releases/download/v1.17.1/keepassxc_mail-1.17.20260701.0-tb.xpi";
-    sha256 = "sha256-yM2YjzJNzFgHI9iTPjYmpVI2HUWg62eAOWZd3vq8Nyg=";
+    url = "https://github.com/kkapsner/keepassxc-mail/releases/download/v1.18/keepassxc_mail-1.18.20260809.0-tb.xpi";
+    sha256 = "sha256-yEC4L8hh/8ujDqI6iN5aeXZ1yHcaCQUB6nNzdjPKlFk=";
   };
   dontUnpack = true;
   installPhase = ''

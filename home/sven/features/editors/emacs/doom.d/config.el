@@ -88,7 +88,6 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-
 (after! tramp
   (setq tramp-sh-extra-args '(("/zsh\\'" . "-norc -noprofile")("/bash\\'" . "-norc -noprofile")))
   )
@@ -460,24 +459,24 @@
   (gptel-make-gh-copilot "Copilot")
   )
 
-; (use-package! mcp
-;   :after gptel
-;   :custom
-;   (mcp-hub-servers
-;    `(
-;      ;; ("github" . (:command "docker"
-;      ;;              :args ("run" "-i" "--rm"
-;      ;;                     "-e" "GITHUB_PERSONAL_ACCESS_TOKEN"
-;      ;;                     "ghcr.io/github/github-mcp-server")
-;      ;;              :env (:GITHUB_PERSONAL_ACCESS_TOKEN ,(get-sops-secret-value "gh_pat_mcp"))))
-;      ("duckduckgo" . (:command "uvx" :args ("duckduckgo-mcp-server")))
-;      ("nixos" . (:command "uvx" :args ("mcp-nixos")))
-;      ("fetch" . (:command "uvx" :args ("mcp-server-fetch")))
-;      ("filesystem" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" ,(getenv "HOME"))))
-;      ("sequential-thinking" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-sequential-thinking")))
-;      ("context7" . (:command "npx" :args ("-y" "@upstash/context7-mcp") :env (:DEFAULT_MINIMUM_TOKENS "6000")))))
-;   :config (require 'mcp-hub)
-;   :hook (after-init . mcp-hub-start-all-server))
+                                        ; (use-package! mcp
+                                        ;   :after gptel
+                                        ;   :custom
+                                        ;   (mcp-hub-servers
+                                        ;    `(
+                                        ;      ;; ("github" . (:command "docker"
+                                        ;      ;;              :args ("run" "-i" "--rm"
+                                        ;      ;;                     "-e" "GITHUB_PERSONAL_ACCESS_TOKEN"
+                                        ;      ;;                     "ghcr.io/github/github-mcp-server")
+                                        ;      ;;              :env (:GITHUB_PERSONAL_ACCESS_TOKEN ,(get-sops-secret-value "gh_pat_mcp"))))
+                                        ;      ("duckduckgo" . (:command "uvx" :args ("duckduckgo-mcp-server")))
+                                        ;      ("nixos" . (:command "uvx" :args ("mcp-nixos")))
+                                        ;      ("fetch" . (:command "uvx" :args ("mcp-server-fetch")))
+                                        ;      ("filesystem" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" ,(getenv "HOME"))))
+                                        ;      ("sequential-thinking" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-sequential-thinking")))
+                                        ;      ("context7" . (:command "npx" :args ("-y" "@upstash/context7-mcp") :env (:DEFAULT_MINIMUM_TOKENS "6000")))))
+                                        ;   :config (require 'mcp-hub)
+                                        ;   :hook (after-init . mcp-hub-start-all-server))
 
 ;; (use-package! gptel
 ;;   :defer
@@ -537,13 +536,13 @@
   ;; power. Once you have a reliable estimate of your local computing power,
   ;; you should adjust the context window to a larger value.
   (setq minuet-context-window 512)
-  (plist-put minuet-openai-fim-compatible-options :end-point "http://localhost:8090/v1/completions")
+  (plist-put minuet-openai-fim-compatible-options :end-point "http://localhost:11434/v1/completions")
   ;; an arbitrary non-null environment variable as placeholder
-  (plist-put minuet-openai-fim-compatible-options :name "Llama.cpp")
+  (plist-put minuet-openai-fim-compatible-options :name "ollama")
   (plist-put minuet-openai-fim-compatible-options :api-key "TERM")
   ;; The model is set by the llama-cpp server and cannot be altered
   ;; post-launch.
-  (plist-put minuet-openai-fim-compatible-options :model "qwen2.5coder")
+  (plist-put minuet-openai-fim-compatible-options :model "hf.co/adilkairolla/zeta-2.1-GGUF:Q8_0")
 
   ;; Llama.cpp does not support the `suffix` option in FIM completion.
   ;; Therefore, we must disable it and manually populate the special
@@ -561,9 +560,8 @@
 
   (minuet-set-optional-options minuet-openai-fim-compatible-options :max_tokens 56))
 
-
-  ;; Enable automatic completion as you type
-  ;; (minuet-auto-suggestion-mode 1))
+;; Enable automatic completion as you type
+;; (minuet-auto-suggestion-mode 1))
 
 (map! :after minuet
       :map global-map
@@ -575,3 +573,11 @@
       "M-n" #'minuet-next-suggestion
       "M-p" #'minuet-previous-suggestion
       "C-g" #'minuet-dismiss-suggestion)
+
+(use-package! agent-shell
+  :bind (:map agent-shell-mode-map
+              ("S-RET" . newline)
+              ("RET" . shell-maker-submit)))
+
+(use-package! fancy-compilation
+  :commands (fancy-compilation-mode))

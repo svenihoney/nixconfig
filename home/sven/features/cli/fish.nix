@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   home = {
     # Fish plugin prerequisites
     packages = with pkgs; [
@@ -16,14 +20,14 @@
     fish = {
       enable = true;
       plugins = [
-        {
-          name = "grc";
-          src = pkgs.fishPlugins.grc.src;
-        }
-        {
-          name = "bass";
-          src = pkgs.fishPlugins.bass.src;
-        }
+        #   {
+        #     name = "grc";
+        #     src = pkgs.fishPlugins.grc.src;
+        #   }
+        # {
+        #   name = "bass";
+        #   src = pkgs.fishPlugins.bass.src;
+        # }
         {
           name = "autopairs";
           src = pkgs.fishPlugins.autopair.src;
@@ -92,7 +96,19 @@
         # Open command buffer in vim when alt+e is pressed
         ''
           bind \ee edit_command_buffer
-          ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
+        ''
+        # Keep the fish shell in nix shells
+        + ''
+          ${lib.getExe pkgs.any-nix-shell} fish --info-right | source
+        ''
+        # Enable vi bindings, but keep CTRL+A in insert mode
+        + ''
+          function fish_user_key_bindings
+            # Execute default bindings first, then layer Vi bindings over them
+            # fish_default_key_bindings -M insert
+            # fish_vi_key_bindings --no-erase insert
+            fish_vi_key_bindings
+          end
         '';
     };
   };

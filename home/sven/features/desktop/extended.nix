@@ -12,5 +12,6 @@
     # ./common/joplin.nix
     ./common/warpinator.nix
     ./common/obsidian.nix
+    ./common/localsend.nix
   ];
 }
