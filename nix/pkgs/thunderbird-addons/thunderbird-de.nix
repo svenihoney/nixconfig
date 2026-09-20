@@ -18,7 +18,7 @@ in
       # url = "https://addons.thunderbird.net/thunderbird/downloads/file/1046973/deutsch_de_language_pack-151.0.20260515.20702-tb.xpi?src=version-history";
       url = "https://download-origin.cdn.mozilla.net/pub/thunderbird/releases/${pkgs.thunderbird.version}/linux-x86_64/xpi/de.xpi";
       # hash = pkgs.lib.fakeHash;
-      hash = "sha256-31jdaqtRlT/4emhvykH7Bx1NZx8cA0RozxwCWFtbwNI=";
+      hash = "sha256-FpxB3QwNQZDR7lvCKCpr2BeeTigKd7P3ZjG61MIrKQo=";
     };
     dontUnpack = true;
     installPhase = ''

@@ -44,9 +44,21 @@
     programs.nixvim.plugins.lsp.servers = {
       clangd.enable = true;
       cmake.enable = true;
-      # extraOptions = "--log=verbose";
-      # cmd = ["/opt/veld/2.0.0/sysroots/x86_64-pokysdk-linux/usr/bin/clangd" "--log=verbose"];
-      # cmd = ["/opt/veld/2.0.0/sysroots/x86_64-pokysdk-linux/usr/bin/clangd"];
     };
+
+    # programs.lazyvim = {
+    #   extras = {
+    #     lang.clangd = {
+    #       enable = true;
+    #       installDependencies = true;
+    #       installRuntimeDependencies = false;
+    #     };
+    #     lang.cmake = {
+    #       enable = true;
+    #       installDependencies = true;
+    #       installRuntimeDependencies = true;
+    #     };
+    #   };
+    # };
   };
 }

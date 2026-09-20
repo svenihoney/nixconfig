@@ -154,19 +154,10 @@
     nixvim = {
       url = "github:nix-community/nixvim";
     };
-    # tix.url = "github:JRMurr/tix";
-    # nvf = {
-    #   url = "github:NotAShelf/nvf";
-    #   # You can override the input nixpkgs to follow your system's
-    #   # instance of nixpkgs. This is safe to do as nvf does not depend
-    #   # on a binary cache.
+    # lazyvim = {
+    #   url = "github:pfassina/lazyvim-nix";
     #   inputs.nixpkgs.follows = "nixpkgs";
-    #   # Optionally, you can also override individual plugins
-    #   # for example:
-    #   # inputs.obsidian-nvim.follows = "obsidian-nvim"; # <- this will use the obsidian-nvim from your inputs
     # };
-    # # nixCats.url = "github:BirdeeHub/nixCats-nvim";
-    # lazyvim.url = "github:BirdeeHub/nixCats-nvim?dir=templates/LazyVim";
 
     # Emacs
     nix-doom-emacs-unstraightened = {

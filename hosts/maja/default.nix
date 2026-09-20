@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   lib,
+  config,
   ...
 }:
 {
@@ -109,10 +110,10 @@
     # Enable hugepages for libvirt
     # kernelParams = [ "hugepagesz=2M" "hugepages=8192" ];  # 8192 × 2MB = 16GB
 
-    binfmt = {
-      emulatedSystems = [ "aarch64-linux" ];
-      preferStaticEmulators = true;
-    };
+    # binfmt = {
+    #   emulatedSystems = [ "aarch64-linux" ];
+    #   preferStaticEmulators = true;
+    # }
     resumeDevice = "/dev/disk/by-uuid/6e52b611-7ab8-4cb5-867c-b5c0f5e7bda7";
     # supportedFilesystems = ["zfs"];
     supportedFilesystems = [ "nfs" ];
@@ -204,12 +205,14 @@
     # };
   };
 
+  networking.nftables.enable = true;
   networking.firewall = {
     allowedTCPPorts = [
       # syncthing
       # 22000
       # ollama
-      11434
+      # 11434
+      config.services.ollama.port
       # AusweisApp
       24727
       # Localsend
@@ -226,6 +229,7 @@
       24727
       # Localsend
       53317
+      config.services.tailscale.port
     ];
   };
   stylix.targets.kmscon.enable = false; # Workaround for 26.05 -> .11 change issue

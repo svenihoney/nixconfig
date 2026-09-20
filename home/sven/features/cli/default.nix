@@ -36,6 +36,7 @@
 
     ncdu # TUI disk usage
     ripgrep # Better grep
+    ugrep # Even better grep
     fd # Better find
     sd # Better sed
     file

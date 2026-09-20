@@ -31,6 +31,7 @@ in {
     ./zed
     ./helix
     ./nvim
+    # ./lazyvim
     # ./nvf
     # ./lazyvim
   ];

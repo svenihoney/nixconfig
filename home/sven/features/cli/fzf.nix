@@ -30,8 +30,12 @@
       plugins = [
         {
           name = "fzf";
-          src = pkgs.fishPlugins.fzf-fish.src;
+          src = pkgs.fishPlugins.fifc.src;
         }
+      #   {
+      #     name = "fzf";
+      #     src = pkgs.fishPlugins.fzf-fish.src;
+      #   }
       ];
     };
   };

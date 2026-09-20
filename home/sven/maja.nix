@@ -43,8 +43,8 @@ in {
   svenihoney.devel = {
     all = true;
     zed = true;
-    vscode = true;
-    helix = true;
+    # vscode = true;
+    # helix = true;
     # nvf = true;
   };
 

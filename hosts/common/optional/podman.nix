@@ -5,6 +5,7 @@
   ...
 }: let
   dockerEnabled = config.virtualisation.docker.enable;
+  podmanIface = if config.networking.nftables.enable then "podman*" else "podman+";
 in {
   virtualisation.podman = {
     enable = true;
@@ -26,7 +27,7 @@ in {
 
   # Enable container name DNS for non-default Podman networks.
   # https://github.com/NixOS/nixpkgs/issues/226365
-  networking.firewall.interfaces."podman+".allowedUDPPorts = [53];
+  networking.firewall.interfaces."${podmanIface}".allowedUDPPorts = [53];
 
   virtualisation.oci-containers.backend = "podman";
 

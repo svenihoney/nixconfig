@@ -113,10 +113,14 @@
     settings = {
       signs = {
         text = {
-          ERROR = "❌";
-          WARN = "⚠️";
-          HINT = "💡";
-          INFO = "ℹ️";
+          # ERROR = "❌";
+          # WARN = "⚠️";
+          # HINT = "💡";
+          # INFO = "ℹ️";
+          ERROR = "⨯";
+          WARN = "⚠";
+          HINT = "◉";
+          INFO = "ℹ";
         };
       };
     };

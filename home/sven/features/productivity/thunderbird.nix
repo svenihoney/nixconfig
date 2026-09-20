@@ -39,9 +39,11 @@
       withExternalGnupg = true;
       extensions = [
         pkgs.keepassxc-mail
-        pkgs.thunderbird-de
-        pkgs.nur.repos.rycee.thunderbird-addons.cardbook
+        # pkgs.thunderbird-de
+        # pkgs.nur.repos.rycee.thunderbird-addons.cardbook
         # pkgs.nur.repos.sigprof.thunderbird-langpack-de
+        pkgs.nur.repos.rycee.thunderbird-addons.tb-langpack-de
+        pkgs.nur.repos.rycee.thunderbird-addons.dictionary-german
       ];
 
       settings = {
