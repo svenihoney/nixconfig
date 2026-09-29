@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   ...
 }:
@@ -29,13 +27,13 @@
     fish = {
       plugins = [
         {
-          name = "fzf";
+          name = "fifc";
           src = pkgs.fishPlugins.fifc.src;
         }
-      #   {
-      #     name = "fzf";
-      #     src = pkgs.fishPlugins.fzf-fish.src;
-      #   }
+        {
+          name = "fzf";
+          src = pkgs.fishPlugins.fzf-fish.src;
+        }
       ];
     };
   };
