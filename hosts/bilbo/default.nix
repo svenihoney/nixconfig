@@ -195,6 +195,24 @@
     allowedTCPPorts = [111 2049 4000 4001 4002 20048];
     allowedUDPPorts = [111 2049 4000 4001 4002 20048];
   };
+  nix = {
+    settings = {
+      substituters = [
+        "https://nix-cache.software.ads"
+        "https://cache.nixos.org"
+        "https://nix-community.cachix.org"
+        "https://nixpkgs-python.cachix.org"
+        "https://walker.cachix.org"
+      ];
+      trusted-public-keys = [
+        "nix-cache.software.ads:OmQgOmYeBEamOJ0WxOoXJmYKXFgK0IfPMiJ03L26yHQ="
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "nixpkgs-python.cachix.org-1:hxjI7pFxTyuTHn2NkvWCrAUcNZLNS3ZAvfYNuYifcEU="
+        "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
+      ];
+    };
+  };
 
   stylix.targets.kmscon.enable = false; # Workaround for 26.05 -> .11 change issue
 

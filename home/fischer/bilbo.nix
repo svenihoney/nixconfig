@@ -65,9 +65,16 @@
       width = 3840;
       height = 2160;
       x = 0;
-      workspace = "1";
+      workspace = "5";
       primary = true;
       scale = 2.0;
+    }
+    {
+      name = "desc:Lenovo Group Limited T24i-10 VT490352";
+      width = 1920;
+      height = 1080;
+      x = 1920;
+      workspace = "1";
     }
     {
       name = "desc:Lenovo Group Limited LEN LT2423wC VN-A015TT";
