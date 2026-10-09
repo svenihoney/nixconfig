@@ -73,23 +73,9 @@
       name = "desc:Lenovo Group Limited T24i-10 VT490352";
       width = 1920;
       height = 1080;
+      # x = 3840;
       x = 1920;
       workspace = "1";
-    }
-    {
-      name = "desc:Lenovo Group Limited LEN LT2423wC VN-A015TT";
-      width = 1920;
-      height = 1080;
-      x = 1920;
-      workspace = "2";
-    }
-    {
-      name = "desc:Lenovo Group Limited LEN T2454pA 0x01010101";
-      width = 1920;
-      height = 1080;
-      x = 3840;
-      workspace = "4";
-      transform = 1;
     }
     {
       name = "desc:Lenovo Group Limited TIO24Gen3 V3018ATR";
@@ -115,19 +101,6 @@
   # ollama.service.enable = true;
   # services.ollama.acceleration = "cuda";
 
-  # programs.caelestia.settings = {
-  #   # general.idle.timeouts = [
-  #   #   {
-  #   #     timeout = 600;
-  #   #     idleAction = "lock";
-  #   #   }
-  #   # ];
-  #   bar.excludedScreens = [
-  #     "DP-2"
-  #     # "DP-3"
-  #     "DP-4"
-  #   ];
-  # };
   programs.noctalia.settings.bar.default.monitor = {
     DP-2 = {enabled = false;};
     # DP-3 = {enabled = false;};

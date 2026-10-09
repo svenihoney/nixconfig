@@ -147,30 +147,6 @@
     fwupd.enable = true;
   };
 
-  # services.btrbk = {
-  #   instances.local = {
-  #     onCalendar = "hourly";
-  #     settings = {
-  #       # ssh_identity = "/etc/btrbk_key"; # NOTE: must be readable by user/group btrbk
-  #       # ssh_user = "btrbk";
-  #       stream_compress = "lz4";
-  #
-  #       timestamp_format = "long";
-  #       snapshot_preserve_min = "8h";
-  #       snapshot_preserve = "48h";
-  #
-  #       volume."/" = {
-  #         # target = "ssh://myhost/mnt/mybackups";
-  #         subvolume = {
-  #           home = {};
-  #           "home/sven/virtualmachines" = {};
-  #         };
-  #         snapshot_dir = "/.snapshots";
-  #       };
-  #     };
-  #   };
-  # };
-
   services.tlp.settings = {
     START_CHARGE_THRESH_BAT0 = 40;
     STOP_CHARGE_THRESH_BAT0 = 80;
@@ -197,19 +173,11 @@
   };
   nix = {
     settings = {
-      substituters = [
-        "https://nix-cache.software.ads"
-        "https://cache.nixos.org"
-        "https://nix-community.cachix.org"
-        "https://nixpkgs-python.cachix.org"
-        "https://walker.cachix.org"
+      substituters = lib.mkBefore [
+        "https://nix-cache.software.ads/nixos-images"
       ];
-      trusted-public-keys = [
-        "nix-cache.software.ads:OmQgOmYeBEamOJ0WxOoXJmYKXFgK0IfPMiJ03L26yHQ="
-        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "nixpkgs-python.cachix.org-1:hxjI7pFxTyuTHn2NkvWCrAUcNZLNS3ZAvfYNuYifcEU="
-        "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
+      trusted-public-keys = lib.mkBefore [
+        "nixos-images:wTU650Sa2OxMeyU/ERWGmAiGC/dGCGBdO3ZlN9zoB8Q="
       ];
     };
   };
