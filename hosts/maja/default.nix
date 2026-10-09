@@ -150,6 +150,7 @@
   };
 
   services = {
+    tailscale.enable = true;
     gvfs.enable = true;
     udev = {
       # Usevia access to hidraw device

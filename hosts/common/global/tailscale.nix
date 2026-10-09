@@ -1,6 +1,6 @@
 {lib, config, ...}: {
   services.tailscale = {
-    enable = true;
+    enable = lib.mkDefault false;
     useRoutingFeatures = lib.mkDefault "client";
   };
   networking.firewall = {
