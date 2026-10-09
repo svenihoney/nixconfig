@@ -121,8 +121,7 @@ in {
         profiles = ["sven"];
       };
     };
-
-  in  {
+  in {
     basePath = "${config.home.homeDirectory}/.local/share/contacts";
     accounts = {
       leiderfischer = lib.mkMerge [
@@ -135,7 +134,7 @@ in {
             passwordCommand = ["${secret-tool}" "lookup" "${mailhost-effeffcee}" "sven@leiderfischer.de"];
           };
           vdirsyncer = {
-            collections = ["from a"];
+            collections = ["leiderfischer"];
           };
         }
         commonContact
@@ -152,7 +151,7 @@ in {
             passwordCommand = ["${secret-tool}" "lookup" "${mailhost-effeffcee}" "sven.fischer@effeffcee.de"];
           };
           vdirsyncer = {
-            collections = ["from a"];
+            collections = ["effeffcee"];
           };
         }
         commonContact
@@ -167,6 +166,7 @@ in {
             clientIdCommand = ["${secret-tool}" "lookup" "google_client_id" "fischereiadressen.gmail.com"];
             clientSecretCommand = ["${secret-tool}" "lookup" "google_client_secret" "fischereiadressen.gmail.com"];
             tokenFile = "${config.home.homeDirectory}/.local/share/vdirsyncer/google_token";
+            # collections = ["default"];
             collections = ["from b"];
           };
           khard = {

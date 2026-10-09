@@ -86,32 +86,35 @@
     dconf.enable = true;
     # kdeconnect.enable = true;
   };
-  services.gvfs.enable = true;
+  services = {
+    tailscale.enable = true;
+    gvfs.enable = true;
+    logind.settings.Login = {
+      HandleLidSwitch = "suspend-then-hibernate";
+      HandleLidSwitchExternalPower = "suspend";
+    };
+
+    tlp.settings = {
+      STOP_CHARGE_THRESH_BAT0 = 1;
+    };
+    upower.enable = true;
+
+    # Usevia access to hidraw device
+    udev.extraRules = ''
+      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="FC32", ATTRS{idProduct}=="0287", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="2717", ATTRS{idProduct}=="d001", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+    '';
+    udisks2.enable = true;
+    fwupd.enable = true;
+  };
 
   # Lid settings
-  services.logind.settings.Login = {
-    HandleLidSwitch = "suspend-then-hibernate";
-    HandleLidSwitchExternalPower = "suspend";
-  };
 
   hardware = {
     graphics.enable = true;
     # amdgpu.amdvlk.enable = true;
     # amdgpu.opencl.enable = false;
   };
-
-  services.tlp.settings = {
-    STOP_CHARGE_THRESH_BAT0 = 1;
-  };
-  services.upower.enable = true;
-
-  # Usevia access to hidraw device
-  services.udev.extraRules = ''
-    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="FC32", ATTRS{idProduct}=="0287", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
-    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="2717", ATTRS{idProduct}=="d001", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
-  '';
-  services.udisks2.enable = true;
-  services.fwupd.enable = true;
 
   # Firewall rules
   networking.firewall = {
