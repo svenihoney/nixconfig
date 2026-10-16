@@ -1,32 +1,32 @@
 {pkgs, ...}: {
   imports = [
-    ./global
-    ./standard-desktop.nix
+    ../common/global
+    ../common/standard-desktop.nix
 
-    ./features/desktop/hyprland
+    ../common/features/desktop/hyprland
     # ./features/desktop/mangowc
-    ./features/desktop/common/networkmanager.nix
+    ../common/features/desktop/common/networkmanager.nix
     # ./features/desktop/common/wayland-wm/wofi.nix
     # ./features/desktop/wireless
-    ./features/productivity
-    ./features/productivity/mail.nix
-    ./features/media
+    ../common/features/productivity
+    ../common/features/productivity/mail.nix
+    ../common/features/media
     # ./features/pass
-    ./features/games
+    ../common/features/games
     # TODO: For standard
-    ./features/desktop/common/nextcloud-client.nix
+    ../common/features/desktop/common/nextcloud-client.nix
     # ./features/desktop/common/kubernetes.nix
     # ./features/desktop/common/wayland-wm/qutebrowser.nix
-    ./features/desktop/common/browser.nix
-    ./features/desktop/common/virtualisation.nix
+    ../common/features/desktop/common/browser.nix
+    ../common/features/desktop/common/virtualisation.nix
     # ./features/desktop/common/linphone.nix
-    ./features/desktop/extended.nix
-    ./features/development
+    ../common/features/desktop/extended.nix
+    ../common/features/development
     # ./features/development/syncthing.nix
 
     ./ssh/ssh-config.nix
 
-    ./features/work
+    ../common/features/work
   ];
 
   svenihoney.devel = {

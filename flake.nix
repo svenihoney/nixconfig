@@ -249,7 +249,7 @@
         pkgs = self.unstable-pkgs.${hostPlatform};
         extraSpecialArgs = {inherit inputs outputs;};
       };
-    # nvim-flake = import ./home/sven/features/editors/nvim/flake.nix;
+    # nvim-flake = import ./home/common/features/editors/nvim/flake.nix;
     # nvim-outputs = nvim-flake.outputs {
     #   inherit self;
     #   inherit inputs.nixpkgs;

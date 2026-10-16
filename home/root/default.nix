@@ -1,6 +1,6 @@
 {pkgs, lib, ...}: {
   imports = [
-    ../sven/features/cli
+    ../common/features/cli
     # ./standard-desktop.nix
 
     # ./features/desktop/hyprland

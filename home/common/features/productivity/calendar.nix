@@ -14,7 +14,8 @@
       fileExt = ".ics";
     };
 
-    vdirsyncer.enable = true;
+    pimsync.enable = true;
+    # vdirsyncer.enable = true;
 
     khal = {
       enable = true;
@@ -74,33 +75,33 @@ in {
         }
         commonCal
       ];
-      familie = lib.mkMerge [
-        {
-          remote = {
-            type = "google_calendar";
-            # url = "https://apidata.googleusercontent.com/caldav/v2/fischereiadressen@gmail.com/events/"; # not actually used for google_calendar type
-          };
-          vdirsyncer = {
-            enable = true;
-            clientIdCommand = ["${secret-tool}" "lookup" "google_client_id" "fischereiadressen.gmail.com"];
-            clientSecretCommand = ["${secret-tool}" "lookup" "google_client_secret" "fischereiadressen.gmail.com"];
-            tokenFile = "${config.home.homeDirectory}/.local/share/vdirsyncer/google_token";
-            collections = [
-              "fischereiadressen@gmail.com"
-              "885e30718c0e356c168a85bccc22ef934ab34e41752bdc2ee9d995c0a6eec16c@group.calendar.google.com" # Papa
-              "e312ff163a7798cf0c35b8e08c2db48f2d5620b7ccd142b9d4dfa719fb1e915a@group.calendar.google.com" # Nina
-              "fed875bdb2ad2e49c34abec4829f9bfdcb76ec5361085df0c2bd23eb483342ff@group.calendar.google.com" # Lutz
-              "264c7c8d585c208cff0a2d459edbc1f5e3538056951e243992e99c1270512961@group.calendar.google.com" # Mama
-            ];
-          };
-
-          khal = {
-            color = "light green";
-          };
-          thunderbird.enable = false;
-        }
-        commonCal
-      ];
+#       familie = lib.mkMerge [
+#         {
+#           remote = {
+#             type = "google_calendar";
+#             # url = "https://apidata.googleusercontent.com/caldav/v2/fischereiadressen@gmail.com/events/"; # not actually used for google_calendar type
+#           };
+#           vdirsyncer = {
+#             # enable = true;
+#             clientIdCommand = ["${secret-tool}" "lookup" "google_client_id" "fischereiadressen.gmail.com"];
+#             clientSecretCommand = ["${secret-tool}" "lookup" "google_client_secret" "fischereiadressen.gmail.com"];
+#             tokenFile = "${config.home.homeDirectory}/.local/share/vdirsyncer/google_token";
+#             collections = [
+#               "fischereiadressen@gmail.com"
+#               "885e30718c0e356c168a85bccc22ef934ab34e41752bdc2ee9d995c0a6eec16c@group.calendar.google.com" # Papa
+#               "e312ff163a7798cf0c35b8e08c2db48f2d5620b7ccd142b9d4dfa719fb1e915a@group.calendar.google.com" # Nina
+#               "fed875bdb2ad2e49c34abec4829f9bfdcb76ec5361085df0c2bd23eb483342ff@group.calendar.google.com" # Lutz
+#               "264c7c8d585c208cff0a2d459edbc1f5e3538056951e243992e99c1270512961@group.calendar.google.com" # Mama
+#             ];
+#           };
+#
+#           khal = {
+#             color = "light green";
+#           };
+#           thunderbird.enable = false;
+#         }
+#         commonCal
+#       ];
     };
   };
   accounts.contact = let
@@ -110,6 +111,7 @@ in {
       };
 
       vdirsyncer.enable = true;
+      pimsync.enable = true;
 
       khard = {
         enable = true;
@@ -179,7 +181,9 @@ in {
   };
 
   programs.vdirsyncer.enable = true;
-  services.vdirsyncer.enable = true;
+  # services.vdirsyncer.enable = true;
+
+  programs.pimsync.enable = true;
 
   programs.khal.enable = true;
   programs.khard.enable = true;

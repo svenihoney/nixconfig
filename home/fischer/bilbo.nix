@@ -11,25 +11,25 @@
     # inputs.home-manager-stable.nixosModules.home-manager
     ../../hosts/common/optional/stylix-cli.nix
 
-    ../sven/global
-    ../sven/standard-desktop.nix
+    ../common/global
+    ../common/standard-desktop.nix
 
-    ../sven/features/desktop/hyprland
-    ../sven/features/desktop/common/networkmanager.nix
+    ../common/features/desktop/hyprland
+    ../common/features/desktop/common/networkmanager.nix
 
-    ../sven/features/desktop/common/browser.nix
-    ../sven/features/desktop/common/virtualisation.nix
-    ../sven/features/desktop/common/kubernetes.nix
-    ../sven/features/desktop/common/keepassxc.nix
-    ../sven/features/desktop/common/wine.nix
-    ../sven/features/desktop/common/obsidian.nix
+    ../common/features/desktop/common/browser.nix
+    ../common/features/desktop/common/virtualisation.nix
+    ../common/features/desktop/common/kubernetes.nix
+    ../common/features/desktop/common/keepassxc.nix
+    ../common/features/desktop/common/wine.nix
+    ../common/features/desktop/common/obsidian.nix
     # ./keepassxc.nix
-    ../sven/features/development
+    ../common/features/development
 
     ./bilbo-ssh-config.nix
     ./bilbo-mail.nix
-    ../sven/features/productivity
-    ../sven/features/productivity/ai.nix
+    ../common/features/productivity
+    ../common/features/productivity/ai.nix
   ];
 
   # config.keepassFile = "${config.home.homeDirectory}/Passwörter.kdbx";

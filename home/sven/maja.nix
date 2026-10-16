@@ -3,41 +3,41 @@
   philips = "desc:Philips Consumer Electronics Company PHL 258B6QU UHB1625057564";
 in {
   imports = [
-    ./global
-    ./standard-desktop.nix
+    ../common/global
+    ../common/standard-desktop.nix
 
-    ./features/desktop/hyprland
+    ../common/features/desktop/hyprland
     # ./features/desktop/mangowc
-    ./features/desktop/common/networkmanager.nix
+    ../common/features/desktop/common/networkmanager.nix
     # ./features/desktop/common/wayland-wm/wofi.nix
     # ./features/desktop/common/wayland-wm/fuzzel.nix
     # ./features/desktop/wireless
-    ./features/development
-    ./features/productivity
-    ./features/productivity/ai.nix
-    ./features/productivity/mail.nix
-    ./features/productivity/calendar.nix
+    ../common/features/development
+    ../common/features/productivity
+    ../common/features/productivity/ai.nix
+    ../common/features/productivity/mail.nix
+    ../common/features/productivity/calendar.nix
 
-    ./features/media
+    ../common/features/media
     # ./features/pass
-    ./features/games
+    ../common/features/games
     # TODO: For standard
-    ./features/desktop/extended.nix
-    ./features/desktop/common/nextcloud-client.nix
+    ../common/features/desktop/extended.nix
+    ../common/features/desktop/common/nextcloud-client.nix
     # ./features/desktop/common/kubernetes.nix
     # ./features/desktop/common/wayland-wm/qutebrowser.nix
-    ./features/desktop/common/browser.nix
-    ./features/desktop/common/virtualisation.nix
+    ../common/features/desktop/common/browser.nix
+    ../common/features/desktop/common/virtualisation.nix
     # ./features/desktop/common/linphone.nix
-    ./features/desktop/common/jameica.nix
-    ./features/desktop/common/switchaudio.nix
+    ../common/features/desktop/common/jameica.nix
+    ../common/features/desktop/common/switchaudio.nix
     # ./features/development/syncthing.nix
-    ./features/development/networking.nix
+    ../common/features/development/networking.nix
     # ./features/media/creativity.nix
 
     ./ssh/ssh-config.nix
 
-    ./features/work
+    ../common/features/work
   ];
 
   svenihoney.devel = {

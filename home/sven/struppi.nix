@@ -6,7 +6,7 @@
 }: {
   imports = [
     # inputs.stylix.homeManagerModules.stylix
-    ./global
+    ../common/global
     ../../hosts/common/optional/stylix-cli.nix
     # ./standard-desktop.nix
 

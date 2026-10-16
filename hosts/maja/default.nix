@@ -19,8 +19,8 @@
     ./restic.nix
 
     ../common/global
-    ../common/users/sven
-    ../common/users/root
+    ../net-ph34/host/users/sven
+    ../net-ph34/host/users/root
 
     # ../common/optional/gamemode.nix
     # ../common/optional/ckb-next.nix
@@ -32,8 +32,8 @@
     # ../common/optional/starcitizen-fixes.nix
     ../common/optional/podman.nix
     ../common/optional/virtualisation.nix
-    ../common/optional/warpinator.nix
-    ../common/optional/printing.nix
+    ../net-ph34/host/optional/warpinator.nix
+    ../net-ph34/host/optional/printing.nix
     ../common/optional/networking.nix
     # ../common/optional/nfs.nix
     ../common/optional/stylix.nix

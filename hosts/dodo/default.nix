@@ -16,7 +16,7 @@
     ./hardware-configuration.nix
 
     ../common/global
-    ../common/users/fischer
+    ../net-customer1/host/users/fischer
 
     # ../common/optional/gamemode.nix
     # ../common/optional/wireless.nix

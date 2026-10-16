@@ -7,23 +7,23 @@
   imports = [
     ../../hosts/common/optional/stylix-cli.nix
 
-    ../sven/global
+    ../common/global
 
-    ../sven/standard-desktop.nix
+    ../common/standard-desktop.nix
 
-    ../sven/features/desktop/common/nixgl.nix
+    ../common/features/desktop/common/nixgl.nix
 
-    ../sven/features/desktop/hyprland
+    ../common/features/desktop/hyprland
 
-    ../sven/features/desktop/common/browser.nix
-    ../sven/features/desktop/common/virtualisation.nix
-    ../sven/features/desktop/common/keepassxc.nix
+    ../common/features/desktop/common/browser.nix
+    ../common/features/desktop/common/virtualisation.nix
+    ../common/features/desktop/common/keepassxc.nix
 
-    ../sven/features/development
-    #../sven/features/editors/emacs
+    ../common/features/development
+    #../common/features/editors/emacs
 
-    # ../sven/features/productivity/neomutt.nix
-    # ../sven/features/productivity/office.nix
+    # ../common/features/productivity/neomutt.nix
+    # ../common/features/productivity/office.nix
   ];
 
   svenihoney.devel.emacs = lib.mkForce false;

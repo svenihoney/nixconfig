@@ -44,5 +44,5 @@ in {
   #   neededForUsers = true;
   # };
 
-  home-manager.users.fischer = import ../../../../home/fischer/${config.networking.hostName}.nix;
+  home-manager.users.fischer = import ../../../../../home/fischer/${config.networking.hostName}.nix;
 }

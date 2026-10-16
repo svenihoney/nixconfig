@@ -9,7 +9,8 @@
     inputs.hardware.nixosModules.lenovo-thinkpad-x1-extreme-gen2
     inputs.hardware.nixosModules.common-gpu-intel
     inputs.hardware.nixosModules.common-gpu-nvidia-nonprime
-    inputs.hardware.nixosModules.common-pc-laptop
+    # inputs.hardware.nixosModules.common-gpu-nvidia
+    # inputs.hardware.nixosModules.common-gpu-nvidia-disable
 
     # inputs.stylix-stable.nixosModules.stylix
     # inputs.home-manager.nixosModules.home-manager
@@ -18,7 +19,7 @@
     ./hardware-configuration.nix
 
     ../common/global
-    ../common/users/fischer
+    ../net-customer1/host/users/fischer
 
     # ../common/optional/gamemode.nix
     # ../common/optional/wireless.nix
@@ -74,6 +75,7 @@
     #   enable = true;
     #   pkiBundle = "/var/lib/sbctl";
     # };
+    # blacklistedKernelModules = ["nouveau"];
   };
 
   # Auto login me
@@ -98,36 +100,7 @@
       enable = true;
     };
     # amdgpu.amdvlk = true;
-    nvidia = {
-      # Modesetting is required.
-      modesetting.enable = true;
-
-      # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-      # Enable this if you have graphical corruption issues or application crashes after waking
-      # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
-      # of just the bare essentials.
-      powerManagement.enable = false;
-
-      # Fine-grained power management. Turns off GPU when not in use.
-      # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-      powerManagement.finegrained = false;
-
-      # Use the NVidia open source kernel module (not to be confused with the
-      # independent third-party "nouveau" open source driver).
-      # Support is limited to the Turing and later architectures. Full list of
-      # supported GPUs is at:
-      # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
-      # Only available from driver 515.43.04+
-      # Currently alpha-quality/buggy, so false is currently the recommended setting.
-      open = true;
-
-      # Enable the Nvidia settings menu,
-      # accessible via `nvidia-settings`.
-      nvidiaSettings = false;
-
-      # Optionally, you may need to select the appropriate driver version for your specific GPU.
-      # package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
+    nvidia.open = true;
     bluetooth.powerOnBoot = false;
   };
 

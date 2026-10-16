@@ -16,5 +16,5 @@
   #   neededForUsers = true;
   # };
 
-  home-manager.users.root = import ../../../../home/root;
+  home-manager.users.root = import ../../../../../home/root;
 }

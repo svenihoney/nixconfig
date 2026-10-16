@@ -46,5 +46,5 @@ in {
   #   neededForUsers = true;
   # };
 
-  home-manager.users.sven = import ../../../../home/sven/${config.networking.hostName}.nix;
+  home-manager.users.sven = import ../../../../../home/sven/${config.networking.hostName}.nix;
 }

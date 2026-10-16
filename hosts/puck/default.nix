@@ -15,7 +15,7 @@
     ./hardware-configuration.nix
 
     ../common/global
-    ../common/users/sven
+    ../net-ph34/host/users/sven
 
     # ../common/optional/gamemode.nix
     # ../common/optional/wireless.nix
@@ -27,8 +27,8 @@
     # ../common/optional/lol-acfix.nix
     ../common/optional/podman.nix
     ../common/optional/virtualisation.nix
-    ../common/optional/warpinator.nix
-    ../common/optional/printing.nix
+    ../net-ph34/host/optional/warpinator.nix
+    ../net-ph34/host/optional/printing.nix
     #../common/optional/nfs.nix
     ../common/optional/stylix.nix
     ../common/optional/bluetooth.nix
