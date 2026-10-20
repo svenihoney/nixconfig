@@ -8,10 +8,11 @@
       enable = true;
       tmux.enableShellIntegration = true;
       tmux.shellIntegrationOptions = [ "-d 40%" ];
-      defaultCommand = "fd --type f";
+      defaultCommand = "fd --type f --hidden --exclude .git";
       defaultOptions = [
         "--height 40%"
         "--border"
+        "--layout=reverse"
       ];
       changeDirWidget = {
         command = "fd --type d"; # alt+c

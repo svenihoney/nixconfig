@@ -11,6 +11,7 @@
       # ./acme.nix
       ./auto-upgrade.nix
       ./fish.nix
+      ./zsh.nix
       ./locale.nix
       ./nix.nix
       ./openssh.nix

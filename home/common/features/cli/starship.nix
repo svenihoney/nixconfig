@@ -278,10 +278,10 @@
 
       shell = {
         disabled = false;
-        bash_indicator = "\$_";
-        fish_indicator = ""; # Empty string as Fish Shell is my default shell
-        # fish_indicator = "⋖⋗⋖"; # if Fish Shell is not the default shell
-        zsh_indicator = "%_";
+        bash_indicator = "\$";
+        # fish_indicator = ""; # Empty string as Fish Shell is my default shell
+        fish_indicator = "🐟"; # if Fish Shell is not the default shell
+        zsh_indicator = "%";
         powershell_indicator = ""; # nf-seti-powershell
         ion_indicator = "(\$_)";
         elvish_indicator = "󰘧"; # nf-md-lambda

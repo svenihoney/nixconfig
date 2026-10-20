@@ -288,11 +288,7 @@
 (repeat-mode t)
 
 ;; NIX
-(set-formatter! 'alejandra '("alejandra" "--quiet") :modes '(nix-mode))
-
-(after! apheleia
-  (push '(alejandra . ("alejandra" "-")) apheleia-formatters)
-  (setf (alist-get 'nix apheleia-mode-alist) 'alejandra))
+(set-formatter! 'alejandra '("alejandra" "--quiet") :modes '(nix-mode nix-ts-mode))
 
 ;; QML
 (defun my-qml-setup ()

@@ -17,7 +17,10 @@ in {
   programs.kitty = {
     enable = true;
     shellIntegration.mode = "no-cursor";
-    shellIntegration.enableFishIntegration = true;
+    shellIntegration = {
+      enableFishIntegration = true;
+      enableZshIntegration = true;
+    };
     settings = {
       scrollback_lines = 4000;
       scrollback_pager_history_size = 2048;

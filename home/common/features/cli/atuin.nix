@@ -8,6 +8,7 @@
     atuin = {
       enable = true;
       enableFishIntegration = true;
+      enableZshIntegration = true;
       enableNushellIntegration = true;
 
       settings = {

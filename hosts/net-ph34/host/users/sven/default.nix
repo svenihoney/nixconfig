@@ -9,7 +9,8 @@ in {
   # users.mutableUsers = false;
   users.users.sven = {
     isNormalUser = true;
-    shell = pkgs.fish;
+    # shell = pkgs.fish;
+    shell = pkgs.zsh;
     extraGroups =
       [
         "wheel"

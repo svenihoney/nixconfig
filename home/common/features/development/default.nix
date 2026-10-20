@@ -54,6 +54,7 @@
     programs.devenv = {
       enable = true;
       # enableFishIntegration = true;
+      enableZshIntegration = true;
     };
     programs.fish = {
       interactiveShellInit = lib.mkAfter ''devenv hook fish | source'';

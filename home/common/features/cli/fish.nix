@@ -15,6 +15,7 @@
     zoxide = {
       enable = true;
       enableFishIntegration = true;
+      enableZshIntegration = true;
     };
 
     fish = {
@@ -115,5 +116,6 @@
 
   services.gpg-agent = {
     enableFishIntegration = true;
+    enableZshIntegration = true;
   };
 }

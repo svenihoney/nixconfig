@@ -39,7 +39,7 @@ in {
             type = "caldav";
             # url = "https://mx1.effeffcee.de/SOGo/dav/sven@leiderfischer.de/Calendar/personal/";
             # url = "https://mx1.effeffcee.de/.well-known/caldav";
-            url = "https://mx1.effeffcee.de/dav/cal/sven@leiderfischer.de";
+            url = "https://mx1.effeffcee.de/dav/cal/sven%40leiderfischer.de";
             userName = "sven@leiderfischer.de";
             # passwordCommand = ["secret-tool" "lookup" "caldav" "work"];
             passwordCommand = ["${secret-tool}" "lookup" "${mailhost-effeffcee}" "sven@leiderfischer.de"];
@@ -60,7 +60,7 @@ in {
           remote = {
             type = "caldav";
             # url = "https://mx1.effeffcee.de/SOGo/dav/sven.fischer@effeffcee.de/Calendar/personal/";
-            url = "https://mx1.effeffcee.de/dav/cal/sven.fischer@effeffcee.de";
+            url = "https://mx1.effeffcee.de/dav/cal/sven.fischer%40effeffcee.de";
             userName = "sven.fischer@effeffcee.de";
             # passwordCommand = ["secret-tool" "lookup" "caldav" "work"];
             passwordCommand = ["${secret-tool}" "lookup" "${mailhost-effeffcee}" "sven.fischer@effeffcee.de"];

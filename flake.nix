@@ -181,6 +181,10 @@
     #   url = "git+https://git.effeffcee.de/sven/nixvim.git";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+    pi-packages = {
+      url = "github:Leoguy77/pi-packages.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {self, ...}: let
@@ -219,6 +223,7 @@
           inputs.stylix.nixosModules.stylix
           inputs.home-manager.nixosModules.home-manager
           inputs.ragenix.nixosModules.default
+
           ./hosts/${hostName}
         ];
         specialArgs = {inherit inputs outputs;};
@@ -246,7 +251,7 @@
           inputs.stylix.homeModules.stylix
           ./home/${user}/${hostName}.nix
         ];
-        pkgs = self.unstable-pkgs.${hostPlatform};
+        pkgs = inputs.nixpkgs.legacyPackages.${hostPlatform};
         extraSpecialArgs = {inherit inputs outputs;};
       };
     # nvim-flake = import ./home/common/features/editors/nvim/flake.nix;
@@ -277,19 +282,6 @@
 
     #     # overlays = [nixgl.overlay];
     #   });
-    unstable-pkgs = forEachSystem (
-      system:
-        import inputs.nixpkgs {
-          inherit system;
-          # overlays = [nixgl.overlay self.overlays];
-          # overlays = [inputs.firefox-addons.overlay];
-          # overlays = [inputs.nur.overlay];
-          #     pkgs = prev;
-          # config.allowUnfree = true;
-          #   }; })];
-          # overlays = [nixgl.overlay];
-        }
-    );
 
     nixosModules = import ./nix/modules/nixos;
     homeManagerModules = import ./nix/modules/home-manager;

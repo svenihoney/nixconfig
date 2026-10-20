@@ -35,6 +35,8 @@ in {
     ../common/features/development/networking.nix
     # ./features/media/creativity.nix
 
+    ../net-ph34
+
     ./ssh/ssh-config.nix
 
     ../common/features/work

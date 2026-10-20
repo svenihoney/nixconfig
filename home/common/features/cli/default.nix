@@ -4,6 +4,7 @@
     ./bat.nix
     ./direnv.nix
     ./fish.nix
+    ./zsh.nix
     ./nushell.nix
     ./fzf.nix
     ./atuin.nix
@@ -19,6 +20,7 @@
     # ./shellcolor.nix
     ./ssh.nix
     ./starship.nix
+    ./zsh.nix
     # ./xpo.nix
     ./yazi.nix
   ];

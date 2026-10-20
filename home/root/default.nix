@@ -37,6 +37,11 @@
   ];
 
 
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowUnfreePredicate = _: true;
+  };
+
   # home.packages = with pkgs; [rclone unison linphone];
   home.stateVersion = lib.mkDefault "23.11";
 }
