@@ -10,6 +10,7 @@
     #inputs.sops-nix.homeManagerModules.sops-nix
     # inputs.home-manager-stable.nixosModules.home-manager
     ../../hosts/common/optional/stylix-cli.nix
+    ../net-customer1
 
     ../common/global
     ../common/standard-desktop.nix

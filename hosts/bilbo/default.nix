@@ -144,16 +144,6 @@
     allowedTCPPorts = [111 2049 4000 4001 4002 20048];
     allowedUDPPorts = [111 2049 4000 4001 4002 20048];
   };
-  nix = {
-    settings = {
-      substituters = lib.mkBefore [
-        "https://nix-cache.software.ads/nixos-images"
-      ];
-      trusted-public-keys = lib.mkBefore [
-        "nixos-images:wTU650Sa2OxMeyU/ERWGmAiGC/dGCGBdO3ZlN9zoB8Q="
-      ];
-    };
-  };
 
   stylix.targets.kmscon.enable = false; # Workaround for 26.05 -> .11 change issue
 
