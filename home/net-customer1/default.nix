@@ -3,16 +3,19 @@ let
 in
 {
   imports = [
-    common/features/cli/zsh.nix
+    features/cli/zsh.nix
+    features/productivity/ai.nix
   ];
 
   nix = {
     settings = {
-      substituters = lib.mkBefore [
+      extra-substituters = lib.mkBefore [
         "https://nix-cache.software.ads/nixos-images"
+        "https://cache.nixos.org"
       ];
       trusted-public-keys = lib.mkBefore [
-        "nixos-images:wTU650Sa2OxMeyU/ERWGmAiGC/dGCGBdO3ZlN9zoB8Q="
+        "nixos-images:gwYWTxv9gqUQmbrMqm+gAjslkRhtWaJPxiXjT15VW9E="
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       ];
     };
   };
