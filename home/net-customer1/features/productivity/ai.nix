@@ -35,7 +35,7 @@
         openai = {
           baseUrl = "https://litellm.software.ads";
           api = "openai-completions";
-          apiKey = "\${LITELLM_API_KEY}";
+          apiKey = "!${lib.getExe pkgs.libsecret} lookup ki.software.ads fischer";
           models = [
             {
               id = "qwen3.8";

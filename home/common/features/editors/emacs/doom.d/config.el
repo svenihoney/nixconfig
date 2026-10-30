@@ -156,10 +156,10 @@
 
 ;; #################### PROGRAMMING
 
-(map! [f7] 'recompile
-      [S-f7] 'compile
+(map! [f7] 'ghostel-recompile
+      [S-f7] 'ghostel-compile
       [f8] 'next-error
-      :nv "K"   #'zeal-at-point
+      ;; :nv "K"   #'zeal-at-point
       [S-right] 'next-buffer
       [S-left] 'previous-buffer
       )
@@ -181,19 +181,12 @@
                  (c-basic-offset . 4)
                  (c-syntactic-indentation . t)))
   (setf (alist-get 'other c-default-style) "svenihoney-c-style"))
-;; (after! cc-mode
-;;   (c-add-style "svenihoney"
-;;                '("linux"
-;;                  (c-basic-offset . 4)
-;;                  ))
-;;   (add-to-list 'c-default-style '(other . "svenihoney"))
+
+;; (set-docsets! 'c++-mode :add "Qt_5")
+
+;; (after! zeal-at-point
+;;   (add-to-list 'zeal-at-point-mode-alist '(c++-mode . ("cpp" "qt")))
 ;;   )
-
-(set-docsets! 'c++-mode :add "Qt_5")
-
-(after! zeal-at-point
-  (add-to-list 'zeal-at-point-mode-alist '(c++-mode . ("cpp" "qt")))
-  )
 
 ;; #################### LSP
 ;; ccls / clangd
@@ -212,9 +205,9 @@
 (setq lsp-enable-file-watchers t)
 (setq lsp-file-watch-threshold 50000)
 
-;; (after! lsp-mode
-;;   (require 'dap-cpptools)
-;;   )
+(after! lsp-ui
+  (setq lsp-ui-sideline-diagnostic-max-lines 3)
+  )
 
 (after! dap-mode
   (setq dap-python-debugger 'debugpy)
@@ -358,8 +351,8 @@
 ;; Shell recommendation from doom doctor
 (setq shell-file-name (executable-find "bash"))
 
-(setq-default vterm-shell (executable-find "fish"))
-(setq-default explicit-shell-file-name (executable-find "fish"))
+;; (setq-default vterm-shell (executable-find "fish"))
+;; (setq-default explicit-shell-file-name (executable-find "fish"))
 
 ;; (use-package! ellama
 ;;   :defer
@@ -435,7 +428,7 @@
   :config
   (require 'gptel-integrations)
   (require 'gptel-org)
-  (setq gptel-model 'gpt-4.1
+  (setq gptel-model 'Ollama:qwen3:14b
         gptel-default-mode 'org-mode
         gptel-use-curl t
         gptel-use-tools t
@@ -499,18 +492,18 @@
 ;;   )
 ;; :key can be a function that returns the API key.
 
-(use-package! aidermacs
-  ;; :defer
-  :config
-  (setenv "OLLAMA_API_BASE" "http://maja:11434")
-  (setenv "OPENROUTER_API_KEY" (secrets-get-secret "keepassx" "OpenRouter free key"))
-  (setenv "OPENAI_API_KEY" (secrets-get-secret "keepassx" "github-copilot apikey"))
-  :custom
-  (aidermacs-default-chat-mode "architect")
-  (aidermacs-architect-model "ollama_chat/gpt-oss:20b")
-  (aidermacs-default-model "ollama_chat/gpt-oss:20b")
-  (aidermacs-editor-model "ollama_chat/gpt-oss:20b")
-  )
+;; (use-package! aidermacs
+;;   ;; :defer
+;;   :config
+;;   (setenv "OLLAMA_API_BASE" "http://maja:11434")
+;;   (setenv "OPENROUTER_API_KEY" (secrets-get-secret "keepassx" "OpenRouter free key"))
+;;   (setenv "OPENAI_API_KEY" (secrets-get-secret "keepassx" "github-copilot apikey"))
+;;   :custom
+;;   (aidermacs-default-chat-mode "architect")
+;;   (aidermacs-architect-model "ollama_chat/gpt-oss:20b")
+;;   (aidermacs-default-model "ollama_chat/gpt-oss:20b")
+;;   (aidermacs-editor-model "ollama_chat/gpt-oss:20b")
+;;   )
 
 ;; (map! :leader
 ;;       (:prefix-map ("k" . "AI tools")
@@ -522,58 +515,91 @@
 ;;        )
 ;;       )
 
-(use-package! minuet
-  :config
-  (setq minuet-provider 'openai-fim-compatible)
-  (setq minuet-n-completions 1) ; recommended for Local LLM for resource saving
-  ;; I recommend beginning with a small context window size and incrementally
-  ;; expanding it, depending on your local computing power. A context window
-  ;; of 512, serves as an good starting point to estimate your computing
-  ;; power. Once you have a reliable estimate of your local computing power,
-  ;; you should adjust the context window to a larger value.
-  (setq minuet-context-window 512)
-  (plist-put minuet-openai-fim-compatible-options :end-point "http://localhost:11434/v1/completions")
-  ;; an arbitrary non-null environment variable as placeholder
-  (plist-put minuet-openai-fim-compatible-options :name "ollama")
-  (plist-put minuet-openai-fim-compatible-options :api-key "TERM")
-  ;; The model is set by the llama-cpp server and cannot be altered
-  ;; post-launch.
-  (plist-put minuet-openai-fim-compatible-options :model "hf.co/adilkairolla/zeta-2.1-GGUF:Q8_0")
+(use-package! macher
+  :custom
+  ;; The org UI has structured conversations and nice content folding.
+  (macher-action-buffer-ui 'org)
 
-  ;; Llama.cpp does not support the `suffix` option in FIM completion.
-  ;; Therefore, we must disable it and manually populate the special
-  ;; tokens required for FIM completion.
-  (minuet-set-nested-plist minuet-openai-fim-compatible-options nil :template :suffix)
-  (minuet-set-optional-options
-   minuet-openai-fim-compatible-options
-   :prompt
-   (defun minuet-llama-cpp-fim-qwen-prompt-function (ctx)
-     (format "<|fim_prefix|>%s\n%s<|fim_suffix|>%s<|fim_middle|>"
-             (plist-get ctx :language-and-tab)
-             (plist-get ctx :before-cursor)
-             (plist-get ctx :after-cursor)))
-   :template)
+  :hook
+  ;; Set up action buffer behavior to your liking.  Alternately, do
+  ;; this more generally in your `gptel-mode-hook'.
+  (macher-action-buffer-setup
+   . (lambda ()
+       ;; Auto-scroll responses.
+       (setq-local window-point-insertion-type t)
+       ;; Wrap lines.
+       (visual-line-mode 1))
 
-  (minuet-set-optional-options minuet-openai-fim-compatible-options :max_tokens 56))
+   :config
+   ;; Recommended - register macher tools and presets with gptel.
+   (macher-install)
 
-;; Enable automatic completion as you type
-;; (minuet-auto-suggestion-mode 1))
+   ;; Recommended - enable macher infrastructure for tools/prompts in
+   ;; any buffer.  (Actions and presets will still work without this.)
+   (macher-enable)
 
-(map! :after minuet
-      :map global-map
-      "M-i" #'minuet-show-suggestion)
+   ;; Adjust buffer positioning to taste.
+   ;; (add-to-list
+   ;;  'display-buffer-alist
+   ;;  '("\\*macher:.*\\*"
+   ;;    (display-buffer-in-side-window)
+   ;;    (side . bottom)))
+   ;; (add-to-list
+   ;;  'display-buffer-alist
+   ;;  '("\\*macher-patch:.*\\*"
+   ;;    (display-buffer-in-side-window)
+   ;;    (side . right)))
+   )
 
-(map! :after minuet
-      :map minuet-active-mode-map
-      "A-f" #'minuet-accept-suggestion
-      "M-n" #'minuet-next-suggestion
-      "M-p" #'minuet-previous-suggestion
-      "C-g" #'minuet-dismiss-suggestion)
+  (use-package! minuet
+    :config
+    (setq minuet-provider 'openai-fim-compatible)
+    (setq minuet-n-completions 1) ; recommended for Local LLM for resource saving
+    ;; I recommend beginning with a small context window size and incrementally
+    ;; expanding it, depending on your local computing power. A context window
+    ;; of 512, serves as an good starting point to estimate your computing
+    ;; power. Once you have a reliable estimate of your local computing power,
+    ;; you should adjust the context window to a larger value.
+    (setq minuet-context-window 512)
+    (plist-put minuet-openai-fim-compatible-options :end-point "http://localhost:11434/v1/completions")
+    ;; an arbitrary non-null environment variable as placeholder
+    (plist-put minuet-openai-fim-compatible-options :name "ollama")
+    (plist-put minuet-openai-fim-compatible-options :api-key "TERM")
+    ;; The model is set by the llama-cpp server and cannot be altered
+    ;; post-launch.
+    (plist-put minuet-openai-fim-compatible-options :model "deepseek-coder-v2:latest")
 
-(use-package! agent-shell
-  :bind (:map agent-shell-mode-map
-              ("S-RET" . newline)
-              ("RET" . shell-maker-submit)))
+    ;; Llama.cpp does not support the `suffix` option in FIM completion.
+    ;; Therefore, we must disable it and manually populate the special
+    ;; tokens required for FIM completion.
+    (minuet-set-nested-plist minuet-openai-fim-compatible-options nil :template :suffix)
+    ;; (minuet-set-optional-options
+    ;;  minuet-openai-fim-compatible-options
+    ;;  :prompt
+    ;;  (defun minuet-llama-cpp-fim-qwen-prompt-function (ctx)
+    ;;    (format "<|fim_prefix|>%s\n%s<|fim_suffix|>%s<|fim_middle|>"
+    ;;            (plist-get ctx :language-and-tab)
+    ;;            (plist-get ctx :before-cursor)
+    ;;            (plist-get ctx :after-cursor)))
+    ;;  :template)
 
-(use-package! fancy-compilation
-  :commands (fancy-compilation-mode))
+    (minuet-set-optional-options minuet-openai-fim-compatible-options :max_tokens 56))
+
+  ;; Enable automatic completion as you type
+  ;; (minuet-auto-suggestion-mode 1))
+
+  (map! :after minuet
+        :map global-map
+        "M-i" #'minuet-show-suggestion)
+
+  (map! :after minuet
+        :map minuet-active-mode-map
+        "A-f" #'minuet-accept-suggestion
+        "M-n" #'minuet-next-suggestion
+        "M-p" #'minuet-previous-suggestion
+        "C-g" #'minuet-dismiss-suggestion)
+
+  (use-package! agent-shell
+    :bind (:map agent-shell-mode-map
+                ("S-RET" . newline)
+                ("RET" . shell-maker-submit)))

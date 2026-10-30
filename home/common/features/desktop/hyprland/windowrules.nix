@@ -131,7 +131,7 @@
       }
       {
         name = "windowrule-26";
-        match.initial_class = ".exe";
+        match.class = ".*exe";
         float = true;
         workspace = "5";
         # center = true;

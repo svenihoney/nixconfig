@@ -25,20 +25,20 @@
     #     else pkgs.llama-cpp;
     # in
     {
-      home.packages =
-        with pkgs;
-          []
-          ++ (lib.optionals config.ai-client.enable [
-            oterm
-            # alpaca
-            # aider-chat
-            # lmstudio
-            # opencode
-          ])
+      # home.packages =
+      #   with pkgs;
+      #     []
+      #     ++ (lib.optionals config.ai-client.enable [
+      #       # oterm
+      #       # alpaca
+      #       # aider-chat
+      #       # lmstudio
+      #       # opencode
+      #     ])
         # ++ (lib.optionals config.ai-server.enable [
         #   llamaPackage
         # ]);
-        ;
+        # ;
 
       services.ollama = lib.mkIf config.ai-server.enable {
         enable = true;
@@ -54,6 +54,41 @@
 
       programs.opencode = {
         enable = config.ai-client.enable;
+        settings = {
+          compaction.auto = false;
+          plugin = [
+            "billion-context"
+            "@dietrichgebert/ponytail"
+            "opencode-caveman"
+          ];
+          permission = {
+            read = {
+              "*" = "allow";
+              "*.env" = "deny";
+              "*.env.*" = "deny";
+              "*.env.example" = "allow";
+              "~/.ssh/*" = "deny";
+            };
+            edit = {
+              "*" = "allow";
+              "*.env" = "deny";
+              "*.env.*" = "deny";
+              "*.env.example" = "allow";
+              "~/.ssh/*" = "deny";
+            };
+            bash = {
+              "*" = "allow";
+              "rm -rf /*" = "deny";
+              "rm -rf ~" = "deny";
+              "rm -rf /" = "deny";
+            };
+            external_directory = "allow";
+            webfetch = "allow";
+            websearch = "allow";
+            question = "allow";
+            todowrite = "allow";
+          };
+        };
       };
 
       xdg.configFile."opencode/AGENTS.md".text = ''
@@ -84,15 +119,36 @@
             # "git:github.com/Leoo0x1/pi-opencode-free"
             # "git:github.com/pedrostarkealexis/pi-opencode-free/"
             # "npm:@ollama/pi-web-search"
-            "npm:@juicesharp/rpiv-ask-user-question"
-            "npm:@juicesharp/rpiv-todo"
             # "npm:@gotgenes/pi-permission-system"
+            # Structured ask-the-user dialogs so the agent asks instead of guessing.
+            "npm:@juicesharp/rpiv-ask-user-question"
+
+            # Visible model task list that survives reloads and context compaction.
+            "npm:@juicesharp/rpiv-todo"
+
+            # Agent permission/policy controls
+            "npm:@gotgenes/pi-permission-system"
+
+            # Claude Code-style TUI, themes, context inspection, and workflow utilities.
             "npm:pi-cc-extensions"
+
+            # "Lazy senior dev" skill favoring minimal, standard-library, YAGNI-style changes.
             "npm:@dietrichgebert/ponytail"
+
+            # Terse output mode that cuts roughly 75% of response tokens.
             "npm:pi-caveman"
+
+            # Context-compression middleware to extend effective context and reduce token use.
             "npm:billion-context"
+
+            # Real-time LSP, lint, format, type-check, and structural feedback after edits.
             "npm:pi-lens"
-            "npm:pi-sandbox"
+
+            # OS-level sandboxing with interactive permission prompts for agent commands.
+            # "npm:pi-sandbox"
+
+            # Auto-discovers local Ollama models and registers them with Pi.
+            # "npm:@kylebrodeur/pi-model-discovery"
           ];
         };
       };

@@ -49,5 +49,10 @@
     # };
     # programs.fish.shellAbbrs.ec = "emacsclient -t";
 
+    nix.settings = {
+      builders-use-substitutes = true;
+      extra-substituters = ["https://doom-emacs-unstraightened.cachix.org"];
+      extra-trusted-public-keys = ["doom-emacs-unstraightened.cachix.org-1:O5oOlRPnmQEvVaFyuMTmthCEooHbrg54WgSLR07tmg4="];
+    };
   };
 }

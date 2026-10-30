@@ -51,7 +51,7 @@
 ;; our package manager can't deal with; see raxod502/straight.el#279)
 ;(package! builtin-package :recipe (:branch "develop"))
 
-(package! zeal-at-point)
+;; (package! zeal-at-point)
 
 ;; The following is from https://tecosaur.github.io/emacs-config/config.html
 ;;(package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el")) :pin "cc02f25337...")
@@ -62,9 +62,7 @@
 
 ;; (package! company-tabnine :recipe (:host github :repo "TommyX12/company-tabnine"))
 
-(package! fancy-compilation)
-
-(package! fish-mode)
+;; (package! fish-mode)
 
 ;; Live preview of HTML/Markdown files
 (package! impatient-mode)
@@ -83,9 +81,13 @@
 ;; (package! gptel-aibo)
 ;; (package! aidermacs)
 ;; (package! mcp)
+(package! gptel-agent)
+;; (package! gptel-presets :recipe (:host github :repo "karthink/gptel-preset-collection" :pin "38651c2baf849e930e4f75b121df513989443898"))
+(package! macher)
 
-
+;; Code completion with LLM
 (package! minuet)
-(package! shell-maker)
-(package! acp)
+
+;; (package! shell-maker)
+;; (package! acp)
 (package! agent-shell)

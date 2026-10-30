@@ -5,6 +5,7 @@
 }: {
   programs.nushell = {
     enable = true;
+    loadSessionVariables = true;
 
     # Typed settings — home-manager flattens these into $env.config assignments
     # which avoids clobbering unrelated defaults

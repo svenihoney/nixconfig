@@ -40,6 +40,12 @@
   };
 
   programs.pi-coding-agent = {
+    settings = {
+      packages = [
+        # Bridge Pi to the local OpenCode CLI and expose its free models.
+        "npm:opencode-pi"
+      ];
+    };
     models = {
       providers = {
         ollama = {
@@ -51,7 +57,13 @@
               id = "hf.co/empero-ai/Qwen3.8-35B-A3B-Distill-GGUF:Q4_K_M";
             }
             {
+              id = "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-IQ3_S";
+            }
+            {
               id = "gpt-oss:20b-32k";
+            }
+            {
+              id = "gemma4:12b";
             }
           ];
         };

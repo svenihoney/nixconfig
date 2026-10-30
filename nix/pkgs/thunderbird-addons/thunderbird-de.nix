@@ -19,7 +19,7 @@ in
       url = "https://download-origin.cdn.mozilla.net/pub/thunderbird/releases/${pkgs.thunderbird.version}/linux-x86_64/xpi/de.xpi";
       # hash = pkgs.lib.fakeHash;
       # hash = "sha256-FpxB3QwNQZDR7lvCKCpr2BeeTigKd7P3ZjG61MIrKQo=";
-      hash = "sha256-4gX/mrc7eGf+brNC1c5KyxPkyWLcadT4Bdcgtyhs+1U=";
+      hash = "sha256-/JkUY5HqKG3Q94L8SFUhbvH2oRhkauUtjRlusaGxOPY=";
     };
     dontUnpack = true;
     installPhase = ''
