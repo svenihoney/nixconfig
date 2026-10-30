@@ -1,8 +1,6 @@
 {
-  config,
   pkgs,
-  lib,
-  osConfig,
+  inputs,
   ...
 }: {
   programs.opencode = {
@@ -40,12 +38,6 @@
   };
 
   programs.pi-coding-agent = {
-    settings = {
-      packages = [
-        # Bridge Pi to the local OpenCode CLI and expose its free models.
-        "npm:opencode-pi"
-      ];
-    };
     models = {
       providers = {
         ollama = {
@@ -68,6 +60,12 @@
           ];
         };
       };
+    };
+    settings = {
+      packages = map (n: "${inputs.pi-packages.packages.${pkgs.stdenv.hostPlatform.system}."pi-${n}"}") [
+        # "opencode-pi"
+        "pi-better-web-search"
+      ];
     };
   };
 }

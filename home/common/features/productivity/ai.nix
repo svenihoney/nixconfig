@@ -3,6 +3,7 @@
   pkgs,
   lib,
   osConfig,
+  inputs,
   ...
 }: {
   options = {
@@ -13,7 +14,7 @@
     ai-client.enable = lib.mkEnableOption "Enable AI client";
     ai.sandbox.extraAllowedDomains = lib.mkOption {
       type = lib.types.listOf lib.types.str;
-      default = [ ];
+      default = [];
       description = "Extra network.allowedDomains to add to the pi sandbox.json on top of the defaults";
     };
   };
@@ -35,10 +36,10 @@
       #       # lmstudio
       #       # opencode
       #     ])
-        # ++ (lib.optionals config.ai-server.enable [
-        #   llamaPackage
-        # ]);
-        # ;
+      # ++ (lib.optionals config.ai-server.enable [
+      #   llamaPackage
+      # ]);
+      # ;
 
       services.ollama = lib.mkIf config.ai-server.enable {
         enable = true;
@@ -47,7 +48,8 @@
         environmentVariables = {
           #   HCC_AMDGPU_TARGET = "gfx1030"; # used to be necessary, but doesn't seem to anymore
           OLLAMA_KEEP_ALIVE = "3m";
-          OLLAMA_CONTEXT_LENGTH = "32768";
+          # OLLAMA_CONTEXT_LENGTH = "32768";
+          OLLAMA_CONTEXT_LENGTH = "65536";
           OLLAMA_KV_CACHE_TYPE = "q4_0";
         };
       };
@@ -105,56 +107,30 @@
         - **Language** Casual, relaxed, or sloppy language is totally fine to use.
       '';
 
-
       programs.pi-coding-agent = {
         enable = config.ai-client.enable;
         configDir = "${config.xdg.configHome}/pi";
         extraPackages = with pkgs; [nodejs ripgrep bubblewrap socat];
-        # extraPackages = with pkgs; [ nodejs ];
         settings = {
           defaultThinkingLevel = "low";
           hideThinkingBlock = true;
-          packages = [
-            # "npm:pi-opencode-free"
-            # "git:github.com/Leoo0x1/pi-opencode-free"
-            # "git:github.com/pedrostarkealexis/pi-opencode-free/"
-            # "npm:@ollama/pi-web-search"
-            # "npm:@gotgenes/pi-permission-system"
-            # Structured ask-the-user dialogs so the agent asks instead of guessing.
-            "npm:@juicesharp/rpiv-ask-user-question"
-
-            # Visible model task list that survives reloads and context compaction.
-            "npm:@juicesharp/rpiv-todo"
-
-            # Agent permission/policy controls
-            "npm:@gotgenes/pi-permission-system"
-
-            # Claude Code-style TUI, themes, context inspection, and workflow utilities.
-            "npm:pi-cc-extensions"
-
-            # "Lazy senior dev" skill favoring minimal, standard-library, YAGNI-style changes.
-            "npm:@dietrichgebert/ponytail"
-
-            # Terse output mode that cuts roughly 75% of response tokens.
-            "npm:pi-caveman"
-
-            # Context-compression middleware to extend effective context and reduce token use.
-            "npm:billion-context"
-
-            # Real-time LSP, lint, format, type-check, and structural feedback after edits.
-            "npm:pi-lens"
-
-            # OS-level sandboxing with interactive permission prompts for agent commands.
-            # "npm:pi-sandbox"
-
-            # Auto-discovers local Ollama models and registers them with Pi.
-            # "npm:@kylebrodeur/pi-model-discovery"
+          # pi-packages' homeModule is broken upstream (mkPiPackage call), so use its flake packages directly.
+          packages = map (n: "${inputs.pi-packages.packages.${pkgs.stdenv.hostPlatform.system}."pi-${n}"}") [
+            "juicesharp-rpiv-ask-user-question" # structured ask-the-user dialogs
+            "juicesharp-rpiv-todo" # visible task list
+            "gotgenes-pi-permission-system" # permission/policy controls
+            "pi-cc-extensions" # Claude Code-style TUI, themes, utilities
+            "dietrichgebert-ponytail" # lazy senior dev skill
+            "pi-caveman" # terse output mode
+            "billion-context" # context compression
+            "pi-lens" # LSP/lint/format feedback
+            # "taterdoge-pi-remember-model" # Remember the last selected model does not work with read only settings
           ];
         };
       };
 
       home.file."${config.programs.pi-coding-agent.configDir}/extensions/pi-permission-system/config.json".text = builtins.toJSON {
-        yoloMode = true;
+        # yoloMode = true;
         permission = {
           "*" = "allow";
           path = {
@@ -170,7 +146,11 @@
             "rm -rf ~" = "deny";
             "rm -rf /" = "deny";
           };
-          external_directory = "allow";
+          # external_directory = "allow";
+          external_directory = {
+            "*" = "ask";
+            "/nix/store/*" = "allow";
+          };
         };
       };
       home.file."${config.programs.pi-coding-agent.configDir}/agent/sandbox.json".text = builtins.toJSON {
@@ -225,9 +205,9 @@
       };
 
       # In your Nix configuration
-      # nix.settings = {
-      #   extra-substituters = [ "https://nix-cache.lsinfra.de/pi-packages" ];
-      #   extra-trusted-public-keys = [ "pi-packages:OF+SNU2ALJB8M+cQP/RfFOuKIOMN0w4WiV8k01pvUC4=" ];
-      # };
+      nix.settings = {
+        extra-substituters = ["https://nix-cache.lsinfra.de/pi-packages"];
+        extra-trusted-public-keys = ["pi-packages:OF+SNU2ALJB8M+cQP/RfFOuKIOMN0w4WiV8k01pvUC4="];
+      };
     };
 }
