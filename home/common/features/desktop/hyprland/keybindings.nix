@@ -9,8 +9,6 @@ let
 
   terminal = config.programs.ghostty;
 
-  # caelestia = "${lib.getExe config.programs.caelestia.cli.package}";
-
   playerctl = "${lib.getExe config.services.playerctld.package}";
   wpctl = "${lib.getExe' pkgs.wireplumber "wpctl"}";
   brightnesscontrol = "${lib.getExe pkgs.brightnessctl}";

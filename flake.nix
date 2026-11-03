@@ -48,14 +48,20 @@
     #   url = "github:nix-community/home-manager/release-25.05";
     #   inputs.nixpkgs.follows = "nixpkgs-stable";
     # };
-    nixgl.url = "github:guibou/nixGL";
+    nixgl = {
+      url = "github:guibou/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    musnix.url = "github:musnix/musnix";
+    musnix = {
+      url = "github:musnix/musnix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     # nh = {
@@ -81,21 +87,10 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # caelestia-shell = {
-    #   url = "github:caelestia-dots/shell";
-    #   # url = "github:nik-bsta/shell?ref=fix/app2unit-version-pin";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.quickshell.url = "github:quickshell-mirror/quickshell";
-    # };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # mangowm = {
-    #   # url = "github:DreamMaoMao/mangowc";
-    #   url = "github:mangowm/mango";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
 
     # firefox-addons = {
     #   url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
@@ -115,7 +110,10 @@
       };
     };
 
-    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # anyrun.url = "github:fufexan/anyrun?ref=launch-prefix";
     # walker.url = "github:abenz1267/walker";
 
@@ -131,7 +129,10 @@
 
     # flake-parts.url = "github:hercules-ci/flake-parts";
 
-    ragenix.url = "github:yaxitech/ragenix";
+    ragenix = {
+      url = "github:yaxitech/ragenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # disconic.url = "github:misterio77/disconic";
     # website.url = "github:misterio77/website";
     # paste-misterio-me.url = "github:misterio77/paste.misterio.me";

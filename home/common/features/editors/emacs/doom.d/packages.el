@@ -63,6 +63,7 @@
 ;; (package! company-tabnine :recipe (:host github :repo "TommyX12/company-tabnine"))
 
 ;; (package! fish-mode)
+(package! flyover)
 
 ;; Live preview of HTML/Markdown files
 (package! impatient-mode)

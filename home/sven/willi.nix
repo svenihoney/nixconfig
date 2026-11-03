@@ -59,13 +59,13 @@
       transform = 1;
     }
   ];
-  programs.caelestia.settings = {
-    bar.excludedScreens = [
-      "DP-2"
-      "DP-3"
-      "DP-4"
-    ];
-  };
+  # programs.caelestia.settings = {
+  #   bar.excludedScreens = [
+  #     "DP-2"
+  #     "DP-3"
+  #     "DP-4"
+  #   ];
+  # };
   home.packages = with pkgs; [
     gparted
     unison

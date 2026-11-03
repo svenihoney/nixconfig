@@ -9,6 +9,8 @@
   ];
   home.packages = with pkgs; [
     # lutris
+
+    # Mitigate ackege errors
     (pkgs.lutris.override {
       # Intercept buildFHSEnv to modify target packages
       buildFHSEnv =
@@ -27,27 +29,13 @@
                   doCheck = false;
                 });
               in
-              # Replace broken openldap with the custom one
-              builtins.filter (p: (p.pname or "") != "openldap") originalPkgs ++ [ customLdap ];
+              # Drop openldap (tests fail) and gtk2 (marked broken upstream; 32-bit gtk2
+              # only matters for WINE games needing it)
+              builtins.filter (p: !lib.elem (p.pname or "") [ "openldap" "gtk2" ]) originalPkgs
+              ++ [ customLdap ];
           }
         );
     })
-    # teamspeak_client
-    # teamspeak5_client
   ];
 
-  # home.persistence = {
-  #   "/persist/home/${user}" = {
-  #     allowOther = true;
-  #     directories = [
-  #       {
-  #         # Use symlink, as games may be IO-heavy
-  #         directory = "Games/Lutris";
-  #         method = "symlink";
-  #       }
-  #       ".config/lutris"
-  #       ".local/share/lutris"
-  #     ];
-  #   };
-  # };
 }

@@ -2,6 +2,7 @@
   config,
   lib,
   inputs,
+  pkgs,
   ...
 }: {
   imports = [
@@ -16,6 +17,7 @@
 
   programs.noctalia = {
     enable = true;
+    # package = pkgs.noctalia;
     systemd.enable = config.programs.noctalia.enable;
     settings = fromTOML (builtins.readFile ./noctalia-config.toml);
   };

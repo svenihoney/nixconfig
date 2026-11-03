@@ -130,7 +130,7 @@
       };
 
       home.file."${config.programs.pi-coding-agent.configDir}/extensions/pi-permission-system/config.json".text = builtins.toJSON {
-        # yoloMode = true;
+        yoloMode = true;
         permission = {
           "*" = "allow";
           path = {
@@ -145,6 +145,7 @@
             "rm -rf /*" = "deny";
             "rm -rf ~" = "deny";
             "rm -rf /" = "deny";
+            "rm -rf /tmp/*" = "allow";
           };
           # external_directory = "allow";
           external_directory = {
