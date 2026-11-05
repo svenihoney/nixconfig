@@ -26,6 +26,7 @@
     #     else pkgs.llama-cpp;
     # in
     {
+      # imports = [ inputs.pi-packages.homeModules.default ];
       # home.packages =
       #   with pkgs;
       #     []
@@ -111,20 +112,36 @@
         enable = config.ai-client.enable;
         configDir = "${config.xdg.configHome}/pi";
         extraPackages = with pkgs; [nodejs ripgrep bubblewrap socat];
+        # mutableSettings = true;
         settings = {
           defaultThinkingLevel = "low";
           hideThinkingBlock = true;
+          compaction = {
+            enabled = true;
+            reserveTokens = 127144;
+            keepRecentTokens = 4000;
+          };
           # pi-packages' homeModule is broken upstream (mkPiPackage call), so use its flake packages directly.
-          packages = map (n: "${inputs.pi-packages.packages.${pkgs.stdenv.hostPlatform.system}."pi-${n}"}") [
-            "juicesharp-rpiv-ask-user-question" # structured ask-the-user dialogs
-            "juicesharp-rpiv-todo" # visible task list
-            "gotgenes-pi-permission-system" # permission/policy controls
-            "pi-cc-extensions" # Claude Code-style TUI, themes, utilities
-            "dietrichgebert-ponytail" # lazy senior dev skill
-            "pi-caveman" # terse output mode
-            "billion-context" # context compression
-            "pi-lens" # LSP/lint/format feedback
-            # "taterdoge-pi-remember-model" # Remember the last selected model does not work with read only settings
+          # packages = map (n: "${inputs.pi-packages.packages.${pkgs.stdenv.hostPlatform.system}."pi-${n}"}") [
+          #   "juicesharp-rpiv-ask-user-question" # structured ask-the-user dialogs
+          #   "juicesharp-rpiv-todo" # visible task list
+          #   "gotgenes-pi-permission-system" # permission/policy controls
+          #   "pi-cc-extensions" # Claude Code-style TUI, themes, utilities
+          #   "dietrichgebert-ponytail" # lazy senior dev skill
+          #   "pi-caveman" # terse output mode
+          #   "billion-context" # context compression
+          #   "pi-lens" # LSP/lint/format feedback
+          #   # "taterdoge-pi-remember-model" # Remember the last selected model does not work with read only settings
+          # ];
+          packages = [
+            "npm:@juicesharp/rpiv-ask-user-question"
+            "npm:@juicesharp/rpiv-todo"
+            "npm:@gotgenes/pi-permission-system"
+            "npm:pi-cc-extensions"
+            "npm:@dietrichgebert/ponytail"
+            "npm:pi-caveman"
+            "npm:billion-context"
+            "npm:pi-lens"
           ];
         };
       };
@@ -206,9 +223,9 @@
       };
 
       # In your Nix configuration
-      nix.settings = {
-        extra-substituters = ["https://nix-cache.lsinfra.de/pi-packages"];
-        extra-trusted-public-keys = ["pi-packages:OF+SNU2ALJB8M+cQP/RfFOuKIOMN0w4WiV8k01pvUC4="];
-      };
+      # nix.settings = {
+      #   extra-substituters = ["https://nix-cache.lsinfra.de/pi-packages"];
+      #   extra-trusted-public-keys = ["pi-packages:OF+SNU2ALJB8M+cQP/RfFOuKIOMN0w4WiV8k01pvUC4="];
+      # };
     };
 }

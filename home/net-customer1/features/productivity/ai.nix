@@ -65,6 +65,31 @@
             }
           ];
         };
+        strata = {
+          baseUrl = "http://nvidia-spark-gb10.software.ads:8080/v1";
+          api = "openai-completions";
+          apiKey = "!${lib.getExe pkgs.libsecret} lookup nvidia-spark-gb10.software.ads strata";
+          compat = {
+            supportsDeveloperRole = false;
+            supportsReasoningEffort = false;
+          };
+          models = [
+            {
+              id = "swift-1.5-iq3_s";
+              name = "Qwen3.8-Flash-Next (Strata, local)";
+              reasoning = true;
+              input = ["text"];
+              contextWindow = 262144;
+              maxTokens = 4096;
+              thinking = {
+                mode = "effort";
+                efforts = ["minimal" "low" "medium" "high"];
+                defaultLevel = "low";
+                # cost = "{input: 0, output: 0, cacheRead: 0, cacheWrite: 0";
+              };
+            }
+          ];
+        };
       };
     };
   };

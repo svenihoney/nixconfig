@@ -68,8 +68,8 @@
       height = 2160;
       x = 0;
       workspace = "5";
-      primary = true;
       scale = 2.0;
+      primary = true;
     }
     {
       name = "desc:Lenovo Group Limited T24i-10 VT490352";
