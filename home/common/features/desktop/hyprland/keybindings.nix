@@ -64,8 +64,8 @@ in
         }
         // lib.attrsets.optionalAttrs config.programs.doom-emacs.enable {
           # Workaround for emacs not being set up correctly for ssh access
-          "F4" =
-            "${lib.getExe config.programs.fish.package} -c ${lib.getExe config.programs.doom-emacs.finalEmacsPackage}";
+          "F4" = "${lib.getExe config.programs.doom-emacs.finalEmacsPackage}";
+            # "${lib.getExe config.programs.fish.package} -c ${lib.getExe config.programs.doom-emacs.finalEmacsPackage}";
         }
         // lib.attrsets.optionalAttrs config.programs.zed-editor.enable {
           # Workaround for emacs not being set up correctly for ssh access

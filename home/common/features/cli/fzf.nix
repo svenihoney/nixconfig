@@ -6,8 +6,7 @@
   programs = {
     fzf = {
       enable = true;
-      tmux.enableShellIntegration = true;
-      tmux.shellIntegrationOptions = [ "-d 40%" ];
+
       defaultCommand = "fd --type f --hidden --exclude .git";
       defaultOptions = [
         "--height 40%"
@@ -23,6 +22,11 @@
         options = [ "--preview 'head {}'" ];
       };
       historyWidget.command = "";
+
+      enableZshIntegration = true;
+
+      tmux.enableShellIntegration = true;
+      tmux.shellIntegrationOptions = [ "-d 40%" ];
     };
     tmux.enable = true;
     fish = {

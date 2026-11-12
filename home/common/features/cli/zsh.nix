@@ -63,18 +63,27 @@
 
     plugins = [
       {
-        name = "fzf-tab";                  # fish-"fifc"-Äquivalent
-        src = pkgs.zsh-fzf-tab;
-        file = "share/fzf-tab/fzf-tab.plugin.zsh";
-      }
-      {
-        name = "zsh-autopair";             # fish-"autopairs"-Äquivalent
-        src = pkgs.zsh-autopair;
-        file = "share/zsh/zsh-autopair/autopair.zsh";
+        name = pkgs.zsh-fzf-tab.pname;
+        src = pkgs.zsh-fzf-tab.src;
+        # Upstream-Datei heißt nicht <pname>.plugin.zsh – HM überspringt sie sonst still
+        file = "fzf-tab.plugin.zsh";
       }
       # Achtung: HM lädt diese Plugins NACH compinit – genau richtig für fzf-tab.
+      {
+        name = pkgs.zsh-autopair.pname;
+        src = pkgs.zsh-autopair.src;
+      }
+      {
+        name = pkgs.zsh-nix-shell.pname;
+        src = pkgs.zsh-nix-shell.src;
+        file = "nix-shell.plugin.zsh";
+      }
+      {
+        name = pkgs.zsh-bd.pname;
+        src = pkgs.zsh-bd.src;
+        file = "bd.plugin.zsh";
+      }
     ];
-
 
     # Alles andere nach compinit
     initContent = lib.mkMerge [
@@ -82,31 +91,48 @@
         fpath+=(${pkgs.zsh-completions}/share/zsh/site-functions)
       '')
       ''
-      # ── Fish-Feature 2: Completion-Menü mit Cursor-Navigation ──────────
-      # zstyle ':completion:*' menu select
-      zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
-      zstyle ':completion:*:descriptions' format '[%d]'
-      zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+        # ── Fish-Feature 2: Completion-Menü mit fzf ──────────
+        # zstyle ':completion:*' menu select
+        # zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+        # zstyle ':completion:*:descriptions' format '[%d]'
 
-      # ── Fish-Feature 3: `*` + Tab expandiert nativ (nix zu tun) ────────
-      # Optionale Ergänzung: Tab zeigt zuerst Liste statt sofort zu expandieren
-      setopt glob_complete
-      setopt auto_cd
+        # disable sort when completing `git checkout`
+        zstyle ':completion:*:git-checkout:*' sort false
+        # set descriptions format to enable group support
+        # NOTE: don't use escape sequences (like '%F{red}%d%f') here, fzf-tab will ignore them
+        zstyle ':completion:*:descriptions' format '[%d]'
+        # set list-colors to enable filename colorizing
+        zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+        # force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+        zstyle ':completion:*' menu no
+        # preview directory's content with eza when completing cd
+        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+        # custom fzf flags
+        # NOTE: fzf-tab does not follow FZF_DEFAULT_OPTS by default
+        zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
+        # To make fzf-tab follow FZF_DEFAULT_OPTS.
+        # NOTE: This may lead to unexpected behavior since some flags break this plugin. See Aloxaf/fzf-tab#455.
+        # zstyle ':fzf-tab:*' use-fzf-default-opts yes
+        # switch group using `<` and `>`
+        zstyle ':fzf-tab:*' switch-group '<' '>'
+        # Case insensitive completion match
+        zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
-      # ── puffer-fish-Äquivalent: global alias Expansion ────────────────
-      alias -g ...='../..'
-      alias -g ....='../../..'
-      # !!, !$ und !* funktionieren in zsh nativ (History-Expansion).
+        # ── Fish-Feature 3: `*` + Tab expandiert nativ (nix zu tun) ────────
+        # Optionale Ergänzung: Tab zeigt zuerst Liste statt sofort zu expandieren
+        setopt glob_complete
+        setopt auto_cd
 
-      # ── Autosuggestion: ganzen Vorschlag annehmen, dann editierbar ────
-      bindkey '^ ' expand-word
+        # ── puffer-fish-Äquivalent: global alias Expansion ────────────────
+        alias -g ...='../..'
+        alias -g ....='../../..'
 
-      # ── fzf-Tab: nach der fzf-Integration (Order 910) wieder binden ──
-      bindkey '^I' fzf-tab-complete
-
-      # ── Ctrl+Alt+F: Dateisuche wie in fish (fzf.fish) ────────────────
-      bindkey '^[^F' fzf-file-widget
-      ''];
+        # ── Shift+Left/Right: wortweise springen, nimmt Autosuggestion teilweise an ──
+        # (forward-word ist in ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS)
+        bindkey '^[[1;5D' backward-word
+        bindkey '^[[1;5C' forward-word
+      ''
+    ];
 
     dotDir = "${config.xdg.configHome}/zsh";
   };

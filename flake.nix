@@ -178,10 +178,10 @@
     #   url = "git+https://git.effeffcee.de/sven/nixvim.git";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-    pi-packages = {
-      url = "github:Leoguy77/pi-packages.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # pi-packages = {
+    #   url = "github:Leoguy77/pi-packages.nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = inputs @ {self, ...}: let

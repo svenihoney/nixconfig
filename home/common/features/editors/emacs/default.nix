@@ -13,18 +13,19 @@
     # Dependencies
     home.packages = with pkgs; [
       # Dash docs
-      sqlite
+      # sqlite
       # Emacs vterm
       # libtool
       # libvterm
       shellcheck
-      emacs-lsp-booster
+      git-absorb
 
       bash-language-server
       # nil
 
       # nerd-fonts.jetbrains-mono
       nerd-fonts.symbols-only
+
     ];
 
     programs.doom-emacs = {

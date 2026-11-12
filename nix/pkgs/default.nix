@@ -1,7 +1,7 @@
 {pkgs ? import <nixpkgs> {}}: rec {
   # Packages with an actual source
   switchaudio = pkgs.callPackage ./switchaudio {};
-  helix-assist = pkgs.callPackage ./helix-assist {};
+  # helix-assist = pkgs.callPackage ./helix-assist {};
   keepassxc-mail = pkgs.callPackage ./thunderbird-addons/keepassxc-mail.nix {};
   thunderbird-de = pkgs.callPackage ./thunderbird-addons/thunderbird-de.nix {};
   # shellcolord = pkgs.callPackage ./shellcolord { };

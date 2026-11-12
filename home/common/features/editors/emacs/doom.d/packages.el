@@ -70,6 +70,7 @@
 
 (package! adoc-mode)
 (package! just-mode)
+(package! typst-ts-mode :recipe (:host github :repo "emacsmirror/typst-ts-mode"))
 ;; (package! bitbake-modes :recipe (:host bitbucket :repo "olanilsson/bitbake-modes"))
 (package! bitbake)
 (package! protobuf-mode)

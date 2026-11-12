@@ -22,16 +22,6 @@ in {
     ./animation-end4.nix
   ];
 
-  # home.pointerCursor = {
-  #   package = pkgs.bibata-cursors;
-  #   name = "Bibata-Modern-Classic";
-  #   size = 24;
-  #   gtk.enable = true;
-  #   x11.enable = true;
-  # };
-
-  # services.hyprpaper.enable = lib.mkForce false;
-  # services.hyprpaper.package = inputs.hyprpaper.overlays.hyprpaper.hyprpaper;
   wayland.windowManager.hyprland = {
     enable = true;
     configType = "lua";
@@ -163,7 +153,8 @@ in {
             (lib.generators.mkLuaInline ''
               function ()
                 hl.exec_cmd("${uwsm} finalize SSH_AUTH_SOCK")
-                hl.exec_cmd("${lib.getExe pkgs.fish} -c ${keepassxc}")
+                -- hl.exec_cmd("${lib.getExe pkgs.fish} -c ${keepassxc}")
+                hl.exec_cmd("${keepassxc}")
               end
             '')
           ];
@@ -180,22 +171,22 @@ in {
   # stylix.targets.hyprland.image.enable = false;
   services.hyprpolkitagent.enable = lib.mkDefault true;
 
-  services.hyprsunset = {
-    enable = lib.mkDefault true;
-    settings = {
-      max-gamma = 150;
+  # services.hyprsunset = {
+  #   enable = lib.mkDefault true;
+  #   settings = {
+  #     max-gamma = 150;
 
-      profile = [
-        {
-          time = "7:30";
-          identity = true;
-        }
-        {
-          time = "23:00";
-          temperature = 5000;
-          gamma = 0.8;
-        }
-      ];
-    };
-  };
+  #     profile = [
+  #       {
+  #         time = "7:30";
+  #         identity = true;
+  #       }
+  #       {
+  #         time = "23:00";
+  #         temperature = 5000;
+  #         gamma = 0.8;
+  #       }
+  #     ];
+  #   };
+  # };
 }

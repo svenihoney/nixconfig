@@ -69,16 +69,17 @@
     settings = {
       defaultProvider = "ollama";
       defaultModel = "gemma4:12b";
-      packages = map (n: "${inputs.pi-packages.packages.${pkgs.stdenv.hostPlatform.system}."pi-${n}"}") [
+      packages = [
         # "opencode-pi"
-        "pi-web-access"
-        # "git:github.com/requestyai/pi-requesty"
-        "pi-requesty-provider"
+        "npm:pi-web-access"
+        "npm:pi-requesty-provider"
       ];
-      # pi-web-search = {
-      #   backends = ["searxng"];
-      #   searxngUrl = "https://searxng.leiderfischer.de";
-      # };
+      # packages = map (n: "${inputs.pi-packages.packages.${pkgs.stdenv.hostPlatform.system}."pi-${n}"}") [
+      #   # "opencode-pi"
+      #   "pi-web-access"
+      #   # "git:github.com/requestyai/pi-requesty"
+      #   "pi-requesty-provider"
+      # ];
     };
   };
   home.file."${config.programs.pi-coding-agent.configDir}/agent/web-search.json".text = builtins.toJSON {

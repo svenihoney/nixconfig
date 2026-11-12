@@ -158,8 +158,8 @@
 
 ;; #################### PROGRAMMING
 
-(map! [f7] 'ghostel-recompile
-      [S-f7] 'ghostel-compile
+(map! [f7] 'recompile
+      [S-f7] 'compile
       [f8] 'next-error
       ;; :nv "K"   #'zeal-at-point
       [S-right] 'next-buffer
@@ -171,6 +171,8 @@
 (set-popup-rule! "^\\*Compilation" :side (if (> (frame-width) 300) 'right 'bottom) :width 150)
 ;; Wrap lines in compilation buffer
 (add-hook 'compilation-mode-hook #'visual-line-mode)
+(use-package! ghostel-compile
+  :hook (after-init . ghostel-compile-global-mode))
 
 (after! flycheck
   (setq flycheck-standard-error-navigation nil)
@@ -597,7 +599,7 @@
        ;; Auto-scroll responses.
        (setq-local window-point-insertion-type t)
        ;; Wrap lines.
-       (visual-line-mode 1))
+       (visual-line-mode 1)))
 
    :config
    ;; Recommended - register macher tools and presets with gptel.

@@ -95,6 +95,7 @@ in {
 
   programs.zen-browser = {
     enable = true;
+    setAsDefaultBrowser = true;
 
     policies = let
       mkLockedAttrs = builtins.mapAttrs (_: value: {

@@ -5,7 +5,10 @@
   osConfig,
   inputs,
   ...
-}: {
+}: let
+  client = config.ai-client.enable;
+  server = config.ai-client.enable;
+in {
   options = {
     # ollama.service.enable = lib.mkEnableOption "Enable ollama service module";
     # ollama.tools.enable = lib.mkEnableOption "Enable ollama clients";
@@ -27,20 +30,21 @@
     # in
     {
       # imports = [ inputs.pi-packages.homeModules.default ];
-      # home.packages =
-      #   with pkgs;
-      #     []
-      #     ++ (lib.optionals config.ai-client.enable [
-      #       # oterm
-      #       # alpaca
-      #       # aider-chat
-      #       # lmstudio
-      #       # opencode
-      #     ])
-      # ++ (lib.optionals config.ai-server.enable [
-      #   llamaPackage
-      # ]);
-      # ;
+      home.packages =
+        with pkgs;
+          []
+          ++ (lib.optionals client [
+            # oterm
+            # alpaca
+            # aider-chat
+            # lmstudio
+            # opencode
+            codegraph
+          ])
+        # ++ (lib.optionals config.ai-server.enable [
+        #   llamaPackage
+        # ]);
+        ;
 
       services.ollama = lib.mkIf config.ai-server.enable {
         enable = true;
@@ -56,7 +60,7 @@
       };
 
       programs.opencode = {
-        enable = config.ai-client.enable;
+        enable = false; # config.ai-client.enable;
         settings = {
           compaction.auto = false;
           plugin = [
@@ -94,19 +98,22 @@
         };
       };
 
-      xdg.configFile."opencode/AGENTS.md".text = ''
-        - **Read surgically.** Read only the line ranges you need (offset/limit). Never re-read a file you've already seen unless it may have changed. Never read an entire large file.
-        - **Search narrowly.** Use tight glob/grep patterns and cap results (e.g., `rg --max-count 20`, `| head -50`). If 2–3 targeted searches fail, ask me instead of exploring further.
-        - **Keep command output small.** Pipe potentially long output through `head`/`tail`/`grep`, or redirect to a file and read only the relevant part.
-        - **Edit minimally.** Prefer small targeted edits over rewriting files. Never print code back to me that you've just written or read — I can see the tool calls.
-        - **Be terse.** Don't restate the task or explain your reasoning unless I ask. Finish with bullet lists or at most 1–2 sentences.
-        - **Batch tool calls.** Make independent calls in parallel rather than one per turn. Run the cheapest check that validates a change; run full test suites only when I ask or the change touches tested paths.
-        - **No subagents unless I explicitly ask.** They re-read context and multiply cost.
-        - **If the task is ambiguous, ask one short question** instead of guessing and doing expensive rework.
-        - **Stop when done.** No unsolicited cleanup, comments, docstrings, or extra verification passes.
-        - **Searching** When searching, if nothing is found after checking 5 sources, stop searching immediately.
-        - **Language** Casual, relaxed, or sloppy language is totally fine to use.
-      '';
+      xdg.configFile."opencode/AGENTS.md" = {
+        enable = config.programs.opencode.enable;
+        text = ''
+          - **Read surgically.** Read only the line ranges you need (offset/limit). Never re-read a file you've already seen unless it may have changed. Never read an entire large file.
+          - **Search narrowly.** Use tight glob/grep patterns and cap results (e.g., `rg --max-count 20`, `| head -50`). If 2–3 targeted searches fail, ask me instead of exploring further.
+          - **Keep command output small.** Pipe potentially long output through `head`/`tail`/`grep`, or redirect to a file and read only the relevant part.
+          - **Edit minimally.** Prefer small targeted edits over rewriting files. Never print code back to me that you've just written or read — I can see the tool calls.
+          - **Be terse.** Don't restate the task or explain your reasoning unless I ask. Finish with bullet lists or at most 1–2 sentences.
+          - **Batch tool calls.** Make independent calls in parallel rather than one per turn. Run the cheapest check that validates a change; run full test suites only when I ask or the change touches tested paths.
+          - **No subagents unless I explicitly ask.** They re-read context and multiply cost.
+          - **If the task is ambiguous, ask one short question** instead of guessing and doing expensive rework.
+          - **Stop when done.** No unsolicited cleanup, comments, docstrings, or extra verification passes.
+          - **Searching** When searching, if nothing is found after checking 5 sources, stop searching immediately.
+          - **Language** Casual, relaxed, or sloppy language is totally fine to use.
+        '';
+      };
 
       programs.pi-coding-agent = {
         enable = config.ai-client.enable;
@@ -142,83 +149,87 @@
             "npm:pi-caveman"
             "npm:billion-context"
             "npm:pi-lens"
+            "npm:@vndv/pi-codegraph"
+            "npm:@majorgilles/pi-grill-me"
           ];
         };
       };
 
-      home.file."${config.programs.pi-coding-agent.configDir}/extensions/pi-permission-system/config.json".text = builtins.toJSON {
-        yoloMode = true;
-        permission = {
-          "*" = "allow";
-          path = {
+      home.file = lib.mkIf config.programs.pi-coding-agent.enable {
+        "${config.programs.pi-coding-agent.configDir}/extensions/pi-permission-system/config.json".text = builtins.toJSON {
+          yoloMode = true;
+          permission = {
             "*" = "allow";
-            "*.env" = "deny";
-            "*.env.*" = "deny";
-            "*.env.example" = "allow";
-            "~/.ssh/*" = "deny";
-          };
-          bash = {
-            "*" = "allow";
-            "rm -rf /*" = "deny";
-            "rm -rf ~" = "deny";
-            "rm -rf /" = "deny";
-            "rm -rf /tmp/*" = "allow";
-          };
-          # external_directory = "allow";
-          external_directory = {
-            "*" = "ask";
-            "/nix/store/*" = "allow";
+            path = {
+              "*" = "allow";
+              "*.env" = "deny";
+              "*.env.*" = "deny";
+              "*.env.example" = "allow";
+              "~/.ssh/*" = "deny";
+            };
+            bash = {
+              "*" = "allow";
+              "rm -rf /*" = "deny";
+              "rm -rf ~" = "deny";
+              "rm -rf /" = "deny";
+              "rm -rf /tmp/*" = "allow";
+            };
+            # external_directory = "allow";
+            external_directory = {
+              "*" = "ask";
+              "/nix/store/*" = "allow";
+            };
           };
         };
-      };
-      home.file."${config.programs.pi-coding-agent.configDir}/agent/sandbox.json".text = builtins.toJSON {
-        enabled = true;
-        permissionPromptTimeoutSeconds = 600;
-        allowBrowserProcess = true;
-        network = {
-          allowLocalBinding = true;
-          allowUnauthenticatedSocksProxy = true;
-          allowAllUnixSockets = true;
-          allowedDomains = (
-            [
-              "localhost"
-              "127.0.0.1"
-              # "html.duckduckgo.com"
-              # "*.npmjs.org"
-              # "*.pypi.org"
-              # "*.github.com"
-              # "raw.githubusercontent.com"
-              # "mcp.context7.com"
-            ]
-            ++ config.ai.sandbox.extraAllowedDomains
-          );
-          deniedDomains = [];
-        };
-        filesystem = {
-          denyRead = ["/home"];
-          allowRead = [
-            "."
-            # "~/projects"
-            "~/.config"
-            "~/.cargo"
-            "~/.local"
-            "/nix/store"
-            "~/.cache"
-          ];
-          allowWrite = [
-            "."
-            "/tmp"
-            "~/.pi/"
-            "~/.cache/uv"
-            "~/.rustup"
-            "~/.agent-browser"
-          ];
-          denyWrite = [
-            ".env"
-            ".env.*"
-            "*.pem"
-            "*.key"
-          ];
+        "${config.programs.pi-coding-agent.configDir}/agent/sandbox.json".text = builtins.toJSON {
+          enabled = true;
+          permissionPromptTimeoutSeconds = 600;
+          allowBrowserProcess = true;
+          network = {
+            allowLocalBinding = true;
+            allowUnauthenticatedSocksProxy = true;
+            allowAllUnixSockets = true;
+            allowedDomains = (
+              [
+                "localhost"
+                "127.0.0.1"
+                # "html.duckduckgo.com"
+                # "*.npmjs.org"
+                # "*.pypi.org"
+                # "*.github.com"
+                # "raw.githubusercontent.com"
+                # "mcp.context7.com"
+              ]
+              ++ config.ai.sandbox.extraAllowedDomains
+            );
+            deniedDomains = [];
+          };
+          filesystem = {
+            denyRead = ["/home"];
+            allowRead = [
+              "."
+              # "~/projects"
+              "~/.config"
+              "~/.cargo"
+              "~/.local"
+              "/nix/store"
+              "~/.cache"
+            ];
+            allowWrite = [
+              "."
+              "/tmp"
+              "~/.pi/"
+              "~/.cache/uv"
+              "~/.rustup"
+              "~/.agent-browser"
+            ];
+            denyWrite = [
+              ".env"
+              ".env.*"
+              "*.pem"
+              "*.key"
+            ];
+          };
         };
       };
 

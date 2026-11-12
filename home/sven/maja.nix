@@ -46,7 +46,7 @@ in {
     all = true;
     zed = true;
     # vscode = true;
-    # helix = true;
+    helix = true;
     # nvf = true;
   };
 

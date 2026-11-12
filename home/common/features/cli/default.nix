@@ -66,7 +66,12 @@
     unzip
   ];
 
-  programs = {
+  programs = let
+    aliases = {
+      jq = "jaq";
+      lt = "eza --tree";
+    };
+  in {
     # zellij.enable = true;
     # thefuck.enable = true;
     eza = {
@@ -78,11 +83,7 @@
       theme = "dracula";
       # extraOptions = ["--hyperlink"];
     };
-    fish = {
-      shellAliases = {
-        jq = "jaq";
-        lt = "eza --tree";
-      };
-    };
+    fish.shellAliases = aliases;
+    zsh.shellAliases = aliases;
   };
 }
