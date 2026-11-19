@@ -150,10 +150,66 @@ in {
         # firenvim
         deutsch-de-language-pack
       ];
-      # search = {
-      #   default = lib.mkDefault "ddg";
-      #   force = true;
-      # };
+      search = {
+        force = true; # Enforce declared search engines on each rebuild
+        default = "ddg";
+        engines = {
+          mynixos = {
+            name = "My NixOS";
+            urls = [
+              {
+                template = "https://mynixos.com/search?q={searchTerms}";
+                params = [
+                  {
+                    name = "query";
+                    value = "searchTerms";
+                  }
+                ];
+              }
+            ];
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = ["@nx"];
+          };
+          youtube = {
+            name = "YouTube Search";
+            urls = [
+              {
+                template = "https://www.youtube.com/results?search_query={searchTerms}";
+              }
+            ];
+            definedAliases = ["@yt"];
+          };
+          github = {
+            name = "GitHub Search";
+            urls = [
+              {
+                template = "https://github.com/search?q={searchTerms}";
+              }
+            ];
+            definedAliases = ["@gh"];
+          };
+          maps = {
+            name = "Google Maps";
+            urls = [
+              {
+                template = "https://www.google.com/maps/search/{searchTerms}";
+                params = [
+                  {
+                    name = "hl";
+                    value = "de";
+                  }
+                  {
+                    name = "source";
+                    value = "opensearch";
+                  }
+                ];
+              }
+            ];
+            icon = "https://www.google.com/images/branding/product/ico/web_maps_icon_32dp.ico";
+            definedAliases = ["@maps"];
+          };
+        };
+      };
       settings = {
         "widget.use-xdg-desktop-portal.file-picker" = 1;
         "browser.disableResetPrompt" = true;
@@ -275,5 +331,4 @@ in {
   # };
 
   xdg.mimeApps.defaultApplications = associations;
-
 }

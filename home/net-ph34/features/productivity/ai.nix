@@ -54,6 +54,14 @@
             {id = "deepseek-coder-v2:latest";}
           ];
         };
+        llama-cpp = {
+          baseUrl = "http://localhost:8080/v1";
+          api = "openai-completions";
+          apiKey = "ollama";
+          models = [
+            {id = "Qwen3.8-27B";}
+          ];
+        };
         requesty = {
           name = "Requesty";
           api = "openai-completions";

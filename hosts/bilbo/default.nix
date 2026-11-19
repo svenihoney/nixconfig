@@ -82,7 +82,8 @@
   services.greetd.settings.initial_session = {
     # Change "Hyprland" to the command to run your window manager. ^Note1
     # command = "${lib.getExe pkgs.uwsm} start -F ${lib.getExe pkgs.hyprland}";
-    command = "${lib.getExe pkgs.uwsm} start -e -D Hyprland hyprland.desktop";
+    # command = "${lib.getExe pkgs.uwsm} start -e -D Hyprland hyprland.desktop";
+    command = "${lib.getExe config.programs.uwsm.package} start -e -D umbriel umbriel.desktop";
     # Change "${user}" to your username or to your username variable.
     user = "fischer";
   };
@@ -103,6 +104,8 @@
     nvidia.open = true;
     bluetooth.powerOnBoot = false;
   };
+  # services.greetd. settings. default_session. command = lib.mkDefault "${pkgs.tuigreet}/bin/tuigreet --remember --time --cmd \'${lib.getExe config.programs.uwsm.package} start hyprland-uwsm.desktop\'";
+  services.greetd.settings.default_session.command = "${pkgs.tuigreet}/bin/tuigreet --remember --time --cmd \'${lib.getExe config.programs.uwsm.package} start umbriel.desktop\'";
 
   services = {
     # Lid settings

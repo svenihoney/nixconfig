@@ -9,7 +9,7 @@
     settings = {
       terminal.vt = 1;
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --remember --time --cmd \'${lib.getExe config.programs.uwsm.package} start hyprland-uwsm.desktop\'";
+        command = lib.mkDefault "${pkgs.tuigreet}/bin/tuigreet --remember --time --cmd \'${lib.getExe config.programs.uwsm.package} start hyprland-uwsm.desktop\'";
         # command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-user-session";
         user = "greeter";
         # user = "${user}";

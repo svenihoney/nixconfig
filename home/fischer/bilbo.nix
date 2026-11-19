@@ -15,7 +15,8 @@
     ../common/global
     ../common/standard-desktop.nix
 
-    ../common/features/desktop/hyprland
+    # ../common/features/desktop/hyprland
+    ../common/features/desktop/umbriel
     ../common/features/desktop/common/networkmanager.nix
 
     ../common/features/desktop/common/browser.nix

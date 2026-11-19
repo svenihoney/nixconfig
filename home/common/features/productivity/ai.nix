@@ -156,6 +156,14 @@ in {
       };
 
       home.file = lib.mkIf config.programs.pi-coding-agent.enable {
+        "${config.programs.pi-coding-agent.configDir}/mcp.json".text = builtins.toJSON {
+          mcpServers = {
+            nixos = {
+              command = "${lib.getExe pkgs.mcp-nixos}";
+            };
+          };
+        };
+
         "${config.programs.pi-coding-agent.configDir}/extensions/pi-permission-system/config.json".text = builtins.toJSON {
           yoloMode = true;
           permission = {
@@ -181,6 +189,7 @@ in {
             };
           };
         };
+
         "${config.programs.pi-coding-agent.configDir}/agent/sandbox.json".text = builtins.toJSON {
           enabled = true;
           permissionPromptTimeoutSeconds = 600;

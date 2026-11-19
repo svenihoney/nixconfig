@@ -37,6 +37,7 @@
     ../common/optional/networking.nix
     # ../common/optional/nfs.nix
     ../common/optional/stylix.nix
+    ../common/optional/llama-cpp.nix
   ];
 
   # fonts.packages = with pkgs; [
